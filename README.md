@@ -1,1 +1,2 @@
-DessertFarm-github
+# 디저트팜(21_HF390)
+2021년 한이음 ICT 멘토링 프로젝트
