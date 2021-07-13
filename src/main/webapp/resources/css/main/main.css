@@ -208,12 +208,18 @@ body{
 	height:452px;
 	border: solid 1px #eeeeee;
 	display:inline-block;
-	margin:16px;
+	margin:12px;
 }
 
-.itemBox:child(4n){
+.itemBox:nth-child(4n+1){
+	margin-left:0px;
+}
+
+.itemBox:nth-child(4n){
 	margin-right:0px;
 }
+
+
 
 .bestItem_img{
 	width:296px;
@@ -306,4 +312,76 @@ body{
 .add_bag{
 	float:right;
 	border-left:1px solid #eeeeee;
+}
+
+
+
+/* about */
+
+.about{
+	width:1280px;
+	text-align:center;
+	margin:0 auto;
+}
+
+.abouthead_text{
+	font-family:'NanumSquare';
+	font-size:30px;
+	font-weight:bold;
+	line-height:0.72;
+	color:#111111;
+}
+
+.abouthead_subText{
+	margin-top:20px;
+	font-size:15px;
+	font-weight:normal;
+	line-height:1.4;
+	color:#dddddd;
+}
+
+.aboutBox{
+	width:1280px;
+	height:600px;
+	border:solid 1px #dddddd;
+	margin:100px 0;
+}
+
+.aboutBox div{
+	display:inline-block;
+	margin:0;
+	padding:0;
+}
+
+.aboutImg{
+	width:640px;
+	height:300px;
+	background-color:#f7f7f7;
+}
+
+.about1{
+	float:right;
+	width:640px;
+	height:300px;
+	text-align:center;
+}
+
+.about2{
+	float:left;
+	width:640px;
+	height:300px;
+	text-align:center;
+}
+
+.about_text{
+	font-size:20px;
+	line-height:1.45;
+	margin-top:64px;
+}
+
+.about_subtext{
+	font-size:20px;
+	line-height:1.45;
+	margin-top:20px;
+	color:#cccccc;
 }

@@ -43,6 +43,7 @@
 		</div>
 	</div>
 	
+	<!-- 메인슬라이드 -->
 	<div class="mainSlide">
 		<div class="slideImg">
 			<div class="slideText">
@@ -58,6 +59,7 @@
 		</div>
 	</div>
 	
+	<!-- 할인상품 -->
 	<div class="saleSlide">
 		<div class="saleSlide_text">이달의 <span>할인상품</span>!</div>
 		<div class="slideList">
@@ -84,6 +86,7 @@
 		</div>
 	</div>
 	
+	<!-- 인기상품 -->
 	<div class="bestItem">
 		<div class="bestItem_text">인기 상품</div>
 		<div class="bestItem_List">
@@ -226,6 +229,35 @@
 					<div class="add_bag"><img/> 장바구니</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	
+	<div class="about">
+		<div class="abouthead_text">ABOUT</div>
+		<div class="abouthead_subText">디저트팜에 대해 알려드립니다.</div>
+		<div class="aboutBox">
+			<div class="aboutImg">
+			</div>
+			<div class="about1">
+				<p class="about_text">브랜드스토리</p>
+				<p class="about_subText">디저트팜을 소개합니다.</p>
+				<div class="about_btn"></div>
+			</div>
+			
+			<div class="aboutImg">
+			</div>
+			<div class="about2">
+				<p class="about_text">협력업체</p>
+				<p class="about_subText">디저트팜과 함께합니다.</p>
+				<div class="about_btn"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div>
+		<div>
+			<img src="/"/>
+			<div>신규 회원가입시 2,000원 쿠폰을 드립니다.</div>
 		</div>
 	</div>
 </body>
