@@ -385,3 +385,60 @@ body{
 	margin-top:20px;
 	color:#cccccc;
 }
+
+
+
+/* benefit */
+.benefit{
+	width:1280px;
+	height:280px;
+	margin:0 auto 100px;
+	text-align:center;
+}
+
+.benefitBox{
+	display:inline-block;
+	width:420px;
+	height:280px;
+	background-color:#f8f8f8;
+	border:solid 1px #dddddd;
+}
+
+.benefitBox img{
+	margin-top:60px;
+}
+
+.benefit_text{
+	font-size:20px;
+	font-weight:bold;
+	line-height:1.45;
+	color:#454545;
+	margin-bottom:30px;
+}
+
+.benefit_subtext{
+	font-size:18px;
+	font-weight:normal;
+	line-height:1.44;
+	color:#454545;
+}
+
+
+.sample_order{
+	width:1920px;
+	height:380px;
+	color:#ffffff;
+	background-color:#1b1b1b;
+}
+
+.sample_textbox{
+	width:1280px;
+	margin:0 auto;
+	padding-top:87px;
+}
+
+.sample_text{
+	font-size:30px;
+	font-weight:bold;
+	line-height:1.47;
+}

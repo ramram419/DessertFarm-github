@@ -254,10 +254,32 @@
 		</div>
 	</div>
 	
-	<div>
-		<div>
+	<div class="benefit">
+		<div class="benefitBox">
 			<img src="/"/>
-			<div>신규 회원가입시 2,000원 쿠폰을 드립니다.</div>
+			<div class="benefit_text">신규 회원혜택</div>
+			<div class="benefit_subtext">신규 회원가입시 2,000원 쿠폰을 드립니다.</div>
+		</div>
+		<div class="benefitBox">
+			<img src="/"/>
+			<div class="benefit_text">무료배송</div>
+			<div class="benefit_subtext">3만원 이상 구매시 무료배송 합니다.</div>
+		</div>
+		<div class="benefitBox">
+			<img src="/"/>
+			<div class="benefit_text">샘플 구매</div>
+			<div class="benefit_subtext">제품이 어떤지 샘플부터 구매해보세요.</div>
+		</div>
+	</div>
+	
+	<div class="sample_order">
+		<div class="sample_textbox">
+			<div class="sample_text">각 업체 샘플 주문 OPEN!</div>
+			<div class="sample_subtext">
+				이제는 찾아다니지 않으셔도 됩니다!! 디저트팜에서 샘풀 주문이 가능한 업체를 볼 수 있습니다.<br>
+				다양한 디저트를 확인해보고 확인해보고 싶은 디저트를 샘플 주문 해보세요!
+			</div>
+			<div class="sample_btn">view more</div>
 		</div>
 	</div>
 </body>
