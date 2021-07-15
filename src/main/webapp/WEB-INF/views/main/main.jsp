@@ -21,10 +21,10 @@
              </div>
 		</div>
 		<div class="header_mid">
-			<div class="logo">로고</div>
+			<div class="logo"></div>
 			<div class="search_box">
 				<input type="text" class="search_text"/>
-				<div class="search_icon"></div>
+				<img src="./images/icon_search@2x.png" class="search_icon" />
 			</div>
 		</div>
 		<div class="header_btm">

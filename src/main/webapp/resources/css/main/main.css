@@ -58,8 +58,9 @@ body{
 
 .logo{
 	width:100px;
-	height:50px;
+	height:70px;
 	margin:0 auto;
+	background:url('../../images/logo@2x.png') no-repeat;
 }
 
 .search_box{
