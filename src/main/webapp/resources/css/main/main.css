@@ -64,17 +64,30 @@ body{
 }
 
 .search_box{
+	width: 214px;
+	height: 40px;
 	margin-top:-45px;
 	float:right;
+	border: solid 1px #dddddd;
+	background-color: rgba(238, 238, 238, 0.3);
+	border-radius: 20px;
 }
 
 .search_text{
-	 width: 214px;
-	 height: 40px;
-	 padding: 11px;
-	 border-radius: 20px;
-	 border: solid 1px #dddddd;
-	 background-color: rgba(238, 238, 238, 0.3);
+	width: 175px;
+	padding: 14px;
+	background-color: rgba(238, 238, 238, 0.3);
+	border-radius:20px;
+	border: none;
+	outline:none;
+}
+
+.search_icon{
+	background:url('../../images/icon_search@2x.png') no-repeat;
+	width:35px;
+	height:35px;
+	float:right;
+	margin-top:10px;
 }
 
 

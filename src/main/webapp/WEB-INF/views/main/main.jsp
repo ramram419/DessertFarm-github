@@ -24,7 +24,7 @@
 			<div class="logo"></div>
 			<div class="search_box">
 				<input type="text" class="search_text"/>
-				<img src="./images/icon_search@2x.png" class="search_icon" />
+				<div class="search_icon"></div>
 			</div>
 		</div>
 		<div class="header_btm">
