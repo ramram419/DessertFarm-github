@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <html>
 <head>
@@ -29,13 +30,13 @@
 		</div>
 		<div class="header_btm">
 			<div class="menu_box">
-				<div class="cate"><img />전체 카테고리</div>
+				<div class="cate"><img src="${path}/resources/images/icon_bars@2x.png" />전체 카테고리</div>
 				<div class="menu">
 					<ul>
                 		<li><a>브랜드스토리</a></li>
                 		<li><a>신상품</a></li>
                 		<li><a>베스트상품/상점</a></li>
-                		<li><a>이달의 <span>할인</span></a></li>
+                		<li><a>이달의 <span style="color:#ff6363;">할인</span></a></li>
                 		<li><a>샘플 상품 주문</a></li>
             		</ul>
 				</div>
@@ -45,7 +46,7 @@
 	
 	<!-- 메인슬라이드 -->
 	<div class="mainSlide">
-		<div class="slideImg">
+		<div class="slideImg" style="background:url('${path}/resources/images/main_image.png') no-repeat;">
 			<div class="slideText">
 				<p class="text1">
 					어디서 주문할까?<br>
@@ -64,23 +65,23 @@
 		<div class="saleSlide_text">이달의 <span>할인상품</span>!</div>
 		<div class="slideList">
 			<div class="item_circle">
-				<div class="sale_img"></div>
+				<div class="sale_img"><img src="#"/></div>
 				<p>도넛</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_3@2x.png') no-repeat;"></div>
 				<p>딸기 크레이프</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img select"></div>
+				<div class="sale_img select" style="background:url('${path }/resources/images/image_6@2x.png') no-repeat"></div>
 				<p>크로플</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_7@2x.png') no-repeat;"></div>
 				<p>크로와상</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_1@2x.png') no-repeat;"></div>
 				<p>다쿠아즈</p>
 			</div>
 		</div>
@@ -91,7 +92,7 @@
 		<div class="bestItem_text">인기 상품</div>
 		<div class="bestItem_List">
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/image_7@2x.png"/>
 				<div class="itemTag">
 					<div class="tag best">BEST</div>
 					<div class="tag only_b">사업자 전용</div>
@@ -103,13 +104,13 @@
 					<div class="o_price">20,000원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 			
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/cake@2x.png"/>
 				<div class="itemTag">
 					<div class="tag best">BEST</div>
 					<div class="tag only_b">사업자 전용</div>
@@ -119,13 +120,13 @@
 					<div class="price">13,500원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 			
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/image_6@2x.png"/>
 				<div class="itemTag">
 					<div class="tag new">NEW</div>
 					<div class="tag best">BEST</div>
@@ -138,13 +139,13 @@
 					<div class="o_price">25,000원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 			
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/image_8@2x.png"/>
 				<div class="itemTag">
 					<div class="tag new">NEW</div>
 					<div class="tag best">BEST</div>
@@ -155,13 +156,13 @@
 					<div class="price">10,000원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 			
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/image_1@2x.png"/>
 				<div class="itemTag">
 					<div class="tag new">NEW</div>
 					<div class="tag only_b">사업자 전용</div>
@@ -173,13 +174,13 @@
 					<div class="o_price">16,000원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 			
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/image_9@2x.png"/>
 				<div class="itemTag">
 					<div class="tag new">NEW</div>
 					<div class="tag only_b">사업자 전용</div>
@@ -189,13 +190,13 @@
 					<div class="price">14,000원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 			
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/image_2@2x.png"/>
 				<div class="itemTag">
 					<div class="tag new">NEW</div>
 					<div class="tag best">BEST</div>
@@ -206,13 +207,13 @@
 					<div class="price">22,000원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 			
 			<div class="itemBox">
-				<img class="bestItem_img"/>
+				<img class="bestItem_img" src="${path }/resources/images/image_3@2x.png"/>
 				<div class="itemTag">
 					<div class="tag new">NEW</div>
 					<div class="tag best">BEST</div>
@@ -225,8 +226,8 @@
 					<div class="o_price">10,000원</div>
 				</div>
 				<div class="bestItem_btn">
-					<div class="add_dibs"><img/> 찜하기</div>
-					<div class="add_bag"><img/> 장바구니</div>
+					<div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+					<div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 				</div>
 			</div>
 		</div>
@@ -236,37 +237,36 @@
 		<div class="abouthead_text">ABOUT</div>
 		<div class="abouthead_subText">디저트팜에 대해 알려드립니다.</div>
 		<div class="aboutBox">
-			<div class="aboutImg">
-			</div>
+			<div class="aboutImg" style="background:url('${path}/resources/images/image_4@2x.png') no-repeat;"></div>
 			<div class="about1">
 				<p class="about_text">브랜드스토리</p>
 				<p class="about_subText">디저트팜을 소개합니다.</p>
-				<div class="about_btn"></div>
+				<div class="about_btn"><img src="${path }/resources/images/arrow_right.png"/></div>
 			</div>
 			
-			<div class="aboutImg">
+			<div class="aboutImg" style="background:url('${path}/resources/images/image_5@2x.png') no-repeat;">
 			</div>
 			<div class="about2">
 				<p class="about_text">협력업체</p>
 				<p class="about_subText">디저트팜과 함께합니다.</p>
-				<div class="about_btn"></div>
+				<div class="about_btn"><img src="${path }/resources/images/arrow_right.png"/></div>
 			</div>
 		</div>
 	</div>
 	
 	<div class="benefit">
 		<div class="benefitBox">
-			<img src="/"/>
+			<img src="${path }/resources/images/user@2x.png"/>
 			<div class="benefit_text">신규 회원혜택</div>
 			<div class="benefit_subtext">신규 회원가입시 2,000원 쿠폰을 드립니다.</div>
 		</div>
 		<div class="benefitBox">
-			<img src="/"/>
+			<img src="${path }/resources/images/delivery-truck@2x.png"/>
 			<div class="benefit_text">무료배송</div>
 			<div class="benefit_subtext">3만원 이상 구매시 무료배송 합니다.</div>
 		</div>
 		<div class="benefitBox">
-			<img src="/"/>
+			<img src="${path }/resources/images/gift-box@2x.png"/>
 			<div class="benefit_text">샘플 구매</div>
 			<div class="benefit_subtext">제품이 어떤지 샘플부터 구매해보세요.</div>
 		</div>
@@ -279,7 +279,26 @@
 				이제는 찾아다니지 않으셔도 됩니다!! 디저트팜에서 샘풀 주문이 가능한 업체를 볼 수 있습니다.<br>
 				다양한 디저트를 확인해보고 확인해보고 싶은 디저트를 샘플 주문 해보세요!
 			</div>
-			<div class="sample_btn">view more</div>
+			<div class="sample_btn">view more<img src="${path }/resources/images/up-arrow.png"/></div>
+		</div>
+	</div>
+	
+	<div class="bottom_menu">
+		<div class="custmer_center">
+			<div class="custmer_centertext">CUSTMER CENTER</div>
+			<div class="phonenum">032-123-4567</div>
+			<div class="center_about">
+				※ 평일 : 09:00~18:00<br>
+     			<span style="margin-left:20px;">(점심시간 12:00~1시)</span> <br>
+     			※ 주말(토,일,공휴일) : 미운영 
+			</div>
+		</div>
+		
+		<div class="notice">
+			<div class="notice_text">NOTICE & NEWS <span>더보기 +</span></div>
+			<div class="notice_list">[카카오톡 상담톡 오픈!]<span>2021-07-04</span></div>
+			<div class="notice_list">[21년 설 명절 이 후 배송 안내]<span>2021-07-04</span></div>
+			<div class="notice_list">[크리스마스, 신정] 택배 배송 안내<span>2021-07-04</span></div>
 		</div>
 	</div>
 </body>
