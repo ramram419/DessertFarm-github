@@ -8,19 +8,24 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MainVO {
-	private String id;
-	private String pwd;
-	private String confirmPwd;
-	private String name;
-	private String email;
-	private Date joinDate;
+	private int client_num;
+	private String client_name;
+	private String client_id;
+	private String client_pwd;
+	private String client_email;
+	private String client_address;
+	private String client_tel;
+	private String client_entre;
+	private String client_kakao;
 	
-	public MainVO(String id, String pwd, String confirmPwd, String name, String email, Date joinDate) {
-		this.id = id;
-		this.pwd = pwd;
-		this.name = name;
-		this.confirmPwd = confirmPwd;
-		this.email = email;
-		this.joinDate = joinDate;
+	public MainVO(String client_name, String client_id, String client_pwd, String client_email, String client_address, String client_tel, String client_entre, String client_kakao) {
+		this.client_name = client_name;
+		this.client_id = client_id;
+		this.client_pwd = client_pwd;
+		this.client_email = client_email;
+		this.client_address = client_address;
+		this.client_tel = client_tel;
+		this.client_entre = client_entre;
+		this.client_kakao = client_kakao;
 	}
 }

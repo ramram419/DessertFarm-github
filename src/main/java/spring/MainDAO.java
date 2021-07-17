@@ -11,6 +11,8 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 public class MainDAO {
 	private JdbcTemplate jdbcTemplate;
@@ -20,7 +22,7 @@ public class MainDAO {
 	}
 
 	public List<String> login(String id, String password) {
-		List<String> result = jdbcTemplate.query("select if(count(*) = 1, 'true', 'false') as result from han where id = ? and pwd = ?", new RowMapper<String>() {
+		List<String> result = jdbcTemplate.query("select * from client where client_id = ? and client_pwd = ?", new RowMapper<String>() {
 
 			@Override
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -44,18 +46,24 @@ public class MainDAO {
 	}
 	
 	public void insert(MainVO mainVO) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement pstmt = con.prepareStatement("insert into han (id, pwd, name, email, joinDate) values (?, ?, ?, ?, ?)");
-				pstmt.setString(1, mainVO.getId());
-				pstmt.setString(2, mainVO.getPwd());
-				pstmt.setString(3, mainVO.getName());
-				pstmt.setString(4, mainVO.getEmail());
-				pstmt.setDate(5, mainVO.getJoinDate());
+				PreparedStatement pstmt = con.prepareStatement("insert into client (client_name, client_id, client_pwd, client_email, client_address, client_tel, client_entre, client_kakao) values (?, ?, ?, ?, ?, ?, ?, ?)", new String[] {"client_num"});
+				pstmt.setString(1, mainVO.getClient_name());
+				pstmt.setString(2, mainVO.getClient_id());
+				pstmt.setString(3, mainVO.getClient_pwd());
+				pstmt.setString(4, mainVO.getClient_email());
+				pstmt.setString(5, mainVO.getClient_address());
+				pstmt.setString(6, mainVO.getClient_tel());
+				pstmt.setString(7, mainVO.getClient_entre());
+				pstmt.setString(8, mainVO.getClient_kakao());
 				return pstmt;
 			}
-		});
+		}, keyHolder);
+		Number keyValue = keyHolder.getKey();
+		mainVO.setClient_num(keyValue.intValue());
 	}
 }

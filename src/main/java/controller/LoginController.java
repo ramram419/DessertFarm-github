@@ -2,6 +2,9 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,37 +16,41 @@ import login.LoginService;
 @Controller
 public class LoginController {
 	private LoginService loginSvc;
-	
+		
 	public void setLoginService(LoginService loginSvc) {
 		this.loginSvc = loginSvc;
 	}
 	
 	@RequestMapping("/login")
-	public String login(LoginRequest req) {
-		loginSvc.login(req);
+	public String moveToLogin(LoginRequest req) {
 		return "login/login";
 	}
 	
-	@PostMapping("/main")
-	public String main(LoginRequest req) {
-		List<String> exist = loginSvc.login(req);
-		if(exist.get(0).equals("true")) {
-			return "login/welcome";
-		}else if(exist.get(0).equals("false")){
+	@PostMapping("/dessertfarm.com")
+	public String login(LoginRequest req, HttpServletRequest request) {
+		List<String> user = loginSvc.login(req);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		
+		if(!user.isEmpty()) {
+			return "home/homePage-2";
+		}else if(user.isEmpty()){
 			return "login/logerr";
 		}else {
-			return "login/main";
+			return "home/homePage";
 		}
+	}
+	
+	@GetMapping("/logout")
+	public String logOut(LoginRequest req, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "home/homePage";
 	}
 	
 	@GetMapping("/main")
 	public String main2() {
 		return "redirect:/login";
-	}
-	
-	@PostMapping("/welcome")
-	public String welcome(LoginRequest req) {
-		loginSvc.login(req);
-		return "login/welcome";
 	}
 }

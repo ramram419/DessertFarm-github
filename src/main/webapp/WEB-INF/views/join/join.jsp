@@ -15,7 +15,9 @@
 		var pwd = document.getElementById('pwd').value;
 		var cPwd = document.getElementById('cPwd').value;
 		var name = document.getElementById('name').value;
-		var email = document.getElementById('id').value;
+		var email = document.getElementById('email').value;
+		var address = document.getElementById('address').value;
+		var tel = document.getElementyById('tel').value;
 		
 		if(id.length == 0 || id == ""){
 			alert("필수 입력 사항입니다 :)");
@@ -27,6 +29,10 @@
 			alert("필수 입력 사항입니다 :)");	
 		}else if(pwd != cPwd){
 			alert("비밀번호가 일치 하지 않습니다");
+		}else if (address.length == 0 || address == "") {
+			alert("필수 입력 사항입니다 :)");
+		}else if(tel.length == 0 || tel == "") {
+			alert("필수 입력 사항입니다 :)");			
 		}else {
 			alert("회원가입 성공 \n환영합니다 " + id + "님!!");
 			frmJoin.method="post";
@@ -41,29 +47,49 @@
 	<form:form name="frmJoin" modelAttribute="joinRequest">
 		<p>
 			<label>ID : <br>
-				<form:input path="id" id="id" /><button type="button" onClick="" >중복 확인</button>
+				<form:input path="client_id" id="id" /><button type="button" onClick="" >중복 확인</button>
 			</label>
 		</p>
 		<p>
 			<label>Password : <br>
-				<form:password path="pwd" id="pwd" />
+				<form:password path="client_pwd" id="pwd" />
 			</label>
 		</p>
 		<p>
 			<label>Check Password : <br>
-				<form:password path="confirmPwd" id="cPwd" />
+				<form:password path="confirm_client_pwd" id="cPwd" />
 			</label>
 		</p>
 		<p>
 			<label>Name : <br>
-				<form:input path="name" id="name" />
+				<form:input path="client_name" id="name" />
 			</label>
 		</p>
 		<p>
 			<label>Email : <br>
-				<form:input path="email" id="email" />
+				<form:input path="client_email" id="email" />
 			</label>
 		</p>
+		<p>
+			<label>Address : <br>
+				<form:input path="client_address" id="address" />
+			</label>
+		</p>
+		<p>
+			<label>Phone Number : <br>
+				<form:input path="client_tel" id="tel" />
+			</label>
+		</p>
+<%-- 		<p>
+			<label>사업자 등록증 : <br>
+				<form:checkbox path="client_entre" id="entre" />
+			</label>
+		</p>
+		<p>
+			<label>카카오 : <br>
+				<form:checkbox path="client_kakao" id="kakao" />
+			</label>
+		</p> --%>
 		<input type="button" onClick="join()" value="Join Us" />
 		<input type="reset" value="RESET" />
 	</form:form>

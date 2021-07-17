@@ -20,9 +20,8 @@
 		}else if(pwd.length == 0 || pwd == ""){
 			alert("필수 입력 사항입니다 :)");
 		}else {
-			alert("환영합니다 " + id + "님!!");
 			frmLogin.method="post";
-			frmLogin.action="main";
+			frmLogin.action="dessertfarm.com";
 			frmLogin.submit();
 		}
 }
