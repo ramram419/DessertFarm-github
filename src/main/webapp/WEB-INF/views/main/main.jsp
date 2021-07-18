@@ -7,8 +7,17 @@
 	<title>DessertFarm</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 	<link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
-	
+	<script>
+		$(window).scroll( function() {
+			if($(this).scrollTop() > 300 ) {
+				$('.sideMenu').fadeIn();
+			}else {
+				$('.sideMenu').fadeOut();
+			}
+		});
+	</script>
 </head>
 <body>
 
@@ -65,23 +74,23 @@
 		<div class="saleSlide_text">이달의 <span>할인상품</span>!</div>
 		<div class="slideList">
 			<div class="item_circle">
-				<div class="sale_img"><img src="#"/></div>
+				<div class="sale_img"  style="background:url('${path }/resources/images/donuts.jpg') no-repeat center; background-size:170px;"></div>
 				<p>도넛</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img" style="background:url('${path }/resources/images/image_3@2x.png') no-repeat;"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_3@2x.png') no-repeat; background-size:170px;"></div>
 				<p>딸기 크레이프</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img select" style="background:url('${path }/resources/images/image_6@2x.png') no-repeat"></div>
+				<div class="sale_img select" style="background:url('${path }/resources/images/image_6@2x.png') no-repeat; background-position:-9px 0;"></div>
 				<p>크로플</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img" style="background:url('${path }/resources/images/image_7@2x.png') no-repeat;"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_7@2x.png') no-repeat; background-size:170px;"></div>
 				<p>크로와상</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img" style="background:url('${path }/resources/images/image_1@2x.png') no-repeat;"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_1@2x.png') no-repeat; background-size:170px;"></div>
 				<p>다쿠아즈</p>
 			</div>
 		</div>
@@ -299,6 +308,69 @@
 			<div class="notice_list">[카카오톡 상담톡 오픈!]<span>2021-07-04</span></div>
 			<div class="notice_list">[21년 설 명절 이 후 배송 안내]<span>2021-07-04</span></div>
 			<div class="notice_list">[크리스마스, 신정] 택배 배송 안내<span>2021-07-04</span></div>
+		</div>
+		
+		<div class="bottom_btn">
+			<div class="button">
+				1:1문의하기 <img src="${path }/resources/images/arrow.png"/>
+			</div>
+			<div class="button">
+				공지사항 <img src="${path }/resources/images/arrow.png"/>
+			</div>
+			<div class="button">
+				FAQ 바로가기 <img src="${path }/resources/images/arrow.png"/>
+			</div>
+			<div class="kakao">
+				<img src="${path }/resources/images/kakao.png"/>디저트팜
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div style="width:1280px; margin:0 auto;">
+			<div class="footer_menu">
+				<p><a>회사소개</a><span>|</span></p>
+				<p><a>개인정보처리방침</a><span>|</span></p>
+				<p><a>이용약관</a><span>|</span></p>
+				<p><a>공지사항</a><span>|</span></p>
+				<p><a>회사소개</a><span>|</span></p>
+				<p><a>고객센터</a><span>|</span></p>
+				<p><a>FAQ</a><p>
+			</div>
+			<div class="footer_text">
+				디저트팜<span>|</span>대표 : 팜팜<span>|</span>인천광역시 부평구 부평동1234<br>
+				전화번호 : 032-123-4567<span>|</span>문자상담 : 1234-5678<span>|</span>메일 : dessertfarm@naver.com<br>
+				사업자등록번호 : 380-41-00272<span>|</span>개인정보관리자 : 디저트팜            
+			</div>
+			<div class="footer_logo"></div>
+			<div class="copyright">Copyright © Dessertfarm All rights reserved</div>
+		</div>
+	</div>
+	
+	<div class="sideMenu">
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/icon_star@2x.png" style="margin-top:18px;"/>
+			상점즐겨찾기
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/shopping-cart@2x.png"/>
+			장바구니
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/icon_heart@2x.png"/>
+			찜리스트
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/chat@2x.png"/>
+			카카오톡 상담
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/icon_phonecall@2x.png"/>
+			고객센터
+		</div>
+		<div class="TOP" onclick="$('html, body').animate({scrollTop: '0'}, 1000);">
+			<img src="${path }/resources/images/top@2x.png"/>
+			TOP
 		</div>
 	</div>
 </body>
