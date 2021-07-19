@@ -17,7 +17,7 @@
 		var name = document.getElementById('name').value;
 		var email = document.getElementById('email').value;
 		var address = document.getElementById('address').value;
-		var tel = document.getElementyById('tel').value;
+		var tel = document.getElementById('tel').value;
 		
 		if(id.length == 0 || id == ""){
 			alert("필수 입력 사항입니다 :)");
@@ -80,16 +80,16 @@
 				<form:input path="client_tel" id="tel" />
 			</label>
 		</p>
-<%-- 		<p>
+		<p>
 			<label>사업자 등록증 : <br>
-				<form:checkbox path="client_entre" id="entre" />
+				<form:input path="client_entre" id="entre" />
 			</label>
 		</p>
 		<p>
 			<label>카카오 : <br>
-				<form:checkbox path="client_kakao" id="kakao" />
+				<form:input path="client_kakao" id="kakao" />
 			</label>
-		</p> --%>
+		</p>
 		<input type="button" onClick="join()" value="Join Us" />
 		<input type="reset" value="RESET" />
 	</form:form>

@@ -9,6 +9,6 @@
 </head>
 <body>
 	<h1><strong>Welcome To Our Site ${joinRequest.client_id }!!</strong></h1>
-	<a href="<c:url value='/main' />">Back to Login</a>
+	<a href="<c:url value='/dessertfarm.com' />">Back to Login</a>
 </body>
 </html>
