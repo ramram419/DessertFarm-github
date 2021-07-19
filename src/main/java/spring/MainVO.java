@@ -28,4 +28,14 @@ public class MainVO {
 		this.client_entre = client_entre;
 		this.client_kakao = client_kakao;
 	}
+	
+	public MainVO(String client_id, String client_pwd, String client_email, String client_address, String client_tel, String client_entre, String client_kakao) {
+		this.client_id = client_id;
+		this.client_pwd = client_pwd;
+		this.client_email = client_email;
+		this.client_address = client_address;
+		this.client_tel = client_tel;
+		this.client_entre = client_entre;
+		this.client_kakao = client_kakao;
+	}
 }
