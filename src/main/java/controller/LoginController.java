@@ -29,7 +29,6 @@ public class LoginController {
 	@PostMapping("/dessertfarm.com")
 	public String login(LoginRequest req, HttpServletRequest request) {
 		List<String> user = loginSvc.login(req);
-		boolean isadmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		
