@@ -29,11 +29,17 @@ public class LoginController {
 	@PostMapping("/dessertfarm.com")
 	public String login(LoginRequest req, HttpServletRequest request) {
 		List<String> user = loginSvc.login(req);
+		boolean isadmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		
 		if(!user.isEmpty()) {
-			return "home/homePage-2";
+			System.out.println("user.get(0) : " + user.get(0).toString());
+			if(user.get(0).toString().equals("adminadmin")){
+				return "admin/admin_homePage";
+			}else {
+				return "home/homePage-2";
+			}
 		}else if(user.isEmpty()){
 			return "login/logerr";
 		}else {
@@ -52,5 +58,10 @@ public class LoginController {
 	@GetMapping("/main")
 	public String main2() {
 		return "redirect:/login";
+	}
+	
+	@GetMapping("/admin")
+	public String moveToAdmin() {
+		return "redirect:/adminPage";
 	}
 }

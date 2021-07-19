@@ -17,8 +17,7 @@
 			<div class="top_menu">
 				<p><a href="<c:url value='/login' />" >로그인</a>|</p>
 	            <p><a href="<c:url value='/joinForm' />">회원가입</a>|</p>
-	            <p><a>마이페이지</a>|</p>
-             	<p><a>관리자페이지</a></p>
+	            <p><a href="<c:url value='/myPage' />">마이페이지</a></p>
              </div>
 		</div>
 		<div class="header_mid">

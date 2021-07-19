@@ -28,7 +28,8 @@ public class MainDAO {
 
 			@Override
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-				return rs.getString(1);
+				String admin = rs.getString(3) + rs.getString(4);
+				return admin;
 			}
 			
 		}, id, password);
@@ -44,6 +45,27 @@ public class MainDAO {
 			}
 			
 		}, id);
+		return result;
+	}
+	
+	public List<MainVO> client_selectAll() {
+		List<MainVO> result = jdbcTemplate.query("select * from client", new RowMapper<MainVO>() {
+
+			@Override
+			public MainVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				MainVO mainVO = new MainVO(
+					rs.getString("client_id"),
+					rs.getString("client_pwd"),
+					rs.getString("client_email"),
+					rs.getString("client_address"),
+					rs.getString("client_tel"),
+					rs.getString("client_entre"),
+					rs.getString("client_kakao"));
+					mainVO.setClient_num(rs.getInt("client_num"));
+				return mainVO;
+			}
+			
+		});
 		return result;
 	}
 	
