@@ -14,6 +14,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import lombok.NoArgsConstructor;
+
 public class MainDAO {
 	private JdbcTemplate jdbcTemplate;
 	

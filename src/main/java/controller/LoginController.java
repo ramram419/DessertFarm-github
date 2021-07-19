@@ -46,7 +46,7 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "home/homePage";
+		return "redirect:/dessertfarm.com";
 	}
 	
 	@GetMapping("/main")

@@ -12,8 +12,8 @@ public class LoginService {
 	}
 	
 	public List<String> login(LoginRequest req) {
-		String id = req.getId();
-		String pwd = req.getPwd();
+		String id = req.getClient_id();
+		String pwd = req.getClient_pwd();
 		List<String> result = mainDAO.login(id, pwd);
 		return result;
 	}

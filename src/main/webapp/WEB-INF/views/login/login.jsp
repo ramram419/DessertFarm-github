@@ -32,12 +32,12 @@
 	<form:form name="frmLogin" modelAttribute="loginRequest">
 		<p>
 			<label>ID : <br>
-				<form:input path="id" id="id" />
+				<form:input path="client_id" id="id" />
 			</label>
 		</p>
 		<p>
 			<label>Password : <br>
-				<form:password path="pwd" id="pwd"/>
+				<form:password path="client_pwd" id="pwd"/>
 			</label>
 		</p>
 		<input type="button" onClick="login()" value="LOGIN" />
