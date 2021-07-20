@@ -15,6 +15,5 @@ public class LoginRequest {
 	private String client_address;
 	private String client_tel;
 	private String client_entre;
-	private String client_kakao;
-	
+	private String client_kakao;	
 }

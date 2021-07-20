@@ -15,4 +15,10 @@ public class JoinService {
 		mainDAO.insert(mainVO);
 		return mainVO.getClient_id();
 	}
+	
+	public String managerJoin(JoinManagerRequest mreq) {
+		MainVO mainVO = new MainVO(mreq.getManager_name(), mreq.getManager_id(), mreq.getManager_pwd(), mreq.getManager_email(), mreq.getManager_address(), mreq.getManager_tel(), mreq.getManager_intro(), mreq.getManager_website(), mreq.getManager_image());
+		mainDAO.managerInsert(mainVO);
+		return mainVO.getManager_id();
+	}
 }

@@ -20,11 +20,10 @@ public class LoginService {
 		return result;
 	}
 	
-//	public boolean isAdmin(LoginRequest req) {
-//		List<MainVO> result = mainDAO.client_selectAll();
-//		Object id = (Object) req.getClient_id();
-//		Object pwd = (Object) req.getClient_pwd();
-//		boolean isadmin = result.contains(id) && result.contains(pwd);
-//		return isadmin;
-//	}
+	public boolean isAdmin(ManagerRequest mreq) {
+		List<String> result = mainDAO.managerLogin(mreq.getManager_id(), mreq.getManager_pwd());
+		boolean isadmin = !result.isEmpty();
+		System.out.println(isadmin);
+		return isadmin;
+	}
 }
