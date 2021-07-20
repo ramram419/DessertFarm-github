@@ -11,7 +11,7 @@
 <title>Main Page</title>
 <script type="text/javascript">
 	function login() {
-		var frmLogin = document.frmLogin;
+		var frmManager = document.frmManager;
 		var id = document.getElementById('id').value;
 		var pwd = document.getElementById('pwd').value;
 		
@@ -20,30 +20,29 @@
 		}else if(pwd.length == 0 || pwd == ""){
 			alert("필수 입력 사항입니다 :)");
 		}else {
-			frmLogin.method="post";
-			frmLogin.action="dessertfarm.com";
-			frmLogin.submit();
+			frmManager.method="post";
+			frmManager.action="dessertfarm.com";
+			frmManager.submit();
 		}
 }
 </script>
 </head>
 <body>
 	<h1>Login Please</h1>
-	<form:form name="frmLogin" modelAttribute="loginRequest">
+	<form:form name="frmManager" modelAttribute="managerRequest">
 		<p>
 			<label>ID : <br>
-				<form:input path="client_id" id="id" />
+				<form:input path="manager_id" id="id" />
 			</label>
 		</p>
 		<p>
 			<label>Password : <br>
-				<form:password path="client_pwd" id="pwd"/>
+				<form:password path="manager_pwd" id="pwd"/>
 			</label>
 		</p>
 		<input type="button" onClick="login()" value="LOGIN" />
 		<input type="reset" value="RESET" />
 	</form:form>
-	<button type="button" onClick="location.href='<c:url value='/managerLogin' />'">관리자/사업자로 로그인</button>
-	<button type="button" onClick="location.href='<c:url value='/joinForm' />'">회원가입</button>
+	<button type="button" onClick="location.href='<c:url value='/adminJoinForm' />'">사업자 등록하기</button>
 </body>
 </html>

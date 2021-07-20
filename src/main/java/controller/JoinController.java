@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import join.JoinManagerRequest;
 import join.JoinRequest;
 import join.JoinService;
 
@@ -21,8 +22,19 @@ public class JoinController {
 		return "join/main2";
 	}
 	
+	@PostMapping("/joinManager")
+	public String joinManager(JoinManagerRequest mreq) {
+		joinSvc.managerJoin(mreq);
+		return "join/main3";
+	}
+	
 	@GetMapping("/joinForm")
-	public String show(JoinRequest req) {
+	public String client_join(JoinRequest req) {
 		return "join/join";
+	}
+	
+	@GetMapping("/adminJoinForm")
+	public String manager_join(JoinManagerRequest mreq) {
+		return "admin/adminJoin";
 	}
 }

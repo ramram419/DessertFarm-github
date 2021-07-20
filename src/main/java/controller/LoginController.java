@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import login.LoginRequest;
 import login.LoginService;
+import login.ManagerRequest;
 
 @Controller
 public class LoginController {
@@ -26,20 +27,23 @@ public class LoginController {
 		return "login/login";
 	}
 	
+	@RequestMapping("/managerLogin")
+	public String moveToAdminLogin(ManagerRequest mreq) {
+		return "admin/adminLogin";
+	}
+	
 	@PostMapping("/dessertfarm.com")
-	public String login(LoginRequest req, HttpServletRequest request) {
+	public String login(LoginRequest req, ManagerRequest mreq, HttpServletRequest request) {
 		List<String> user = loginSvc.login(req);
+		boolean isAdmin = loginSvc.isAdmin(mreq);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		
-		if(!user.isEmpty()) {
-			System.out.println("user.get(0) : " + user.get(0).toString());
-			if(user.get(0).toString().equals("adminadmin")){
-				return "admin/admin_homePage";
-			}else {
-				return "home/homePage-2";
-			}
-		}else if(user.isEmpty()){
+		if(isAdmin == true) {
+			return "admin/admin_homePage";
+		}else if(isAdmin == false && !user.isEmpty()) {
+			return "home/homePage-2";
+		}else if(isAdmin == false && user.isEmpty()){
 			return "login/logerr";
 		}else {
 			return "home/homePage";
@@ -61,6 +65,6 @@ public class LoginController {
 	
 	@GetMapping("/admin")
 	public String moveToAdmin() {
-		return "redirect:/adminPage";
+		return "admin/adminPage";
 	}
 }

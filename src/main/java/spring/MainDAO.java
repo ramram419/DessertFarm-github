@@ -36,6 +36,18 @@ public class MainDAO {
 		return result;
 	}
 	
+	public List<String> managerLogin(String id, String password) {
+		List<String> result = jdbcTemplate.query("select * from manager where manager_id = ? and manager_pwd = ?", new RowMapper<String>() {
+
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString(1);
+			}
+			
+		}, id, password);
+		return result;
+	}
+	
 	public List<String> dupId(String id) {
 		List<String> result = jdbcTemplate.query("select if(count(*) = 1, 'true', 'false') as result from han where id = ?", new RowMapper<String>() {
 
@@ -89,5 +101,28 @@ public class MainDAO {
 		}, keyHolder);
 		Number keyValue = keyHolder.getKey();
 		mainVO.setClient_num(keyValue.intValue());
+	}
+	
+	public void managerInsert(MainVO mainVO) {
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement("insert into manager (manager_name, manager_id, manager_pwd, manager_email, manager_address, manager_tel, manager_intro, manager_website, manager_image) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", new String[] {"manager_num"});
+				pstmt.setString(1, mainVO.getManager_name());
+				pstmt.setString(2, mainVO.getManager_id());
+				pstmt.setString(3, mainVO.getManager_pwd());
+				pstmt.setString(4, mainVO.getManager_email());
+				pstmt.setString(5, mainVO.getManager_address());
+				pstmt.setString(6, mainVO.getManager_tel());
+				pstmt.setString(7, mainVO.getManager_intro());
+				pstmt.setString(8, mainVO.getManager_website());
+				pstmt.setString(9, mainVO.getManager_image());
+				return pstmt;
+			}
+		}, keyHolder);
+		Number keyValue = keyHolder.getKey();
+		mainVO.setManager_num(keyValue.intValue());
 	}
 }
