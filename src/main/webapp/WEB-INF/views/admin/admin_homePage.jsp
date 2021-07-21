@@ -24,10 +24,8 @@
 	<div class="header">
 		<div class="header_top">
 			<div class="top_menu">
-				<p><a>로그인</a>|</p>
-	            <p><a>회원가입</a>|</p>
-	            <p><a>마이페이지</a>|</p>
-             	<p><a>관리자페이지</a></p>
+				<p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
+             	<p><a href="<c:url value='/admin' />">관리자페이지</a></p>
              </div>
 		</div>
 		<div class="header_mid">
