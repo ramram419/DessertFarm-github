@@ -59,8 +59,9 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
-
-.settings
+  
 .classpath
 .project
-.springBeans
+.settings/
+target/*
+*.properties
