@@ -48,6 +48,31 @@
             		</ul>
 				</div>
 			</div>
+			<div class="menulist">
+				<ul>
+					<li class="category">
+						카테고리
+						<ul>
+							<li>케이크</li>
+							<li>베이커리</li>
+							<li>생지</li>
+							<li>디저트</li>
+							<li>샌드위치</li>
+							<li>원두</li>
+						</ul>
+					</li>
+					<li class="community">
+						커뮤니티
+						<ul>
+							<li>브랜드스토리</li>
+							<li>문의하기</li>
+							<li>구매후기</li>
+							<li>공지사항</li>
+							<li>배송정보</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	

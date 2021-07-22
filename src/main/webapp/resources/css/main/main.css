@@ -130,6 +130,37 @@ body{
 	padding-right:0;
 }
 
+.menulist{
+	position:absolute;
+	width:1280px;
+	height:400px;
+}
+
+.category, .community{
+	width:200px;
+	height:200px;
+	font-size:20px;
+	font-weight:bold;
+	line-height:1.45;
+}
+
+.catelist, .comulist{
+	display:inline-block;
+	font-size:16px;
+	line-height:0.56;
+	width:160px;
+}
+
+.catelist li{
+	height:66px;
+	text-align:center;
+}
+
+.comulist li{
+	display:none;
+	height:70px;
+}
+
 
 /* mainslide */
 
