@@ -7,8 +7,36 @@
 	<title>DessertFarm</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 	<link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
-	
+	<script>
+		$(document).ready(function(){
+			$(window).scroll( function() {
+				if($(this).scrollTop() > 300 ) {
+					$('.sideMenu').fadeIn();
+				}else {
+					$('.sideMenu').fadeOut();
+				}
+			});
+			
+			$(".cate").on("mouseenter",function(){
+				$(".menulist").show();
+			})
+			
+			$(".menulist").on("mouseover",function(){
+				$(".menulist").show();
+			})
+			
+			$(".cate").on("mouseout",function(){
+				$(".menulist").hide();
+			})
+			
+			$(".menulist").on("mouseout",function(){
+				$(".menulist").hide();
+			})
+			
+		})
+	</script>
 </head>
 <body>
 
@@ -16,8 +44,8 @@
 		<div class="header_top">
 			<div class="top_menu">
 				<p><a href="<c:url value='/login' />" >로그인</a>|</p>
-	            <p><a href="<c:url value='/joinForm' />">회원가입</a>|</p>
-	            <p><a href="<c:url value='/myPage' />">마이페이지</a></p>
+             	<p><a href="<c:url value='/joinForm' />">회원가입</a>|</p>
+             	<p><a href="<c:url value='/myPage' />">마이페이지</a></p>
              </div>
 		</div>
 		<div class="header_mid">
@@ -29,7 +57,7 @@
 		</div>
 		<div class="header_btm">
 			<div class="menu_box">
-				<div class="cate"><img src="${path}/resources/images/icon_bars@2x.png" />전체 카테고리</div>
+				<div class="cate"><img src="${path}/resources/images/icon_bars@2x.png"/>전체 카테고리</div>
 				<div class="menu">
 					<ul>
                 		<li><a>브랜드스토리</a></li>
@@ -38,6 +66,99 @@
                 		<li><a>이달의 <span style="color:#ff6363;">할인</span></a></li>
                 		<li><a>샘플 상품 주문</a></li>
             		</ul>
+				</div>
+			</div>
+			<div class="menulist" style="display:none;">
+				<div class="bigmenu">
+					<div class="category select"><img src="${path }/resources/images/icon_list_on@2x.png"/>카테고리</div>
+					<div class="community"><img src="${path }/resources/images/icon_chat_off@2x.png"/>커뮤니티</div>
+				</div>
+				<div class="midmenu">
+					<div class="catelist">
+						<ul>
+							<li class="select"><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>케이크</li>
+							<li><img src="${path}/resources/images/icon_Bread_off@2x.png" style="margin-top:25px; margin-right:12px;"/>베이커리</li>
+							<li><img src="${path}/resources/images/icon_croissant_off@2x.png" style="margin-top:20px; margin-right:27px;"/>생지</li>
+							<li><img src="${path}/resources/images/icon_macarons_off@2x.png" style="margin-top:24px; margin-right:17px;"/>디저트</li>
+							<li><img src="${path}/resources/images/icon_sandwich_off@2x.png" style="margin-top:20px; margin-right:12px;"/>샌드위치</li>
+							<li><img src="${path}/resources/images/icon_coffebean_off@2x.png" style="margin-top:24px; margin-right:26px;"/>원두</li>
+						</ul>
+					</div>
+					<div class="comulist">
+						<ul>
+							<li>브랜드스토리</li>
+							<li>문의하기</li>
+							<li>구매후기</li>
+							<li>공지사항</li>
+							<li>배송정보</li>
+						</ul>
+					</div>
+				</div>
+				<div class="minmenu">
+					<div class="cakelist">
+						<ul class="cake1">
+							<li>무스케이크</li>
+							<li>쉬폰케이크</li>
+							<li>치즈케이크</li>
+							<li>초코케이크</li>
+							<li>파운드케이크</li>
+						</ul>
+						<ul class="cake2">
+							<li>버터케이크</li>
+							<li>롤케이크</li>
+							<li>컵케이크</li>
+							<li>티라미수</li>
+							<li>카스테라</li>
+							<li>크레이프</li>
+						</ul>
+					</div>
+					
+					<div class="bakelist" style="display:none;">
+						<ul class="bake1">
+							<li>크로플</li>
+							<li>에그타르트</li>
+							<li>마들렌</li>
+							<li>머핀</li>
+							<li>도넛</li>
+						</ul>
+						<ul class="bake2">
+							<li>쿠키</li>
+							<li>플레인</li>
+							<li>베이글</li>
+							<li>크로칸슈</li>
+							<li>몽블랑</li>
+							<li>브라우니</li>
+							<li>와플</li>
+						</ul>
+					</div>
+					
+					<div class="dough" style="display:none;">
+						<ul>
+							<li>크로와상</li>
+							<li>타르트/파이</li>
+							<li>스콘/볼</li>
+							<li>식빵</li>
+						</ul>
+					</div>
+					
+					<div class="dessert" style="display:none;">
+						<ul>
+							<li>마카롱</li>
+							<li>뚱카롱</li>
+							<li>다쿠아즈</li>
+							<li>오믈렛</li>
+							<li>초콜릿</li>
+							<li>슈크림</li>
+							<li>아이스크림</li>
+							<li>치아바타</li>
+							<li>크로크무슈</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="menuimg">
+					<img src="${path }/resources/images/menu_image@2x.png"/>
+					달콤하고 진한 초코 케이크!
 				</div>
 			</div>
 		</div>
@@ -64,23 +185,23 @@
 		<div class="saleSlide_text">이달의 <span>할인상품</span>!</div>
 		<div class="slideList">
 			<div class="item_circle">
-				<div class="sale_img"><img src="#"/></div>
+				<div class="sale_img"  style="background:url('${path }/resources/images/donuts.jpg') no-repeat center; background-size:170px;"></div>
 				<p>도넛</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img" style="background:url('${path }/resources/images/image_3@2x.png') no-repeat;"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_3@2x.png') no-repeat; background-size:170px;"></div>
 				<p>딸기 크레이프</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img select" style="background:url('${path }/resources/images/image_6@2x.png') no-repeat"></div>
+				<div class="sale_img select" style="background:url('${path }/resources/images/image_6@2x.png') no-repeat; background-position:-9px 0;"></div>
 				<p>크로플</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img" style="background:url('${path }/resources/images/image_7@2x.png') no-repeat;"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_7@2x.png') no-repeat; background-size:170px;"></div>
 				<p>크로와상</p>
 			</div>
 			<div class="item_circle">
-				<div class="sale_img" style="background:url('${path }/resources/images/image_1@2x.png') no-repeat;"></div>
+				<div class="sale_img" style="background:url('${path }/resources/images/image_1@2x.png') no-repeat; background-size:170px;"></div>
 				<p>다쿠아즈</p>
 			</div>
 		</div>
@@ -298,6 +419,69 @@
 			<div class="notice_list">[카카오톡 상담톡 오픈!]<span>2021-07-04</span></div>
 			<div class="notice_list">[21년 설 명절 이 후 배송 안내]<span>2021-07-04</span></div>
 			<div class="notice_list">[크리스마스, 신정] 택배 배송 안내<span>2021-07-04</span></div>
+		</div>
+		
+		<div class="bottom_btn">
+			<div class="button">
+				1:1문의하기 <img src="${path }/resources/images/arrow.png"/>
+			</div>
+			<div class="button">
+				공지사항 <img src="${path }/resources/images/arrow.png"/>
+			</div>
+			<div class="button">
+				FAQ 바로가기 <img src="${path }/resources/images/arrow.png"/>
+			</div>
+			<div class="kakao">
+				<img src="${path }/resources/images/kakao.png"/>디저트팜
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div style="width:1280px; margin:0 auto;">
+			<div class="footer_menu">
+				<p><a>회사소개</a><span>|</span></p>
+				<p><a>개인정보처리방침</a><span>|</span></p>
+				<p><a>이용약관</a><span>|</span></p>
+				<p><a>공지사항</a><span>|</span></p>
+				<p><a>회사소개</a><span>|</span></p>
+				<p><a>고객센터</a><span>|</span></p>
+				<p><a>FAQ</a><p>
+			</div>
+			<div class="footer_text">
+				디저트팜<span>|</span>대표 : 팜팜<span>|</span>인천광역시 부평구 부평동1234<br>
+				전화번호 : 032-123-4567<span>|</span>문자상담 : 1234-5678<span>|</span>메일 : dessertfarm@naver.com<br>
+				사업자등록번호 : 380-41-00272<span>|</span>개인정보관리자 : 디저트팜            
+			</div>
+			<div class="footer_logo"></div>
+			<div class="copyright">Copyright © Dessertfarm All rights reserved</div>
+		</div>
+	</div>
+	
+	<div class="sideMenu">
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/icon_star@2x.png" style="margin-top:18px;"/>
+			상점즐겨찾기
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/shopping-cart@2x.png"/>
+			장바구니
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/icon_heart@2x.png"/>
+			찜리스트
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/chat@2x.png"/>
+			카카오톡 상담
+		</div>
+		<div class="sideMenu_box">
+			<img src="${path }/resources/images/icon_phonecall_off@2x.png"/>
+			고객센터
+		</div>
+		<div class="TOP" onclick="$('html, body').animate({scrollTop: '0'}, 1000);">
+			<img src="${path }/resources/images/top@2x.png"/>
+			TOP
 		</div>
 	</div>
 </body>
