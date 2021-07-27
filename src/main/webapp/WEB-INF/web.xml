@@ -20,9 +20,9 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				config.MainConfig
-				config.MvcConfig
-				config.ControllerConfig
+				kr.co.dessertfarm.config.MainConfig
+				kr.co.dessertfarm.config.MvcConfig
+				kr.co.dessertfarm.config.ControllerConfig
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

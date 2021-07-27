@@ -1,4 +1,4 @@
-package spring;
+package kr.co.dessertfarm.spring;
 
 import java.sql.Date;
 

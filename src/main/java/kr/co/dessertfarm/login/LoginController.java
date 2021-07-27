@@ -1,4 +1,4 @@
-package controller;
+package kr.co.dessertfarm.login;
 
 import java.util.List;
 
@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import login.LoginRequest;
-import login.LoginService;
-import login.ManagerRequest;
+import kr.co.dessertfarm.manager.ManagerRequest;
+
 
 @Controller
 public class LoginController {
@@ -48,6 +47,11 @@ public class LoginController {
 		}else {
 			return "home/homePage";
 		}
+	}
+	
+	@GetMapping("/dessertfarm.com")
+	public String home() {
+		return "home/homePage";
 	}
 	
 	@GetMapping("/logout")
