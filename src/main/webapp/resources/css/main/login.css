@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+.login{
+	width:300px;
+	margin:137px auto 200px;
+}
+
+.lo_text, .join_text, .terms_text{
+	font-family:"NanumSquare";
+	font-weight:800;
+ 	font-size:30px;
+ 	line-height:0.72;
+	color:#111111;
+	text-align:center;
+	margin-bottom:41px;
+}
+
+.loginfrm input{
+	width:280px;
+	height:22px;
+	border:1px solid #eeeeee;
+	font-size:14px;
+	padding:16px 0px 16px 20px;
+	margin-bottom:10px;
+}
+
+.loginfrm input::placeholder{
+	color:#bbbbbb;
+}
+
+.logbtn{
+	width:300px;
+	height:52px;
+	margin-top:10px;
+	color:#ffffff;
+	background-color:#e13517;
+	font-size:14px;
+	font-weight:bold;
+	line-height:1.43;
+	text-align:center;
+	border:none;
+	cursor:pointer;
+}
+
+.register{
+	margin-top:55px;
+	text-align:center;
+	font-size:14px;
+	line-height:1.43;
+	color:#bbbbbb;
+}
+
+.register span{
+	color:#000000;
+}
+
+.registerbtn{
+	width:300px;
+	height:52px;
+	border:1px solid #e13517;
+	background-color:#ffffff;
+	color:#e13517;
+	font-size:14px;
+	font-weight:bold;
+	line-height:1.43;
+	margin-top:10px;
+	cursor:pointer;
+}
+
+
+
+.joinbtn{
+	width:300px;
+	margin:137px auto 200px;
+}
+
+.joinAdmin, .joinclient{
+	font-size:14px;
+	line-height:1.43;
+	text-align:center;
+	color:#bbbbbb;
+}
+
+.joinAdmin button, .joinclient button{
+	width:300px;
+	height:52px;
+	font-size:16px;
+	font-weight:500;
+	line-height:1.5;
+	margin-top:10px;
+	border:none;
+	cursor:pointer;
+}
+
+.joinAdmin button{
+	margin-bottom:40px;
+	color:#ffffff;
+	background-color:#e13517;
+}
+
+.joinclient button{
+	color:#e13517;
+	border:1px solid #e13517;
+	background-color:#ffffff;
+}
+
+
+
+.terms{
+	width:600px;
+	margin:137px auto 120px;
+}
+
+.termsbox{
+	width:560px;
+	height:400px;
+	border:1px solid #eeeeee;
+	padding:20px;
+	overflow:scroll;
+}
+
