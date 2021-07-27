@@ -1,11 +1,11 @@
-package login;
+package kr.co.dessertfarm.join;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class LoginRequest {
+public class JoinRequest {
 	private int client_num;
 	private String client_name;
 	private String client_id;
@@ -15,5 +15,5 @@ public class LoginRequest {
 	private String client_address;
 	private String client_tel;
 	private String client_entre;
-	private String client_kakao;	
+	private String client_kakao;
 }

@@ -1,7 +1,8 @@
-package join;
+package kr.co.dessertfarm.join;
 
-import spring.MainDAO;
-import spring.MainVO;
+import kr.co.dessertfarm.manager.JoinManagerRequest;
+import kr.co.dessertfarm.spring.MainDAO;
+import kr.co.dessertfarm.spring.MainVO;
 
 public class JoinService {
 	private MainDAO mainDAO;

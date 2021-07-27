@@ -1,9 +1,11 @@
-package login;
+package kr.co.dessertfarm.login;
 
 import java.util.List;
 
-import spring.MainDAO;
-import spring.MainVO;
+import kr.co.dessertfarm.manager.ManagerRequest;
+import kr.co.dessertfarm.spring.MainDAO;
+import kr.co.dessertfarm.spring.MainVO;
+
 
 public class LoginService {
 	private MainDAO mainDAO;

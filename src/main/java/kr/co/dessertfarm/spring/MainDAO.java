@@ -1,4 +1,4 @@
-package spring;
+package kr.co.dessertfarm.spring;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,15 +14,13 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import lombok.NoArgsConstructor;
-
 public class MainDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public MainDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-
+	// client 테이블에서 LoginRequest로 조회 후 "id+pwd"를 컬렉션으로 반환
 	public List<String> login(String id, String password) {
 		List<String> result = jdbcTemplate.query("select * from client where client_id = ? and client_pwd = ?", new RowMapper<String>() {
 
@@ -35,30 +33,7 @@ public class MainDAO {
 		}, id, password);
 		return result;
 	}
-	
-	public List<String> managerLogin(String id, String password) {
-		List<String> result = jdbcTemplate.query("select * from manager where manager_id = ? and manager_pwd = ?", new RowMapper<String>() {
 
-			@Override
-			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-				return rs.getString(1);
-			}
-			
-		}, id, password);
-		return result;
-	}
-	
-	public List<String> dupId(String id) {
-		List<String> result = jdbcTemplate.query("select if(count(*) = 1, 'true', 'false') as result from han where id = ?", new RowMapper<String>() {
-
-			@Override
-			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-				return rs.getString(1);
-			}
-			
-		}, id);
-		return result;
-	}
 	
 	public List<MainVO> client_selectAll() {
 		List<MainVO> result = jdbcTemplate.query("select * from client", new RowMapper<MainVO>() {
@@ -103,6 +78,19 @@ public class MainDAO {
 		mainVO.setClient_num(keyValue.intValue());
 	}
 	
+	// manager 테이블에서 ManagerRequest id,pwd로 조회 후 "num"을 컬렉션으로 반환
+	public List<String> managerLogin(String id, String password) {
+		List<String> result = jdbcTemplate.query("select * from manager where manager_id = ? and manager_pwd = ?", new RowMapper<String>() {
+
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString(1);
+			}
+			
+		}, id, password);
+		return result;
+	}
+	// manager 테이블에 새로운 상업자/관리자 등록
 	public void managerInsert(MainVO mainVO) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -124,5 +112,9 @@ public class MainDAO {
 		}, keyHolder);
 		Number keyValue = keyHolder.getKey();
 		mainVO.setManager_num(keyValue.intValue());
+	}
+	
+	public void managerDelete(MainVO mainVO) {
+		
 	}
 }

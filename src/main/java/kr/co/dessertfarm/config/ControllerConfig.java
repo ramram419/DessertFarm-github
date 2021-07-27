@@ -1,14 +1,15 @@
-package config;
+package kr.co.dessertfarm.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import controller.HomeController;
-import controller.JoinController;
-import controller.LoginController;
-import join.JoinService;
-import login.LoginService;
+import kr.co.dessertfarm.join.JoinController;
+import kr.co.dessertfarm.join.JoinService;
+import kr.co.dessertfarm.login.LoginController;
+import kr.co.dessertfarm.login.LoginService;
+
+
 
 @Configuration
 public class ControllerConfig {
@@ -30,10 +31,5 @@ public class ControllerConfig {
 		JoinController joinController = new JoinController();
 		joinController.setJoinService(joinSvc);
 		return joinController;
-	}
-	
-	@Bean
-	public HomeController homController() {
-		return new HomeController();
 	}
 }

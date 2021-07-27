@@ -1,12 +1,11 @@
-package controller;
+package kr.co.dessertfarm.join;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import join.JoinManagerRequest;
-import join.JoinRequest;
-import join.JoinService;
+import kr.co.dessertfarm.manager.JoinManagerRequest;
+
 
 @Controller
 public class JoinController {

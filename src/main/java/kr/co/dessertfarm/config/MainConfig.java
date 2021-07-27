@@ -1,13 +1,15 @@
-package config;
+package kr.co.dessertfarm.config;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import join.JoinService;
-import login.LoginService;
-import spring.MainDAO;
+import kr.co.dessertfarm.join.JoinService;
+import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.spring.MainDAO;
+
+
 
 public class MainConfig {
 	@Bean(destroyMethod = "close")
