@@ -22,9 +22,22 @@ public class LoginService {
 		return result;
 	}
 	
-	public boolean isAdmin(ManagerRequest mreq) {
-		List<String> result = mainDAO.managerLogin(mreq.getManager_id(), mreq.getManager_pwd());
-		boolean isadmin = !result.isEmpty();
+	public List<String> managerLogin(LoginRequest req) {
+		String id = req.getClient_id();
+		String pwd = req.getClient_pwd();
+		
+		List<String> result = mainDAO.managerLogin(id, pwd);
+		return result;
+	}
+	
+	public boolean isAdmin(LoginRequest req) {
+		boolean isadmin = false;
+		
+		if(login(req).isEmpty() == true && managerLogin(req).isEmpty() == false) {
+			isadmin = true;
+		}else if(login(req).isEmpty() == false && managerLogin(req).isEmpty() == true) {
+			isadmin = false;
+		}
 		System.out.println(isadmin);
 		return isadmin;
 	}
