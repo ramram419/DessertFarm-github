@@ -1,6 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    $(".cate").on("mouseenter",function(){
+       $(".menulist").show();
+    })
+    
+    $(".menulist").on("mouseover",function(){
+       $(".menulist").show();
+    })
+    
+    $(".cate").on("mouseout",function(){
+       $(".menulist").hide();
+    })
+    
+    $(".menulist").on("mouseout",function(){
+       $(".menulist").hide();
+    })
+})
+</script>
+
 <div class="header">
 	<div class="header_top">
 		<div class="top_menu">
