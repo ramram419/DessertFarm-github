@@ -4,20 +4,19 @@
 <div class="header">
 	<div class="header_top">
 		<div class="top_menu">
-		
-			<c:if test="${sessionScope.user eq null}">
-				<p><a href="<c:url value='/login' />" >로그인</a>|</p>
-				<p><a href="<c:url value='/joinForm' />">회원가입</a>|</p>
-				<p><a href="<c:url value='/login' />">마이페이지</a></p>
-			</c:if>
-			<c:if test="${sessionScope.user ne null}">
-				<p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
-				<p><a href="<c:url value='/myPage' />">마이페이지</a></p>
-			</c:if>
-			<c:if test="${sessionScope.admin ne null}">
-				<p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
-				<p><a href="<c:url value='/admin' />">관리자페이지</a></p>
-			</c:if>
+		<c:if test="${sessionScope.user eq null}">
+            <p><a href="<c:url value='/login' />" >로그인</a>|</p>
+            <p><a href="<c:url value='/joinForm' />">회원가입</a>|</p>
+            <p><a href="<c:url value='/login' />">마이페이지</a></p>
+         </c:if>
+         <c:if test="${sessionScope.user ne null}">
+            <p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
+            <p><a href="<c:url value='/myPage' />">마이페이지</a></p>
+         </c:if>
+         <c:if test="${sessionScope.admin ne null}">
+            <p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
+            <p><a href="<c:url value='/admin' />">관리자페이지</a></p>
+         </c:if>
            </div>
 	</div>
 	<div class="header_mid">

@@ -30,10 +30,6 @@ public class LoginController {
 	// HomePage without Session
 	@GetMapping("/dessertfarm.com")
 	public String home(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if(session.isNew() == true) {
-			session.invalidate();
-		}
 		return "home/homePage";
 	}
 	
@@ -48,7 +44,7 @@ public class LoginController {
 		if(isAdmin == true) {
 			session.setAttribute("admin", user);
 			return "admin/admin_homePage";
-		}else if(isAdmin == false && !user.isEmpty()) {
+		}else if(isAdmin == false) {
 			session.setAttribute("user", user);
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty()){
