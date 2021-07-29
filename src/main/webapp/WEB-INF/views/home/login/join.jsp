@@ -18,12 +18,12 @@
 			<div class="join_text">회원가입</div>
 			<div class="joinAdmin">
 				<span style="color:#000000;">납품업체</span>를 <span style="color:#e13517; font-weight:bold;">등록</span>하고 싶으신가요?
-				<button type="button" class="adminbtn" onclick="location.href='./terms';">납품업체 회원가입</button>
+				<button type="button" class="adminbtn" onclick="location.href='${path}/agree';">납품업체 회원가입</button>
 			</div>
 			
 			<div class="joinclient">
 				<span style="color:#000000;">디저트팜</span>에서 <span style="color:#e13517; font-weight:bold;">구매</span>를 원하시나요?
-				<button type="button" class="clientbtn">사용자 회원가입</button>
+				<button type="button" class="clientbtn" onclick="location.href='${path}/agree'">사용자 회원가입</button>
 			</div>
 		</div>
 	</div>

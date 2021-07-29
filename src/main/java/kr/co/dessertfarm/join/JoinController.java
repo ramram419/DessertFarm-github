@@ -3,6 +3,7 @@ package kr.co.dessertfarm.join;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.dessertfarm.manager.JoinManagerRequest;
 
@@ -15,25 +16,33 @@ public class JoinController {
 		this.joinSvc = joinSvc;
 	}
 	
-	@PostMapping("/join")
-	public String join(JoinRequest req) {
-		joinSvc.join(req);
-		return "join/main2";
+	// Move to Client Join
+	@RequestMapping("/join")
+	public String moveToJoin() {
+		return "home/login/join";
 	}
 	
+	// Welcome Page after join for Manager
 	@PostMapping("/joinManager")
 	public String joinManager(JoinManagerRequest mreq) {
 		joinSvc.managerJoin(mreq);
 		return "join/main3";
 	}
 	
+	// Move to Client Join Form Page
 	@GetMapping("/joinForm")
 	public String client_join(JoinRequest req) {
 		return "join/join";
 	}
 	
+	// Move to Manager Join Form Page
 	@GetMapping("/adminJoinForm")
 	public String manager_join(JoinManagerRequest mreq) {
 		return "admin/adminJoin";
+	}
+	// 약관 이동
+	@GetMapping("/agree")
+	public String join_Agree() {
+		return "home/login/join2";
 	}
 }

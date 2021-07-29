@@ -21,27 +21,36 @@ public class LoginController {
 		this.loginSvc = loginSvc;
 	}
 	
+	// Login Function
 	@RequestMapping("/login")
-	public String moveToLogin(LoginRequest req) {
-		return "login/login";
+	public String moveToLogin() {
+		return "home/login/login";
 	}
 	
-	@RequestMapping("/managerLogin")
-	public String moveToAdminLogin(ManagerRequest mreq) {
-		return "admin/adminLogin";
+	// HomePage without Session
+	@GetMapping("/dessertfarm.com")
+	public String home(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session.isNew() == true) {
+			session.invalidate();
+		}
+		return "home/homePage";
 	}
 	
+	// Login Test & HomePage with Session
 	@PostMapping("/dessertfarm.com")
 	public String login(LoginRequest req, ManagerRequest mreq, HttpServletRequest request) {
 		List<String> user = loginSvc.login(req);
-		boolean isAdmin = loginSvc.isAdmin(mreq);
+		boolean isAdmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
+		
 		
 		if(isAdmin == true) {
+			session.setAttribute("admin", user);
 			return "admin/admin_homePage";
 		}else if(isAdmin == false && !user.isEmpty()) {
-			return "home/homePage-2";
+			session.setAttribute("user", user);
+			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty()){
 			return "login/logerr";
 		}else {
@@ -49,11 +58,7 @@ public class LoginController {
 		}
 	}
 	
-	@GetMapping("/dessertfarm.com")
-	public String home() {
-		return "home/homePage";
-	}
-	
+	// Logout Function & Back to HomePage & renewal Session
 	@GetMapping("/logout")
 	public String logOut(LoginRequest req, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -61,12 +66,9 @@ public class LoginController {
 		
 		return "redirect:/dessertfarm.com";
 	}
+
 	
-	@GetMapping("/main")
-	public String main2() {
-		return "redirect:/login";
-	}
-	
+	// Move to Admin Page
 	@GetMapping("/admin")
 	public String moveToAdmin() {
 		return "admin/adminPage";
