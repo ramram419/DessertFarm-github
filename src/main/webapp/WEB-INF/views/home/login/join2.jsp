@@ -53,10 +53,11 @@
 				③ 회사는 필요한 경우 위2항의 내용 이외에도 추가적인 정보를 요청할 수 있습니다.<br>
 				④ 회사는 회원이 회원가입 시 기재한 모든 정보를 진실한 것으로 간주합니다. 따라서 허위의 정보를 기재한 회원은 그 고의∙과실 여부와 관계없이 서비스 이용 중에 허위의 정보와 관련하여 발생한 모든 분쟁 및 사고 등에 있어 법적인 보호를 받을 수 없으며, 회사 및 제3자에게 야기한 손해를 배상할 책임이 있고, 회사의 서비스 제공이 제한될 수 있습니다.<br> 
 			</div>
-			<div>
-				<input type="radio"/>
-				<input type="radio"/>
+			<div class="ag_btn">
+				<label><input type="radio" name="terms_ag" value="ag"/>동의합니다</label>
+				<label><input type="radio" name="terms_ag" value="nag" checked/>동의하지 않습니다.</label>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </label>
 			</div>
+			<button class="nextbtn">다음</button>
 		</div>
 	</div>
 	<c:import url="../footer.jsp"/>
