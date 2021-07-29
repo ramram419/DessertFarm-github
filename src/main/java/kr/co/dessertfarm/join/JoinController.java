@@ -15,23 +15,27 @@ public class JoinController {
 		this.joinSvc = joinSvc;
 	}
 	
+	// Welcome Page after join
 	@PostMapping("/join")
 	public String join(JoinRequest req) {
 		joinSvc.join(req);
 		return "join/main2";
 	}
 	
+	// Welcome Page after join for Manager
 	@PostMapping("/joinManager")
 	public String joinManager(JoinManagerRequest mreq) {
 		joinSvc.managerJoin(mreq);
 		return "join/main3";
 	}
 	
+	// Move to Client Join Form Page
 	@GetMapping("/joinForm")
 	public String client_join(JoinRequest req) {
 		return "join/join";
 	}
 	
+	// Move to Manager Join Form Page
 	@GetMapping("/adminJoinForm")
 	public String manager_join(JoinManagerRequest mreq) {
 		return "admin/adminJoin";
