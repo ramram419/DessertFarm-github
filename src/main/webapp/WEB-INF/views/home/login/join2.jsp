@@ -10,6 +10,28 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 	<link rel="stylesheet" href="<c:url value="/resources/css/main/basic.css"/>">
 	<link rel="stylesheet" href="<c:url value="/resources/css/main/login.css"/>">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(function(){
+				$("input[name=terms_ag]").change(function(){
+					if($(this).val() == "ag"){
+						$(".nextbtn").css({"background-color":"#e13517","color":"#ffffff"});
+					}else{
+						$(".nextbtn").css({"background-color":"#bbbbbb","color":"#000000"});
+					}
+				})
+			})
+			
+			$(".nextbtn").click(function(){
+				if($("input[name=terms_ag]:checked").val() == "nag"){
+					alert("이용약관에 동의해주세요!");
+				}else{
+					location.href="../register";
+				}
+			})
+		})
+	</script>
 </head>
 <body>
 	<c:import url="../top.jsp"/>
@@ -55,7 +77,7 @@
 			</div>
 			<div class="ag_btn">
 				<label><input type="radio" name="terms_ag" value="ag"/>동의합니다</label>
-				<label><input type="radio" name="terms_ag" value="nag"/>동의하지 않습니다.</label>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </label>
+				<label><input type="radio" name="terms_ag" value="nag" checked/>동의하지 않습니다.</label>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </label>
 			</div>
 			<button class="nextbtn">다음</button>
 		</div>

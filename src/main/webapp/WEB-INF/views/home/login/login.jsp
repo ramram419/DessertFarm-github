@@ -37,7 +37,7 @@
 			
 			<div class="register">
 				아직 <span>가입</span>을 안해주셨나요?
-				<button type="button" class="registerbtn" onClick="location.href='${path}/join';">회원가입</button>
+				<button type="button" class="registerbtn" onClick="location.href='./join';">회원가입</button>
 			</div>
 		</div>
 	</div>

@@ -28,6 +28,10 @@ a{
 	text-decoration:none;
 }
 
+input:focus{
+	outline:none;
+}
+
 
 
 /* header_top */
