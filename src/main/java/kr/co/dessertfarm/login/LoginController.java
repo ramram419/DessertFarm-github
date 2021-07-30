@@ -44,7 +44,7 @@ public class LoginController {
 		if(isAdmin == true) {
 			session.setAttribute("admin", user);
 			return "admin/admin_homePage";
-		}else if(isAdmin == false) {
+		}else if(isAdmin == false && user.isEmpty() == false) {
 			session.setAttribute("user", user);
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty()){
