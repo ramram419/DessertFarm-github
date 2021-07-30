@@ -16,9 +16,9 @@ public class MainConfig {
 	public DataSource dataSource() {
 		DataSource ds = new DataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://localhost/spring5fs?characterEncoding=utf8");
-		ds.setUsername("spring5");
-		ds.setPassword("spring5");
+		ds.setUrl("jdbc:mysql://dessertfarm.cbftdh9otqqo.ap-northeast-2.rds.amazonaws.com/dessertfarm?characterEncoding=utf8");
+		ds.setUsername("root");
+		ds.setPassword("dessertfarm111!");
 		ds.setInitialSize(2);
 		ds.setMaxActive(10);
 		ds.setTestWhileIdle(true);
