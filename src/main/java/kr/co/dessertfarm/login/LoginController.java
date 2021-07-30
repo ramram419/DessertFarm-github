@@ -60,7 +60,7 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "redirect:/dessertfarm.com";
+		return "redirect:/home";
 	}
 
 	
