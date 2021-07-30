@@ -20,7 +20,7 @@ public class MainDAO {
 	public MainDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	// client Å×ÀÌºí¿¡¼­ LoginRequest·Î Á¶È¸ ÈÄ "id+pwd"¸¦ ÄÃ·º¼ÇÀ¸·Î ¹ÝÈ¯
+	// 
 	public List<String> login(String id, String password) {
 		List<String> result = jdbcTemplate.query("select * from client where client_id = ? and client_pwd = ?", new RowMapper<String>() {
 
@@ -78,7 +78,7 @@ public class MainDAO {
 		mainVO.setClient_num(keyValue.intValue());
 	}
 	
-	// manager Å×ÀÌºí¿¡¼­ ManagerRequest id,pwd·Î Á¶È¸ ÈÄ "num"À» ÄÃ·º¼ÇÀ¸·Î ¹ÝÈ¯
+	// manager ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ManagerRequest id,pwdï¿½ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½ "num"ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 	public List<String> managerLogin(String id, String password) {
 		List<String> result = jdbcTemplate.query("select * from manager where manager_id = ? and manager_pwd = ?", new RowMapper<String>() {
 
@@ -90,7 +90,7 @@ public class MainDAO {
 		}, id, password);
 		return result;
 	}
-	// manager Å×ÀÌºí¿¡ »õ·Î¿î »ó¾÷ÀÚ/°ü¸®ÀÚ µî·Ï
+	// manager ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void managerInsert(MainVO mainVO) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {

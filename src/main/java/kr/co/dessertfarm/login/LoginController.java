@@ -28,13 +28,13 @@ public class LoginController {
 	}
 	
 	// HomePage without Session
-	@GetMapping("/dessertfarm.com")
+	@GetMapping("/home")
 	public String home(HttpServletRequest request) {
 		return "home/homePage";
 	}
 	
 	// Login Test & HomePage with Session
-	@PostMapping("/dessertfarm.com")
+	@PostMapping("/home")
 	public String login(LoginRequest req, ManagerRequest mreq, HttpServletRequest request) {
 		List<String> user = loginSvc.login(req);
 		boolean isAdmin = loginSvc.isAdmin(req);

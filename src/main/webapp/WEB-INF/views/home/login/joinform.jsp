@@ -127,7 +127,7 @@
 	<div class="content">
 		<div class="joinFrm">
 			<div class="jofrm_text">개인정보 작성</div>
-			<form class="Joinform" action="" method="POST">
+			<form class="Joinform" action="/welcome" method="POST">
 				<label>상점명<br><input type="text" class="store_name" name="store_name" placeholder="상점명을 입력해주세요."/></label>
 				<div class="err storeerr">* 상점명을 입력해주세요.</div>
 				<label>이름<br><input type="text" class="client_name" name="client_name" placeholder="이름을 입력해주세요."/></label>

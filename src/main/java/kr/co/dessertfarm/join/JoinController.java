@@ -29,18 +29,12 @@ public class JoinController {
 		return "join/main3";
 	}
 	
-	// Move to Client Join Form Page
-	@GetMapping("/joinForm")
-	public String client_join(JoinRequest req) {
-		return "join/join";
-	}
-	
 	// Move to Manager Join Form Page
 	@GetMapping("/adminJoinForm")
 	public String manager_join(JoinManagerRequest mreq) {
 		return "admin/adminJoin";
 	}
-	// 약관 이동
+	// 
 	@GetMapping("/agree")
 	public String join_Agree() {
 		return "home/login/join2";
