@@ -27,7 +27,7 @@
 				if($("input[name=terms_ag]:checked").val() == "nag"){
 					alert("이용약관에 동의해주세요!");
 				}else{
-					location.href="../register";
+					location.href="${path}/register";
 				}
 			})
 		})

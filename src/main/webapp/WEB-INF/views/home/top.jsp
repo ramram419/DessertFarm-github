@@ -28,7 +28,7 @@ $(document).ready(function(){
 		<div class="top_menu">
 		<c:if test="${sessionScope.user eq null}">
             <p><a href="<c:url value='/login' />" >로그인</a>|</p>
-            <p><a href="<c:url value='/joinForm' />">회원가입</a>|</p>
+            <p><a href="<c:url value='/join' />">회원가입</a>|</p>
             <p><a href="<c:url value='/login' />">마이페이지</a></p>
          </c:if>
          <c:if test="${sessionScope.user ne null}">
