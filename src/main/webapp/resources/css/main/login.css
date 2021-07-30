@@ -5,7 +5,7 @@
 	margin:137px auto 200px;
 }
 
-.lo_text, .join_text, .terms_text{
+.lo_text, .join_text, .terms_text, .jofrm_text, .fin_text{
 	font-family:"NanumSquare";
 	font-weight:800;
  	font-size:30px;
@@ -131,19 +131,6 @@
 	color:#bbbbbb;
 }
 
-/* .ag_btn input[type='radio']{
-	appearance:none;
-	background-color: #ffffff;
- 	border: 1px solid #bbbbbb;
- 	width:10px;
- 	height:10px;
- 	border-radius:50%;
-} */
-
-.ag_btn input[type='radio']:checked{
-	color:#e13517;
-}
-
 .nextbtn{
 	width:300px;
 	height:52px;
@@ -154,4 +141,68 @@
 	border:none;
 	background-color:#bbbbbb;
 	cursor:pointer;
+}
+
+
+.joinFrm{
+	width:300px;
+	margin:137px auto 140px;
+}
+
+.Joinform label{
+	font-size:14px;
+	color:#111111;
+	line-height:1.43;
+	font-weight:500;
+}
+
+.Joinform input{
+	width:268px;
+	height:20px;
+	padding:16px;
+	border:1px solid #eeeeee;
+	margin:10px 0 20px;
+}
+
+.err{
+	display:none;
+	font-size:10px;
+	color:#FA464E;
+	margin-top:-15px;
+}
+
+.regbtn{
+	width:300px;
+	height:52px;
+	font-size:16px;
+	line-height:1.5;
+	font-weight:500;
+	border:none;
+	background-color:#bbbbbb;
+	cursor:pointer;
+	margin-top:60px;
+}
+
+.finregister{
+	text-align:center;
+	margin:137px auto 401px;
+}
+
+.subtxt{
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top:60px;
+}
+
+.gologin{
+	width:300px;
+	height:52px;
+	background-color:#e13517;
+	color:#ffffff;
+	font-size:14px;
+	font-weight:bold;
+	line-height:1.43;
+	border:none;
+	cursor:pointer;
+	margin-top:20px;
 }

@@ -20,22 +20,6 @@
             }
          });
          
-         $(".cate").on("mouseenter",function(){
-            $(".menulist").show();
-         })
-         
-         $(".menulist").on("mouseover",function(){
-            $(".menulist").show();
-         })
-         
-         $(".cate").on("mouseout",function(){
-            $(".menulist").hide();
-         })
-         
-         $(".menulist").on("mouseout",function(){
-            $(".menulist").hide();
-         })
-         
       })
    </script>
 </head>
