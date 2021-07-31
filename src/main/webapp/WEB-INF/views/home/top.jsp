@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -26,23 +27,23 @@ $(document).ready(function(){
 <div class="header">
 	<div class="header_top">
 		<div class="top_menu">
-		<c:if test="${sessionScope.user eq null}">
+		<c:if test="${sessionScope.user eq null && sessionScope.admin eq null}">
             <p><a href="<c:url value='/login' />" >로그인</a>|</p>
             <p><a href="<c:url value='/join' />">회원가입</a>|</p>
             <p><a href="<c:url value='/login' />">마이페이지</a></p>
          </c:if>
-         <c:if test="${sessionScope.user ne null}">
+         <c:if test="${sessionScope.user ne null && sessionScope.admin eq null}">
             <p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
             <p><a href="<c:url value='/myPage' />">마이페이지</a></p>
          </c:if>
-         <c:if test="${sessionScope.admin ne null}">
+         <c:if test="${sessionScope.admin ne null && sessionScope.user eq null}">
             <p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
             <p><a href="<c:url value='/admin' />">관리자페이지</a></p>
          </c:if>
            </div>
 	</div>
 	<div class="header_mid">
-		<div class="logo"></div>
+		<a href="<c:url value='/home'/>"><div class="logo"></div></a>
 		<div class="search_box">
 			<input type="text" class="search_text"/>
 			<div class="search_icon"></div>
