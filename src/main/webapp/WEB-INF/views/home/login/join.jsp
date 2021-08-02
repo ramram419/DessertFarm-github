@@ -23,7 +23,7 @@
 			
 			<div class="joinclient">
 				<span style="color:#000000;">디저트팜</span>에서 <span style="color:#e13517; font-weight:bold;">구매</span>를 원하시나요?
-				<button type="button" class="clientbtn" onclick="location.href='${path}/client'">사용자 회원가입</button>
+				<button type="button" class="clientbtn" onclick="location.href='${path}/client';">사용자 회원가입</button>
 			</div>
 		</div>
 	</div>

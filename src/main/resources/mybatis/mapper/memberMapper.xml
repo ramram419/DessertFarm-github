@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="member">
+	<select id="client_Login" parameterType='Map' resultType='HashMap'>
+		select *
+		from client
+		where client_id = #{id} and client_pwd = #{pwd}
+	</select>
+	
+	<select id="manager_Login" parameterType='Map' resultType='HashMap'>
+		select *
+		from manager
+		where manager_id = #{id} and manager_pwd = #{pwd}
+	</select>
+	
+	
+	
+	<insert id="">
+		
+	</insert>
+</mapper>
