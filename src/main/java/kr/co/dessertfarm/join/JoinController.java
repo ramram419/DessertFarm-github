@@ -28,7 +28,7 @@ public class JoinController {
 	// Welcome Page after join for Manager
 	@PostMapping("/joinManager")
 	public String joinManager(JoinManagerRequest mreq) {
-		joinSvc.managerJoin(mreq);
+//		joinSvc.managerJoin(mreq);
 		return "join/main3";
 	}
 

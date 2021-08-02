@@ -1,6 +1,7 @@
 package kr.co.dessertfarm.login;
 
-import java.util.List;
+
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,12 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.dessertfarm.manager.ManagerRequest;
-
-
 @Controller
 public class LoginController {
 	private LoginService loginSvc;
+	private LoginRequest req;
 		
 	public void setLoginService(LoginService loginSvc) {
 		this.loginSvc = loginSvc;
@@ -29,17 +28,18 @@ public class LoginController {
 	
 	// HomePage without Session
 	@GetMapping("/home")
-	public String home(HttpServletRequest request) {
+	public String home() {
 		return "home/homePage";
 	}
 	
 	// Login Test & HomePage with Session
 	@PostMapping("/home")
-	public String login(LoginRequest req, ManagerRequest mreq, HttpServletRequest request) {
-		List<String> user = loginSvc.login(req);
+	public String login(LoginRequest req, HttpServletRequest request) {
+		Map<String, Object> user = loginSvc.clientLogin(req);
 		boolean isAdmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
-		
+		System.out.println(user);
+		System.out.println(loginSvc.managerLogin(req));
 		
 		if(isAdmin == true) {
 			session.setAttribute("admin", user);
