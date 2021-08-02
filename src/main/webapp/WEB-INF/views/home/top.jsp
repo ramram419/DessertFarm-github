@@ -3,6 +3,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="<c:url value="/resources/js/farm.js"/>"></script>
 <script>
 $(document).ready(function(){
 
@@ -64,13 +65,13 @@ $(document).ready(function(){
 		</div>
 		<div class="menulist" style="display:none;">
 			<div class="bigmenu">
-				<div class="category select"><img src="${path }/resources/images/icon_list_on@2x.png"/>카테고리</div>
-				<div class="community"><img src="${path }/resources/images/icon_chat_off@2x.png"/>커뮤니티</div>
+				<div class="category select" onclick="farm.selectbig('cate');"><img src="${path }/resources/images/icon_list_on@2x.png"/>카테고리</div>
+				<div class="community" onclick="farm.selectbig('commu');"><img src="${path }/resources/images/icon_chat_off@2x.png"/>커뮤니티</div>
 			</div>
 			<div class="midmenu">
 				<div class="catelist">
 					<ul>
-						<li class="select"><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>케이크</li>
+						<li class="active"><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>케이크</li>
 						<li><img src="${path}/resources/images/icon_Bread_off@2x.png" style="margin-top:25px; margin-right:12px;"/>베이커리</li>
 						<li><img src="${path}/resources/images/icon_croissant_off@2x.png" style="margin-top:20px; margin-right:27px;"/>생지</li>
 						<li><img src="${path}/resources/images/icon_macarons_off@2x.png" style="margin-top:24px; margin-right:17px;"/>디저트</li>
@@ -78,13 +79,13 @@ $(document).ready(function(){
 						<li><img src="${path}/resources/images/icon_coffebean_off@2x.png" style="margin-top:24px; margin-right:26px;"/>원두</li>
 					</ul>
 				</div>
-				<div class="comulist">
+				<div class="comulist select">
 					<ul>
-						<li>브랜드스토리</li>
-						<li>문의하기</li>
-						<li>구매후기</li>
-						<li>공지사항</li>
-						<li>배송정보</li>
+						<li><img src="${path}/resources/images/linear_color@2x.png" style="margin-top:17px; margin-right:20px;"/>브랜드스토리</li>
+						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>문의하기</li>
+						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>구매후기</li>
+						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>공지사항</li>
+						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>배송정보</li>
 					</ul>
 				</div>
 			</div>
