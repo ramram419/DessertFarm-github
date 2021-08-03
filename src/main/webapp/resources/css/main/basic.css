@@ -154,7 +154,7 @@ input:focus{
 	position:absolute;
 	width:1280px;
 	height:400px;
-	left:320;
+	left:320px;
 	display:flex;
 	background-color:#ffffff;
 }
@@ -169,6 +169,7 @@ input:focus{
 	height:200px;
 	text-align:center;
 	background-color:#eeeeee;
+	color:#000000;
 	font-size:20px;
 	line-height:1.45;
 	font-weight:bold;
@@ -190,6 +191,14 @@ input:focus{
 	height:100%;
 }
 
+.midmenu div{
+	display:none;
+}
+
+.midmenu .select{
+	display:block;
+}
+
 .catelist ul li, .comulist ul li{
 	font-size:16px;
 	font-weight:bold;
@@ -207,13 +216,18 @@ input:focus{
 	vertical-align:text-bottom;
 }
 
-.catelist .select{
+.catelist .active, .comulist .active{
 	color:#e13517;
 	background-color:#eeeeee;
 }
 
-.comulist{
-	display:none;
+.comulist ul li{
+	height:80px;
+}
+
+.comulist ul li img{
+	margin-left:24px;
+	vertical-align:text-bottom;
 }
 
 .minmenu{
@@ -221,6 +235,14 @@ input:focus{
 	font-size:14px;
 	line-height:1.43;
 	text-align:center;
+}
+
+.minmenu div{
+	display:none;
+}
+
+.minmenu .select{
+	display:block;
 }
 
 .minmenu div ul li{
