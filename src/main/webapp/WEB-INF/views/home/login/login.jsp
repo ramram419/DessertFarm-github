@@ -29,7 +29,7 @@
 	<div class="content">
 		<div class="login">
 			<div class="lo_text">로그인</div>
-			<form class="loginfrm" action="home" method="POST">
+			<form class="loginfrm" action="${path}/home" method="POST">
 				<input type="text" class="id" name="client_id" placeholder="아이디를 입력해주세요."/>
 				<input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/>
 				<button type="button" class="logbtn" onclick="login();">로그인</button>
