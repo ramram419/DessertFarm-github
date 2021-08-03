@@ -69,28 +69,28 @@ $(document).ready(function(){
 				<div class="community" onclick="farm.selectbig('commu');"><img src="${path }/resources/images/icon_chat_off@2x.png"/>커뮤니티</div>
 			</div>
 			<div class="midmenu">
-				<div class="catelist">
+				<div class="catelist select">
 					<ul>
-						<li class="active"><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>케이크</li>
-						<li><img src="${path}/resources/images/icon_Bread_off@2x.png" style="margin-top:25px; margin-right:12px;"/>베이커리</li>
-						<li><img src="${path}/resources/images/icon_croissant_off@2x.png" style="margin-top:20px; margin-right:27px;"/>생지</li>
-						<li><img src="${path}/resources/images/icon_macarons_off@2x.png" style="margin-top:24px; margin-right:17px;"/>디저트</li>
-						<li><img src="${path}/resources/images/icon_sandwich_off@2x.png" style="margin-top:20px; margin-right:12px;"/>샌드위치</li>
-						<li><img src="${path}/resources/images/icon_coffebean_off@2x.png" style="margin-top:24px; margin-right:26px;"/>원두</li>
+						<li class="active" onclick="farm.selectmid('cate','0');"><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>케이크</li>
+						<li onclick="farm.selectmid('cate','1');"><img src="${path}/resources/images/icon_Bread_off@2x.png" style="margin-top:25px; margin-right:12px;"/>베이커리</li>
+						<li onclick="farm.selectmid('cate','2');"><img src="${path}/resources/images/icon_croissant_off@2x.png" style="margin-top:20px; margin-right:27px;"/>생지</li>
+						<li onclick="farm.selectmid('cate','3');"><img src="${path}/resources/images/icon_macarons_off@2x.png" style="margin-top:24px; margin-right:17px;"/>디저트</li>
+						<li onclick="farm.selectmid('cate','4');"><img src="${path}/resources/images/icon_sandwich_off@2x.png" style="margin-top:20px; margin-right:12px;"/>샌드위치</li>
+						<li onclick="farm.selectmid('cate','5');"><img src="${path}/resources/images/icon_coffebean_off@2x.png" style="margin-top:24px; margin-right:26px;"/>원두</li>
 					</ul>
 				</div>
-				<div class="comulist select">
+				<div class="comulist">
 					<ul>
-						<li><img src="${path}/resources/images/linear_color@2x.png" style="margin-top:17px; margin-right:20px;"/>브랜드스토리</li>
-						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>문의하기</li>
-						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>구매후기</li>
-						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>공지사항</li>
-						<li><img src="${path}/resources/images/icon_cake_on@2x.png" style="margin-top:17px; margin-right:20px;"/>배송정보</li>
+						<li class="active" onclick="farm.selectmid('comu','0');"><img src="${path}/resources/images/linear_color@2x.png" style="margin-top:26px; margin-right:10px;"/>브랜드스토리</li>
+						<li onclick="farm.selectmid('comu','1');"><img src="${path}/resources/images/icon_phonecall_off@2x.png" style="margin-top:29px; margin-right:25px; width:22px; height:22px;"/>문의하기</li>
+						<li onclick="farm.selectmid('comu','2');"><img src="${path}/resources/images/icon_cake_off@2x.png" style="margin-top:28px; margin-right:20px;"/>구매후기</li>
+						<li onclick="farm.selectmid('comu','3');"><img src="${path}/resources/images/icon_cake_off@2x.png" style="margin-top:29px; margin-right:20px;"/>공지사항</li>
+						<li onclick="farm.selectmid('comu','4');"><img src="${path}/resources/images/icon_cake_off@2x.png" style="margin-top:28px; margin-right:20px;"/>배송정보</li>
 					</ul>
 				</div>
 			</div>
 			<div class="minmenu">
-				<div class="cakelist">
+				<div class="cakelist select">
 					<ul class="cake1">
 						<li>무스케이크</li>
 						<li>쉬폰케이크</li>
@@ -108,7 +108,7 @@ $(document).ready(function(){
 					</ul>
 				</div>
 				
-				<div class="bakelist" style="display:none;">
+				<div class="bakelist">
 					<ul class="bake1">
 						<li>크로플</li>
 						<li>에그타르트</li>
@@ -127,7 +127,7 @@ $(document).ready(function(){
 					</ul>
 				</div>
 				
-				<div class="dough" style="display:none;">
+				<div class="dough">
 					<ul>
 						<li>크로와상</li>
 						<li>타르트/파이</li>
@@ -136,7 +136,7 @@ $(document).ready(function(){
 					</ul>
 				</div>
 				
-				<div class="dessert" style="display:none;">
+				<div class="dessert">
 					<ul>
 						<li>마카롱</li>
 						<li>뚱카롱</li>
