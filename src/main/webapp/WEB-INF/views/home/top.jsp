@@ -81,11 +81,11 @@ $(document).ready(function(){
 				</div>
 				<div class="comulist">
 					<ul>
-						<li class="active" onclick="farm.selectmid('comu','0');"><img src="${path}/resources/images/linear_color@2x.png" style="margin-top:26px; margin-right:10px;"/>브랜드스토리</li>
+						<li onclick="farm.selectmid('comu','0');"><img src="${path}/resources/images/story_on@2x.png" style="margin-top:26px; margin-right:10px;"/>브랜드스토리</li>
 						<li onclick="farm.selectmid('comu','1');"><img src="${path}/resources/images/icon_phonecall_off@2x.png" style="margin-top:29px; margin-right:25px; width:22px; height:22px;"/>문의하기</li>
-						<li onclick="farm.selectmid('comu','2');"><img src="${path}/resources/images/icon_cake_off@2x.png" style="margin-top:28px; margin-right:20px;"/>구매후기</li>
-						<li onclick="farm.selectmid('comu','3');"><img src="${path}/resources/images/icon_cake_off@2x.png" style="margin-top:29px; margin-right:20px;"/>공지사항</li>
-						<li onclick="farm.selectmid('comu','4');"><img src="${path}/resources/images/icon_cake_off@2x.png" style="margin-top:28px; margin-right:20px;"/>배송정보</li>
+						<li onclick="farm.selectmid('comu','2');"><img src="${path}/resources/images/review_off@2x.png" style="margin-top:28px; margin-right:20px;"/>구매후기</li>
+						<li onclick="farm.selectmid('comu','3');"><img src="${path}/resources/images/notice_off@2x.png" style="margin-top:29px; margin-right:20px;"/>공지사항</li>
+						<li onclick="farm.selectmid('comu','4');"><img src="${path}/resources/images/delivery_off@2x.png" style="margin-top:28px; margin-right:20px;"/>배송정보</li>
 					</ul>
 				</div>
 			</div>

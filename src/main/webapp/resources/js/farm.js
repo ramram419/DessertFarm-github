@@ -12,29 +12,36 @@
 			$(".category img").attr("src","./resources/images/icon_list_on@2x.png");
 			$(".community").removeClass('select');
 			$(".community img").attr("src","./resources/images/icon_chat_off@2x.png");
+			$(".midmenu div").removeClass('select');
 			$(".catelist").addClass('select');
-			$(".comulist").removeClass('select');
-			$(".minmenu div").removeClass('select');
-			$(".minmenu .cakelist").addClass('select');
+			
+			farm.selectmid('cate','0');
 			
 		}else if(bmenu == "commu"){
 			$(".community").addClass('select');
 			$(".community img").attr("src","./resources/images/icon_chat_on@2x.png");
 			$(".category").removeClass('select');
 			$(".category img").attr("src","./resources/images/icon_list_off@2x.png");
+			$(".midmenu div").removeClass('select');
 			$(".comulist").addClass('select');
-			$(".catelist").removeClass('select');
-			$(".minmenu div").removeClass('select');
+
+			farm.selectmid('comu','0');
 		}
 	},
 	
 	selectmid : function(menu, num){
 		$(".minmenu div").removeClass('select');
-		$(".midmenu .select ul li").removeClass('active');
+		$(".midmenu div ul li").removeClass('active');
 		$(".midmenu ."+menu+"list ul li").eq(num).addClass('active');
 		$(".midmenu div").find("img").attr("src", function(index, attr){
 			if(attr.match('_on')){
 				return attr.replace('_on','_off');
+			}
+		})
+		
+		$(".midmenu div ul li").eq(num).find("img").attr("src", function(index, attr){
+			if(attr.match('_off')){
+				return attr.replace('_off','_on');
 			}
 		})
 		
