@@ -26,20 +26,29 @@ public class FrontController {
 		return "home/login/joinform";
 	}
 	
-	@RequestMapping("/welcome")
-	public String addmem() {
-		return "home/login/Finregister";
-	}
-	
-	@RequestMapping(value = "/welcome/client", method=RequestMethod.POST)
+	@PostMapping("/welcome/client")
 	public String client_join(HttpServletRequest req) {
 		MainVO vo = new MainVO();
 		vo.setClient_name(req.getParameter("client_name"));
 		vo.setClient_id(req.getParameter("client_id"));
 		vo.setClient_pwd(req.getParameter("client_pwd"));
 		vo.setClient_tel(req.getParameter("client_tel"));
+		joinSvc.reg_client(vo);
 		System.out.println("Name : "+req.getParameter("client_name"));
 		System.out.println(req.getParameter("client_id"));
+		return "home/login/Finregister";
+	}
+	
+	@PostMapping("/welcome/manager")
+	public String client_manager(HttpServletRequest req) {
+		MainVO vo = new MainVO();
+		vo.setClient_name(req.getParameter("manager_name"));
+		vo.setClient_id(req.getParameter("manager_id"));
+		vo.setClient_pwd(req.getParameter("manager_pwd"));
+		vo.setClient_tel(req.getParameter("manager_tel"));
+		joinSvc.reg_client(vo);
+		System.out.println("Name : "+req.getParameter("manager_name"));
+		System.out.println(req.getParameter("manager_id"));
 		return "home/login/Finregister";
 	}
 }

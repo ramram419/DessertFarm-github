@@ -59,18 +59,22 @@ public class MainDAO {
 		sqlSession.insert("member.client_Join", vo);
 	}
 	
-	public int manager_Join (MainVO vo) {
-		int succ = 0;
-		Map<String, MainVO> param = new HashMap<String, MainVO>();
-		param.put("manager_name", vo);
-		param.put("manager_id", vo);
-		param.put("manager_pwd", vo);
-		param.put("manager_email", vo);
-		param.put("manager_address", vo);
-		param.put("manager_tel", vo);
-		succ = sqlSession.insert("member.manager_Join", vo);
-		System.out.println(succ);
-		sqlSession.commit();
-		return succ;
+	public void reg_manager(MainVO vo) {
+		sqlSession.insert("member.manager_Join", vo);
 	}
+	
+//	public int manager_Join (MainVO vo) {
+//		int succ = 0;
+//		Map<String, MainVO> param = new HashMap<String, MainVO>();
+//		param.put("manager_name", vo);
+//		param.put("manager_id", vo);
+//		param.put("manager_pwd", vo);
+//		param.put("manager_email", vo);
+//		param.put("manager_address", vo);
+//		param.put("manager_tel", vo);
+//		succ = sqlSession.insert("member.manager_Join", vo);
+//		System.out.println(succ);
+//		sqlSession.commit();
+//		return succ;
+//	}
 }

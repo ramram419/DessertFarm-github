@@ -59,12 +59,12 @@
 		
 		
 		$.ajax({
-			url : "/welcome/"+role,
+			url : "welcome/"+role,
 			data : role+"_name="+name+"&"+role+"_id="+id+"&"+role+"_pwd="+pwd+"&"+role+"_tel="+tel,
 			type : "POST",
 			dataType:"html",
 			success : function(response){
-				location.href="./welcome";
+				location.href='./welcome/client';
 			},
 			error : function(err){
 				console.log(err)
@@ -133,7 +133,7 @@
 	<div class="content">
 		<div class="joinFrm">
 			<div class="jofrm_text">개인정보 작성</div>
-			<form class="Joinform" action="/welcome/manager" method="POST">
+			<form class="Joinform" action="/welcome/manager" method="post">
 				<label>상점명<br><input type="text" class="name" name="name" placeholder="상점명을 입력해주세요."/></label>
 				<div class="err nameerr">* 상점명을 입력해주세요.</div>
 				<label>아이디<br><input type="text" class="id" name="id" placeholder="아이디를 입력해주세요."/></label>

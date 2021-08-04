@@ -35,8 +35,7 @@ public class JoinService {
 		mainDAO.reg_client(vo);
 	}
 	
-	public int manager_Join(MainVO vo) {
-		int succ = mainDAO.manager_Join(vo);
-		return succ;
+	public void reg_manager(MainVO vo) {
+		mainDAO.reg_manager(vo);
 	}
 }
