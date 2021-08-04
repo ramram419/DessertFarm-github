@@ -13,15 +13,35 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 	
-	function register(){
-		location.href="./welcome";
+	function sendPost(url, params){
+		var form = document.createElement("form");
+		form.setAttribute('method', 'Post');
+		form.setAttribute('action', url);
+		document.charset="utf-8";
+		for(var key in params) {
+			var hiddenField = document.createElement('input');
+			hiddenField.setAttribute('type', 'hidden');
+			hiddenField.setAttribute('name', key);
+			hiddenField.setAttribute('value', params[key]);
+			form.appendChild(hiddenField);
+		}
+		document.body.appendChild(form);
+		form.submit();
+	}
+	
+	function client_register() {
+		sendPost('location.href='./welcome/client'', {'client_name' : 'client_id' : 'client_pwd' : 'client_tel'});
+	}
+	
+	function manager_register() {
+		location.href="./welcome/manager";
 	}
 	
 	function client_checkfrm(){
 		if($(".client_name").val() !== "" && $(".client_id").val() !== "" 
 			&& $(".client_pwd").val() !== "" && $(".confirm_client_pwd").val() !== "" && $(".client_tel").val() !== ""){
 			$(".regbtn").css({"background-color":"#e13517","color":"#ffffff"});
-			$(".regbtn").attr("onclick","register();");
+			$(".regbtn").attr("onclick","client_register();");
 		}else{
 			$(".regbtn").css({"background-color":"#eeeeee","color":"#000000"});
 			$(".regbtn").removeAttr("onclick");
@@ -57,7 +77,7 @@
 		if($(".manager_name").val() !== "" && $(".manager_id").val() !== "" 
 			&& $(".manager_pwd").val() !== "" && $(".confirm_manager_pwd").val() !== "" && $(".manager_tel").val() !== ""){
 			$(".regbtn").css({"background-color":"#e13517","color":"#ffffff"});
-			$(".regbtn").attr("onclick","register();");
+			$(".regbtn").attr("onclick","manager_register();");
 		}else{
 			$(".regbtn").css({"background-color":"#eeeeee","color":"#000000"});
 			$(".regbtn").removeAttr("onclick");
@@ -202,7 +222,7 @@
 		<div class="joinFrm">
 			<div class="jofrm_text">개인정보 작성</div>
 			<c:if test="${sessionScope.manager ne null && sessionScope.client eq null}">
-				<form class="Joinform" action="/welcome" method="POST">
+				<form class="Joinform" action="/welcome/manager" method="POST">
 					<label>상점명<br><input type="text" class="manager_name" name="manager_name" placeholder="상점명을 입력해주세요."/></label>
 					<div class="err nameerr">* 상점명을 입력해주세요.</div>
 					<label>아이디<br><input type="text" class="manager_id" name="manager_id" placeholder="아이디를 입력해주세요."/></label>
@@ -217,7 +237,7 @@
 				</form>
 			</c:if>
 			<c:if test="${sessionScope.client ne null && sessionScope.manager eq null}">
-				<form class="Joinform" action="/welcome" method="POST">
+				<form class="Joinform" action="/welcome/client" method="POST">
 					<label>성함<br><input type="text" class="client_name" name="client_name" placeholder="성함을 입력해주세요."/></label>
 					<div class="err nameerr">* 성함을 입력해주세요.</div>
 					<label>아이디<br><input type="text" class="client_id" name="client_id" placeholder="아이디를 입력해주세요."/></label>

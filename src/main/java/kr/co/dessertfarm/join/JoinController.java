@@ -24,13 +24,6 @@ public class JoinController {
 	public String moveToJoin() {
 		return "home/login/join";
 	}
-	
-	// Welcome Page after join for Manager
-	@PostMapping("/joinManager")
-	public String joinManager(JoinManagerRequest mreq) {
-//		joinSvc.managerJoin(mreq);
-		return "join/main3";
-	}
 
 	// 
 	@GetMapping("/manager")
