@@ -21,7 +21,7 @@
 		<div class="finregister">
 			<div class="fin_text">회원가입이 완료되었습니다.</div>
 			<div class="subtxt">로그인하여 디저트팜을 사용해보시기 바랍니다.</div>
-			<button class="gologin" onclick="location.href='/login'">로그인하러 가기</button>
+			<button class="gologin" onclick="location.href='${path}/login'">로그인하러 가기</button>
 		</div>
 	</div>
 	<c:import url="../footer.jsp"/>

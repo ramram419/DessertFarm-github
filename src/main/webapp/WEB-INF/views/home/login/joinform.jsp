@@ -59,12 +59,12 @@
 		
 		
 		$.ajax({
-			url : "/welcome/"+role,
+			url : "welcome/"+role,
 			data : role+"_name="+name+"&"+role+"_id="+id+"&"+role+"_pwd="+pwd+"&"+role+"_tel="+tel,
 			type : "POST",
 			dataType:"html",
 			success : function(response){
-				location.href="./welcome";
+				location.href='./welcome/client';
 			},
 			error : function(err){
 				console.log(err)
