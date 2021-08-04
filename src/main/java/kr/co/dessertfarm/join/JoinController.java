@@ -43,14 +43,14 @@ public class JoinController {
 	@GetMapping("/managerJoin")
 	public String managerJoin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("manager", "manager");
+		session.setAttribute("role", "manager");
 		return "home/login/join2";
 	}
 	
 	@GetMapping("/clientJoin")
 	public String clientJoin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("client", "client");
+		session.setAttribute("role", "client");
 		return "home/login/join2";
 	}
 }
