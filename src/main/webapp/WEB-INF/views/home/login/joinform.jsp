@@ -13,201 +13,113 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 	
-	function sendPost(url, params){
-		var form = document.createElement("form");
-		form.setAttribute('method', 'Post');
-		form.setAttribute('action', url);
-		document.charset="utf-8";
-		for(var key in params) {
-			var hiddenField = document.createElement('input');
-			hiddenField.setAttribute('type', 'hidden');
-			hiddenField.setAttribute('name', key);
-			hiddenField.setAttribute('value', params[key]);
-			form.appendChild(hiddenField);
-		}
-		document.body.appendChild(form);
-		form.submit();
-	}
-	
-	function client_register() {
-		sendPost('location.href='./welcome/client'', {'client_name' : 'client_id' : 'client_pwd' : 'client_tel'});
-	}
-	
-	function manager_register() {
-		location.href="./welcome/manager";
-	}
-	
-	function client_checkfrm(){
-		if($(".client_name").val() !== "" && $(".client_id").val() !== "" 
-			&& $(".client_pwd").val() !== "" && $(".confirm_client_pwd").val() !== "" && $(".client_tel").val() !== ""){
-			$(".regbtn").css({"background-color":"#e13517","color":"#ffffff"});
-			$(".regbtn").attr("onclick","client_register();");
+	function checkfrm(){
+		if($(".name").val() !== "" && $(".id").val() !== "" 
+			&& $(".pwd").val() !== "" && $(".confirm_pwd").val() !== "" && $(".tel").val() !== ""){
+			$(".regbtn").show();
+			$(".chkbtn").hide();
 		}else{
-			$(".regbtn").css({"background-color":"#eeeeee","color":"#000000"});
-			$(".regbtn").removeAttr("onclick");
+			$(".regbtn").hide();
+			$(".chkbtn").show();
 			
-			if($('.client_name').val() == ""){
-				$(".client_name").css("border","1px solid #FA464E");
+			if($('.name').val() == ""){
+				$(".name").css("border","1px solid #FA464E");
 				$(".nameerr").show();
 			}
 			
-			if($('.client_id').val() == ""){
-				$(".client_id").css("border","1px solid #FA464E");
+			if($('.id').val() == ""){
+				$(".id").css("border","1px solid #FA464E");
 				$(".iderr").show();
 			}
 			
-			if($('.client_pwd').val() == ""){
-				$(".client_pwd").css("border","1px solid #FA464E");
+			if($('.pwd').val() == ""){
+				$(".pwd").css("border","1px solid #FA464E");
 				$(".pwderr").show();
 			}
 			
-			if($('.confirm_client_pwd').val() == ""){
-				$(".confirm_client_pwd").css("border","1px solid #FA464E");
+			if($('.confirm_pwd').val() == ""){
+				$(".confirm__pwd").css("border","1px solid #FA464E");
 				$(".pwdchkerr").show();
 			}
 			
-			if($('.client_tel').val() == ""){
-				$(".client_tel").css("border","1px solid #FA464E");
+			if($('.tel').val() == ""){
+				$(".tel").css("border","1px solid #FA464E");
 				$(".telerr").show();
 			}
 		}
 	}
 	
-	function manager_checkfrm(){
-		if($(".manager_name").val() !== "" && $(".manager_id").val() !== "" 
-			&& $(".manager_pwd").val() !== "" && $(".confirm_manager_pwd").val() !== "" && $(".manager_tel").val() !== ""){
-			$(".regbtn").css({"background-color":"#e13517","color":"#ffffff"});
-			$(".regbtn").attr("onclick","manager_register();");
-		}else{
-			$(".regbtn").css({"background-color":"#eeeeee","color":"#000000"});
-			$(".regbtn").removeAttr("onclick");
-			
-			if($('.manager_name').val() == ""){
-				$(".manager_name").css("border","1px solid #FA464E");
-				$(".nameerr").show();
+	function join(){
+		var role = "${sessionScope.role}";
+		
+		var name = $(".name").val();
+		var id = $(".id").val();
+		var pwd = $(".pwd").val();
+		var tel = $(".tel").val();
+		
+		
+		$.ajax({
+			url : "/welcome/"+role,
+			data : role+"_name="+name+"&"+role+"_id="+id+"&"+role+"_pwd="+pwd+"&"+role+"_tel="+tel,
+			type : "POST",
+			dataType:"html",
+			success : function(response){
+				location.href="./welcome";
+			},
+			error : function(err){
+				console.log(err)
 			}
-			
-			if($('.manager_id').val() == ""){
-				$(".manager_id").css("border","1px solid #FA464E");
-				$(".iderr").show();
-			}
-			
-			if($('.manager_pwd').val() == ""){
-				$(".manager_pwd").css("border","1px solid #FA464E");
-				$(".pwderr").show();
-			}
-			
-			if($('.confirm_manager_pwd').val() == ""){
-				$(".confirm_manager_pwd").css("border","1px solid #FA464E");
-				$(".pwdchkerr").show();
-			}
-			
-			if($('.manager_tel').val() == ""){
-				$(".manager_tel").css("border","1px solid #FA464E");
-				$(".telerr").show();
-			}
-		}
+		})
 	}
 		
 	$(document).ready(function(){
-		
-		$(function(){
-			$(".confirm_manager_pwd").keyup(function(){
-				if($(".manager_pwd").val() !== $(".confirm_manager_pwd").val()){
-					$(".confirm_manager_pwd").css("border","1px solid #FA464E");
-					$(".pwdchkerr").show();
-					manager_checkfrm();
-				}else{
-					$(".confirm_manager_pwd").css("border","1px solid #eeeeee");
-					$(".pwdchkerr").hide();
-					manager_checkfrm();
-				}
-			})
-			
-			$(".manager_name").keyup(function(){
-				if($(this).val !== ""){
-					$(".manager_name").css("border","1px solid #eeeeee");
-					$(".nameerr").hide();
-					manager_checkfrm();
-				}
-			})
-			
-			$(".manager_id").keyup(function(){
-				if($(this).val !== ""){
-					$(".manager_id").css("border","1px solid #eeeeee");
-					$(".iderr").hide();
-					manager_checkfrm();
-				}
-			})
-			
-			$(".manager_pwd").keyup(function(){
-				if($(this).val !== ""){
-					$(".manager_pwd").css("border","1px solid #eeeeee");
-					$(".pwderr").hide();
-					
-					$(".confirm_manager_pwd").val("");
-					$(".confirm_manager_pwd").css("border","1px solid #eeeeee");
-					$(".pwdchkerr").hide();
-					manager_checkfrm();
-				}
-			})
-			
-			$(".manager_tel").keyup(function(){
-				if($(this).val !== ""){
-					$(".manager_tel").css("border","1px solid #eeeeee");
-					$(".telerr").hide();
-					manager_checkfrm();
-				}
-			})
-			
-		})
 			
 		$(function(){
-			$(".confirm_client_pwd").keyup(function(){
-				if($(".client_pwd").val() !== $(".confirm_client_pwd").val()){
-					$(".confirm_client_pwd").css("border","1px solid #FA464E");
+			$(".confirm_pwd").keyup(function(){
+				if($(".pwd").val() !== $(".confirm_pwd").val()){
+					$(".confirm_pwd").css("border","1px solid #FA464E");
 					$(".pwdchkerr").show();
-					client_checkfrm();
+					checkfrm();
 				}else{
-					$(".confirm_client_pwd").css("border","1px solid #eeeeee");
+					$(".confirm_pwd").css("border","1px solid #eeeeee");
 					$(".pwdchkerr").hide();
-					client_checkfrm();
+					checkfrm();
 				}
 			})
 			
-			$(".client_name").keyup(function(){
+			$(".name").keyup(function(){
 				if($(this).val !== ""){
-					$(".client_name").css("border","1px solid #eeeeee");
+					$(".name").css("border","1px solid #eeeeee");
 					$(".nameerr").hide();
-					client_checkfrm();
+					checkfrm();
 				}
 			})
 			
-			$(".client_id").keyup(function(){
+			$(".id").keyup(function(){
 				if($(this).val !== ""){
-					$(".client_id").css("border","1px solid #eeeeee");
+					$(".id").css("border","1px solid #eeeeee");
 					$(".iderr").hide();
-					client_checkfrm();
+					checkfrm();
 				}
 			})
 			
-			$(".client_pwd").keyup(function(){
+			$(".pwd").keyup(function(){
 				if($(this).val !== ""){
-					$(".client_pwd").css("border","1px solid #eeeeee");
+					$(".pwd").css("border","1px solid #eeeeee");
 					$(".pwderr").hide();
 					
-					$(".confirm_client_pwd").val("");
-					$(".confirm_client_pwd").css("border","1px solid #eeeeee");
+					$(".confirm_pwd").val("");
+					$(".confirm_pwd").css("border","1px solid #eeeeee");
 					$(".pwdchkerr").hide();
-					client_checkfrm();
+					checkfrm();
 				}
 			})
 			
-			$(".client_tel").keyup(function(){
+			$(".tel").keyup(function(){
 				if($(this).val !== ""){
-					$(".client_tel").css("border","1px solid #eeeeee");
+					$(".tel").css("border","1px solid #eeeeee");
 					$(".telerr").hide();
-					client_checkfrm();
+					checkfrm();
 				}
 			})
 			
@@ -221,36 +133,20 @@
 	<div class="content">
 		<div class="joinFrm">
 			<div class="jofrm_text">개인정보 작성</div>
-			<c:if test="${sessionScope.manager ne null && sessionScope.client eq null}">
-				<form class="Joinform" action="/welcome/manager" method="POST">
-					<label>상점명<br><input type="text" class="manager_name" name="manager_name" placeholder="상점명을 입력해주세요."/></label>
-					<div class="err nameerr">* 상점명을 입력해주세요.</div>
-					<label>아이디<br><input type="text" class="manager_id" name="manager_id" placeholder="아이디를 입력해주세요."/></label>
-					<div class="err iderr">* 아이디를 입력해주세요.</div>
-					<label>비밀번호<br><input type="password" class="manager_pwd" name="manager_pwd" placeholder="비밀번호를 입력해주세요."/></label>
-					<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
-					<label>비밀번호 확인<br><input type="password" class="confirm_manager_pwd" name="confirm_manager_pwd" placeholder="비밀번호를 한번 더 입력해주세요."/></label>
-					<div class="err pwdchkerr">* 올바른 비밀번호를 입력해주세요.</div>
-					<label>전화번호<br><input type="text" class="manager_tel" name="manager_tel" placeholder="전화번호를 입력해주세요."/></label>
-					<div class="err telerr">* 전화번호를 입력해주세요.</div>
-					<button type="button" class="regbtn" onclick="manager_checkfrm();">회원가입</button>
-				</form>
-			</c:if>
-			<c:if test="${sessionScope.client ne null && sessionScope.manager eq null}">
-				<form class="Joinform" action="/welcome/client" method="POST">
-					<label>성함<br><input type="text" class="client_name" name="client_name" placeholder="성함을 입력해주세요."/></label>
-					<div class="err nameerr">* 성함을 입력해주세요.</div>
-					<label>아이디<br><input type="text" class="client_id" name="client_id" placeholder="아이디를 입력해주세요."/></label>
-					<div class="err iderr">* 아이디를 입력해주세요.</div>
-					<label>비밀번호<br><input type="password" class="client_pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/></label>
-					<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
-					<label>비밀번호 확인<br><input type="password" class="confirm_client_pwd" name="confirm_client_pwd" placeholder="비밀번호를 한번 더 입력해주세요."/></label>
-					<div class="err pwdchkerr">* 올바른 비밀번호를 입력해주세요.</div>
-					<label>전화번호<br><input type="text" class="client_tel" name="client_tel" placeholder="전화번호를 입력해주세요."/></label>
-					<div class="err telerr">* 전화번호를 입력해주세요.</div>
-					<button type="button" class="regbtn" onclick="client_checkfrm();">회원가입</button>
-				</form>
-			</c:if>
+			<form class="Joinform" action="/welcome/manager" method="POST">
+				<label>상점명<br><input type="text" class="name" name="name" placeholder="상점명을 입력해주세요."/></label>
+				<div class="err nameerr">* 상점명을 입력해주세요.</div>
+				<label>아이디<br><input type="text" class="id" name="id" placeholder="아이디를 입력해주세요."/></label>
+				<div class="err iderr">* 아이디를 입력해주세요.</div>
+				<label>비밀번호<br><input type="password" class="pwd" name="pwd" placeholder="비밀번호를 입력해주세요."/></label>
+				<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
+				<label>비밀번호 확인<br><input type="password" class="confirm_pwd" name="confirm_pwd" placeholder="비밀번호를 한번 더 입력해주세요."/></label>
+				<div class="err pwdchkerr">* 올바른 비밀번호를 입력해주세요.</div>
+				<label>전화번호<br><input type="text" class="tel" name="tel" placeholder="전화번호를 입력해주세요."/></label>
+				<div class="err telerr">* 전화번호를 입력해주세요.</div>
+				<button type="button" class="chkbtn" onclick="checkfrm();">회원가입</button>
+				<button type="button" class="regbtn" onclick="join();">회원가입</button>
+			</form>
 		</div>
 	</div>
 	<c:import url="../footer.jsp"/>
