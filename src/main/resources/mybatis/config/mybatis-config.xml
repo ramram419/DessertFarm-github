@@ -8,10 +8,9 @@
     <properties resource="./mybatis/properties/dbinfo.properties"/>
  
     <!-- 사용하려는 DTO에 대한 축약 이름 -->
-    <!-- <typeAliases>
-        <typeAlias type="kr.co.dessertfarm.spring.MainVO" alias="member" />
-        <typeAlias type="kr.co.dessertfarm.login.LoginRequest" alias="login" />    
-    </typeAliases> -->
+    <typeAliases>
+        <typeAlias type="kr.co.dessertfarm.spring.MainVO" alias="MainVO" />
+    </typeAliases>
     
     <!-- connection pool -->
     <!-- 보안, 유지보수 차원에서 정보를 빼내서 사용 -->
