@@ -49,6 +49,8 @@ public class LoginController {
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty()){
 			return "login/logerr";
+		}else if(session.getAttribute("myPage").equals("myPage")){
+			return "myPage/myPage";
 		}else {
 			return "home/homePage";
 		}
@@ -68,5 +70,25 @@ public class LoginController {
 	@GetMapping("/admin")
 	public String moveToAdmin() {
 		return "admin/adminPage";
+	}
+	
+	@RequestMapping("/loginMyPage")
+	public String login_ToMyPage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("user", "user");
+		return "redirect:/login";
+	}
+	
+	@PostMapping("/myPage")
+	public String client_myPage(LoginRequest req) {
+		Map<String, Object> user = loginSvc.clientLogin(req);
+		
+		if(user.isEmpty() == false) {
+			return "myPage/myPage";
+		}else if(user.isEmpty() == true) {
+			return "login/logerr";
+		}else {
+			return "home/homePage";
+		}
 	}
 }

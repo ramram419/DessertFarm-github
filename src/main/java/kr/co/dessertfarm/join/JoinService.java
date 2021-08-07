@@ -23,4 +23,12 @@ public class JoinService {
 	public void reg_manager(MainVO vo) {
 		mainDAO.reg_manager(vo);
 	}
+	
+	public void changePwd_client(MainVO vo) {
+		mainDAO.changePwd_client(vo);
+	}
+	
+	public void changePwd_Manager(MainVO vo) {
+		mainDAO.changePwd_manager(vo);
+	}
 }
