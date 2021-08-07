@@ -31,11 +31,11 @@ $(document).ready(function(){
 		<c:if test="${sessionScope.user eq null && sessionScope.admin eq null}">
             <p><a href="<c:url value='/login' />" >로그인</a>|</p>
             <p><a href="<c:url value='/join' />">회원가입</a>|</p>
-            <p><a href="<c:url value='/login' />">마이페이지</a></p>
+            <p><a href="<c:url value='/loginMyPage' />">마이페이지</a></p>
          </c:if>
          <c:if test="${sessionScope.user ne null && sessionScope.admin eq null}">
             <p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>
-            <p><a href="<c:url value='/myPage' />">마이페이지</a></p>
+            <p><a href="<c:url value='/loginMyPage' />">마이페이지</a></p>
          </c:if>
          <c:if test="${sessionScope.admin ne null && sessionScope.user eq null}">
             <p><a href="<c:url value='/logout' />" >로그아웃</a>|</p>

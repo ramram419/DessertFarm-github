@@ -18,6 +18,7 @@ public class MainDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
+	// 사용자 로그인
 	public Map<String, Object> client_login(LoginRequest req, String id, String pwd) {
 		id = req.getClient_id();
 		pwd = req.getClient_pwd();
@@ -29,6 +30,7 @@ public class MainDAO {
 		return client;
 	}
 	
+	//관리자/납품업체 로그인
 	public Map<String, Object> manager_login(LoginRequest req, String id, String pwd) {
 		id = req.getClient_id();
 		pwd = req.getClient_pwd();
@@ -40,11 +42,23 @@ public class MainDAO {
 		return manager;
 	}
 	
+	//사용자 회원가입
 	public void reg_client(MainVO vo) {
 		sqlSession.insert("member.client_Join", vo);
 	}
 	
+	//관리자/납품업체 회원가입
 	public void reg_manager(MainVO vo) {
 		sqlSession.insert("member.manager_Join", vo);
+	}
+	
+	//사용자 비번 변경
+	public void changePwd_client(MainVO vo) {
+		sqlSession.update("member.client_ChangePwd", vo);
+	}
+	
+	//관리자/납품엄체 비번 변경
+	public void changePwd_manager(MainVO vo) {
+		sqlSession.update("memeber.manager_ChangePwd", vo);
 	}
 }

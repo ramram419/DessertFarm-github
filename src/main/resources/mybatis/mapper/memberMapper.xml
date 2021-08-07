@@ -25,4 +25,16 @@
 		insert into manager (manager_name, manager_id, manager_pwd, manager_tel) 
 		values (#{manager_name, jdbcType=VARCHAR}, #{manager_id, jdbcType=VARCHAR}, #{manager_pwd, jdbcType=VARCHAR}, #{manager_tel, jdbcType=VARCHAR})
 	</insert>
+	
+	<update id="client_ChangePwd" parameterType="MainVO">
+		update client
+		set client_pwd=#{new_pwd}
+		where client_id=#{id}
+	</update>
+	
+	<update id="manager_ChangePwd" parameterType="MainVO">
+		update manager
+		set manager_pwd=#{new_pwd}
+		where manager_id=#{id}
+	</update>
 </mapper>
