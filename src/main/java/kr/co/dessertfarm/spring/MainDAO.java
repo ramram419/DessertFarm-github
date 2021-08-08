@@ -18,6 +18,7 @@ public class MainDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
+	// 사용자 로그인
 	public Map<String, Object> client_login(LoginRequest req, String id, String pwd) {
 		id = req.getClient_id();
 		pwd = req.getClient_pwd();
@@ -29,6 +30,7 @@ public class MainDAO {
 		return client;
 	}
 	
+	//관리자/납품업체 로그인
 	public Map<String, Object> manager_login(LoginRequest req, String id, String pwd) {
 		id = req.getClient_id();
 		pwd = req.getClient_pwd();
@@ -40,37 +42,23 @@ public class MainDAO {
 		return manager;
 	}
 	
-//	public int client_Join (MainVO vo, Map<String, Object> param) {
-//		param = new HashMap<String, Object>();
-//		param.put("client_name", vo.getClient_name());
-//		param.put("client_id", vo.getClient_id());
-//		param.put("client_pwd", vo.getClient_pwd());
-//		param.put("client_email", vo.getClient_email());
-//		param.put("client_address", vo.getClient_address());
-//		param.put("client_tel", vo.getClient_tel());
-//		int succ = 0;
-//		sqlSession.insert("member.client_Join", param);
-//		System.out.println(succ);
-//		sqlSession.commit();
-//		return succ;
-//	}
-	
+	//사용자 회원가입
 	public void reg_client(MainVO vo) {
 		sqlSession.insert("member.client_Join", vo);
 	}
 	
-	public int manager_Join (MainVO vo) {
-		int succ = 0;
-		Map<String, MainVO> param = new HashMap<String, MainVO>();
-		param.put("manager_name", vo);
-		param.put("manager_id", vo);
-		param.put("manager_pwd", vo);
-		param.put("manager_email", vo);
-		param.put("manager_address", vo);
-		param.put("manager_tel", vo);
-		succ = sqlSession.insert("member.manager_Join", vo);
-		System.out.println(succ);
-		sqlSession.commit();
-		return succ;
+	//관리자/납품업체 회원가입
+	public void reg_manager(MainVO vo) {
+		sqlSession.insert("member.manager_Join", vo);
+	}
+	
+	//사용자 비번 변경
+	public void changePwd_client(MainVO vo) {
+		sqlSession.update("member.client_ChangePwd", vo);
+	}
+	
+	//관리자/납품엄체 비번 변경
+	public void changePwd_manager(MainVO vo) {
+		sqlSession.update("memeber.manager_ChangePwd", vo);
 	}
 }

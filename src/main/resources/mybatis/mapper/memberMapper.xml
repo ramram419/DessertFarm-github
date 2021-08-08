@@ -17,12 +17,24 @@
 	</select>
 	
 	<insert id="client_Join" parameterType='MainVO'>
-		insert into client (client_num, client_name, client_id, client_pwd, client_email, client_address, client_tel, client_entre, client_kakao) 
-		values (#{client_num, jdbcType=INTEGER}, #{client_name, jdbcType=VARCHAR}, #{client_id, jdbcType=VARCHAR}, #{client_pwd, jdbcType=VARCHAR}, #{client_email, jdbcType=VARCHAR}, #{client_address, jdbcType=VARCHAR}, #{client_tel, jdbcType=VARCHAR}, #{client_entre, jdbcType=CHAR}, #{client_kakao, jdbcType=CHAR})
+		insert into client (client_name, client_id, client_pwd, client_tel) 
+		values (#{client_name, jdbcType=VARCHAR}, #{client_id, jdbcType=VARCHAR}, #{client_pwd, jdbcType=VARCHAR}, #{client_tel, jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="manager_Join" parameterType='MainVO'>
-		insert into manager (manager_num, manager_name, manager_id, manager_pwd, manager_email, manager_address, manager_tel, manager_entre, manager_kakao) 
-		values (#{manager_num, jdbcType=INTEGER}, #{manager_name, jdbcType=VARCHAR}, #{manager_id, jdbcType=VARCHAR}, #{manager_pwd, jdbcType=VARCHAR}, #{manager_email, jdbcType=VARCHAR}, #{manager_address, jdbcType=VARCHAR}, #{manager_tel, jdbcType=VARCHAR}, #{manager_entre, jdbcType=CHAR}, #{manager_kakao, jdbcType=CHAR})
+		insert into manager (manager_name, manager_id, manager_pwd, manager_tel) 
+		values (#{manager_name, jdbcType=VARCHAR}, #{manager_id, jdbcType=VARCHAR}, #{manager_pwd, jdbcType=VARCHAR}, #{manager_tel, jdbcType=VARCHAR})
 	</insert>
+	
+	<update id="client_ChangePwd" parameterType="MainVO">
+		update client
+		set client_pwd=#{new_pwd}
+		where client_id=#{id}
+	</update>
+	
+	<update id="manager_ChangePwd" parameterType="MainVO">
+		update manager
+		set manager_pwd=#{new_pwd}
+		where manager_id=#{id}
+	</update>
 </mapper>

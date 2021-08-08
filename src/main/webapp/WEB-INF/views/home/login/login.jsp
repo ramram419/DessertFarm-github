@@ -29,11 +29,23 @@
 	<div class="content">
 		<div class="login">
 			<div class="lo_text">로그인</div>
-			<form class="loginfrm" action="${path}/home" method="POST">
-				<input type="text" class="id" name="client_id" placeholder="아이디를 입력해주세요."/>
-				<input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/>
-				<button type="button" class="logbtn" onclick="login();">로그인</button>
-			</form>
+			
+			<c:if test="${sessionScope.user eq null}">
+				<form class="loginfrm" action="${path}/home" method="POST">
+					<input type="text" class="id" name="client_id" placeholder="아이디를 입력해주세요."/>
+					<input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/>
+					<button type="button" class="logbtn" onclick="login();">로그인</button>
+				</form>
+			</c:if>
+			
+			<c:if test="${sessionScope.user ne null}">
+				<form class="loginfrm" action="${path}/myPage" method="POST">
+					<input type="text" class="id" name="client_id" placeholder="아이디를 입력해주세요."/>
+					<input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/>
+					<button type="button" class="logbtn" onclick="login();">로그인</button>
+				</form>
+			</c:if>
+			
 			
 			<div class="register">
 				아직 <span>가입</span>을 안해주셨나요?
