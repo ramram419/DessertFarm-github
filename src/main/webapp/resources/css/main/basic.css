@@ -141,6 +141,11 @@ input:focus{
 	display: inline-block;
 	padding:0 50px;
 	cursor:pointer;
+	color:#111111 !important;
+}
+
+.menu ul li a{
+	color:#111111;
 }
 
 .menu ul li:last-child{
@@ -298,6 +303,10 @@ input:focus{
 
 .footer_menu p{
 	display:inline-block;
+}
+
+.footer_menu p a{
+	color:#ffffff;
 }
 
 .footer_menu p span{
