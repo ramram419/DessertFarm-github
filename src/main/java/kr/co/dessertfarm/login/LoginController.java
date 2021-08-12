@@ -50,7 +50,7 @@ public class LoginController {
 		}else if(isAdmin == false && user.isEmpty()){
 			return "login/logerr";
 		}else if(session.getAttribute("myPage").equals("myPage")){
-			return "myPage/myPage";
+			return "home/contents/mypage";
 		}else {
 			return "home/homePage";
 		}
@@ -86,7 +86,8 @@ public class LoginController {
 		Map<String, Object> user = loginSvc.clientLogin(req);
 		
 		if(user.isEmpty() == false) {
-			return "myPage/myPage";
+			System.out.println(user);
+			return "home/contents/mypage";
 		}else if(user.isEmpty() == true) {
 			return "login/logerr";
 		}else {
