@@ -127,18 +127,17 @@
 </head>
 <body>
 <c:import url="../top.jsp"/>
-<div class="mypage_content">
+<div class="C_content">
 	<div class="contentTxt">마이페이지</div>
 	<div class="pagelist">
 		<ul>
-			<li class="click">마이페이지</li>
-			<li>내찜목록</li>
+			<li onclick="location.href='./loginMyPage';" class="click">마이페이지</li>
+			<li onclick="location.href='./like';">내찜목록</li>
 			<li>장바구니</li>
 			<li>주문내역</li>
 			<li>문의내역</li>
 		</ul>
 	</div>
-	<div>${loginRequest}</div>
 	<div class="mypageFrm">
 		<label>상점명<br><input type="text" class="name" name="client_name" placeholder="이름을 입력해주세요." value="${loginRequest.client_name }"/></label>
 		<div class="err nameerr">* 상점명을 입력해주세요.</div>

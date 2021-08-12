@@ -26,6 +26,11 @@ public class FrontController {
 		return "home/login/Finregister";
 	}
 	
+	@RequestMapping("/like")
+	public String like() {
+		return "home/contents/likelist";
+	}
+	
 	@RequestMapping(value = "/welcome/client", method= {RequestMethod.GET, RequestMethod.POST})
 	public String client_join(HttpServletRequest req) {
 		MainVO vo = new MainVO();
