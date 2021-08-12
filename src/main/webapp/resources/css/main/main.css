@@ -531,3 +531,90 @@
 	display:block;
 	padding:11px 62px 0px;
 }
+
+
+
+
+
+
+
+/* Mypage */
+
+.mypage_content{
+	width:1280px;
+	margin:97px auto;
+	padding-bottom:317px;
+}
+
+.contentTxt{
+	font-family:"NanumSquare";
+	font-size:30px;
+	font-weight:bold;
+	text-align:center;
+	margin-bottom:41px;
+}
+
+.pagelist{
+	margin-bottom:100px;
+}
+
+.pagelist ul li{
+	display:inline-block;
+	width:255px;
+	height:24px;
+	text-align:center;
+	font-size:16px;
+	font-weight:500;
+	line-height:1.5;
+	color:#888888;
+	border:1px solid #dddddd;
+	padding:12px 0;
+	margin-right:-4px;
+	cursor:pointer;
+}
+
+.pagelist .click{
+	color:#ffffff;
+	background-color:#e13517;
+	border:none;
+}
+
+.mypageFrm{
+	width:340px;
+	margin:0 auto;
+}
+
+.mypageFrm label{
+	color:#111111;
+	font-size:14px;
+	line-height:1.43;
+	letter-spacing:-0.7px;
+}
+
+.mypageFrm input{
+	width:340px;
+	height:48px;
+	border:1px solid #eeeeee;
+	padding:10px;
+	margin-top:5px;
+	margin-bottom:20px;
+	font-size:14px;
+}
+
+.modibtn{
+	width:340px;
+	height:48px;
+	font-size:14px;
+	font-weight:bold;
+	color:#ffffff;
+	background-color:#bbbbbb;
+	border:none;
+	margin-top:80px;
+}
+
+.err{
+	display:none;
+	font-size:10px;
+	color:#FA464E;
+	margin-top:-15px;
+}
