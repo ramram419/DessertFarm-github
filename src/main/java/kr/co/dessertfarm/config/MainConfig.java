@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.product.ProductService;
 import kr.co.dessertfarm.spring.MainDAO;
 
 @Configuration
@@ -67,5 +68,10 @@ public class MainConfig {
 	@Bean
 	public JoinService joinSvc() {
 		return new JoinService(mainDAO());
+	}
+	
+	@Bean
+	public ProductService productSvc() {
+		return new ProductService();
 	}
 }
