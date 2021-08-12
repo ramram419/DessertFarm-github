@@ -8,6 +8,7 @@ import kr.co.dessertfarm.join.JoinController;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginController;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.product.ProductController;
 import kr.co.dessertfarm.front.FrontController;
 
 
@@ -37,5 +38,11 @@ public class ControllerConfig {
 	public FrontController frontController() {
 		FrontController frontController = new FrontController();
 		return frontController;
+	}
+	
+	@Bean
+	public ProductController productController() {
+		ProductController productController = new ProductController();
+		return productController;
 	}
 }
