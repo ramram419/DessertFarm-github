@@ -72,6 +72,7 @@ public class LoginController {
 		return "admin/adminPage";
 	}
 	
+	// 마이페이지 이동 전에 로그인 페이지 이동
 	@RequestMapping("/loginMyPage")
 	public String login_ToMyPage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -79,6 +80,7 @@ public class LoginController {
 		return "redirect:/login";
 	}
 	
+	// 마이페이지 이동
 	@PostMapping("/myPage")
 	public String client_myPage(LoginRequest req) {
 		Map<String, Object> user = loginSvc.clientLogin(req);
