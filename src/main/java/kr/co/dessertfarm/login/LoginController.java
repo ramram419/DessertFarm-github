@@ -50,13 +50,13 @@ public class LoginController {
 //		System.out.println(user.get("client_id").toString());
 		System.out.println(loginSvc.managerLogin(req));
 		
-		if(isAdmin == true) {
+		if(isAdmin == true && loginSvc.managerLogin(req) != null) {
 			session.setAttribute("admin", "admin");
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty() == false) {
 			session.setAttribute("user", user);
 			return "home/homePage";
-		}else if(isAdmin == false && user.isEmpty()){
+		}else if(isAdmin == false && user.isEmpty() || user == null){
 			return "login/logerr";
 		}else if(session.getAttribute("myPage").equals("myPage")){
 			return "home/contents/mypage";
@@ -93,11 +93,11 @@ public class LoginController {
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = loginSvc.clientLogin(req);
 
-		if(user.isEmpty() == false) {
+		if(user == null || user.isEmpty() == true) {
+			return "login/logerr";
+		}else if(user.isEmpty() == false) {
 			System.out.println(user);
 			return "home/contents/mypage";
-		}else if(user.isEmpty() == true) {
-			return "login/logerr";
 		}else {
 			return "home/homePage";
 		}
