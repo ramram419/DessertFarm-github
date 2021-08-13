@@ -42,12 +42,6 @@ public class LoginController {
 		boolean isAdmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
 		
-//		Iterator<String> keys = user.keySet().iterator();
-//		while(keys.hasNext()) {
-//			String key = keys.next();
-//			System.out.println("key : " + key);
-//		}
-//		System.out.println(user.get("client_id").toString());
 		System.out.println(loginSvc.managerLogin(req));
 		
 		if(isAdmin == true && loginSvc.managerLogin(req) != null) {
