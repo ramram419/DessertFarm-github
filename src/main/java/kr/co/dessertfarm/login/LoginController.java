@@ -1,6 +1,8 @@
 package kr.co.dessertfarm.login;
 
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,14 +37,21 @@ public class LoginController {
 	// Login Test & HomePage with Session
 	@PostMapping("/home")
 	public String login(LoginRequest req, HttpServletRequest request) {
-		Map<String, Object> user = loginSvc.clientLogin(req);
+		Map<String, Object> user = new HashMap<String, Object>();
+		user = loginSvc.clientLogin(req);
 		boolean isAdmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
-		System.out.println(user);
+		
+//		Iterator<String> keys = user.keySet().iterator();
+//		while(keys.hasNext()) {
+//			String key = keys.next();
+//			System.out.println("key : " + key);
+//		}
+//		System.out.println(user.get("client_id").toString());
 		System.out.println(loginSvc.managerLogin(req));
 		
 		if(isAdmin == true) {
-			session.setAttribute("admin", user);
+			session.setAttribute("admin", "admin");
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty() == false) {
 			session.setAttribute("user", user);
@@ -74,17 +83,16 @@ public class LoginController {
 	
 	// 마이페이지 이동 전에 로그인 페이지 이동
 	@RequestMapping("/loginMyPage")
-	public String login_ToMyPage(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.setAttribute("user", "user");
+	public String login_ToMyPage() {
 		return "redirect:/login";
 	}
 	
 	// 마이페이지 이동
 	@PostMapping("/myPage")
 	public String client_myPage(LoginRequest req) {
-		Map<String, Object> user = loginSvc.clientLogin(req);
-		
+		Map<String, Object> user = new HashMap<String, Object>();
+		user = loginSvc.clientLogin(req);
+
 		if(user.isEmpty() == false) {
 			System.out.println(user);
 			return "home/contents/mypage";

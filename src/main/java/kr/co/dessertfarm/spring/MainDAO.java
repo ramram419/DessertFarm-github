@@ -25,7 +25,7 @@ public class MainDAO {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("id", id);
 		param.put("pwd", pwd);
-		Map<String, Object> client = sqlSession.selectMap("member.client_Login", param, "");
+		Map<String, Object> client = sqlSession.selectOne("member.client_Login", param);
 		System.out.println("client table : " + client);
 		return client;
 	}
@@ -37,7 +37,7 @@ public class MainDAO {
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("id", id);
 		param.put("pwd", pwd);
-		Map<String, Object> manager = sqlSession.selectMap("member.manager_Login", param, "");
+		Map<String, Object> manager = sqlSession.selectOne("member.manager_Login", param);
 		System.out.println("manager table : " + manager);
 		return manager;
 	}

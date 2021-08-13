@@ -35,9 +35,9 @@ public class LoginService {
 	public boolean isAdmin(LoginRequest req) {
 		boolean isadmin = false;
 		
-		if(clientLogin(req).isEmpty() == true && managerLogin(req).isEmpty() == false) {
+		if(clientLogin(req) == null || clientLogin(req).isEmpty() == true && managerLogin(req).isEmpty() == false) {
 			isadmin = true;
-		}else if(clientLogin(req).isEmpty() == false && managerLogin(req).isEmpty() == true) {
+		}else if(managerLogin(req) == null || clientLogin(req).isEmpty() == false && managerLogin(req).isEmpty() == true) {
 			isadmin = false;
 		}
 		System.out.println(isadmin);
