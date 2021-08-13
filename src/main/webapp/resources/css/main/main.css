@@ -540,7 +540,7 @@
 
 /* Mypage */
 
-.mypage_content{
+.C_content{
 	width:1280px;
 	margin:97px auto;
 	padding-bottom:317px;
@@ -617,4 +617,101 @@
 	font-size:10px;
 	color:#FA464E;
 	margin-top:-15px;
+}
+
+
+
+
+/* likelist */
+.allcheck{
+	font-size:16px;
+	color:#111111;
+	font-weight:500;
+	line-height:1.25;
+	margin:100px 10px 10px;
+}
+
+.like_list{
+	width:768px;
+	border-top:1px solid #eeeeee;
+	border-bottom:1px solid #eeeeee;
+}
+
+.like_item{
+	display:flex;
+	padding:20px;
+	width:748px;
+	border-bottom:1px solid #eeeeee;
+}
+
+.like_item:last-child{
+	border:none;
+}
+
+.check{
+	width:22px;
+	height:22px;
+	margin:39px 20px 0 0;
+}
+
+.itemimg{
+	width:100px;
+	height:100px;
+}
+
+.like_itemContent{
+	height:60px;
+	margin: auto 20px;
+}
+
+.like_itemContent .tag:first-child{
+	margin-left:12px;
+}
+
+
+.item_price{
+	margin-left:auto;
+}
+
+.item_price .sale{
+	display:block;
+	text-align:right;
+	margin-top:16px;
+}
+
+.nokakao{
+	margin-left:auto;
+	width:470px;
+	height:184px;
+	border:1px solid #e13517;
+	padding:48px 0;
+	text-align:center;
+}
+
+.gokakao{
+	width:290px;
+	height:48px;
+	background-color:#e13517;
+	color:#ffffff;
+	font-size:14px;
+	line-height:1.43;
+	border:none;
+	outline:none;
+	cursor:pointer;
+}
+
+.like_btns{
+	margin:10px auto 200px;
+	width:330px;
+}
+
+.like_btns button{
+	width:140px;
+	height:48px;
+	font-size:14px;
+	font-weight:bold;
+	margin:10px;
+	outline:none;
+	border:none;
+	cursor:pointer;
 }
