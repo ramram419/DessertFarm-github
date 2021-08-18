@@ -37,4 +37,12 @@
 		set manager_pwd=#{new_pwd}
 		where manager_id=#{id}
 	</update>
+	
+	<select id="client_dupId" parameterType="String" resultType="int">
+		select count(*) from client where client_id = #{id};
+	</select>
+	
+	<select id="manager_dupId" parameterType="String" resultType="int">
+		select count(*) from manager where manager_id = #{id};
+	</select>
 </mapper>

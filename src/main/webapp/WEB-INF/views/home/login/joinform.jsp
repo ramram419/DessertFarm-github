@@ -125,7 +125,28 @@
 			
 		})
 		
-	})
+	});
+	
+	function dupId() {
+		var _id = $(".id").val();
+		var role = "${sessionScope.role}";
+		$.ajax({
+			type: "POST",
+			url: role+"/dupId",
+			dataType: "JSON",
+			data: { "id": _id},
+			success: function (data) {
+				if(data == 0) {
+					console.log(data);
+					alert("사용할 수 있는 ID입니다. ");
+					$('#btn_dupCheck').prop("disabled", true);
+				} else if(data == 1){
+					console.log(data);
+					alert("이미 있는 ID입니다. ");
+				}
+			}
+		});
+	}
 	</script>
 </head>
 <body>
@@ -137,7 +158,7 @@
 				<label>상점명<br><input type="text" class="name" name="name" placeholder="상점명을 입력해주세요."/></label>
 				<div class="err nameerr">* 상점명을 입력해주세요.</div>
 				<label>아이디<br><input type="text" class="id" name="id" placeholder="아이디를 입력해주세요."/></label>
-				<div class="err iderr">* 아이디를 입력해주세요.</div>
+				<div class="err iderr">* 아이디를 입력해주세요.</div> <button id="btn_dupCheck" type="button" onclick="dupId()">중복확인</button><br><br>
 				<label>비밀번호<br><input type="password" class="pwd" name="pwd" placeholder="비밀번호를 입력해주세요."/></label>
 				<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
 				<label>비밀번호 확인<br><input type="password" class="confirm_pwd" name="confirm_pwd" placeholder="비밀번호를 한번 더 입력해주세요."/></label>
