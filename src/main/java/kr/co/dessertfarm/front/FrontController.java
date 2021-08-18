@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.spring.MainVO;
@@ -53,5 +54,23 @@ public class FrontController {
 		joinSvc.reg_manager(vo);
 		System.out.println("Name : "+req.getParameter("manager_name"));
 		return "redirect:/finregister";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/client/dupId")
+	public int client_dupId(HttpServletRequest req, String id) {
+		id = req.getParameter("id");
+		int result = joinSvc.client_dupId(id);
+		System.out.println("<Controller> result : " + result + " ID : " + id);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/manager/dupId")
+	public int manager_dupId(HttpServletRequest req, String id) {
+		id = req.getParameter("id");
+		int result = joinSvc.manager_dupId(id);
+		System.out.println("<Controller> result : " + result + " ID : " + id);
+		return result;
 	}
 }

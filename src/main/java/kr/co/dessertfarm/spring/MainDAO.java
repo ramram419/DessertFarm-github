@@ -61,4 +61,16 @@ public class MainDAO {
 	public void changePwd_manager(MainVO vo) {
 		sqlSession.update("memeber.manager_ChangePwd", vo);
 	}
+	
+	public int client_dupId(String id) {
+		int result = sqlSession.selectOne("member.client_dupId", id);
+		System.out.println("<DAO> result : " + result + " ID : " + id);
+		return result;
+	}
+	
+	public int manager_dupId(String id) {
+		int result =  sqlSession.selectOne("member.manager_dupId", id);
+		System.out.println("<DAO> result : " + result + " ID : " + id);
+		return result;
+	}
 }

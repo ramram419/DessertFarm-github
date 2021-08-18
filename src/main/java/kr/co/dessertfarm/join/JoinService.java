@@ -31,4 +31,16 @@ public class JoinService {
 	public void changePwd_Manager(MainVO vo) {
 		mainDAO.changePwd_manager(vo);
 	}
+	
+	public int client_dupId(String id) {
+		int result = mainDAO.client_dupId(id);
+		System.out.println("<Service> result : " + result + " ID : " + id);
+		return result;
+	}
+	
+	public int manager_dupId(String id) {
+		int result = mainDAO.manager_dupId(id);
+		System.out.println("<Service> result : " + result + " ID : " + id);
+		return result;
+	}
 }
