@@ -1,6 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" session = "false" %>
+<%@page import="java.util.Map"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<%
+	Map<String, Object> userList = (Map<String, Object>)session.getAttribute("user");
+%>
 
 <html>
 <head>
@@ -139,13 +143,15 @@
 		</ul>
 	</div>
 	<div class="mypageFrm">
-		<label>상점명<br><input type="text" class="name" name="client_name" placeholder="이름을 입력해주세요." value="${loginRequest.client_name }"/></label>
+		<label>상점명<br><input type="text" class="name" name="client_name" placeholder="<%=userList.get("client_name").toString() %>"/></label>
 		<div class="err nameerr">* 상점명을 입력해주세요.</div>
-		<label>아이디<br><input type="text" class="id" name="client_id" value="${loginRequest.client_id }" readonly/></label>
+		<label>아이디<br><input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly/></label>
 		<div class="err iderr">* 아이디를 입력해주세요.</div>
 		<label>비밀번호<br><input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/></label>
 		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
-		<label>전화번호<br><input type="text" class="tel" name="client_tel" placeholder="전화번호를 입력해주세요." value="${loginRequest.client_tel }"/></label>
+		<label>비밀번호 재입력<br><input type="password" class="confirm_pwd" name="confirm__pwd" placeholder="한번 더 입력해주세요."/></label>
+		<div class="err pwderr">* 한번 더 입력해주세요.</div>
+		<label>전화번호<br><input type="text" class="tel" name="client_tel" placeholder="<%=userList.get("client_tel").toString() %>"/></label>
 		<div class="err telerr">* 전화번호를 입력해주세요.</div>
 		<button type="button" class="modibtn" onclick="checkfrm();">정보수정</button>
 	</div>
