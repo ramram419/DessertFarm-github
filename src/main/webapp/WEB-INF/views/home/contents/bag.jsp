@@ -13,18 +13,18 @@
 <body>
 <c:import url="../top.jsp"/>
 <div class="C_content">
-	<div class="contentTxt">내찜목록</div>
+	<div class="contentTxt">장바구니</div>
 	<div class="pagelist">
 		<ul>
 			<li onclick="location.href='./loginMyPage';">마이페이지</li>
-			<li onclick="location.href='./like';"class="click">내찜목록</li>
-			<li onclick="location.href='./bags';">장바구니</li>
+			<li onclick="location.href='./like';">내찜목록</li>
+			<li onclick="location.href='./bags';" class="click">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
 			<li onclick="location.href='./qnalist';">문의내역</li>
 		</ul>
 	</div>
 	<div class="allcheck">
-		<img src="${path}/resources/images/icon_checkmark_off.png" class="checkonoff"  style="vertical-align: sub;"/>
+		<img src="${path}/resources/images/icon_checkmark_off.png" class="checkonoff"  style="vertical-align: sub;" />
 		전체선택
 	</div>
 	<div style="display:flex;">
@@ -62,13 +62,13 @@
 		<div class="nokakao">
 			<div style="color:#111111; font-size:22px; font-weight:bold; margin-bottom:20px; font-family:'NanumSquare'">아직 <span style="color:#e13517;">사업자 인증</span>을 안받으셨나요?</div>
 			<div style="color:#333333; line-height:1.43; width:260px; margin:0 auto 50px;">인증을 받으셔야만 사업자 전용 디저트 구매가 가능합니다.</div>
-			<button class="gokakao">인증하러가기</button>
+			<div class="bags_btns">
+				<button style="color:#e13517; border:1px solid #e13517; background-color:#ffffff;">삭제하기</button>
+				<button style="background-color:#e13517; color:#ffffff;">주문하기</button>
+			</div>
 		</div>
 	</div>
-	<div class="like_btns">
-		<button style="color:#e13517; border:1px solid #e13517; background-color:#ffffff;">삭제하기</button>
-		<button style="background-color:#e13517; color:#ffffff;">장바구니</button>
-	</div>
+	
 </div>
 <c:import url="../footer.jsp"/>
 </body>
