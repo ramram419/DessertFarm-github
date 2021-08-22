@@ -47,6 +47,16 @@ public class FrontController {
 		return "home/contents/QnAlist";
 	}
 	
+	@RequestMapping("/newitem")
+	public String newitem() {
+		return "home/contents/newitem";
+	}
+	
+	@RequestMapping("/category")
+	public String category() {
+		return "home/contents/category";
+	}
+	
 	@RequestMapping(value = "/welcome/client", method= {RequestMethod.GET, RequestMethod.POST})
 	public String client_join(HttpServletRequest req) {
 		MainVO vo = new MainVO();
