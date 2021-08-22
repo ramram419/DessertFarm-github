@@ -157,8 +157,12 @@
 			<form class="Joinform" action="/welcome/manager" method="POST">
 				<label>상점명<br><input type="text" class="name" name="name" placeholder="상점명을 입력해주세요."/></label>
 				<div class="err nameerr">* 상점명을 입력해주세요.</div>
-				<label>아이디<br><input type="text" class="id" name="id" placeholder="아이디를 입력해주세요."/></label>
-				<div class="err iderr">* 아이디를 입력해주세요.</div> <button id="btn_dupCheck" type="button" onclick="dupId()">중복확인</button><br><br>
+				<label>
+					아이디<br>
+					<input type="text" class="id" name="id" placeholder="아이디를 입력해주세요." style="float: left;"/>
+					<button class="btn_dupCheck" type="button" onclick="dupId()">중복확인</button>
+				</label>
+				<div class="err iderr">* 아이디를 입력해주세요.</div>
 				<label>비밀번호<br><input type="password" class="pwd" name="pwd" placeholder="비밀번호를 입력해주세요."/></label>
 				<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
 				<label>비밀번호 확인<br><input type="password" class="confirm_pwd" name="confirm_pwd" placeholder="비밀번호를 한번 더 입력해주세요."/></label>

@@ -137,9 +137,9 @@
 		<ul>
 			<li onclick="location.href='./loginMyPage';" class="click">마이페이지</li>
 			<li onclick="location.href='./like';">내찜목록</li>
-			<li>장바구니</li>
-			<li>주문내역</li>
-			<li>문의내역</li>
+			<li onclick="location.href='./bags';">장바구니</li>
+			<li onclick="location.href='./orderlist';">주문내역</li>
+			<li onclick="location.href='./qnalist';">문의내역</li>
 		</ul>
 	</div>
 	<div class="mypageFrm">
