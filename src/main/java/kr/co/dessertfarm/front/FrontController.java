@@ -32,6 +32,21 @@ public class FrontController {
 		return "home/contents/likelist";
 	}
 	
+	@RequestMapping("/bags")
+	public String bag() {
+		return "home/contents/bag";
+	}
+	
+	@RequestMapping("/orderlist")
+	public String orderlist() {
+		return "home/contents/order";
+	}
+	
+	@RequestMapping("/qnalist")
+	public String qnalist() {
+		return "home/contents/QnAlist";
+	}
+	
 	@RequestMapping(value = "/welcome/client", method= {RequestMethod.GET, RequestMethod.POST})
 	public String client_join(HttpServletRequest req) {
 		MainVO vo = new MainVO();

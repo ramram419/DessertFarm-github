@@ -544,6 +544,7 @@
 	width:1280px;
 	margin:97px auto;
 	padding-bottom:317px;
+	min-height: 500px;
 }
 
 .contentTxt{
@@ -714,4 +715,108 @@
 	outline:none;
 	border:none;
 	cursor:pointer;
+}
+
+
+.bags_btns button{
+	width:140px;
+	height:48px;
+	font-size:14px;
+	font-weight:bold;
+	margin:10px;
+	outline:none;
+	border:none;
+	cursor:pointer;
+}
+
+
+/* order */
+
+.order_table, .qna_table{
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+}
+
+.order_table thead tr, .qna_table thead tr{
+	border-bottom: 1px solid #eeeeee;
+}
+
+.order_table tr th, .qna_table tr th {
+	padding-bottom: 10px;
+	font-weight: 500;
+}
+
+
+.order_table tr td, .qna_table tr td{
+	padding: 20px 0;
+	vertical-align: middle;
+}
+
+.order_table tbody tr td:first-child{
+	text-align: left;
+}
+
+.orderitem_img{
+	width: 100px;
+	height: 100px;
+	margin-left: 40px;
+	float: left;
+}
+
+.order_itemContent{
+	margin-left: 30px;
+	display: inline-block;
+	margin-top: 25px;
+}
+
+.order_itemContent .itemName{
+	margin: 0px;
+}
+
+.detail_btn{
+	width: 140px;
+	height: 48px;
+	color: #e13517;
+	border: 1px solid #e13517;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #ffffff;
+	cursor: pointer;
+}
+
+
+.qna_table tr td:first-child{
+	font-weight: normal;
+}
+
+.qna_table tr td:last-child{
+	color: #e13517;
+}
+
+
+.pagination{
+	margin: 70px auto;
+	text-align: center;
+}
+
+.pagination li{
+	display: inline-block;
+	font-size: 14px;
+	color: #888888;
+	border: 1px solid #eeeeee;
+	width: 26px;
+	height: 26px;
+	vertical-align: bottom;
+	line-height: 26px;
+	cursor: pointer;
+}
+
+.pagination img{
+	margin-top: 8px;
+}
+
+.pagination .active{
+	background-color: #e13517;
+	color: #ffffff;
 }
