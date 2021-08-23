@@ -8,4 +8,13 @@
 		insert into product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id) 
 		values(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id})
 	</insert>
+	
+	<insert id="insertProductImage" parameterType="productImageRequest">
+		insert into product_image(pro_img_id,product_id,pro_img_name,pro_img_server,pro_filesize,manager_id)
+		values(#{pro_img_id},#{product_id},#{pro_img_name},#{pro_img_server},#{pro_filesize},#{manager_id});
+	</insert>
+	
+	<select id="getProductId" parameterType="productRequest" resultType="int">
+		select product_id from product where product_name = #{product_name} and manager_id = #{manager_id}
+	</select>
 </mapper>

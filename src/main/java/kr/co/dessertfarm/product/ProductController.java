@@ -31,7 +31,8 @@ public class ProductController {
 	public String registerProduct(ProductRequest productRequest,MultipartFile product_thumb,MultipartFile[] product_images,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		productRequest = pSvc.adjustProductRequest(productRequest, request, session);
-		pSvc.insertProduct(productRequest);
+		MultipartFile[] imgList = pSvc.combineImgList(product_thumb, product_images);
+		pSvc.insertProduct(productRequest,imgList,request);
 		return "";
 	}
 }
