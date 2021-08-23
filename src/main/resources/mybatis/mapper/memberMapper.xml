@@ -26,13 +26,13 @@
 		values (#{manager_name, jdbcType=VARCHAR}, #{manager_id, jdbcType=VARCHAR}, #{manager_pwd, jdbcType=VARCHAR}, #{manager_tel, jdbcType=VARCHAR})
 	</insert>
 	
-	<update id="client_ChangePwd" parameterType="MainVO">
+	<update id="client_ChangePwd" parameterType='MainVO'>
 		update client
 		set client_pwd=#{new_pwd}
 		where client_id=#{id}
 	</update>
 	
-	<update id="manager_ChangePwd" parameterType="MainVO">
+	<update id="manager_ChangePwd" parameterType='MainVO'>
 		update manager
 		set manager_pwd=#{new_pwd}
 		where manager_id=#{id}
@@ -45,4 +45,6 @@
 	<select id="manager_dupId" parameterType="String" resultType="int">
 		select count(*) from manager where manager_id = #{id};
 	</select>
+	
+	<select id=""></select>
 </mapper>

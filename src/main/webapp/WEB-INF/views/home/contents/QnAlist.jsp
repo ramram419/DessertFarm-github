@@ -34,54 +34,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td class="title">상품관련 문의</td>
-					<td>2021.01.12</td>
-					<td>답변완료</td>
-				</tr>
+				<c:forEach items="${list }" var="vo">
+					<tr>
+						<td>${vo.qna_id }</td>
+						<td>${vo.client_id }</td>
+						<td>${vo.qna_title }</td>
+						<td>${vo.qna_value }</td>
+						<td>${vo.qna_date }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 			<ul class="pagination">

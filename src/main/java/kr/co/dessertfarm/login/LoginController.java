@@ -39,13 +39,15 @@ public class LoginController {
 	public String login(LoginRequest req, HttpServletRequest request) {
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = loginSvc.clientLogin(req);
+		Map<String, Object> admin = new HashMap<String, Object>();
+		admin = loginSvc.managerLogin(req);
 		boolean isAdmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
 		
 		System.out.println(loginSvc.managerLogin(req));
 		
 		if(isAdmin == true && loginSvc.managerLogin(req) != null) {
-			session.setAttribute("admin", "admin");
+			session.setAttribute("admin", admin);
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty() == false) {
 			session.setAttribute("user", user);

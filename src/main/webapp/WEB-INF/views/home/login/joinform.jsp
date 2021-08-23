@@ -136,13 +136,15 @@
 			dataType: "JSON",
 			data: { "id": _id},
 			success: function (data) {
-				if(data == 0) {
+				if(_id == "") {
+					alert("ID를 입력해주세요. ");
+				}else if(data == 0) {
 					console.log(data);
 					alert("사용할 수 있는 ID입니다. ");
 					$('#btn_dupCheck').prop("disabled", true);
-				} else if(data == 1){
+				}else if(data == 1){
 					console.log(data);
-					alert("이미 있는 ID입니다. ");
+					alert("이미 존재하는 ID입니다. ");
 				}
 			}
 		});
