@@ -45,7 +45,7 @@
 			<c:if test="${sessionScope.user ne null}">
 			<div class="lo_text">비밀번호 재확인</div>
 				<form class="loginfrm" action="${path}/myPage" method="POST">
-					<input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly />
+					<input type="hidden" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" />
 					<input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/>
 					<button type="button" class="logbtn" onclick="login();">로그인</button>
 				</form>
