@@ -1,1 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="product">
+	<insert id="insertProduct" parameterType="productRequest">
+		insert into product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id) 
+		values(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id})
+	</insert>
+</mapper>
