@@ -1,9 +1,12 @@
 package kr.co.dessertfarm.spring;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 
+import kr.co.dessertfarm.product.ManageProductDTO;
 import kr.co.dessertfarm.product.ProductImageRequest;
 import kr.co.dessertfarm.product.ProductRequest;
 
@@ -38,6 +41,19 @@ public class ProductDAO {
 			e.printStackTrace();
 			return -1;
 		}
+		
+	}
+
+	public List<ManageProductDTO> getManageProduct(String id) {
+		List<ManageProductDTO> manageProductList = null;
+		try {
+			manageProductList = sqlSession.selectList("product.getManageProductList",id);
+			return manageProductList;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return manageProductList;
+		}
+		
 		
 	}
 }

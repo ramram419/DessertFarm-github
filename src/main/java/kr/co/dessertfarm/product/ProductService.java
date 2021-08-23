@@ -2,6 +2,7 @@ package kr.co.dessertfarm.product;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +32,7 @@ public class ProductService {
 			int productId = pDao.getProductId(productRequest);
 			saveProductImage(imgList,request,productRequest.getManager_id(),productId);
 	}
-		
-	// DB에 이미지 정보 삽입
-	public void insertProductImage() {
-		
-	}
+
 	
 	// 코드 변환 및 등록자 아이디 정보 초기화
 	public ProductRequest adjustProductRequest(ProductRequest productRequest,HttpServletRequest request, HttpSession session) {
@@ -138,7 +135,7 @@ public class ProductService {
 				// 저장하는 transferTo 메소드
 				imgList[i].transferTo(new File(saveDir + "/" + reName));
 				// db에 저장하기 위한 Request 설정
-				ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"resource/img/"+reName,imgList[i].getSize(),id);
+				ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
 				pDao.insertProductImage(productImageRequest);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -151,6 +148,65 @@ public class ProductService {
 		return true;	
 	}
 	
+	// 카테고리 코드 역변환
+	public String getReverseCode(String categoryCode) {
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+			Document document = documentBuilder.parse("classpath:codedata/categorycode.xml");
+			
+			Element root = document.getDocumentElement();
+			NodeList productList = root.getElementsByTagName("product");
+			
+			for (int i=0; i<productList.getLength(); i++) {
+				
+				Node productNode = productList.item(i);
+				
+				if (productNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element productEle = (Element)productNode;
+					
+					NodeList cateList = productEle.getElementsByTagName("code");
+					Element codeEle = (Element)cateList.item(0);
+					Node code = codeEle.getFirstChild();
+					String cateCode = code.getNodeValue(); // K001
+					
+					if (cateCode.equals(categoryCode)) {
+						NodeList bigList = productEle.getElementsByTagName("big");
+						Element bigEle = (Element)bigList.item(0);
+						Node big = bigEle.getFirstChild(); // 케이크
+						
+						NodeList smallList = productEle.getElementsByTagName("small");
+						Element smallEle = (Element)smallList.item(0);
+						Node small = smallEle.getFirstChild(); // 초코케이크
+						
+						String reverseCode = big.getNodeValue() + "/" + small.getNodeValue(); // 케이크/초코케이크
+						return reverseCode;
+					}
+					
+					
+				}
+			}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "badCode";
+			}
+			return "badCode";
+		}
 	
-	
+	// 상품관리 과정
+	public List<ManageProductDTO> getManage(String id) {
+		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
+		for (int i=0; i<manageProductList.size(); i++) {
+			ManageProductDTO dto = manageProductList.get(i);
+			System.out.println("---------");
+			System.out.println("상품이름 : " + dto.getProduct_name());
+			System.out.println("상품가격 : " + dto.getProduct_price());
+			System.out.println("상품카테고리 : " + dto.getCategory());
+			System.out.println("상품 대표 이미지 저장경로 : " + dto.getPro_img_server());
+			System.out.println("판매상태 : " + dto.isProduct_sales_stat());
+		}
+		
+		return manageProductList;
+		
+	}
 }

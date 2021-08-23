@@ -12,6 +12,7 @@
         <typeAlias type="kr.co.dessertfarm.spring.MainVO" alias="MainVO" />
         <typeAlias type="kr.co.dessertfarm.product.ProductRequest" alias="productRequest" />
         <typeAlias type="kr.co.dessertfarm.product.ProductImageRequest" alias="productImageRequest" />
+        <typeAlias type="kr.co.dessertfarm.product.ManageProductDTO" alias="manageProductDTO" />
     </typeAliases>
     
     <!-- connection pool -->
