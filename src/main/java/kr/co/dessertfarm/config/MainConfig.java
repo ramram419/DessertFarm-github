@@ -17,7 +17,6 @@ import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
-import kr.co.dessertfarm.product.ProductDAO;
 import kr.co.dessertfarm.product.ProductService;
 import kr.co.dessertfarm.spring.MainDAO;
 import kr.co.dessertfarm.spring.ProductDAO;
@@ -69,11 +68,6 @@ public class MainConfig {
 	@Bean
 	public ArticleDAO articleDAO() {
 		return new ArticleDAO();
-	}
-	
-	@Bean
-	public ProductDAO productDAO() {
-		return new ProductDAO();
 	}
 	
 	@Bean
