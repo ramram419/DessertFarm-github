@@ -13,6 +13,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import kr.co.dessertfarm.article.ArticleDAO;
+import kr.co.dessertfarm.article.ArticleService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
 import kr.co.dessertfarm.product.ProductService;
@@ -43,7 +45,6 @@ public class MainConfig {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
         factory.setDataSource(dataSource());
         factory.setConfigLocation(new ClassPathResource("./mybatis/config/mybatis-config.xml"));
-//        factory.setMapperLocations(new ClassPathResource("./mybatis/mapper/memberMapper.xml"));
         
         return factory;
     }
@@ -65,6 +66,11 @@ public class MainConfig {
 		return new ProductDAO();
 	}
 	@Bean
+	public ArticleDAO articleDAO() {
+		return new ArticleDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -77,5 +83,10 @@ public class MainConfig {
 	@Bean
 	public ProductService productSvc() {
 		return new ProductService();
+	}
+	
+	@Bean
+	public ArticleService articleSvc() {
+		return new ArticleService(articleDAO());
 	}
 }
