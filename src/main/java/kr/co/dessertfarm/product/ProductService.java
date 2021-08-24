@@ -21,12 +21,13 @@ import org.w3c.dom.NodeList;
 import kr.co.dessertfarm.spring.ProductDAO;
 
 
+
 @Service("product")
 public class ProductService {
 	@Autowired
 	ProductDAO pDao;
 	
-	// DB¿¡ »óÇ° Á¤º¸ »ğÀÔ
+
 	public void insertProduct(ProductRequest productRequest,MultipartFile[] imgList,HttpServletRequest request) {
 			pDao.insertProduct(productRequest);
 			int productId = pDao.getProductId(productRequest);
@@ -34,20 +35,19 @@ public class ProductService {
 	}
 
 	
-	// ÄÚµå º¯È¯ ¹× µî·ÏÀÚ ¾ÆÀÌµğ Á¤º¸ ÃÊ±âÈ­
 	public ProductRequest adjustProductRequest(ProductRequest productRequest,HttpServletRequest request, HttpSession session) {
 		String cate1,cate2;
 		cate1 = request.getParameter("category1");
 		cate2 = request.getParameter("category2");
 		productRequest.setCategoryCode(getCode(cate1,cate2));
 		
-		Map<String,Object> user = (Map<String,Object>)session.getAttribute("user");
-		productRequest.setManager_id(user.get("client_id").toString());
+		Map<String,Object> user = (Map<String,Object>)session.getAttribute("admin");
+		productRequest.setManager_id(user.get("manager_id").toString());
+		System.out.println("<Service> ManagerID : " + user.get("manager_id").toString());
 		
 		return productRequest;
 	}
 	
-	// Ä«Å×°í¸® ÄÚµå º¯È¯
 	public String getCode(String cate1, String cate2){
 		try {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -55,8 +55,6 @@ public class ProductService {
 		Document document = documentBuilder.parse("classpath:codedata/categorycode.xml");
 		
 		Element root = document.getDocumentElement();
-		
-		System.out.println(root + " °ú " + root.getAttribute("name"));
 		
 		NodeList productList = root.getElementsByTagName("product");
 		
@@ -92,7 +90,6 @@ public class ProductService {
 		return "badCode";
 	}
 	
-	// ´ëÇ¥ÀÌ¹ÌÁö + Ãß°¡ÀÌ¹ÌÁö
 	public MultipartFile[] combineImgList(MultipartFile thumb, MultipartFile[] images) {
 		MultipartFile[] imgList = new MultipartFile[images.length+1];
 		imgList[0] = thumb;
@@ -104,7 +101,6 @@ public class ProductService {
 		
 		
 		int imgNum = 0;
-		// µî·ÏÀÚ ID
 		String registId = id;
 		String saveDir = 
 				request.getSession().getServletContext().getRealPath("/resources/product_img");
@@ -115,7 +111,6 @@ public class ProductService {
 		if(!dir.exists()) {
 			dir.mkdir();
 		}
-		// ÆÄÀÏÀÌ¸§ : ³¯Â¥_»óÇ°¹øÈ£_µî·ÏÀÚ_¹øÈ£(¿©·¯Àå »çÁøÀ» ¿Ã¸±°æ¿ì).È®ÀåÀÚ
 		for (int i=0; i<imgList.length; i++) {
 			if (!imgList[i].isEmpty()) {
 				String reName,pro_img_id;
@@ -132,9 +127,9 @@ public class ProductService {
 				
 				
 				try {
-				// ÀúÀåÇÏ´Â transferTo ¸Ş¼Òµå
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ transferTo ï¿½Ş¼Òµï¿½
 				imgList[i].transferTo(new File(saveDir + "/" + reName));
-				// db¿¡ ÀúÀåÇÏ±â À§ÇÑ Request ¼³Á¤
+				// dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ Request ï¿½ï¿½ï¿½ï¿½
 				ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
 				pDao.insertProductImage(productImageRequest);
 				} catch (Exception e) {
@@ -148,7 +143,6 @@ public class ProductService {
 		return true;	
 	}
 	
-	// Ä«Å×°í¸® ÄÚµå ¿ªº¯È¯
 	public String getReverseCode(String categoryCode) {
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -173,13 +167,13 @@ public class ProductService {
 					if (cateCode.equals(categoryCode)) {
 						NodeList bigList = productEle.getElementsByTagName("big");
 						Element bigEle = (Element)bigList.item(0);
-						Node big = bigEle.getFirstChild(); // ÄÉÀÌÅ©
+						Node big = bigEle.getFirstChild(); // ï¿½ï¿½ï¿½ï¿½Å©
 						
 						NodeList smallList = productEle.getElementsByTagName("small");
 						Element smallEle = (Element)smallList.item(0);
-						Node small = smallEle.getFirstChild(); // ÃÊÄÚÄÉÀÌÅ©
+						Node small = smallEle.getFirstChild(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å©
 						
-						String reverseCode = big.getNodeValue() + "/" + small.getNodeValue(); // ÄÉÀÌÅ©/ÃÊÄÚÄÉÀÌÅ©
+						String reverseCode = big.getNodeValue() + "/" + small.getNodeValue(); // ï¿½ï¿½ï¿½ï¿½Å©/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å©
 						return reverseCode;
 					}
 					
@@ -193,11 +187,11 @@ public class ProductService {
 			return "badCode";
 		}
 	
-	// »óÇ°°ü¸® °úÁ¤
+	// ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public List<ManageProductDTO> getManage(String id) {
 		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
 		
-		// ÄÚµå ¿ªº¯È¯
+		// ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½È¯
 		for(int k=0; k<manageProductList.size(); k++) {
 			manageProductList.get(k).setCategory(getReverseCode(manageProductList.get(k).getCategory()));;
 		}
@@ -205,11 +199,11 @@ public class ProductService {
 //		for (int i=0; i<manageProductList.size(); i++) {
 //			ManageProductDTO dto = manageProductList.get(i);
 //			System.out.println("---------");
-//			System.out.println("»óÇ°ÀÌ¸§ : " + dto.getProduct_name());
-//			System.out.println("»óÇ°°¡°İ : " + dto.getProduct_price());
-//			System.out.println("»óÇ°Ä«Å×°í¸® : " + dto.getCategory());
-//			System.out.println("»óÇ° ´ëÇ¥ ÀÌ¹ÌÁö ÀúÀå°æ·Î : " + dto.getPro_img_server());
-//			System.out.println("ÆÇ¸Å»óÅÂ : " + dto.isProduct_sales_stat());
+//			System.out.println("ï¿½ï¿½Ç°ï¿½Ì¸ï¿½ : " + dto.getProduct_name());
+//			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ : " + dto.getProduct_price());
+//			System.out.println("ï¿½ï¿½Ç°Ä«ï¿½×°ï¿½ï¿½ï¿½ : " + dto.getCategory());
+//			System.out.println("ï¿½ï¿½Ç° ï¿½ï¿½Ç¥ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + dto.getPro_img_server());
+//			System.out.println("ï¿½Ç¸Å»ï¿½ï¿½ï¿½ : " + dto.isProduct_sales_stat());
 //		}
 		
 		return manageProductList;

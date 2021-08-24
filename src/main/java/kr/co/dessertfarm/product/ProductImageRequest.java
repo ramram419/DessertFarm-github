@@ -1,5 +1,6 @@
 package kr.co.dessertfarm.product;
 
+
 public class ProductImageRequest {
 	private String pro_img_id;
 	private int product_id;
