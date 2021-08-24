@@ -77,13 +77,13 @@ public class LoginController {
 		return "admin/adminPage";
 	}
 	
-	// 마이페이지 이동 전에 로그인 페이지 이동
+	// 留덉씠�럹�씠吏� �씠�룞 �쟾�뿉 濡쒓렇�씤 �럹�씠吏� �씠�룞
 	@RequestMapping("/loginMyPage")
 	public String login_ToMyPage() {
 		return "redirect:/login";
 	}
 	
-	// 마이페이지 이동
+	// 留덉씠�럹�씠吏� �씠�룞
 	@PostMapping("/myPage")
 	public String client_myPage(LoginRequest req) {
 		Map<String, Object> user = new HashMap<String, Object>();

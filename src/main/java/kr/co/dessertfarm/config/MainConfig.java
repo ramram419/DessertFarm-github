@@ -19,7 +19,7 @@ import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
 import kr.co.dessertfarm.product.ProductService;
 import kr.co.dessertfarm.spring.MainDAO;
-import kr.co.dessertfarm.spring.ProductDAO;
+import kr.co.dessertfarm.product.ProductDAO;
 
 @Configuration
 public class MainConfig {

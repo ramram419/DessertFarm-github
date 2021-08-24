@@ -1,15 +1,13 @@
-package kr.co.dessertfarm.spring;
+package kr.co.dessertfarm.product;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
-import kr.co.dessertfarm.product.ManageProductDTO;
-import kr.co.dessertfarm.product.ProductImageRequest;
-import kr.co.dessertfarm.product.ProductRequest;
-
+@Repository("product")
 public class ProductDAO {
 	@Inject
 	private SqlSession sqlSession;
@@ -17,7 +15,6 @@ public class ProductDAO {
 	public void insertProduct(ProductRequest productRequest) {
 		try {
 			sqlSession.insert("product.insertProduct",productRequest);
-			System.out.println("성공적으로 상품이 등록되었습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -26,7 +23,7 @@ public class ProductDAO {
 	public void insertProductImage(ProductImageRequest productImageRequest) {
 		try {
 			sqlSession.insert("product.insertProductImage",productImageRequest);
-			System.out.println("성공적으로 상품이미지가 등록되었습니다.");
+			System.out.println("<DAO> insertImageMethod Invoked");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -34,16 +31,15 @@ public class ProductDAO {
 	
 	public int getProductId(ProductRequest productRequest) {
 		try {
-		int productId = sqlSession.selectOne("product.getProductId",productRequest);
-		System.out.println("상품번호 : " + productId);
-		return productId;
+			int productId = sqlSession.selectOne("product.getProductId",productRequest);
+			System.out.println("<DAO> ID : " + productId);
+			return productId;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
 		}
-		
 	}
-
+	
 	public List<ManageProductDTO> getManageProduct(String id) {
 		List<ManageProductDTO> manageProductList = null;
 		try {
