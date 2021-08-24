@@ -10,6 +10,9 @@
     <!-- 사용하려는 DTO에 대한 축약 이름 -->
     <typeAliases>
         <typeAlias type="kr.co.dessertfarm.spring.MainVO" alias="MainVO" />
+        <typeAlias type="kr.co.dessertfarm.product.ProductRequest" alias="productRequest" />
+        <typeAlias type="kr.co.dessertfarm.product.ProductImageRequest" alias="productImageRequest" />
+        <typeAlias type="kr.co.dessertfarm.product.ManageProductDTO" alias="manageProductDTO" />
     </typeAliases>
     
     <!-- connection pool -->
@@ -30,5 +33,6 @@
     <mappers>
         <mapper resource="./mybatis/mapper/memberMapper.xml" />
         <mapper resource="./mybatis/mapper/articleMapper.xml"/>
+        <mapper resource="./mybatis/mapper/productMapper.xml"/>
     </mappers>
 </configuration>
