@@ -41,12 +41,7 @@ public class FrontController {
 	public String orderlist() {
 		return "home/contents/order";
 	}
-	
-	@RequestMapping("/qnalist")
-	public String qnalist() {
-		return "home/contents/QnAlist";
-	}
-	
+  
 	@RequestMapping("/newitem")
 	public String newitem() {
 		return "home/contents/newitem";
@@ -56,12 +51,12 @@ public class FrontController {
 	public String category() {
 		return "home/contents/category";
 	}
-	
+  
 	@RequestMapping("/best")
 	public String best() {
 		return "home/contents/best";
 	}
-	
+  
 	@RequestMapping(value = "/welcome/client", method= {RequestMethod.GET, RequestMethod.POST})
 	public String client_join(HttpServletRequest req) {
 		MainVO vo = new MainVO();
