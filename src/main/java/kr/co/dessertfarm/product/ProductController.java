@@ -53,8 +53,8 @@ public class ProductController {
 	@RequestMapping("/product/manageProduct") 
 	public String manageProduct(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
-		Map<String,Object> user = (Map<String,Object>)session.getAttribute("user");
-		List<ManageProductDTO> manageProductList = pSvc.getManage(user.get("client_id").toString()); 
+		Map<String,Object> user = (Map<String,Object>)session.getAttribute("admin");
+		List<ManageProductDTO> manageProductList = pSvc.getManage(user.get("manager_id").toString());
 		
 		model.addAttribute("manageProductList",manageProductList);
 		return "product/testmanageproduct";

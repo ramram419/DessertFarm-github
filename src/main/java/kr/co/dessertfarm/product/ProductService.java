@@ -18,7 +18,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import kr.co.dessertfarm.spring.ProductDAO;
+import kr.co.dessertfarm.product.ProductDAO;
 
 
 
