@@ -8,11 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductRequest {
-	private int product_id;
-	private String category;
 	private String product_name;
+	private String categoryCode;
 	private int product_price;
 	private String product_value;
-	private Date product_date;
-	private double product_rating;
+	private String product_unit;
+	private String product_delivery;
+	private String product_exchange;
+	private String product_as;
+	private String manager_id;
 }
