@@ -35,7 +35,7 @@
       <tbody>
        <c:forEach var="manageProductList" items="${manageProductList}">
         <tr>
-          <td>□</td><td>0</td><td><img src="/dessertfarm${manageProductList.pro_img_server}" width="100" hieght="100"></td><td>${manageProductList.product_name}</td><td>${manageProductList.category}</td><td>${manageProductList.product_price}</td><td>${manageProductList.product_sales_stat}</td>
+          <td>□</td><td>0</td><td><img src="/dessertfarm-master${manageProductList.pro_img_server}" width="100" hieght="100"></td><td>${manageProductList.product_name}</td><td>${manageProductList.category}</td><td>${manageProductList.product_price}</td><td>${manageProductList.product_sales_stat}</td>
         </tr>
         </c:forEach>
       </tbody>

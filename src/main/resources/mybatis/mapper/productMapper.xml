@@ -12,7 +12,10 @@
 	<select id="getProductId" parameterType="productRequest" resultType="int">
 		select product_id from product where product_name = #{product_name} and manager_id = #{manager_id}
 	</select>
-	
+	<insert id="insertProductImage" parameterType="productImageRequest">
+		insert into product_image(pro_img_id,product_id,pro_img_name,pro_img_server,pro_filesize,manager_id)
+		values(#{pro_img_id},#{product_id},#{pro_img_name},#{pro_img_server},#{pro_filesize},#{manager_id});
+	</insert>
 	<select id="getManageProductList" parameterType="String" resultType="manageProductDTO">
 		select a.product_id, a.product_name, a.category, a.product_price, a.product_sales_stat,b.pro_img_server
 		from product a,product_image b 
@@ -20,4 +23,5 @@
 		a.manager_id = #{id} and 
 		pro_img_name Like '%thumb____';
 	</select>
+	
 </mapper>
