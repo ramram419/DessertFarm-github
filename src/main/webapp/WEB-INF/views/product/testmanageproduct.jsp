@@ -26,8 +26,11 @@
       <h1>
           메뉴 등록/관리
       </h1>
+<<<<<<< HEAD
       <button style="float:right; margin-bottom : 10px; width : 50px;">삭제</button>
       <a href="testRegisterProduct"><button style="float:right; margin-bottom : 10px; margin-right : 10px; width : 50px;">추가</button></a>
+=======
+>>>>>>> master
     <table>
       <thead>
         <tr>
@@ -37,11 +40,19 @@
       <tbody>
        <c:forEach var="manageProductList" items="${manageProductList}">
         <tr>
+<<<<<<< HEAD
           <td>□</td><td>0</td><td><img src="/dessertfarm${manageProductList.pro_img_server}" width="100" hieght="100"></td><td>${manageProductList.product_name}</td><td>${manageProductList.category}</td><td>${manageProductList.product_price}</td><td>${manageProductList.product_sales_stat}</td>
+=======
+          <td>□</td><td>0</td><td><img src="/dessertfarm-master${manageProductList.pro_img_server}" width="100" hieght="100"></td><td>${manageProductList.product_name}</td><td>${manageProductList.category}</td><td>${manageProductList.product_price}</td><td>${manageProductList.product_sales_stat}</td>
+>>>>>>> master
         </tr>
         </c:forEach>
       </tbody>
     </table>
+<<<<<<< HEAD
     <h3><a href="./">관리자 페이지로</a></h3>
+=======
+    <h3><a href="">관리자 페이지로</a></h3>
+>>>>>>> master
   </body>
 </html>
