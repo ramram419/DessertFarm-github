@@ -52,6 +52,11 @@ public class FrontController {
 		return "home/contents/category";
 	}
   
+	@RequestMapping("/best")
+	public String best() {
+		return "home/contents/best";
+	}
+  
 	@RequestMapping(value = "/welcome/client", method= {RequestMethod.GET, RequestMethod.POST})
 	public String client_join(HttpServletRequest req) {
 		MainVO vo = new MainVO();
