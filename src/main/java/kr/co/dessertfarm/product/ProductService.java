@@ -196,15 +196,21 @@ public class ProductService {
 	// 상품관리 과정
 	public List<ManageProductDTO> getManage(String id) {
 		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
-		for (int i=0; i<manageProductList.size(); i++) {
-			ManageProductDTO dto = manageProductList.get(i);
-			System.out.println("---------");
-			System.out.println("상품이름 : " + dto.getProduct_name());
-			System.out.println("상품가격 : " + dto.getProduct_price());
-			System.out.println("상품카테고리 : " + dto.getCategory());
-			System.out.println("상품 대표 이미지 저장경로 : " + dto.getPro_img_server());
-			System.out.println("판매상태 : " + dto.isProduct_sales_stat());
+		
+		// 코드 역변환
+		for(int k=0; k<manageProductList.size(); k++) {
+			manageProductList.get(k).setCategory(getReverseCode(manageProductList.get(k).getCategory()));;
 		}
+		
+//		for (int i=0; i<manageProductList.size(); i++) {
+//			ManageProductDTO dto = manageProductList.get(i);
+//			System.out.println("---------");
+//			System.out.println("상품이름 : " + dto.getProduct_name());
+//			System.out.println("상품가격 : " + dto.getProduct_price());
+//			System.out.println("상품카테고리 : " + dto.getCategory());
+//			System.out.println("상품 대표 이미지 저장경로 : " + dto.getPro_img_server());
+//			System.out.println("판매상태 : " + dto.isProduct_sales_stat());
+//		}
 		
 		return manageProductList;
 		

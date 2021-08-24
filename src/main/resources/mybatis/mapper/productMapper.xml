@@ -23,6 +23,6 @@
 		from product a,product_image b 
 		where a.product_Id = b.product_id and 
 		a.manager_id = #{id} and 
-		pro_img_name Like '%thumb____';
+		pro_img_name Like '%thumb____' order by a.product_id*1 desc;
 	</select>
 </mapper>

@@ -58,6 +58,10 @@
         	상품 A.S 및 특이사항 :<input type="text" name="product_as">
         </p>
         <input type="submit" value="상품등록" onclick="nullCheck()">
+        <p>
+        	<a href="<c:url value='manageProduct' />">메뉴관리 페이지로</a>
+        </p>
+        
     </form>
     
 
