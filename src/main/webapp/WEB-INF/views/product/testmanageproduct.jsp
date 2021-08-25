@@ -40,6 +40,7 @@
         </c:forEach>
       </tbody>
     </table>
-    <h3><a href="">관리자 페이지로</a></h3>
+    <h3><a href="<c:url value='/admin' />">관리자 페이지로</a></h3>
+    <h3><a href="<c:url value='/product/testRegisterProduct' />">메뉴 등록하기</a></h3>
   </body>
 </html>

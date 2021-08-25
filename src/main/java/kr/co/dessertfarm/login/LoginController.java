@@ -69,13 +69,6 @@ public class LoginController {
 		
 		return "redirect:/home";
 	}
-
-	
-	// Move to Admin Page
-	@GetMapping("/admin")
-	public String moveToAdmin() {
-		return "admin/adminPage";
-	}
 	
 	// 마이페이지 이동 전에 로그인 페이지 이동
 	@RequestMapping("/loginMyPage")
