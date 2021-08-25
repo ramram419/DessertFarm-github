@@ -53,7 +53,7 @@ public class ProductService {
 		
 		Element root = document.getDocumentElement();
 		
-		System.out.println(root + " �� " + root.getAttribute("name"));
+		System.out.println(root + " : " + root.getAttribute("name"));
 		
 
 		NodeList productList = root.getElementsByTagName("product");
