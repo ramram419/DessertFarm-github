@@ -27,7 +27,7 @@ public class ProductController {
 	
 	@RequestMapping("/product/testRegisterProduct")
 	public String registerProductPage() {
-		System.out.println("dd");
+		System.out.println("testRegister Invoked");
 		return "product/testRegisterProduct";
 	}
 	
