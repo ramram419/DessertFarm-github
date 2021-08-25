@@ -17,4 +17,5 @@ public class ProductImageRequest {
 		this.pro_filesize = pro_filesize;
 		this.manager_id = manager_id;
 	}
+	
 }
