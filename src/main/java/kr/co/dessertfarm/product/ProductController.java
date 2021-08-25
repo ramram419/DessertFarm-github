@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping'
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +44,7 @@ public class ProductController {
 		System.out.println("<Controller> ID : " + productRequest.getProduct_name());
     
 		return "redirect:/product/manageProduct";
-	
+	}
 
 	@RequestMapping("/product/manageProduct") 
 	public String manageProduct(HttpServletRequest request, Model model) {
