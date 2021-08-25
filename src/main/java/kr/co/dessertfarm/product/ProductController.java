@@ -32,12 +32,13 @@ public class ProductController {
 	}
 	
 	@PostMapping("/product/register")
-	public String registerProduct(ProductRequest productRequest,MultipartFile product_thumb,MultipartFile[] product_images,HttpServletRequest request) {
+	public String registerProduct(ProductRequest productRequest, MultipartFile product_thumb, MultipartFile[] product_images, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		productRequest = pSvc.adjustProductRequest(productRequest, request, session);
 		MultipartFile[] imgList = pSvc.combineImgList(product_thumb, product_images);
 		pSvc.insertProduct(productRequest,imgList,request);
-		return "";
+		System.out.println("<Controller> ID : " + productRequest.getProduct_name());
+		return "redirect:/product/manageProduct";
 	}
 	
 	@RequestMapping("/product/manageProduct") 
@@ -46,7 +47,7 @@ public class ProductController {
 		Map<String,Object> user = (Map<String,Object>)session.getAttribute("admin");
 		List<ManageProductDTO> manageProductList = pSvc.getManage(user.get("manager_id").toString()); 
 		
-		model.addAttribute("manageProductList",manageProductList);
+		model.addAttribute("manageProductList", manageProductList);
 		return "product/testmanageproduct";
 	}
 }
