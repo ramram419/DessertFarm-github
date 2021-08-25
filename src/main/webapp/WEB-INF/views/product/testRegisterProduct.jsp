@@ -14,7 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	 <form name="frm" action="register" method="post" encType="multipart/form-data">
+	 <form name="frm" action="${path }/product/register" method="post" encType="multipart/form-data">
         <p>
             상 품 이 름 : <input type="text" class="name" name="product_name">
         </p>
