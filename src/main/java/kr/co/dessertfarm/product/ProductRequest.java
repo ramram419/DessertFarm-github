@@ -17,6 +17,7 @@ public class ProductRequest {
 	private String product_exchange;
 	private String product_as;
 	private String manager_id;
+<<<<<<< HEAD
 
 	
 	public void print() {
@@ -32,4 +33,6 @@ public class ProductRequest {
 	}
 	
 
+=======
+>>>>>>> master
 }

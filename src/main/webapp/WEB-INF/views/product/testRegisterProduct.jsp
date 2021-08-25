@@ -14,7 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	 <form name="frm" action="register" method="post" encType="multipart/form-data">
+	 <form name="frm" action="${path }/product/register" method="post" encType="multipart/form-data">
         <p>
             상 품 이 름 : <input type="text" class="name" name="product_name">
         </p>
@@ -58,10 +58,13 @@
         	상품 A.S 및 특이사항 :<input type="text" name="product_as">
         </p>
         <input type="submit" value="상품등록" onclick="nullCheck()">
+<<<<<<< HEAD
         <p>
         	<a href="<c:url value='manageProduct' />">메뉴관리 페이지로</a>
         </p>
         
+=======
+>>>>>>> master
     </form>
     
 

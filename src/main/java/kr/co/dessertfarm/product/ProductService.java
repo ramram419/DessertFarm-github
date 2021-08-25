@@ -17,9 +17,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import kr.co.dessertfarm.product.ProductDAO;
-
 
 
 @Service("product")
@@ -27,7 +25,6 @@ public class ProductService {
 	@Autowired
 	ProductDAO pDao;
 	
-
 	public void insertProduct(ProductRequest productRequest,MultipartFile[] imgList,HttpServletRequest request) {
 			pDao.insertProduct(productRequest);
 			int productId = pDao.getProductId(productRequest);
@@ -56,6 +53,9 @@ public class ProductService {
 		
 		Element root = document.getDocumentElement();
 		
+		System.out.println(root + " �� " + root.getAttribute("name"));
+		
+
 		NodeList productList = root.getElementsByTagName("product");
 		
 		for (int i=0; i<productList.getLength(); i++) {
@@ -111,6 +111,7 @@ public class ProductService {
 		if(!dir.exists()) {
 			dir.mkdir();
 		}
+		
 		for (int i=0; i<imgList.length; i++) {
 			if (!imgList[i].isEmpty()) {
 				String reName,pro_img_id;
@@ -127,11 +128,12 @@ public class ProductService {
 				
 				
 				try {
-				// �����ϴ� transferTo �޼ҵ�
-				imgList[i].transferTo(new File(saveDir + "/" + reName));
-				// db�� �����ϱ� ���� Request ����
-				ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
-				pDao.insertProductImage(productImageRequest);
+
+					imgList[i].transferTo(new File(saveDir + "/" + reName));
+
+					ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
+					pDao.insertProductImage(productImageRequest);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 					return false;
@@ -162,18 +164,20 @@ public class ProductService {
 					NodeList cateList = productEle.getElementsByTagName("code");
 					Element codeEle = (Element)cateList.item(0);
 					Node code = codeEle.getFirstChild();
+
 					String cateCode = code.getNodeValue(); // K001
 					
 					if (cateCode.equals(categoryCode)) {
 						NodeList bigList = productEle.getElementsByTagName("big");
 						Element bigEle = (Element)bigList.item(0);
-						Node big = bigEle.getFirstChild(); // ����ũ
+						
+						Node big = bigEle.getFirstChild(); 
 						
 						NodeList smallList = productEle.getElementsByTagName("small");
 						Element smallEle = (Element)smallList.item(0);
-						Node small = smallEle.getFirstChild(); // ��������ũ
+						Node small = smallEle.getFirstChild();
 						
-						String reverseCode = big.getNodeValue() + "/" + small.getNodeValue(); // ����ũ/��������ũ
+						String reverseCode = big.getNodeValue() + "/" + small.getNodeValue();
 						return reverseCode;
 					}
 					
@@ -186,26 +190,24 @@ public class ProductService {
 			}
 			return "badCode";
 		}
-	
-	// ��ǰ���� ����
+
+
 	public List<ManageProductDTO> getManage(String id) {
 		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
 		
-		// �ڵ� ����ȯ
 		for(int k=0; k<manageProductList.size(); k++) {
 			manageProductList.get(k).setCategory(getReverseCode(manageProductList.get(k).getCategory()));;
 		}
 		
-//		for (int i=0; i<manageProductList.size(); i++) {
-//			ManageProductDTO dto = manageProductList.get(i);
-//			System.out.println("---------");
-//			System.out.println("��ǰ�̸� : " + dto.getProduct_name());
-//			System.out.println("��ǰ���� : " + dto.getProduct_price());
-//			System.out.println("��ǰī�װ��� : " + dto.getCategory());
-//			System.out.println("��ǰ ��ǥ �̹��� ������ : " + dto.getPro_img_server());
-//			System.out.println("�ǸŻ��� : " + dto.isProduct_sales_stat());
-//		}
-		
+		for (int i=0; i<manageProductList.size(); i++) {
+			ManageProductDTO dto = manageProductList.get(i);
+			System.out.println("---------");
+			System.out.println("<Service> Product NAME : " + dto.getProduct_name());
+			System.out.println("<Service> Product Price : " + dto.getProduct_price());
+			System.out.println("<Service> Product Category : " + dto.getCategory());
+			System.out.println("<Service> Product ImageServer : " + dto.getPro_img_server());
+			System.out.println("<Service> Product Sales : " + dto.isProduct_sales_stat());
+		}
 		return manageProductList;
 		
 	}

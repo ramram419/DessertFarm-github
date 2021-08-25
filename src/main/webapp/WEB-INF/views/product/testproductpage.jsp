@@ -25,7 +25,7 @@
 			<p><a href="<c:url value='' />">배송관리</a></p>
 			<p><a href="<c:url value='' />">문의관리</a></p>
 			<p>- 상품</p>	
-			<p><a href="<c:url value='/product/manageProduct' />">메뉴등록/관리</a></p>
+			<p><a href="<c:url value='product/manageProduct' />">메뉴등록/관리</a></p>
 			<p><a href="<c:url value='' />">샘플메뉴 등록</a></p>
 	</div>
 
