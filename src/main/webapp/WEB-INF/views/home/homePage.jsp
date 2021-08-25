@@ -6,9 +6,11 @@
 <head>
    <title>DessertFarm</title>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
    <link rel="stylesheet" href="<c:url value="/resources/css/main/basic.css"/>">
    <link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
    
    <script>
       $(document).ready(function(){
@@ -20,6 +22,22 @@
             }
          });
          
+         
+         const swiper = new Swiper('.swiper-container', {
+        	  loop: true, 
+        	  autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+              },
+        	  pagination: {
+       		    el: '.swiper-pagination',
+       		  },
+       		  navigation: {
+       		    nextEl: '.swiper-button-next',
+       		    prevEl: '.swiper-button-prev',
+       		  }
+       	});
+         
       })
    </script>
 </head>
@@ -27,45 +45,80 @@
 <c:import url="./top.jsp"/>
 <div class="content">
    <!-- 메인슬라이드 -->
-   <div class="mainSlide">
-      <div class="slideImg" style="background:url('${path}/resources/images/main_image.png') no-repeat;">
-         <div class="slideText">
-            <p class="text1">
-               어디서 주문할까?<br>
-               <span>디저트 팜에서 비교해보세요!</span>
-            </p>
-            <p class="text2">
-               크로와상 생지와 와플팬을 응용한 크로플<br>
-               부드러운 식감의 크로플을 여러분께 소개합니다.
-            </p>
-         </div>
+   <div class="mainSlide swiper-container">
+   	  <div class="swiper-wrapper">
+	      <div class="slideImg swiper-slide" style="background:url('${path}/resources/images/main_image.png') no-repeat;">
+	         <div class="slideText">
+	            <p class="text1">
+	               어디서 주문할까?<br>
+	               <span>디저트 팜에서 비교해보세요!</span>
+	            </p>
+	            <p class="text2">
+	               크로와상 생지와 와플팬을 응용한 크로플<br>
+	               부드러운 식감의 크로플을 여러분께 소개합니다.
+	            </p>
+	         </div>
+	      </div>
+	      
+	      <div class="slideImg swiper-slide" style="background:url('${path}/resources/images/main_image.png') no-repeat;">
+	         <div class="slideText">
+	            <p class="text1">
+	               어디서 주문할까?<br>
+	               <span>디저트 팜에서 비교해보세요!</span>
+	            </p>
+	            <p class="text2">
+	               크로와상 생지와 와플팬을 응용한 크로플<br>
+	               부드러운 식감의 크로플을 여러분께 소개합니다.
+	            </p>
+	         </div>
+	      </div>
+	      
+	      <div class="slideImg swiper-slide" style="background:url('${path}/resources/images/main_image.png') no-repeat;">
+	         <div class="slideText">
+	            <p class="text1">
+	               어디서 주문할까?<br>
+	               <span>디저트 팜에서 비교해보세요!</span>
+	            </p>
+	            <p class="text2">
+	               크로와상 생지와 와플팬을 응용한 크로플<br>
+	               부드러운 식감의 크로플을 여러분께 소개합니다.
+	            </p>
+	         </div>
+	      </div>
+	      
       </div>
+      
+	  <div class="swiper-pagination"></div>
+	
+	  <div class="swiper-button-prev" style="left:200px;"></div>
+	  <div class="swiper-button-next" style="right: 200px;"></div>
    </div>
    
    <!-- 할인상품 -->
    <div class="saleSlide">
       <div class="saleSlide_text">이달의 <span>할인상품</span>!</div>
-      <div class="slideList">
-         <div class="item_circle">
-            <div class="sale_img"  style="background:url('${path }/resources/images/donuts.jpg') no-repeat center; background-size:170px;"></div>
-            <p>도넛</p>
-         </div>
-         <div class="item_circle">
-            <div class="sale_img" style="background:url('${path }/resources/images/image_3@2x.png') no-repeat; background-size:170px;"></div>
-            <p>딸기 크레이프</p>
-         </div>
-         <div class="item_circle">
-            <div class="sale_img select" style="background:url('${path }/resources/images/image_6@2x.png') no-repeat; background-position:-9px 0;"></div>
-            <p>크로플</p>
-         </div>
-         <div class="item_circle">
-            <div class="sale_img" style="background:url('${path }/resources/images/image_7@2x.png') no-repeat; background-size:170px;"></div>
-            <p>크로와상</p>
-         </div>
-         <div class="item_circle">
-            <div class="sale_img" style="background:url('${path }/resources/images/image_1@2x.png') no-repeat; background-size:170px;"></div>
-            <p>다쿠아즈</p>
-         </div>
+	      <div class="slideList">
+	         <div class="item_circle ">
+	            <div class="sale_img"  style="background:url('${path }/resources/images/donuts.jpg') no-repeat center; background-size:170px;"></div>
+	            <p>도넛</p>
+	         </div>
+	         <div class="item_circle">
+	            <div class="sale_img" style="background:url('${path }/resources/images/image_3@2x.png') no-repeat; background-size:170px;"></div>
+	            <p>딸기 크레이프</p>
+	         </div>
+	         <div class="item_circle">
+	            <div class="sale_img select" style="background:url('${path }/resources/images/image_6@2x.png') no-repeat; background-position:-9px 0;"></div>
+	            <p>크로플</p>
+	         </div>
+	         <div class="item_circle">
+	            <div class="sale_img" style="background:url('${path }/resources/images/image_7@2x.png') no-repeat; background-size:170px;"></div>
+	            <p>크로와상</p>
+	         </div>
+	         <div class="item_circle">
+	            <div class="sale_img" style="background:url('${path }/resources/images/image_1@2x.png') no-repeat; background-size:170px;"></div>
+	            <p>다쿠아즈</p>
+	         </div>
+	      </div>
       </div>
    </div>
    

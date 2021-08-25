@@ -32,6 +32,7 @@
     <!-- 사용할 쿼리에 대한 등록 -->
     <mappers>
         <mapper resource="./mybatis/mapper/memberMapper.xml" />
+        <mapper resource="./mybatis/mapper/productMapper.xml" />
         <mapper resource="./mybatis/mapper/articleMapper.xml"/>
         <mapper resource="./mybatis/mapper/productMapper.xml"/>
     </mappers>
