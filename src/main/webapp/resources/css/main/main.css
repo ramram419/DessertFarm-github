@@ -1074,13 +1074,15 @@
 	font-size: 40px;
 	line-height: 1.33;
 	margin-right: 16px;
+	margin-top: 35px;
 }
 
 .store_info{
+	margin-top: 35px;
+	margin-right: 56px;
 	font-size: 18px;
 	line-height: 1.5;
 	font-weight: bold;
-	margin-right: 56px;
 }
 
 .store_info img{
@@ -1088,6 +1090,7 @@
 	height: 60px;
 	border-radius: 50%;
 	margin-right: 20px;
+	vertical-align: middle;
 }
 
 .imglist{
@@ -1110,6 +1113,11 @@
 	line-height: 1.5;
 	padding: 47px 30px;
 	cursor: pointer;
+}
+
+.store_btn img{
+	float: right;
+	margin-top: 5px;
 }
 
 .best_itemimg{
@@ -1139,9 +1147,14 @@
 	border: 1px solid #e13517;
 	margin: 20px 0 300px;
 	padding: 47px 60px;
+	cursor: pointer;
 }
 
 .item_btn span{
 	color: #e13517;
 	font-weight: bold;
+}
+
+.item_btn img{
+	float: right;
 }

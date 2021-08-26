@@ -69,13 +69,6 @@ public class LoginController {
 		
 		return "redirect:/home";
 	}
-
-	
-	// Move to Admin Page
-	@GetMapping("/admin")
-	public String moveToAdmin() {
-		return "admin/adminPage";
-	}
 	
 	// 留덉씠�럹�씠吏� �씠�룞 �쟾�뿉 濡쒓렇�씤 �럹�씠吏� �씠�룞
 	@RequestMapping("/loginMyPage")

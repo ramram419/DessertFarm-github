@@ -43,6 +43,7 @@
 				</div>
 				<div class="store_btn">
 					사이트 바로가기
+					<img src="${path }/resources/images/arrow_right_c.png"/>
 				</div>
 			</div>
 			
@@ -59,6 +60,7 @@
 				</div>
 				<div class="store_btn">
 					사이트 바로가기
+					<img src="${path }/resources/images/arrow_right_c.png"/>
 				</div>
 			</div>
 			
@@ -75,6 +77,7 @@
 				</div>
 				<div class="store_btn">
 					사이트 바로가기
+					<img src="${path }/resources/images/arrow_right_c.png"/>
 				</div>
 			</div>
 		</div>
@@ -83,17 +86,17 @@
 		<div class="best_title">베스트 상품</div>
 		<div class="best_sub">이번주 베스트 상품을 바로 확인해보세요!</div>
 		<div class="best_itemimg">
+			<img src="${path }/resources/images/image_1@2x.png"/>
+			<img src="${path }/resources/images/image_2@2x.png"/>
+			<img src="${path }/resources/images/image_3@2x.png"/>
+			<img src="${path }/resources/images/image_4@2x.png"/>
+			<img src="${path }/resources/images/image_5@2x.png"/>
+			<img src="${path }/resources/images/image_6@2x.png"/>
+			<img src="${path }/resources/images/image_7@2x.png"/>
 			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
+			<img src="${path }/resources/images/image_9@2x.png"/>
+			<img src="${path }/resources/images/cake@2x.png"/>
+			<img src="${path }/resources/images/donuts.jpg"/>
 			<img src="${path }/resources/images/image_8@2x.png"/>
 			<img src="${path }/resources/images/image_8@2x.png"/>
 			<img src="${path }/resources/images/image_8@2x.png"/>
@@ -106,6 +109,7 @@
 		</div>
 		<div class="item_btn">
 			상품 구매를 원하시나요? <span>지금 당장 확인하러 가보세요!</span>
+			<img src="${path }/resources/images/arrow_right_c.png"/>
 		</div>
 	</div>
 </div>

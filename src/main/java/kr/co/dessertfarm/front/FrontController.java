@@ -42,9 +42,14 @@ public class FrontController {
 		return "home/contents/order";
 	}
   
-	@RequestMapping("/newitem")
+	@RequestMapping("/new")
 	public String newitem() {
 		return "home/contents/newitem";
+	}
+	
+	@RequestMapping("/sale")
+	public String saleitem() {
+		return "home/contents/sale";
 	}
 	
 	@RequestMapping("/category")
