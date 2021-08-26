@@ -27,7 +27,7 @@
           메뉴 등록/관리
       </h1>
       <button style="float:right; margin-bottom : 10px; width : 50px;">삭제</button>
-      <a href="testRegisterProduct"><button style="float:right; margin-bottom : 10px; margin-right : 10px; width : 50px;">추가</button></a>
+      <a href="<c:url value='/product/testRegisterProduct' />"><button style="float:right; margin-bottom : 10px; margin-right : 10px; width : 50px;">추가</button></a>
     <table>
       <thead>
         <tr>
@@ -43,6 +43,5 @@
       </tbody>
     </table>
     <h3><a href="<c:url value='/admin' />">관리자 페이지로</a></h3>
-    <h3><a href="<c:url value='/product/testRegisterProduct' />">메뉴 등록하기</a></h3>
   </body>
 </html>
