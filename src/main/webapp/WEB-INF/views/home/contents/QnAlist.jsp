@@ -37,10 +37,9 @@
 				<c:forEach items="${list }" var="vo">
 					<tr>
 						<td>${vo.qna_id }</td>
-						<td>${vo.client_id }</td>
 						<td>${vo.qna_title }</td>
-						<td>${vo.qna_value }</td>
 						<td>${vo.qna_date }</td>
+						<td>대기중</td>
 					</tr>
 				</c:forEach>
 			</tbody>
