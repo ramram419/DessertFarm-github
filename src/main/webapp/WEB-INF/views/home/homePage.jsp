@@ -88,7 +88,7 @@
 	      
       </div>
       
-	  <div class="swiper-pagination"></div>
+	  <div class="swiper-pagination" style="bottom: 120px;"></div>
 	
 	  <div class="swiper-button-prev" style="left:200px;"></div>
 	  <div class="swiper-button-next" style="right: 200px;"></div>
@@ -318,32 +318,7 @@
 	   </div>
 </div>
 
-<div class="sideMenu">
-   <div class="sideMenu_box">
-      <img src="${path }/resources/images/icon_star@2x.png" style="margin-top:18px;"/>
-      상점즐겨찾기
-   </div>
-   <div class="sideMenu_box">
-      <img src="${path }/resources/images/shopping-cart@2x.png"/>
-      장바구니
-   </div>
-   <div class="sideMenu_box">
-      <img src="${path }/resources/images/icon_heart@2x.png"/>
-      찜리스트
-   </div>
-   <div class="sideMenu_box">
-      <img src="${path }/resources/images/chat@2x.png"/>
-      카카오톡 상담
-   </div>
-   <div class="sideMenu_box">
-      <img src="${path }/resources/images/icon_phonecall_off@2x.png"/>
-      고객센터
-   </div>
-   <div class="TOP" onclick="$('html, body').animate({scrollTop: '0'}, 1000);">
-      <img src="${path }/resources/images/top@2x.png"/>
-      TOP
-   </div>
-</div>
+<c:import url="./sideMenu.jsp" />
 <c:import url="./footer.jsp"/>
 </body>
 </html>
