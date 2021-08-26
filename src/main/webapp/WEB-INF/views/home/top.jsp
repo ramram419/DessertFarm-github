@@ -59,9 +59,9 @@ $(document).ready(function(){
 			<div class="menu">
 				<ul>
                		<li><a>브랜드스토리</a></li>
-               		<li><a href="<c:url value='/newitem' />">신상품</a></li>
-               		<li><a href="<c:url value='/product' />">베스트상품/상점</a></li>
-               		<li><a>이달의 <span style="color:#ff6363;">할인</span></a></li>
+               		<li><a href="<c:url value='/new' />">신상품</a></li>
+               		<li><a href="<c:url value='/best' />">베스트상품/상점</a></li>
+               		<li><a href="<c:url value='/sale' />">이달의 <span style="color:#ff6363;">할인</span></a></li>
                		<li><a>샘플 상품 주문</a></li>
            		</ul>
 			</div>

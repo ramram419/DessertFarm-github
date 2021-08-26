@@ -15,7 +15,10 @@ public class ProductRequest {
 	private String product_exchange;
 	private String product_as;
 	private String manager_id;
+<<<<<<< HEAD
 
+=======
+>>>>>>> seoung-beom
 	
 	public void print() {
 		System.out.println("product_name : " + product_name);
@@ -29,5 +32,8 @@ public class ProductRequest {
 		System.out.println("manager_id : " + manager_id);
 	}
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> seoung-beom
 }
