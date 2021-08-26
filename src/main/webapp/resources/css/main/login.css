@@ -202,7 +202,9 @@
 }
 
 .btn_dupCheck{
-	float: right;
+	position: absolute;
+	display: inline-block;
+	margin-left: 230px;
 	background-color: #ffffff;
 	font-size: 13px;
 	border: none;
