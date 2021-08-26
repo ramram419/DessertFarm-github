@@ -80,6 +80,7 @@
 	</div>
 	
 </div>
+<c:import url="../sideMenu.jsp" />
 <c:import url="../footer.jsp"/>
 </body>
 </html>

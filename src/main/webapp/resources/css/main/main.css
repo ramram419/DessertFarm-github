@@ -8,6 +8,7 @@
 .mainSlide{
 	width:1920px;
 	height:610px;
+	overflow-x: hidden;
 }
 
 .slideImg{
