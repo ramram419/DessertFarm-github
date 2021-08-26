@@ -143,7 +143,7 @@
 		</ul>
 	</div>
 	<div class="mypageFrm">
-		<label>상점명<br><input type="text" class="name" name="client_name" placeholder="<%=userList.get("client_name").toString() %>"/></label>
+		<label>상점명<br><input type="text" class="name" name="client_name" value="<%=userList.get("client_name").toString() %>"/></label>
 		<div class="err nameerr">* 상점명을 입력해주세요.</div>
 		<label>아이디<br><input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly/></label>
 		<div class="err iderr">* 아이디를 입력해주세요.</div>
@@ -151,7 +151,7 @@
 		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
 		<label>비밀번호 재입력<br><input type="password" class="confirm_pwd" name="confirm__pwd" placeholder="한번 더 입력해주세요."/></label>
 		<div class="err pwderr">* 한번 더 입력해주세요.</div>
-		<label>전화번호<br><input type="text" class="tel" name="client_tel" placeholder="<%=userList.get("client_tel").toString() %>"/></label>
+		<label>전화번호<br><input type="text" class="tel" name="client_tel" value="<%=userList.get("client_tel").toString() %>"/></label>
 		<div class="err telerr">* 전화번호를 입력해주세요.</div>
 		<button type="button" class="modibtn" onclick="checkfrm();">정보수정</button>
 	</div>

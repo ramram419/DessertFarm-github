@@ -26,6 +26,8 @@
       <h1>
           메뉴 등록/관리
       </h1>
+      <button style="float:right; margin-bottom : 10px; width : 50px;">삭제</button>
+      <a href="testRegisterProduct"><button style="float:right; margin-bottom : 10px; margin-right : 10px; width : 50px;">추가</button></a>
     <table>
       <thead>
         <tr>

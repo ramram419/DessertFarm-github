@@ -17,6 +17,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import kr.co.dessertfarm.product.ProductDAO;
 
 
 @Service("product")
@@ -54,6 +55,7 @@ public class ProductService {
 		
 		System.out.println(root + " : " + root.getAttribute("name"));
 		
+
 		NodeList productList = root.getElementsByTagName("product");
 		
 		for (int i=0; i<productList.getLength(); i++) {
@@ -109,7 +111,7 @@ public class ProductService {
 		if(!dir.exists()) {
 			dir.mkdir();
 		}
-
+		
 		for (int i=0; i<imgList.length; i++) {
 			if (!imgList[i].isEmpty()) {
 				String reName,pro_img_id;
@@ -131,6 +133,7 @@ public class ProductService {
 
 					ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
 					pDao.insertProductImage(productImageRequest);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 					return false;
@@ -161,11 +164,13 @@ public class ProductService {
 					NodeList cateList = productEle.getElementsByTagName("code");
 					Element codeEle = (Element)cateList.item(0);
 					Node code = codeEle.getFirstChild();
-					String cateCode = code.getNodeValue();
+
+					String cateCode = code.getNodeValue(); // K001
 					
 					if (cateCode.equals(categoryCode)) {
 						NodeList bigList = productEle.getElementsByTagName("big");
 						Element bigEle = (Element)bigList.item(0);
+						
 						Node big = bigEle.getFirstChild(); 
 						
 						NodeList smallList = productEle.getElementsByTagName("small");
@@ -185,9 +190,15 @@ public class ProductService {
 			}
 			return "badCode";
 		}
-	
+
+
 	public List<ManageProductDTO> getManage(String id) {
 		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
+		
+		for(int k=0; k<manageProductList.size(); k++) {
+			manageProductList.get(k).setCategory(getReverseCode(manageProductList.get(k).getCategory()));;
+		}
+		
 		for (int i=0; i<manageProductList.size(); i++) {
 			ManageProductDTO dto = manageProductList.get(i);
 			System.out.println("---------");
@@ -197,7 +208,6 @@ public class ProductService {
 			System.out.println("<Service> Product ImageServer : " + dto.getPro_img_server());
 			System.out.println("<Service> Product Sales : " + dto.isProduct_sales_stat());
 		}
-		
 		return manageProductList;
 		
 	}

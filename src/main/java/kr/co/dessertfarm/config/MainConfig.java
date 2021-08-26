@@ -21,6 +21,7 @@ import kr.co.dessertfarm.product.ProductDAO;
 import kr.co.dessertfarm.product.ProductService;
 import kr.co.dessertfarm.spring.MainDAO;
 
+
 @Configuration
 public class MainConfig {
 	@Bean
@@ -62,14 +63,14 @@ public class MainConfig {
 		return new MainDAO();
 	}
 	
-	@Bean
-	public ArticleDAO articleDAO() {
-		return new ArticleDAO();
+	@Bean 
+	public ProductDAO productDAO() {
+		return new ProductDAO();
 	}
 	
 	@Bean
-	public ProductDAO productDAO() {
-		return new ProductDAO();
+	public ArticleDAO articleDAO() {
+		return new ArticleDAO();
 	}
 	
 	@Bean
