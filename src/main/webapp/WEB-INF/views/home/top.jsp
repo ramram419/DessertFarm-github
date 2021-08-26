@@ -95,7 +95,7 @@ $(document).ready(function(){
 			<div class="minmenu">
 				<div class="cakelist select">
 					<ul class="cake1">
-						<li>무스케이크</li>
+						<li><a href="./category" style="color: #000000;">무스케이크</a></li>
 						<li>쉬폰케이크</li>
 						<li>치즈케이크</li>
 						<li>초코케이크</li>
