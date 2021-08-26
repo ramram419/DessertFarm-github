@@ -161,7 +161,7 @@
 				<div class="err nameerr">* 상점명을 입력해주세요.</div>
 				<label>
 					아이디<br>
-					<input type="text" class="id" name="id" placeholder="아이디를 입력해주세요." style="float: left;"/>
+					<input type="text" class="id" name="id" placeholder="아이디를 입력해주세요."/>
 					<button class="btn_dupCheck" type="button" onclick="dupId()">중복확인</button>
 				</label>
 				<div class="err iderr">* 아이디를 입력해주세요.</div>
