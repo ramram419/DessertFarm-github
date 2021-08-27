@@ -25,4 +25,25 @@
 		a.manager_id = #{id} and 
 		pro_img_name Like '%thumb____' order by a.product_id*1 desc;
 	</select>
+	
+	<delete id="deleteProduct" parameterType="list">
+		delete from product where 
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteProductImage" parameterType="list">
+		delete from product_image where 
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach>
+	</delete>
+	
+	<select id="getProductImageName" parameterType="list" resultType="String">
+		select pro_img_name from product_image where
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach> 
+	</select>
 </mapper>

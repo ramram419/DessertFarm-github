@@ -107,14 +107,19 @@
         function nullCheck() {
             if ($('.name').val() == "") {
                 alert("상품 이름을 입력하세요")
+                history.go(-1)
             } else if ($('.category1').val() == "" || $('.category1').val() == null) {
                 alert("상품 카테고리를 선택하세요")
+                history.go(-1)
             } else if ($('.category2').val() == null || $('.category2').val() == "" ) {
                 alert("상품 카테고리를 선택하세요")
+                history.go(-1)
             } else if ($('.price').val() == "") {
                 alert("상품 가격을 입력하세요")
+                history.go(-1)
             } else if ($('.value').val() == "") {
                 alert("상품 내용을 입력하세요")
+                history.go(-1)
             }
         }
    </script>
