@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -72,9 +73,34 @@ public class ProductController {
 	
 	@ResponseBody
 	@PostMapping("/ajaxTest")
-	public String ajaxTest(@RequestBody String testMsg) {
-		System.out.println("dd");
-		System.out.println(testMsg);
-		return "";
+	public String ajaxTest() {
+		System.out.println("ajax request 접수");
+//		List<ManageProductDTO> productList = pSvc.getManage("jinAdmin");
+//		System.out.println(productList);
+		return "ajaxTest";
+	}
+	
+	@ResponseBody
+	@PostMapping("/admin/product/loadProductList")
+	public List<ManageProductDTO> loadProductList() {
+		System.out.println("loadProductList 실행");
+		List<ManageProductDTO> productList = pSvc.getManage("jinAdmin");
+		
+		return productList;
+		
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/admin/product/deleteProductList", produces="application/json; charset=UTF-8")
+	public String deleteProductList(@RequestParam(value="checkBoxArr[]") List<String> checkBoxArr,HttpServletRequest request) {
+		try {
+		pSvc.deleteProduct(checkBoxArr,request);
+		return "deleted Successfuuly";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "deleted Failed";
+		}
+
+		
 	}
 }
