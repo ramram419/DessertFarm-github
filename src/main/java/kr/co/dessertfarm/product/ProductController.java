@@ -82,9 +82,12 @@ public class ProductController {
 	
 	@ResponseBody
 	@PostMapping("/admin/product/loadProductList")
-	public List<ManageProductDTO> loadProductList() {
+	public List<ManageProductDTO> loadProductList(HttpServletRequest request) {
+		
 		System.out.println("loadProductList ½ÇÇà");
-		List<ManageProductDTO> productList = pSvc.getManage("jinAdmin");
+		HttpSession session = request.getSession();
+		Map<String,Object> admin = (Map<String,Object>)session.getAttribute("admin");
+		List<ManageProductDTO> productList = pSvc.getManage(admin.get("manager_id").toString());
 		
 		return productList;
 		
