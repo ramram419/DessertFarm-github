@@ -112,24 +112,26 @@
 <div class="content">
     <div class="itemList">
         
-        <div class="itemBox">
-            <img src="마카롱 사진\지수2_수정.png" alt="" class="item_img">
+        <c:forEach var="item" items="${productList}">
+        	<div class="itemBox">
+            <img src="${path}${item.pro_img_server}" alt="" class="item_img">
             <div class="itemTag">
                 <div class="tag new">NEW</div>
                 <div class="tag best">BEST</div>
                 <div class="tag only_b">사업자전용</div>
             </div>
             <div class="itemName">
-                <span><b>[달콤초코]</b></span>
-                <span>초코케이크</span>
+                <span><b>[${item.manager_name }]</b></span>
+                <span>${item.product_name}</span>
             </div>
-            <div class="price">30,000원</div>
+            <div class="price">${item.product_price}</div>
             <div class="item_btn">
                 <div class="btn dibs"><strong>찜하기</strong></div>
                 <div class="btn basket"><b>장바구니</b></div>
 
             </div>
         </div>
+        </c:forEach>
 
         </div>
     </div>

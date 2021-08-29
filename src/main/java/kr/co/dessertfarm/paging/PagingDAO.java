@@ -9,7 +9,7 @@ public class PagingDAO {
 	
 	public int getTotalCategory(String cate) {
 		try {
-			int total = sqlSession.selectOne("",cate);
+			int total = sqlSession.selectOne("category.getCateTotalCount",cate);
 			return total;
 		} catch(Exception e) {
 			e.printStackTrace();

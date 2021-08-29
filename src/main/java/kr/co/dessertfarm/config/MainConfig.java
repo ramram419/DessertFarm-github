@@ -15,6 +15,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
+import kr.co.dessertfarm.category.CategoryDAO;
+import kr.co.dessertfarm.category.CategoryService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
 import kr.co.dessertfarm.paging.PagingDAO;
@@ -81,6 +83,11 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public CategoryDAO categoryDAO() {
+		return new CategoryDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -103,5 +110,9 @@ public class MainConfig {
 	@Bean 
 	public PagingService pagingSvc() {
 		return new PagingService();
+	}
+	
+	@Bean CategoryService categoryService() {
+		return new CategoryService();
 	}
 }

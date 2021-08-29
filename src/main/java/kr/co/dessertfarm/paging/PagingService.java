@@ -16,8 +16,8 @@ public class PagingService {
 		return pagingDao.getTotalCategory(cate);
 	}
 	
-	public void categoryPaging(int pageNum, String category) {
-		int totalCount = 45; // 카테고리의 총 상품 갯수 예시 DB result
+	public PagingDTO categoryPaging(int pageNum, String category) {
+		int totalCount = getTotalCategory(category);
 		int totalPage;
 		int findingCount;
 		
@@ -30,7 +30,7 @@ public class PagingService {
 
 		// 페이징 구역
 		int sector = 0; // 0섹터 : 1~10 , 1섹터 : 11~20
-		
+		System.out.println(totalPage);
 		if (pageNum % displayListNum > 0) {
 			sector = pageNum / displayListNum;
 		} else if (pageNum % displayListNum == 0) {
@@ -51,5 +51,7 @@ public class PagingService {
 		if (sectorEnd < totalPage) {
 			rightArr = true;
 		}
+		
+		return new PagingDTO(displayProNum,displayListNum,leftArr,rightArr,totalCount,sector,sectorStart,sectorEnd, pageNum,totalPage);
 	}
 }

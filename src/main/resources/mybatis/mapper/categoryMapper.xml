@@ -4,5 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="category">
+	<select id="getSmallCategoryDTO" parameterType="hashmap" resultType="kr.co.dessertfarm.category.CategoryDTO">
+		select m.manager_name,p.product_name, p.category,p.product_price,i.pro_img_server from product p, manager m, product_image i
+		where p.product_id = i.product_id and p.manager_id = m.manager_id and p.category 
+		like #{cate} and i.pro_img_server like '%thumb____' 
+		limit #{findingCount} offset #{dbLimitStart};
+	</select>
 	
+	<select id="getCateTotalCount" parameterType ="String" resultType="int">
+		select count(*) from product where category like #{cate};
+	</select>
 </mapper>

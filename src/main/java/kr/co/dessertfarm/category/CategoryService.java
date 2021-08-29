@@ -1,5 +1,8 @@
 package kr.co.dessertfarm.category;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.co.dessertfarm.paging.PagingService;
@@ -8,10 +11,13 @@ public class CategoryService {
 	@Autowired
 	PagingService pagingService;
 	
-	private int displayProNum = pagingService.displayProNum; 
-	private int displayListNum = pagingService.displayListNum;
+	@Autowired
+	CategoryDAO categoryDao;
 	
-	public CategoryDTO getCategoryProduct(int pageNum, String cate) {
+	private int displayProNum = 16; 
+	private int displayListNum = 10;
+	
+	public List<CategoryDTO> getCategoryProduct(int pageNum, String cate) {
 				int totalCount = pagingService.getTotalCategory(cate);
 				int dbLimitStart,findingCount;
 				
@@ -21,7 +27,15 @@ public class CategoryService {
 				} else {
 					findingCount = displayProNum;
 				}
+				System.out.println("TOTAL : " + totalCount);
+				System.out.println("fc :" + findingCount + "| dbL :" + dbLimitStart);
 				
-				return new CategoryDTO();
+				HashMap<String, Object> map = new HashMap();
+				map.put("cate", cate);
+				map.put("dbLimitStart", dbLimitStart);
+				map.put("findingCount", findingCount);
+				
+				return categoryDao.getCategoryDTO(map);
+				
 	}
 }
