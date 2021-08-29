@@ -46,4 +46,14 @@
 		product_id = #{item}
 		</foreach> 
 	</select>
+	
+	<select id="searchProduct" resultType="manageProductDTO">
+		SELECT product_id, category, product_name, product_value, product_rating
+		FROM product
+		<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		WHERE product_id LIKE CONCAT('%', #{keyword},'%') OR product_name LIKE CONCAT('%', #{keyword}, '%') 
+	</sql>
 </mapper>

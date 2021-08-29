@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductController {
 	@Autowired
 	public ProductService pSvc;
+	
+	private String keyword;
 	
 	// Redirect to AdminPage
 	@RequestMapping("/admin")
@@ -80,7 +83,7 @@ public class ProductController {
 	@PostMapping("/admin/product/loadProductList")
 	public List<ManageProductDTO> loadProductList(HttpServletRequest request) {
 		
-		System.out.println("loadProductList ½ÇÇà");
+		System.out.println("loadProductList ï¿½ï¿½ï¿½ï¿½");
 		HttpSession session = request.getSession();
 		Map<String,Object> admin = (Map<String,Object>)session.getAttribute("admin");
 		List<ManageProductDTO> productList = pSvc.getManage(admin.get("manager_id").toString());
@@ -99,7 +102,27 @@ public class ProductController {
 			e.printStackTrace();
 			return "deleted Failed";
 		}
-
-		
+	}
+	
+//	@ResponseBody
+//	@RequestMapping("/search")
+//	public List<ManageProductDTO> searchList(HttpServletRequest req, String keyword) {
+//		keyword = req.getParameter("keyword");
+//		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
+//		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
+//		return searchList;
+//	}
+	
+	@RequestMapping("/search")
+	public String search(HttpServletRequest req, String keyword) {
+		keyword = req.getParameter("keyword");
+		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
+		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
+		return "redirect:/search/searchResult";
+	}
+	
+	@RequestMapping("/search/searchResult")
+	public String searchResult() {
+		return "home/contents/searchResult";
 	}
 }

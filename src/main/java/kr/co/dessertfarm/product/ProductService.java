@@ -2,6 +2,7 @@ package kr.co.dessertfarm.product;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -230,6 +231,11 @@ public class ProductService {
 		}
 	}
 
-
+	public List<ManageProductDTO> searchList(String keyword) {
+		List<ManageProductDTO> searchList = new ArrayList<ManageProductDTO>();
+		searchList = pDao.searchList(keyword);
+		System.out.println("<Service> Search : " + searchList + " KeyWord : " + keyword);
+		return searchList;
+	}
 
 }
