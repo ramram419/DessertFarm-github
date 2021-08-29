@@ -10,6 +10,7 @@ import kr.co.dessertfarm.login.LoginController;
 import kr.co.dessertfarm.login.LoginService;
 import kr.co.dessertfarm.product.ProductController;
 import kr.co.dessertfarm.article.ArticleController;
+import kr.co.dessertfarm.category.CategoryController;
 import kr.co.dessertfarm.front.FrontController;
 
 
@@ -51,5 +52,11 @@ public class ControllerConfig {
 	public ArticleController articleController() {
 		ArticleController articleController = new ArticleController();
 		return articleController;
+	}
+	
+	@Bean
+	public CategoryController categoryController() {
+		CategoryController categoryController = new CategoryController();
+		return categoryController;
 	}
 }
