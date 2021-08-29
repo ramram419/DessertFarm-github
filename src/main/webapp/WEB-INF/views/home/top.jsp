@@ -25,7 +25,21 @@ $(document).ready(function(){
     $(".menulist").on("mouseout",function(){
        $(".menulist").hide();
     })
-})
+});
+
+	function search() {
+		var text = $(".search_text").val();
+		$.ajax({
+			type: "GET",
+			url: "./search",
+			data: {"keyword": text},
+			dataType: "JSON",
+			contentType: "application/json;charset=UTF-8",
+			success: function(data){
+				console.log(text);
+			}
+		})
+	}
 </script>
 
 <div class="header">
@@ -49,10 +63,12 @@ $(document).ready(function(){
 	<div class="header_mid">
 		<a href="<c:url value='/home'/>"><div class="logo"></div></a>
 		<div class="search_box">
-			<input type="text" class="search_text"/>
+			<input type="text" class="search_text" name="keyword" />
 			<div class="search_icon"></div>
+			<button type="button" onclick="search();"></button>
 		</div>
 	</div>
+	
 	<div class="header_btm">
 		<div class="menu_box">
 			<div class="cate"><img src="${path}/resources/images/icon_bars@2x.png"/>전체 카테고리</div>

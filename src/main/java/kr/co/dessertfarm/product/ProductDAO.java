@@ -1,5 +1,6 @@
 package kr.co.dessertfarm.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -81,6 +82,11 @@ public class ProductDAO {
 		}
 	}
 	
-
+	public List<ManageProductDTO> searchList(String keyword) {
+		List<ManageProductDTO> searchList = new ArrayList<ManageProductDTO>();
+		searchList = sqlSession.selectList("product.searchProduct", keyword);
+		System.out.println("<DAO> Search : " + searchList + " KeyWord : " + keyword);
+		return searchList;
+	}
 
 }
