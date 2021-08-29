@@ -1,12 +1,16 @@
 package kr.co.dessertfarm.category;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.dessertfarm.paging.PagingDTO;
 import kr.co.dessertfarm.paging.PagingService;
 
 @Controller
@@ -14,21 +18,45 @@ public class CategoryController {
 	@Autowired
 	PagingService pagingService;
 	
+	@Autowired
+	CategoryService categoryService;
+	
 	// Click big category
 	@RequestMapping(value ="/category/{big}")
-	public String onClickBigCate(@PathVariable String big, HttpServletRequest request) {
-		System.out.println("big invoked");
-		
-		return "product/productlistpage";
+	public String onClickBigCate(@PathVariable String big, HttpServletRequest request, Model model) {
+		Integer pageNum = null;
+		if (request.getParameter("pageNum") == null)
+			pageNum = 1;
+		else {
+			pageNum = Integer.parseInt((request.getParameter("pageNum")));
+		}
+		String bigCate = big + "___";
+		List<CategoryDTO> dto = categoryService.getCategoryProduct(pageNum, bigCate);
+		PagingDTO pDto = pagingService.categoryPaging(pageNum, bigCate);
+		model.addAttribute("productList",dto);
+		model.addAttribute("paging",pDto);
+		return "home/contents/category";
 	}
 	
 	// Click small category
 	@RequestMapping(value ="/category/*/{small}")
-	public String onClickSmallCate(@PathVariable String small, HttpServletRequest request) {
-		System.out.println("small invoked");
-		int pageNum = Integer.parseInt((String)request.getParameter("pageNum"));
-		pagingService.categoryPaging(pageNum, small);
-		
-		return "product/productlistpage";
+	public String onClickSmallCate(@PathVariable String small, HttpServletRequest request, Model model) {
+		Integer pageNum = null;
+		if (request.getParameter("pageNum") == null)
+			pageNum = 1;
+		else {
+			pageNum = Integer.parseInt((request.getParameter("pageNum")));
+		}
+		List<CategoryDTO> dto = categoryService.getCategoryProduct(pageNum, small);
+		PagingDTO pDto = pagingService.categoryPaging(pageNum, small);
+		model.addAttribute("productList",dto);
+		model.addAttribute("paging",pDto);
+		return "home/contents/category";
 	}
+	
+	@RequestMapping("/category")
+	public String categoryRed() {
+		return "redirect:/category/K";
+	}
+	
 }

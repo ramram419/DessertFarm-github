@@ -52,10 +52,10 @@ public class FrontController {
 		return "home/contents/sale";
 	}
 	
-	@RequestMapping("/category")
-	public String category() {
-		return "home/contents/category";
-	}
+//	@RequestMapping("/category")
+//	public String category() {
+//		return "home/contents/category";
+//	}
   
 	@RequestMapping("/best")
 	public String best() {
