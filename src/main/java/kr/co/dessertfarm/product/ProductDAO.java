@@ -1,5 +1,6 @@
 package kr.co.dessertfarm.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,4 +51,42 @@ public class ProductDAO {
 			return manageProductList;
 		}
 	}
+
+	public void deleteProduct(List<String> deleteProList) {
+		try {
+			sqlSession.delete("product.deleteProduct",deleteProList);
+			System.out.println("Products deleted successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteProductImage(List<String> deleteProList) {
+		try {
+			sqlSession.delete("product.deleteProductImage",deleteProList);
+			System.out.println("Product's Images deleted successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<String> getDeleteProductImageName(List<String> deleteProList) {
+			List<String> delProImgName = null;
+		try {
+			delProImgName = sqlSession.selectList("product.getProductImageName",deleteProList);
+			System.out.println(delProImgName);
+			return delProImgName;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return delProImgName;
+		}
+	}
+	
+	public List<ManageProductDTO> searchList(String keyword) {
+		List<ManageProductDTO> searchList = new ArrayList<ManageProductDTO>();
+		searchList = sqlSession.selectList("product.searchProduct", keyword);
+		System.out.println("<DAO> Search : " + searchList + " KeyWord : " + keyword);
+		return searchList;
+	}
+
 }

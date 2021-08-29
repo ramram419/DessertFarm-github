@@ -25,4 +25,35 @@
 		a.manager_id = #{id} and 
 		pro_img_name Like '%thumb____' order by a.product_id*1 desc;
 	</select>
+	
+	<delete id="deleteProduct" parameterType="list">
+		delete from product where 
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteProductImage" parameterType="list">
+		delete from product_image where 
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach>
+	</delete>
+	
+	<select id="getProductImageName" parameterType="list" resultType="String">
+		select pro_img_name from product_image where
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach> 
+	</select>
+	
+	<select id="searchProduct" resultType="manageProductDTO">
+		SELECT product_id, category, product_name, product_value, product_rating
+		FROM product
+		<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		WHERE product_id LIKE CONCAT('%', #{keyword},'%') OR product_name LIKE CONCAT('%', #{keyword}, '%') 
+	</sql>
 </mapper>

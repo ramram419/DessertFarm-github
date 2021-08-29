@@ -35,5 +35,6 @@
         <mapper resource="./mybatis/mapper/productMapper.xml" />
         <mapper resource="./mybatis/mapper/articleMapper.xml"/>
         <mapper resource="./mybatis/mapper/productMapper.xml"/>
+        <mapper resource="./mybatis/mapper/categoryMapper.xml"/>
     </mappers>
 </configuration>

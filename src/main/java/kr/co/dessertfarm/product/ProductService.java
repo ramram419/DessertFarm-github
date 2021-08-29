@@ -2,6 +2,7 @@ package kr.co.dessertfarm.product;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -133,7 +134,6 @@ public class ProductService {
 
 					ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
 					pDao.insertProductImage(productImageRequest);
-
 				} catch (Exception e) {
 					e.printStackTrace();
 					return false;
@@ -190,25 +190,52 @@ public class ProductService {
 			}
 			return "badCode";
 		}
-
-
+	
+	
 	public List<ManageProductDTO> getManage(String id) {
 		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
 		
-		for(int k=0; k<manageProductList.size(); k++) {
+			for(int k=0; k<manageProductList.size(); k++) {
 			manageProductList.get(k).setCategory(getReverseCode(manageProductList.get(k).getCategory()));;
 		}
 		
-		for (int i=0; i<manageProductList.size(); i++) {
-			ManageProductDTO dto = manageProductList.get(i);
-			System.out.println("---------");
-			System.out.println("<Service> Product NAME : " + dto.getProduct_name());
-			System.out.println("<Service> Product Price : " + dto.getProduct_price());
-			System.out.println("<Service> Product Category : " + dto.getCategory());
-			System.out.println("<Service> Product ImageServer : " + dto.getPro_img_server());
-			System.out.println("<Service> Product Sales : " + dto.isProduct_sales_stat());
-		}
+
 		return manageProductList;
 		
 	}
+
+	public void deleteProduct(List<String> deleteProList, HttpServletRequest request) {
+		pDao.deleteProduct(deleteProList);
+		deleteProductImage(deleteProList,request);
+		pDao.deleteProductImage(deleteProList);
+		
+	}
+	
+	public void deleteProductImage(List<String> deleteProList,HttpServletRequest request) {
+		List<String> delImgList = pDao.getDeleteProductImageName(deleteProList);
+		String saveDir = 
+				request.getSession().getServletContext().getRealPath("/resources/product_img");
+		if (delImgList != null) {
+			for (int i=0; i<delImgList.size(); i++) {
+				File delImg = new File(saveDir+"/"+delImgList.get(i));
+				if (delImg.exists()) {
+					if (delImg.delete()) {
+						System.out.println("Delete file successfully");
+					} else {
+						System.out.println("Delete file failed");
+					}
+				} else {
+					System.out.println("File does not exist");
+				}
+			}
+		}
+	}
+
+	public List<ManageProductDTO> searchList(String keyword) {
+		List<ManageProductDTO> searchList = new ArrayList<ManageProductDTO>();
+		searchList = pDao.searchList(keyword);
+		System.out.println("<Service> Search : " + searchList + " KeyWord : " + keyword);
+		return searchList;
+	}
+
 }

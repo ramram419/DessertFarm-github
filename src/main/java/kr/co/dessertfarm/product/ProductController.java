@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductController {
 	@Autowired
 	public ProductService pSvc;
+	
+	private String keyword;
 	
 	// Redirect to AdminPage
 	@RequestMapping("/admin")
@@ -70,11 +74,55 @@ public class ProductController {
 		return "test/ajaxTest";
 	}
 	
+	@RequestMapping("/pagingTest")
+	public String pagingTestPage() {
+		return "test/pagingTest";
+	}
+	
 	@ResponseBody
-	@PostMapping("/ajaxTest")
-	public String ajaxTest(@RequestBody String testMsg) {
-		System.out.println("dd");
-		System.out.println(testMsg);
-		return "";
+	@PostMapping("/admin/product/loadProductList")
+	public List<ManageProductDTO> loadProductList(HttpServletRequest request) {
+		
+		System.out.println("loadProductList ����");
+		HttpSession session = request.getSession();
+		Map<String,Object> admin = (Map<String,Object>)session.getAttribute("admin");
+		List<ManageProductDTO> productList = pSvc.getManage(admin.get("manager_id").toString());
+		
+		return productList;
+		
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/admin/product/deleteProductList", produces="application/json; charset=UTF-8")
+	public String deleteProductList(@RequestParam(value="checkBoxArr[]") List<String> checkBoxArr,HttpServletRequest request) {
+		try {
+		pSvc.deleteProduct(checkBoxArr,request);
+		return "deleted Successfuuly";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "deleted Failed";
+		}
+	}
+	
+//	@ResponseBody
+//	@RequestMapping("/search")
+//	public List<ManageProductDTO> searchList(HttpServletRequest req, String keyword) {
+//		keyword = req.getParameter("keyword");
+//		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
+//		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
+//		return searchList;
+//	}
+	
+	@RequestMapping("/search")
+	public String search(HttpServletRequest req, String keyword) {
+		keyword = req.getParameter("keyword");
+		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
+		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
+		return "redirect:/search/searchResult";
+	}
+	
+	@RequestMapping("/search/searchResult")
+	public String searchResult() {
+		return "home/contents/searchResult";
 	}
 }
