@@ -17,6 +17,8 @@ import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.paging.PagingDAO;
+import kr.co.dessertfarm.paging.PagingService;
 import kr.co.dessertfarm.product.ProductDAO;
 import kr.co.dessertfarm.product.ProductService;
 import kr.co.dessertfarm.spring.MainDAO;
@@ -74,6 +76,11 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public PagingDAO pagingDAO() {
+		return new PagingDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -91,5 +98,10 @@ public class MainConfig {
 	@Bean
 	public ArticleService articleSvc() {
 		return new ArticleService(articleDAO());
+	}
+	
+	@Bean 
+	public PagingService pagingSvc() {
+		return new PagingService();
 	}
 }
