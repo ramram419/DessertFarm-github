@@ -71,13 +71,9 @@ public class ProductController {
 		return "test/ajaxTest";
 	}
 	
-	@ResponseBody
-	@PostMapping("/ajaxTest")
-	public String ajaxTest() {
-		System.out.println("ajax request Á¢¼ö");
-//		List<ManageProductDTO> productList = pSvc.getManage("jinAdmin");
-//		System.out.println(productList);
-		return "ajaxTest";
+	@RequestMapping("/pagingTest")
+	public String pagingTestPage() {
+		return "test/pagingTest";
 	}
 	
 	@ResponseBody
