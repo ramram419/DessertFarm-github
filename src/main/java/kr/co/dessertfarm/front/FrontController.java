@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,10 +53,16 @@ public class FrontController {
 		return "home/contents/sale";
 	}
 	
-	@RequestMapping("/category")
-	public String category() {
-		return "home/contents/category";
+	@RequestMapping("/admin22")
+	public String admin(HttpServletRequest request, Model model) {
+		model.addAttribute("c", request.getParameter("c"));
+		return "admin/index";
 	}
+	
+//	@RequestMapping("/category")
+//	public String category() {
+//		return "home/contents/category";
+//	}
   
 	@RequestMapping("/best")
 	public String best() {
