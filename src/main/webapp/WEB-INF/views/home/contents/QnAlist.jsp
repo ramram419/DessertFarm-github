@@ -34,9 +34,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list }" var="vo">
+				<c:forEach items="${list }" var="vo" varStatus="var">
 					<tr>
-						<td></td>
+						<td>${var.count}</td>
 						<td>${vo.qna_title }</td>
 						<td>${vo.qna_date }</td>
 						<td>대기중</td>

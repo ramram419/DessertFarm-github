@@ -7,8 +7,8 @@ public class PagingService {
 	@Autowired
 	PagingDAO pagingDao;
 	
-	public int displayProNum = 16; // 한 페이지에 보여질 상품 개수
-	public int displayListNum = 10; // 한 페이지에 보여질 리스트 개수
+	public int displayProNum = 16; // 
+	public int displayListNum = 10; //
 	boolean leftArr = false;
 	boolean rightArr = false;
 	
@@ -21,15 +21,15 @@ public class PagingService {
 		int totalPage;
 		int findingCount;
 		
-		// 전체 페이지 수
+		// 
 		if (totalCount % displayProNum > 0) {
 			totalPage = (totalCount / displayProNum) +1; 
 		} else {
 			totalPage = totalCount / displayProNum;
 		}
 
-		// 페이징 구역
-		int sector = 0; // 0섹터 : 1~10 , 1섹터 : 11~20
+		// 
+		int sector = 0; // 0占쏙옙占쏙옙 : 1~10 , 1占쏙옙占쏙옙 : 11~20
 		System.out.println(totalPage);
 		if (pageNum % displayListNum > 0) {
 			sector = pageNum / displayListNum;
@@ -37,8 +37,8 @@ public class PagingService {
 			sector = (pageNum / displayListNum)-1;
 		}
 		
-		int sectorStart = (sector*displayListNum)+1; // 한 섹터에서 첫번째 페이지
-		int sectorEnd = (sector*displayListNum)+displayListNum; // 한 섹터에서 마지막 페이지
+		int sectorStart = (sector*displayListNum)+1; // 
+		int sectorEnd = (sector*displayListNum)+displayListNum; // 
 		if (sectorEnd >= totalPage) {
 			sectorEnd = totalPage;
 		}
