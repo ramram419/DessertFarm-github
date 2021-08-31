@@ -28,4 +28,22 @@ public class ArticleController {
 		model.addAttribute("list", articleSvc.selectOne(id));
 		return "home/contents/QnAlist";
 	}
+	
+	@RequestMapping("/qnalist/new")
+	public String qnaNew() {
+		return "home/contents/qnaRegister";
+	}
+	
+	@RequestMapping("/qnalist/register")
+	public String qnaRegister(HttpServletRequest req, HttpSession session) {
+		ArticleVO vo = new ArticleVO();
+		Map<String, String> list = (Map<String, String>)session.getAttribute("user");
+		String id = list.get("client_id").toString();
+		vo.setClient_id(id);
+		vo.setQna_title(req.getParameter("qna_title"));
+		vo.setQna_value(req.getParameter("qna_value"));
+		articleSvc.qnaRegister(vo);
+		System.out.println(id);
+		return "redirect:/qnalist";
+	}
 }

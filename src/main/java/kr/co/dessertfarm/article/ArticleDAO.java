@@ -19,4 +19,8 @@ public class ArticleDAO {
 		System.out.println("<DAO> articleList : " + list + " ID : " + id);
 		return list;
 	}
+	
+	public void qnaRegsiter(ArticleVO vo) {
+		sqlSession.insert("article.qnaRegister", vo);
+	}
 }
