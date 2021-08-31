@@ -7,4 +7,8 @@
 	<select id="selectList" parameterType='Map' resultType='HashMap'>
 		select qna_id, client_id, qna_title, qna_value, qna_date from qna where client_id = #{id}
 	</select>
+	
+	<insert id="qnaRegister" parameterType='ArticleVO'>
+		INSERT INTO qna(client_id, qna_title, qna_value, qna_date) VALUES (#{client_id, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}, #{qna_value, jdbcType=VARCHAR}, sysdate())
+	</insert>
 </mapper>

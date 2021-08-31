@@ -23,4 +23,8 @@ public class ArticleService {
 		return list;
 	}
 	
+	public void qnaRegister(ArticleVO vo) {
+		articleDAO.qnaRegsiter(vo);
+	}
+	
 }

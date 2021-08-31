@@ -118,7 +118,7 @@ public class ProductController {
 		keyword = req.getParameter("keyword");
 		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
 		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
-		return "redirect:/search/searchResult";
+		return "home/contents/searchResult";
 	}
 	
 	@RequestMapping("/search/searchResult")

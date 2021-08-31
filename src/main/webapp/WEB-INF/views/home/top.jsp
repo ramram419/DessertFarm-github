@@ -36,7 +36,7 @@ $(document).ready(function(){
 			dataType: "JSON",
 			contentType: "application/json;charset=UTF-8",
 			success: function(data){
-				console.log(text);
+				location.href='./search';
 			}
 		})
 	}
