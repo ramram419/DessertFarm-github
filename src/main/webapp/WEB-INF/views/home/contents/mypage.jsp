@@ -139,7 +139,7 @@
 			<li onclick="location.href='./like';">내찜목록</li>
 			<li onclick="location.href='./bags';">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
-			<li onclick="location.href='./qnalist';">문의내역</li>
+			<li onclick="location.href='./qnalist?pageNum=1';">문의내역</li>
 		</ul>
 	</div>
 	<div class="mypageFrm">
