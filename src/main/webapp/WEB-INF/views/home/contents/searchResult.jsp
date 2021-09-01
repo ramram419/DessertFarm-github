@@ -16,6 +16,8 @@
 	<c:import url="../top.jsp" />
 		<table border="2px">
 			<c:forEach items="${searchList }" var="sl">
+			<c:set var="searchList" value="${searchList }" />
+			<c:if test="${!empty searchList}">
 				<tr>
 					<td>상품명</td>
 					<td>${sl.product_name }</td>
@@ -28,6 +30,10 @@
 					<td>카테고리</td>
 					<td>${sl.category }</td>
 				</tr>
+			</c:if>
+			<c:if test="${empty searchList}">
+				<h1>검색 결과 없음</h1>
+			</c:if>
 			</c:forEach>
 		</table>
 </body>
