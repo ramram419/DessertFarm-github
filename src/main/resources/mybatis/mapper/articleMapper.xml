@@ -5,7 +5,7 @@
 
 <mapper namespace="article">
 	<select id="selectList" parameterType='Map' resultType='HashMap'>
-		select qna_id, client_id, qna_title, qna_value, qna_date from qna where client_id = #{id} limit #{findingCount} offset #{dbLimitStart}
+		select floor(@rownum := @rownum +1) as rownum, q.* from qna q,(select floor(@rownum := #{dbLimitStart})) r where client_id = #{id} limit #{findingCount} offset #{dbLimitStart};
 	</select>
 	
 	<select id="getTotalArticle" parameterType='ArticleVO' resultType='int'>
