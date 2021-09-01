@@ -5,7 +5,11 @@
 
 <mapper namespace="article">
 	<select id="selectList" parameterType='Map' resultType='HashMap'>
-		select qna_id, client_id, qna_title, qna_value, qna_date from qna where client_id = #{id}
+		select qna_id, client_id, qna_title, qna_value, qna_date from qna where client_id = #{id} limit #{findingCount} offset #{dbLimitStart}
+	</select>
+	
+	<select id="getTotalArticle" parameterType='ArticleVO' resultType='int'>
+		SELECT COUNT(*) FROM qna WHERE client_id = #{id}
 	</select>
 	
 	<insert id="qnaRegister" parameterType='ArticleVO'>

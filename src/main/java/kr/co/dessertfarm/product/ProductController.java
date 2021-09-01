@@ -121,9 +121,4 @@ public class ProductController {
 		model.addAttribute("searchList", searchList);
 		return "home/contents/searchResult";
 	}
-	
-	@RequestMapping("/search/searchResult")
-	public String searchResult() {
-		return "home/contents/searchResult";
-	}
 }
