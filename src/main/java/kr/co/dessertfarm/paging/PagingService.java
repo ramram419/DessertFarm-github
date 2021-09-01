@@ -12,14 +12,10 @@ public class PagingService {
 	boolean leftArr = false;
 	boolean rightArr = false;
 	
-	public int getTotalCategory(String cate) {
-		return pagingDao.getTotalCategory(cate);
-	}
 	
-	public PagingDTO categoryPaging(int pageNum, String category) {
-		int totalCount = getTotalCategory(category);
+	
+	public PagingDTO categoryPaging(int pageNum, int totalCount) {
 		int totalPage;
-		int findingCount;
 		
 		// 전체 페이지 수
 		if (totalCount % displayProNum > 0) {
@@ -30,7 +26,6 @@ public class PagingService {
 
 		// 페이징 구역
 		int sector = 0; // 0섹터 : 1~10 , 1섹터 : 11~20
-		System.out.println(totalPage);
 		if (pageNum % displayListNum > 0) {
 			sector = pageNum / displayListNum;
 		} else if (pageNum % displayListNum == 0) {
@@ -54,4 +49,14 @@ public class PagingService {
 		
 		return new PagingDTO(displayProNum,displayListNum,leftArr,rightArr,totalCount,sector,sectorStart,sectorEnd, pageNum,totalPage);
 	}
+	
+	public int getTotalCategory(String cate) {
+		return pagingDao.getTotalCategory(cate);
+	}
+	
+	
+	
+	
+	
+	
 }
