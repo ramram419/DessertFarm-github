@@ -36,7 +36,7 @@
 			<tbody>
 				<c:forEach items="${list }" var="vo" varStatus="var">
 					<tr>
-						<td>${var.count}</td>
+						<td>${vo.rownum}</td>
 						<td>${vo.qna_title }</td>
 						<td>${vo.qna_date }</td>
 						<td>대기중</td>
@@ -63,7 +63,7 @@
 				<a href="?pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
 			</c:if>
 	</ul>
-			<p><a href="<c:url value='/qnalist/new' />">문의하기</a></p>
+			<p><a href="<c:url value='/qnalist?pageNum=1' />">문의하기</a></p>
 	</div>
 </div>
 <c:import url="../sideMenu.jsp" />

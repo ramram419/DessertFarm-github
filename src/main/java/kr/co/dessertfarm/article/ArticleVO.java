@@ -14,4 +14,5 @@ public class ArticleVO {
 	private String qna_title;
 	private String qna_value;
 	private Date qna_date;
+	private int rownum;
 }
