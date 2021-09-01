@@ -36,10 +36,7 @@ $(document).ready(function(){
 			dataType: "JSON",
 			contentType: "application/json;charset=UTF-8",
 			success: function(data){
-				alert("성공" + text)
-			},
-			error : function() {
-				alert("실패" + text)
+				location.href='./search';
 			}
 		})
 	}
@@ -66,9 +63,10 @@ $(document).ready(function(){
 	<div class="header_mid">
 		<a href="<c:url value='/home'/>"><div class="logo"></div></a>
 		<div class="search_box">
+		<form action="${path}/search" method="get">
 			<input type="text" class="search_text" name="keyword" />
-			<div class="search_icon"></div>
-			<button type="button" onclick="search();"></button>
+			<input type="submit"><div class="search_icon"></div></input>	
+		</form>
 		</div>
 	</div>
 	

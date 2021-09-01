@@ -114,11 +114,12 @@ public class ProductController {
 //	}
 	
 	@RequestMapping("/search")
-	public String search(HttpServletRequest req, String keyword) {
+	public String search(HttpServletRequest req, String keyword, Model model) {
 		keyword = req.getParameter("keyword");
 		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
 		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
-		return "redirect:/search/searchResult";
+		model.addAttribute("searchList", searchList);
+		return "home/contents/searchResult";
 	}
 	
 	@RequestMapping("/search/searchResult")

@@ -13,6 +13,7 @@
         <typeAlias type="kr.co.dessertfarm.product.ProductRequest" alias="productRequest" />
         <typeAlias type="kr.co.dessertfarm.product.ProductImageRequest" alias="productImageRequest" />
         <typeAlias type="kr.co.dessertfarm.product.ManageProductDTO" alias="manageProductDTO" />
+        <typeAlias type="kr.co.dessertfarm.article.ArticleVO" alias="ArticleVO"/>
     </typeAliases>
     
     <!-- connection pool -->

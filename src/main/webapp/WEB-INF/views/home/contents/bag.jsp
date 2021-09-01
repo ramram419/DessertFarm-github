@@ -16,7 +16,7 @@
 	<div class="contentTxt">장바구니</div>
 	<div class="pagelist">
 		<ul>
-			<li onclick="location.href='./loginMyPage';">마이페이지</li>
+			<li onclick="location.href='./loginMyPage';">정보변경</li>
 			<li onclick="location.href='./like';">내찜목록</li>
 			<li onclick="location.href='./bags';" class="click">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>

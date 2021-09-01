@@ -16,7 +16,7 @@
 	<div class="contentTxt">문의내역</div>
 	<div class="pagelist">
 		<ul>
-			<li onclick="location.href='./loginMyPage';">마이페이지</li>
+			<li onclick="location.href='./loginMyPage';">정보변경</li>
 			<li onclick="location.href='./like';">내찜목록</li>
 			<li onclick="location.href='./bags';">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
@@ -34,9 +34,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list }" var="vo">
+				<c:forEach items="${list }" var="vo" varStatus="var">
 					<tr>
-						<td>${vo.qna_id }</td>
+						<td>${var.count}</td>
 						<td>${vo.qna_title }</td>
 						<td>${vo.qna_date }</td>
 						<td>대기중</td>
@@ -55,8 +55,8 @@
 				<li><img src="${path}/resources/images/right_arrow.png"/></li>
 				<li><img src="${path}/resources/images/right_arrows.png"/></li>
 			</ul>
+			<p><a href="<c:url value='/qnalist/new' />">문의하기</a></p>
 	</div>
-	
 </div>
 <c:import url="../sideMenu.jsp" />
 <c:import url="../footer.jsp"/>
