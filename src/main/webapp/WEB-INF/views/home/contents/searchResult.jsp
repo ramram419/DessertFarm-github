@@ -11,6 +11,12 @@
    <link rel="stylesheet" href="<c:url value="/resources/css/main/basic.css"/>">
    <link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+   <style type="text/css">
+   	.search_icon{
+   		margin-top: -32px !important;
+   	}
+   </style>
 </head>
 <body>
 <c:import url="../top.jsp" />

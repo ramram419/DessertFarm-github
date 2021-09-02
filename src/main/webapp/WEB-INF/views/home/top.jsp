@@ -63,9 +63,9 @@ $(document).ready(function(){
 	<div class="header_mid">
 		<a href="<c:url value='/home'/>"><div class="logo"></div></a>
 		<div class="search_box">
-		<form action="${path}/search" method="get">
+		<form class="searchfrm" action="${path}/search" method="get">
 			<input type="text" class="search_text" name="keyword" />
-			<input type="submit"><div class="search_icon"></div></input>	
+			<div class="search_icon" onclick="$('.searchfrm').submit();"></div>
 		</form>
 		</div>
 	</div>
