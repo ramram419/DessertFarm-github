@@ -16,7 +16,7 @@ public class SearchService {
 	@Autowired
 	private PagingService pagingService;
 	
-	private int displayProNum = 16; 
+	private int displayProNum = 10; 
 	private int displayListNum = 10;
 	
 	public List<SearchProductDTO> searchList(int pageNum, String keyword) {

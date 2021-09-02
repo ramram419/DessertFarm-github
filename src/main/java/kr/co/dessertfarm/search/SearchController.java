@@ -34,6 +34,8 @@ public class SearchController {
 		PagingDTO pDTO = pSvc.searchPaging(pageNum, pSvc.getTotalSearchProduct(keyword));
 		model.addAttribute("searchList", searchList);
 		model.addAttribute("paging", pDTO);
+		model.addAttribute("keyword",keyword);
+		
 		return "home/contents/searchResult";
 	}
 }

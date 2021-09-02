@@ -49,7 +49,6 @@ public class PagingService {
 		if (sectorEnd < totalPage) {
 			rightArr = true;
 		}
-		
 		return new PagingDTO(displayProNum,displayListNum,leftArr,rightArr,totalCount,sector,sectorStart,sectorEnd, pageNum,totalPage);
 	}
 	
