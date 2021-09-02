@@ -58,5 +58,4 @@ public class CategoryController {
 	public String categoryRed() {
 		return "redirect:/category/K";
 	}
-	
 }

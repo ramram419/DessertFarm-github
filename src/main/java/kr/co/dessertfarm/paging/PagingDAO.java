@@ -30,4 +30,14 @@ public class PagingDAO {
 			return -1;
 		}
 	}
+	
+	public int getTotalSearchProduct(String keyword) {
+		try {
+			int total = sqlSession.selectOne("search.getTotalSearchProduct", keyword);
+			return total;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }

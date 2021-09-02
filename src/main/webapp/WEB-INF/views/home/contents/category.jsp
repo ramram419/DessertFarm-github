@@ -159,7 +159,7 @@
 	          <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 	       </div>
 	    </div>
-	    </c:forEach>
+	</c:forEach>
 	   
 	    
 	   
