@@ -30,8 +30,8 @@ public class CategoryController {
 		else {
 			pageNum = Integer.parseInt((request.getParameter("pageNum")));
 		}
-		String bigCate = big + "___";
-		List<CategoryDTO> dto = categoryService.getCategoryProduct(pageNum, bigCate);
+		big = big + "___";
+		List<CategoryDTO> dto = categoryService.getCategoryProduct(pageNum, big);
 		PagingDTO pDto = pagingService.categoryPaging(pageNum, pagingService.getTotalCategory(big));
 		model.addAttribute("productList",dto);
 		model.addAttribute("paging",pDto);
