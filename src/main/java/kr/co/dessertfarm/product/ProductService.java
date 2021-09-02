@@ -230,12 +230,4 @@ public class ProductService {
 			}
 		}
 	}
-
-	public List<ManageProductDTO> searchList(String keyword) {
-		List<ManageProductDTO> searchList = new ArrayList<ManageProductDTO>();
-		searchList = pDao.searchList(keyword);
-		System.out.println("<Service> Search : " + searchList + " KeyWord : " + keyword);
-		return searchList;
-	}
-
 }

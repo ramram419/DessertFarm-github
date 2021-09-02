@@ -32,7 +32,7 @@ public class CategoryController {
 		}
 		String bigCate = big + "___";
 		List<CategoryDTO> dto = categoryService.getCategoryProduct(pageNum, bigCate);
-		PagingDTO pDto = pagingService.categoryPaging(pageNum, bigCate);
+		PagingDTO pDto = pagingService.categoryPaging(pageNum, pagingService.getTotalCategory(big));
 		model.addAttribute("productList",dto);
 		model.addAttribute("paging",pDto);
 		return "home/contents/category";
@@ -48,7 +48,7 @@ public class CategoryController {
 			pageNum = Integer.parseInt((request.getParameter("pageNum")));
 		}
 		List<CategoryDTO> dto = categoryService.getCategoryProduct(pageNum, small);
-		PagingDTO pDto = pagingService.categoryPaging(pageNum, small);
+		PagingDTO pDto = pagingService.categoryPaging(pageNum, pagingService.getTotalCategory(small));
 		model.addAttribute("productList",dto);
 		model.addAttribute("paging",pDto);
 		return "home/contents/category";
@@ -58,5 +58,4 @@ public class CategoryController {
 	public String categoryRed() {
 		return "redirect:/category/K";
 	}
-	
 }

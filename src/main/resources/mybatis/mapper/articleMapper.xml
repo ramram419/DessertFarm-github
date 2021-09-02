@@ -5,6 +5,14 @@
 
 <mapper namespace="article">
 	<select id="selectList" parameterType='Map' resultType='HashMap'>
-		select qna_id, client_id, qna_title, qna_value, qna_date from qna where client_id = #{id}
+		select format(@rownum := @rownum +1, 0) as rownum, q.* from qna q,(select floor(@rownum := #{dbLimitStart})) rownum where client_id = #{id} limit #{findingCount} offset #{dbLimitStart};
 	</select>
+	
+	<select id="getTotalArticle" parameterType='ArticleVO' resultType='int'>
+		SELECT COUNT(*) FROM qna WHERE client_id = #{id}
+	</select>
+	
+	<insert id="qnaRegister" parameterType='ArticleVO'>
+		INSERT INTO qna(client_id, qna_title, qna_value, qna_date) VALUES (#{client_id, jdbcType=VARCHAR}, #{qna_title, jdbcType=VARCHAR}, #{qna_value, jdbcType=VARCHAR}, sysdate())
+	</insert>
 </mapper>

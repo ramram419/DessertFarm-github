@@ -3,6 +3,8 @@ package kr.co.dessertfarm.paging;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import kr.co.dessertfarm.article.ArticleVO;
+
 public class PagingDAO {
 	@Autowired
 	SqlSession sqlSession;
@@ -17,5 +19,25 @@ public class PagingDAO {
 		}
 	
 		
+	}
+	
+	public int getTotalArticle(String id) {
+		try {
+			int total = sqlSession.selectOne("article.getTotalArticle", id);
+			return total;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public int getTotalSearchProduct(String keyword) {
+		try {
+			int total = sqlSession.selectOne("search.getTotalSearchProduct", keyword);
+			return total;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 }
