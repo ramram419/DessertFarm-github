@@ -91,7 +91,7 @@ public class PagingService {
 		return new PagingDTO(displayProNum,displayListNum,leftArr,rightArr,totalCount,sector,sectorStart,sectorEnd, pageNum,totalPage);
 	}
 	
-	public PagingDTO SearchPaging(int pageNum, int totalCount) {
+	public PagingDTO searchPaging(int pageNum, int totalCount) {
 		int totalPage;
 		int displayProNum = 10;
 		int displayListNum = 10;
