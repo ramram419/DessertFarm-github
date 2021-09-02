@@ -49,7 +49,7 @@ public class PagingService {
 		if (sectorEnd < totalPage) {
 			rightArr = true;
 		}
-		
+		System.out.println(totalCount+ " " +totalPage + " " + sectorStart + " " + sectorEnd + " " + leftArr + " " + rightArr);
 		return new PagingDTO(displayProNum,displayListNum,leftArr,rightArr,totalCount,sector,sectorStart,sectorEnd, pageNum,totalPage);
 	}
 	

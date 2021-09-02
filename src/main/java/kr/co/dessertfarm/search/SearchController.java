@@ -32,6 +32,7 @@ public class SearchController {
 		keyword = req.getParameter("keyword");
 		List<SearchProductDTO> searchList = sSvc.searchList(pageNum, keyword);
 		PagingDTO pDTO = pSvc.SearchPaging(pageNum, pSvc.getTotalSearchProduct(keyword));
+		model.addAttribute("keyword",keyword);
 		model.addAttribute("searchList", searchList);
 		model.addAttribute("paging", pDTO);
 		return "home/contents/searchResult";
