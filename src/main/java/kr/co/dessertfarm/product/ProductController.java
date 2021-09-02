@@ -103,22 +103,4 @@ public class ProductController {
 			return "deleted Failed";
 		}
 	}
-	
-//	@ResponseBody
-//	@RequestMapping("/search")
-//	public List<ManageProductDTO> searchList(HttpServletRequest req, String keyword) {
-//		keyword = req.getParameter("keyword");
-//		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
-//		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
-//		return searchList;
-//	}
-	
-	@RequestMapping("/search")
-	public String search(HttpServletRequest req, String keyword, Model model) {
-		keyword = req.getParameter("keyword");
-		List<ManageProductDTO> searchList = pSvc.searchList(keyword);
-		System.out.println("<Controller> SearchList : " + searchList + " Keyword : " + keyword);
-		model.addAttribute("searchList", searchList);
-		return "home/contents/searchResult";
-	}
 }

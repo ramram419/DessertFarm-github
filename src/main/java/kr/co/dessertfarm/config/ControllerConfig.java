@@ -9,6 +9,7 @@ import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginController;
 import kr.co.dessertfarm.login.LoginService;
 import kr.co.dessertfarm.product.ProductController;
+import kr.co.dessertfarm.search.SearchController;
 import kr.co.dessertfarm.article.ArticleController;
 import kr.co.dessertfarm.category.CategoryController;
 import kr.co.dessertfarm.front.FrontController;
@@ -58,5 +59,11 @@ public class ControllerConfig {
 	public CategoryController categoryController() {
 		CategoryController categoryController = new CategoryController();
 		return categoryController;
+	}
+	
+	@Bean
+	public SearchController searchController() {
+		SearchController searchController = new SearchController();
+		return searchController;
 	}
 }
