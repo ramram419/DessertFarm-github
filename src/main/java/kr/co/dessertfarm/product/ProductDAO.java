@@ -81,12 +81,4 @@ public class ProductDAO {
 			return delProImgName;
 		}
 	}
-	
-	public List<ManageProductDTO> searchList(String keyword) {
-		List<ManageProductDTO> searchList = new ArrayList<ManageProductDTO>();
-		searchList = sqlSession.selectList("product.searchProduct", keyword);
-		System.out.println("<DAO> Search : " + searchList + " KeyWord : " + keyword);
-		return searchList;
-	}
-
 }

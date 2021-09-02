@@ -27,8 +27,8 @@ public class CategoryService {
 				} else {
 					findingCount = displayProNum;
 				}
-				System.out.println("TOTAL : " + totalCount);
-				System.out.println("fc :" + findingCount + "| dbL :" + dbLimitStart);
+				System.out.println("<Service getCatgory> TOTAL : " + totalCount);
+				System.out.println("<Service getCatgory> fc :" + findingCount + "| dbL :" + dbLimitStart);
 				
 				HashMap<String, Object> map = new HashMap();
 				map.put("cate", cate);
