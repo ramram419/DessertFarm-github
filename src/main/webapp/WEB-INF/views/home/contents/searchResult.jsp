@@ -20,6 +20,7 @@
 </head>
 <body>
 <c:import url="../top.jsp" />
+<div class="cate_content">
 	<div class="cateitem_list">
 	<c:forEach var="item" items="${searchList}">
 		<div class="itemBox">
@@ -45,6 +46,7 @@
 	    
 	   
 	</div>
+	<div class="cate_content">
 	
 	<ul class="pagingbox">
 		<c:if test="${paging.leftArr}">

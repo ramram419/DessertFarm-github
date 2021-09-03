@@ -69,13 +69,42 @@
     	  	
     	  	if (path[4] != null) {
     	  		$('.'+path[4]).addClass("click")
-    	  	}
-    	  	
-    	  
-     
-    	 	
-    	  
+    	  	}	  
       })
+      
+      $(document).ready(function() {
+    	  $('.add_dibs').click(function() {
+    		  var id = $(this).attr("data-id")
+    		  
+    		  $.ajax({
+    				type: "GET",
+    				url : "./dibs",
+    				data : {
+    					"product_id" : id
+    				},
+    				success : function(data) {
+    					console.log("성공")
+    					if(data == "Duplicate") {
+    						alert("해당 상품은 이미 찜목록에 존재합니다.");
+    					} else if(data == "needLogin") {
+    						alert("로그인 필요합니다.");
+    						location.href = '/dessertfarm.co.kr/login'
+    					} else if (data == "Success") {
+    						alert("해당 상품이 찜 목록에 추가되었습니다.")
+    					} else if (data == "ManagerAttempt") {
+    						alert("매니저는 찜 기능을 이용할 수 없습니다. 자세한 사항은 디저트팜 관리자에게 문의해주세요.")
+    					}
+    				}, 
+    				error : function(data) { 	
+    					console.log("실패")
+    					console.log(data)
+    				}
+    			})
+    	  })
+      })
+      
+     
+		
    </script>
    
 
@@ -155,8 +184,9 @@
 	          <div class="o_price">10,000원</div>
 	       </div>
 	       <div class="cateItem_btn">
-	          <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+	          <div class="add_dibs" data-id="${item.product_id}"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
 	          <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
+	      
 	       </div>
 	    </div>
 	</c:forEach>
