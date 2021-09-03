@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dibs">
+	<insert id ="dibsInsert" parameterType="HashMap">
+		insert into dibs values(#{client_id},#{product_id})
+	</insert>
+	
+	<select id="getDibs" parameterType="String">
+		select p.product_id, p.product_name ,p.product_price, d.client_id 
+		from dibs d, product p 
+		where d.product_id = p.product_id;
+	</select>
+</mapper>
