@@ -10,6 +10,7 @@ public class CategoryDTO {
 	private String manager_name; // Shop Name 
 	private String product_name; 
 	private String product_price;
+	private String product_id;
 	
 	public void print() {
 		System.out.println("--------------------");
@@ -17,6 +18,7 @@ public class CategoryDTO {
 		System.out.println("등록자 :" + manager_name);
 		System.out.println("상품이름 :" + product_name);
 		System.out.println("상품가격 :" + product_price);
+		System.out.println("상품ID :" + product_price);
 	}
 //	private boolean new_item;
 //	private boolean best_item;

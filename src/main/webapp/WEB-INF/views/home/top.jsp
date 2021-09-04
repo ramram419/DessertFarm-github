@@ -40,6 +40,24 @@ $(document).ready(function(){
 			}
 		})
 	}
+	
+	function basket() {
+		$.ajax({
+			type: "GET",
+			url : "",
+			data : "",
+			contentType : "",
+			success : function() {
+				
+			}, 
+			error : function() {
+				
+			}
+		})
+		
+	}
+	
+	
 </script>
 
 <div class="header">
