@@ -37,11 +37,6 @@ public class FrontController {
 	public String bag() {
 		return "home/contents/bag";
 	}
-	
-	@RequestMapping("/orderlist")
-	public String orderlist() {
-		return "home/contents/order";
-	}
   
 	@RequestMapping("/new")
 	public String newitem() {
