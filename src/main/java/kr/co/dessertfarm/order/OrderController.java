@@ -37,6 +37,8 @@ public class OrderController {
 		id = user.get("client_id").toString();
 		List<OrderDTO> orderList = oSvc.orderList(pageNum, id);
 		PagingDTO pDTO = pSvc.orderPaging(pageNum, pSvc.getTotalOrder(id));
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("paging", pDTO);
 		return "home/contents/order";
 	}
 }
