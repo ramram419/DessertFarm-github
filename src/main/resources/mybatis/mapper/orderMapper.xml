@@ -5,14 +5,14 @@
 
 <mapper namespace="order">
 	<select id="selectOrderList" parameterType="String" resultType="orderDTO">
-		SELECT p.product_name, o.product_quan, o.product_price, o.order_date 
-		FROM product p, product_image i, order_detail o 
-		WHERE o.client_id = #{id}
-		ORDER BY o.order_date DESC  
+		SELECT product_name, product_quan, product_price, order_date 
+		FROM order_detail 
+		WHERE client_id = #{id}
+		ORDER BY order_date DESC  
 	</select>
 	
 	<select id="getTotalOrder" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM order WHERE client_id = #{id}
+		SELECT COUNT(*) FROM order_detail WHERE client_id = #{id}
 	</select>
 	
 	<insert id="insertOrderList" parameterType="orderDTO">

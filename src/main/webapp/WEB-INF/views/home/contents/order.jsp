@@ -35,48 +35,44 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach items="${orderList }" var="order">
 				<tr>
 					<td>
 						<img src="${path }/resources/images/image_7.png" class="orderitem_img"/>
 						<div class="order_itemContent">
 		               		<div class="tag new">NEW</div>
 		               		<div class="tag only_b">사업자 전용</div>
-			               	<div class="itemName"><span class="shopName">[달콤디저트]</span> 크로무슈</div>
+			               	<div class="itemName"><span class="shopName">[달콤디저트]</span> ${order.product_name }</div>
 		           	 	</div>
 					</td>
-					<td>2</td>
-					<td>32,000원</td>
-					<td>2021.02.01</td>
+					<td>${order.product_quan }</td>
+					<td>${order.product_price }원</td>
+					<td>${order.order_date }</td>
 					<td><button class="detail_btn">배송 상세보기</button></td>
 				</tr>
-				<tr>
-					<td>
-						<img src="${path }/resources/images/cake.png" class="orderitem_img"/>
-						<div class="order_itemContent">
-		               		<div class="tag best">BEST</div>
-			               	<div class="itemName"><span class="shopName">[달콤디저트]</span> 쿠앤크 케이크</div>
-		           	 	</div>
-					</td>
-					<td>1</td>
-					<td>16,000원</td>
-					<td>2021.01.12</td>
-					<td><button class="detail_btn">배송 상세보기</button></td>
-				</tr>
-				<tr>
-					<td>
-						<img src="${path }/resources/images/image_6.png" class="orderitem_img"/>
-						<div class="order_itemContent">
-		               		<div class="tag best">BEST</div>
-			               	<div class="itemName"><span class="shopName">[달콤디저트]</span> 크로플</div>
-		           	 	</div>
-					</td>
-					<td>1</td>
-					<td>20,000원</td>
-					<td>2021.01.02</td>
-					<td><button class="detail_btn">배송 상세보기</button></td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
+		
+		<ul class="pagingbox">
+		<c:if test="${paging.leftArr}">
+			<a href="?keyword=${keyword}&pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
+		</c:if>
+		<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
+		<c:choose>
+				<c:when test="${i eq paging.pageNum}">
+					<li class="active">${i}</li>		
+				</c:when>
+				<c:otherwise>
+					<a href="?keyword=${keyword}&pageNum=${i}"><li>${i}</li></a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<c:if test="${paging.sectorEnd < paging.totalPage}">
+		<a href="?keyword=${keyword}&pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
+		</c:if>
+		</ul>
 	</div>
 	
 </div>
