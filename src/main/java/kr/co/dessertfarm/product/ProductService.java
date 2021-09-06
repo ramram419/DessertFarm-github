@@ -230,4 +230,8 @@ public class ProductService {
 			}
 		}
 	}
+
+	public void loadProductDetailPage(int product_id) {
+		
+	}
 }

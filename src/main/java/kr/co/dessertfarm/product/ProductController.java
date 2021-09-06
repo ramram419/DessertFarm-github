@@ -103,4 +103,18 @@ public class ProductController {
 			return "deleted Failed";
 		}
 	}
+	
+	// load ProductPage based on product_id
+	@RequestMapping("/product/{product_id}")
+	public String loadProductPage(@PathVariable int product_id, Model model) {
+		try {
+				
+		} catch(Exception e) {
+			
+		}
+		
+		return "product/product_detail_page_test";
+	}
+	
+	
 }

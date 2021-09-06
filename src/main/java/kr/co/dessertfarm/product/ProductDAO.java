@@ -1,7 +1,9 @@
 package kr.co.dessertfarm.product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -80,5 +82,15 @@ public class ProductDAO {
 			e.printStackTrace();
 			return delProImgName;
 		}
+	}
+
+	public HashMap<String,String> getProduct(int product_id) {
+		HashMap<String,String> productInfoList = sqlSession.selectOne("",product_id);
+		return productInfoList;
+	}
+	
+	public List<String> getProductImage(int product_id) throws Exception {
+		List<String> imgList = sqlSession.selectList("",product_id);
+		return imgList;
 	}
 }
