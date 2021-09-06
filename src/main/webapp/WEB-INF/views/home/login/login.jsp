@@ -17,6 +17,8 @@
 	
 	<script type="text/javascript">
 		function login(){
+			var userList = "${userList}";
+			
 			if($(".pwd").val() == ""){
 				alert("비밀번호를 입력해주세요!");
 			}else if($(".pwd").val() !== ""){
