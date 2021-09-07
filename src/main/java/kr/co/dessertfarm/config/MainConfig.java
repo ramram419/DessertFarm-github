@@ -15,6 +15,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
+import kr.co.dessertfarm.basket.BasketDAO;
+import kr.co.dessertfarm.basket.BasketService;
 import kr.co.dessertfarm.category.CategoryDAO;
 import kr.co.dessertfarm.category.CategoryService;
 import kr.co.dessertfarm.dibs.DibsDAO;
@@ -109,6 +111,11 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public BasketDAO basketDAO(){
+		return new BasketDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -150,5 +157,10 @@ public class MainConfig {
 	@Bean
 	public OrderService orderService() {
 		return new OrderService();
+	}
+	
+	@Bean
+	public BasketService basketService() {
+		return new BasketService();
 	}
 }

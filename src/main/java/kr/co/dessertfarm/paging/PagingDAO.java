@@ -50,4 +50,14 @@ public class PagingDAO {
 			return -1;
 		}
 	}
+	
+	public int getTotalBasket(String id) {
+		try {
+			int total = sqlSession.selectOne("basket.getTotalBasket", id);
+			return total;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 }
