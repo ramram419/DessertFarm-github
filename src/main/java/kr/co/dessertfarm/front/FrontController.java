@@ -105,4 +105,22 @@ public class FrontController {
 		System.out.println("<Controller> result : " + result + " ID : " + id);
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/client/dupName")
+	public int clinet_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.client_dupName(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/manager/dupName")
+	public int manager_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.manager_dupName(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
 }
