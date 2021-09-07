@@ -125,7 +125,7 @@
 			error : function(err){
 				console.log(err)
 			}
-		})
+		});
 	}
 	</script>
 </head>

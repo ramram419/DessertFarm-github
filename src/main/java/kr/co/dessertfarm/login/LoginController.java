@@ -57,7 +57,7 @@ public class LoginController {
 		}else if(isAdmin == false && user.isEmpty() || user == null){
 			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
 			model.addAttribute("url", "/home");
-			return "login/logerr";
+			return "home/login/logerr";
 		}else if(session.getAttribute("myPage").equals("myPage")){
 			return "home/contents/mypage";
 		}else {
