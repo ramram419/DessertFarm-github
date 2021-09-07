@@ -84,13 +84,14 @@ public class ProductDAO {
 		}
 	}
 
-	public HashMap<String,String> getProduct(int product_id) {
-		HashMap<String,String> productInfoList = sqlSession.selectOne("",product_id);
-		return productInfoList;
+	public ProductPageDTO getProduct(int product_id) throws Exception {
+		ProductPageDTO product = sqlSession.selectOne("product.getProduct",product_id);
+		product.print();
+		return product;
 	}
 	
 	public List<String> getProductImage(int product_id) throws Exception {
-		List<String> imgList = sqlSession.selectList("",product_id);
+		List<String> imgList = sqlSession.selectList("product.getProductImage",product_id);
 		return imgList;
 	}
 }

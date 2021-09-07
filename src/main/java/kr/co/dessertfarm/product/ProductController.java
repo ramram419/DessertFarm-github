@@ -108,7 +108,7 @@ public class ProductController {
 	@RequestMapping("/product/{product_id}")
 	public String loadProductPage(@PathVariable int product_id, Model model) {
 		try {
-				
+			model.addAttribute("product",pSvc.loadProductDetailPage(product_id));
 		} catch(Exception e) {
 			
 		}
