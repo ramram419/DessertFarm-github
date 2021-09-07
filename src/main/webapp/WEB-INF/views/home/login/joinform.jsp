@@ -139,12 +139,43 @@
 				if(_id == "") {
 					alert("ID를 입력해주세요. ");
 				}else if(data == 0) {
-					console.log(data);
-					alert("사용할 수 있는 ID입니다. ");
-					$('#btn_dupCheck').prop("disabled", true);
+					var conf = confirm("사용할 수 있는 ID입니다 \n해당 ID를 사용하시겠습니까?");
+					if(conf == true){
+						$('.id').prop("readonly", true);
+						$('.lb_Id.btn_dupCheck').prop("disabled", true);
+					}else if(conf == false){
+						$('.id').val("");
+					}
 				}else if(data == 1){
-					console.log(data);
 					alert("이미 존재하는 ID입니다. ");
+					$('.id').val("");
+				}
+			}
+		});
+	}
+	
+	function dupName(){
+		var _name = $(".name").val();
+		var role = "${sessionScope.role}";
+		$.ajax({
+			type: "POST",
+			url: role+"/dupName",
+			dataType: "JSON",
+			data: {"name": _name},
+			success: function(data) {
+				if(_name == ""){
+					alert("상점명을 입력해주세요. ");
+				}else if(data == 0){
+					var conf= confirm("사용할 수 있는 상점명입니다 \n해당 상점명을 사용하시겠습니까? ");
+					if(conf == true){
+						$('.name').prop("readonly", true);
+						$('.lb_Name.btn_dupCheck').prop("disabled", true);
+					}else if(conf == false){
+						$('.name').val("");
+					}
+				}else if(data == 1) {
+					alert("이미 존재하는 상점명입니다. ");
+					$('.name').val("");
 				}
 			}
 		});
@@ -157,9 +188,13 @@
 		<div class="joinFrm">
 			<div class="jofrm_text">개인정보 작성</div>
 			<form class="Joinform" action="/welcome/manager" method="POST">
-				<label>상점명<br><input type="text" class="name" name="name" placeholder="상점명을 입력해주세요."/></label>
+				<label class="lb_Name">
+					상점명<br>
+					<input type="text" class="name" name="name" placeholder="상점명을 입력해주세요."/>
+					<button class="btn_dupCheck" type="button" onclick="dupName()">중복확인</button>
+					</label>
 				<div class="err nameerr">* 상점명을 입력해주세요.</div>
-				<label>
+				<label class="lb_Id">
 					아이디<br>
 					<input type="text" class="id" name="id" placeholder="아이디를 입력해주세요."/>
 					<button class="btn_dupCheck" type="button" onclick="dupId()">중복확인</button>

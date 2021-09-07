@@ -43,4 +43,16 @@ public class JoinService {
 		System.out.println("<Service> result : " + result + " ID : " + id);
 		return result;
 	}
+	
+	public int client_dupName(String name) {
+		int result = mainDAO.client_dupName(name);
+		System.out.println("<Service> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	public int manager_dupName(String name) {
+		int result = mainDAO.manager_dupName(name);
+		System.out.println("<Service> result : " + result + " Name : " + name);
+		return result;
+	}
 }

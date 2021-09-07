@@ -73,4 +73,16 @@ public class MainDAO {
 		System.out.println("<DAO> result : " + result + " ID : " + id);
 		return result;
 	}
+	
+	public int client_dupName(String name) {
+		int result = sqlSession.selectOne("member.client_dupName", name);
+		System.out.println("<DAO> result : " + result + "Name : " + name);
+		return result;
+	}
+	
+	public int manager_dupName(String name) {
+		int result = sqlSession.selectOne("member.manager_dupName", name);
+		System.out.println("<DAO> result : " + result + "Name : " + name);
+		return result;
+	}
 }

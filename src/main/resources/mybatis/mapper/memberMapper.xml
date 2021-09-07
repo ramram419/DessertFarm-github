@@ -46,5 +46,11 @@
 		select count(*) from manager where manager_id = #{id};
 	</select>
 	
-	<select id=""></select>
+	<select id="client_dupName" parameterType="String" resultType="int">
+		select count(*) from client where client_name = #{name};
+	</select>
+	
+	<select id="manager_dupName" parameterType="String" resultType="int">
+		select count(*) from client where manager_name = #{name};
+	</select>
 </mapper>
