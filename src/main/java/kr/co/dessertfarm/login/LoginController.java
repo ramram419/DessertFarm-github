@@ -56,7 +56,7 @@ public class LoginController {
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty() || user == null){
 			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
-			model.addAttribute("url", "/home");
+			model.addAttribute("url", "/login");
 			return "home/login/logerr";
 		}else if(session.getAttribute("myPage").equals("myPage")){
 			return "home/contents/mypage";
@@ -87,7 +87,7 @@ public class LoginController {
 		user = loginSvc.clientLogin(req);
 
 		if(user == null || user.isEmpty() == true) {
-			return "login/logerr";
+			return "home/contents/logerr";
 		}else if(user.isEmpty() == false) {
 			System.out.println(user);
 			return "home/contents/mypage";

@@ -143,7 +143,10 @@
 		</ul>
 	</div>
 	<div class="mypageFrm">
-		<label>상점명<br><input type="text" class="name" name="client_name" value="<%=userList.get("client_name").toString() %>"/></label>
+		<label>
+			상점명<br>
+			<input type="text" class="name" name="client_name" value="<%=userList.get("client_name").toString() %>"/>
+		</label>
 		<div class="err nameerr">* 상점명을 입력해주세요.</div>
 		<label>아이디<br><input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly/></label>
 		<div class="err iderr">* 아이디를 입력해주세요.</div>
