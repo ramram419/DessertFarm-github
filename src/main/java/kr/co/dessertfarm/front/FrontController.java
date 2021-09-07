@@ -32,11 +32,6 @@ public class FrontController {
 	public String like() {
 		return "home/contents/likelist";
 	}
-	
-	@RequestMapping("/bags")
-	public String bag() {
-		return "home/contents/bag";
-	}
   
 	@RequestMapping("/new")
 	public String newitem() {
@@ -120,6 +115,15 @@ public class FrontController {
 	public int manager_dupName(HttpServletRequest req, String name) {
 		name = req.getParameter("name");
 		int result = joinSvc.manager_dupName(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/user/dupName")
+	public int user_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.client_dupId(name);
 		System.out.println("<Controller> result : " + result + " Name : " + name);
 		return result;
 	}

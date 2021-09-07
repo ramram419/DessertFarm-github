@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="basket">
+	<select id="selectBasket" parameterType="String" resultType="basketDTO">
+		SELECT product_name, product_price FROM basket WHERE client_id = #{id}
+	</select>
+	
+	<select id="getTotalBasket" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM basket WHERE client_id = #{id}
+	</select>
+	
+	<insert id="basketRegister" parameterType="basketDTO">
+		INSERT INTO basket(product_name, product_price) VALUES(#{product_name, jdbcType=VARCHAR}, #{product_price, jdbcType=VARCHAR})
+	</insert>
+</mapper>
