@@ -240,6 +240,6 @@ public class ProductService {
 		productInfo.put("IMG", productImg);
 		
 		return productInfo;
-		
 	}
+	
 }

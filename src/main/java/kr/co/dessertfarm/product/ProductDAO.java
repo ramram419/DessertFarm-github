@@ -94,4 +94,9 @@ public class ProductDAO {
 		List<String> imgList = sqlSession.selectList("product.getProductImage",product_id);
 		return imgList;
 	}
+	
+	public void addView(int product_id) throws Exception {
+		sqlSession.update("product.addView",product_id);
+		System.out.println(product_id + "번 상품의 조회수가 1 증가하였습니다.");
+	}
 }

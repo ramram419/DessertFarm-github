@@ -65,4 +65,8 @@
 		SELECT pro_img_server FROM product_image WHERE product_id = #{product_id} ORDER BY pro_img_server DESC;
 	</select>
 	
+	<select id="addView" parameterType="int">
+		UPDATE product SET product_view = product_view + 1 WHERE product_id = #{product_id};
+	</select>
+	
 </mapper>

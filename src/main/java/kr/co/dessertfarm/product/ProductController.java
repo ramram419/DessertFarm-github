@@ -3,12 +3,15 @@ package kr.co.dessertfarm.product;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductController {
 	@Autowired
 	public ProductService pSvc;
+	
+	@Autowired
+	ProductViewService pvSvc;
 	
 	private String keyword;
 	
@@ -95,7 +101,9 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping(value = "/admin/product/deleteProductList", produces="application/json; charset=UTF-8")
 	public String deleteProductList(@RequestParam(value="checkBoxArr[]") List<String> checkBoxArr,HttpServletRequest request) {
+		
 		try {
+			String dd = "dd";
 		pSvc.deleteProduct(checkBoxArr,request);
 		return "deleted Successfuuly";
 		} catch (Exception e) {
@@ -104,10 +112,13 @@ public class ProductController {
 		}
 	}
 	
-	// load ProductPage based on product_id
+	// Load ProductPage based on product_id
 	@RequestMapping("/product/{product_id}")
-	public String loadProductPage(@PathVariable int product_id, Model model) {
+	public String loadProductPage(@CookieValue(value="isView", required=false) String isView, 
+			@PathVariable int product_id, Model model, HttpServletRequest request,HttpServletResponse response) {
+			// Add anti-refresh later on
 		try {
+			pvSvc.addView(product_id);
 			model.addAttribute("product",pSvc.loadProductDetailPage(product_id));
 		} catch(Exception e) {
 			
