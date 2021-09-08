@@ -17,6 +17,7 @@
         <typeAlias type="kr.co.dessertfarm.search.SearchProductDTO" alias="searchProductDTO"/>
         <typeAlias type="kr.co.dessertfarm.order.OrderDTO" alias="orderDTO"/>
         <typeAlias type="kr.co.dessertfarm.basket.BasketDTO" alias="basketDTO"/>
+        <typeAlias type="kr.co.dessertfarm.product.ProductPageDTO" alias='productPageDTO'/>
     </typeAliases>
     
     <!-- connection pool -->

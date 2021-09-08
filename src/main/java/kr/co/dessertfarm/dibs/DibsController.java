@@ -16,8 +16,9 @@ public class DibsController {
 	@Autowired
 	DibsService dSvc;
 	
+	// add dibs request by ajax
 	@RequestMapping("/category/dibs")
-	public String dibs(@RequestParam int product_id,HttpServletRequest request) {
+	public String createDibs(@RequestParam int product_id,HttpServletRequest request) {
 		try {
 		if (isAdmin(request.getSession()) == true)  {
 			throw new ManagerAttemptDibsException();
@@ -30,16 +31,20 @@ public class DibsController {
 		} catch (java.lang.NullPointerException e) { // non-Login Exception 
 			System.err.println("로그인이 필요합니다.");
 			return "needLogin";
-			
 		} catch (ManagerAttemptDibsException e) {
 			System.err.println("관리자는 찜 기능을 이용할 수 없습니다.");
 			return "ManagerAttempt";
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "Etc_error";
 		}
 	}
+//	@RequestMapping("/like")
+//	public String readDibs(HttpServletRequest request) {
+//		
+//		return "";
+//	}
+	
 	
 	public boolean isAdmin(HttpSession session) {
 		if (session.getAttribute("admin") != null) {			
@@ -48,5 +53,8 @@ public class DibsController {
 			return false;
 		}
 	}
+	
+	
+	
 	
 }

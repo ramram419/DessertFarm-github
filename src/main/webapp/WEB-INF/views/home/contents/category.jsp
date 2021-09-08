@@ -177,7 +177,7 @@
 	            <div class="tag best">BEST</div>
 	            <div class="tag only_b">사업자 전용</div>
 	       </div>
-	       <div class="itemName"><span class="shopName">[${item.manager_name}]</span> ${item.product_name}</div>
+	       <a href="${path}/product/${item.product_id}"><div class="itemName"><span class="shopName">[${item.manager_name}]</span> ${item.product_name}</div></a>
 	       <div class="sale_price">
 	          <div class="sale">20%</div>
 	          <div class="price">${item.product_price}</div>
