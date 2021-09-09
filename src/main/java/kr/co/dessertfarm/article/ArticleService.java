@@ -52,5 +52,4 @@ public class ArticleService {
 				return articleDAO.selectOne(id, map);
 				
 	}
-	
 }
