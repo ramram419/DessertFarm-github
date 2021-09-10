@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+	<select id="selectOrderList" parameterType="String" resultType="orderDTO">
+		SELECT product_name, product_quan, product_price, order_date 
+		FROM order_detail 
+		WHERE client_id = #{id}
+		ORDER BY order_date DESC  
+	</select>
+	
+	<select id="getTotalOrder" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM order_detail WHERE client_id = #{id}
+	</select>
+	
+	<insert id="insertOrderList" parameterType="orderDTO">
+		
+	</insert>
+</mapper>

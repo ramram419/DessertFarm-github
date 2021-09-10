@@ -15,10 +15,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
+import kr.co.dessertfarm.basket.BasketDAO;
+import kr.co.dessertfarm.basket.BasketService;
 import kr.co.dessertfarm.category.CategoryDAO;
 import kr.co.dessertfarm.category.CategoryService;
+import kr.co.dessertfarm.dibs.DibsDAO;
+import kr.co.dessertfarm.dibs.DibsService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.order.OrderDAO;
+import kr.co.dessertfarm.order.OrderService;
 import kr.co.dessertfarm.paging.PagingDAO;
 import kr.co.dessertfarm.paging.PagingService;
 import kr.co.dessertfarm.product.ProductDAO;
@@ -95,6 +101,21 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public DibsDAO dibsDAO() {
+		return new DibsDAO();
+	}
+	
+	@Bean
+	public OrderDAO orderDAO() {
+		return new OrderDAO(); 
+	}
+	
+	@Bean
+	public BasketDAO basketDAO(){
+		return new BasketDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -126,5 +147,20 @@ public class MainConfig {
 	@Bean
 	public SearchService searchService() {
 		return new SearchService();
+	}
+	
+	@Bean
+	public DibsService dibsService() {
+		return new DibsService();
+	}
+	
+	@Bean
+	public OrderService orderService() {
+		return new OrderService();
+	}
+	
+	@Bean
+	public BasketService basketService() {
+		return new BasketService();
 	}
 }

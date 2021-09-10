@@ -32,16 +32,6 @@ public class FrontController {
 	public String like() {
 		return "home/contents/likelist";
 	}
-	
-	@RequestMapping("/bags")
-	public String bag() {
-		return "home/contents/bag";
-	}
-	
-	@RequestMapping("/orderlist")
-	public String orderlist() {
-		return "home/contents/order";
-	}
   
 	@RequestMapping("/new")
 	public String newitem() {
@@ -108,6 +98,33 @@ public class FrontController {
 		id = req.getParameter("id");
 		int result = joinSvc.manager_dupId(id);
 		System.out.println("<Controller> result : " + result + " ID : " + id);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/client/dupName")
+	public int clinet_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.client_dupName(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/manager/dupName")
+	public int manager_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.manager_dupName(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/user/dupName")
+	public int user_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.client_dupId(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
 		return result;
 	}
 }

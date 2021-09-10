@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
@@ -36,7 +38,7 @@ public class LoginController {
 	
 	// Login Test & HomePage with Session
 	@PostMapping("/home")
-	public String login(LoginRequest req, HttpServletRequest request) {
+	public String login(LoginRequest req, HttpServletRequest request, Model model) {
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = loginSvc.clientLogin(req);
 		Map<String, Object> admin = new HashMap<String, Object>();
@@ -53,7 +55,9 @@ public class LoginController {
 			session.setAttribute("user", user);
 			return "home/homePage";
 		}else if(isAdmin == false && user.isEmpty() || user == null){
-			return "login/logerr";
+			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+			model.addAttribute("url", "/login");
+			return "home/login/logerr";
 		}else if(session.getAttribute("myPage").equals("myPage")){
 			return "home/contents/mypage";
 		}else {
@@ -83,7 +87,7 @@ public class LoginController {
 		user = loginSvc.clientLogin(req);
 
 		if(user == null || user.isEmpty() == true) {
-			return "login/logerr";
+			return "home/contents/logerr";
 		}else if(user.isEmpty() == false) {
 			System.out.println(user);
 			return "home/contents/mypage";

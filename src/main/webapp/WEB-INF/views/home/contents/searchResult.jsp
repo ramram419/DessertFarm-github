@@ -20,6 +20,7 @@
 </head>
 <body>
 <c:import url="../top.jsp" />
+<div class="cate_content">
 	<div class="cateitem_list">
 	<c:forEach var="item" items="${searchList}">
 		<div class="itemBox">
@@ -45,10 +46,11 @@
 	    
 	   
 	</div>
+	<div class="cate_content">
 	
 	<ul class="pagingbox">
 		<c:if test="${paging.leftArr}">
-			<a href="?pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
+			<a href="?keyword=${keyword}&pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
 		</c:if>
 		<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
 		<c:choose>
@@ -56,13 +58,13 @@
 					<li class="active">${i}</li>		
 				</c:when>
 				<c:otherwise>
-					<a href="?pageNum=${i}"><li>${i}</li></a>
+					<a href="?keyword=${keyword}&pageNum=${i}"><li>${i}</li></a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${paging.sectorEnd < paging.totalPage}">
-		<a href="?pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
+		<a href="?keyword=${keyword}&pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
 		</c:if>
 	</ul>
 	

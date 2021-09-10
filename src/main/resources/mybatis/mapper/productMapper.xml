@@ -56,4 +56,13 @@
 	<sql id="search">
 		WHERE product_id LIKE CONCAT('%', #{keyword},'%') OR product_name LIKE CONCAT('%', #{keyword}, '%') OR category LIKE CONCAT('%', #{keyword}, '%') OR product_price LIKE CONCAT('%', #{keyword}, '%')
 	</sql>
+	
+	<select id="getProduct" parameterType="int" resultType="productPageDTO">
+		SELECT * FROM product WHERE product_id = #{product_id}
+	</select>
+	
+	<select id="getProductImage" parameterType="int" resultType="String">
+		SELECT pro_img_server FROM product_image WHERE product_id = #{product_id} ORDER BY pro_img_server DESC;
+	</select>
+	
 </mapper>

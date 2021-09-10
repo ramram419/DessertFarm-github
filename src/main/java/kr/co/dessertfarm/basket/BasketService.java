@@ -1,4 +1,4 @@
-package kr.co.dessertfarm.search;
+package kr.co.dessertfarm.basket;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dessertfarm.paging.PagingService;
 
-@Service("Search")
-public class SearchService {
+@Service("Basket")
+public class BasketService {
 	@Autowired
-	private SearchDAO sDAO;
+	private BasketDAO bDAO;
 	
 	@Autowired
 	private PagingService pagingService;
 	
-	private int displayProNum = 10; 
-	private int displayListNum = 10;
+	private int displayProNum = 5; 
+	private int displayListNum = 10; 
 	
-	public List<SearchProductDTO> searchList(int pageNum, String keyword) {
-		int totalCount = pagingService.getTotalSearchProduct(keyword);
+	public List<BasketDTO> selectBasket(int pageNum, String id){
+		int totalCount = pagingService.getTotalBasket(id);
 		int dbLimitStart,findingCount;
 		
 		dbLimitStart = (pageNum-1)*displayProNum;
@@ -29,14 +29,14 @@ public class SearchService {
 		} else {
 			findingCount = displayProNum;
 		}
-		System.out.println("<Service getSearchProduct> TOTAL : " + totalCount);
-		System.out.println("<Service getSearchProduct> fc :" + findingCount + "| dbL :" + dbLimitStart);
+		System.out.println("<Service getBasket> TOTAL : " + totalCount);
+		System.out.println("<Service getBasket> fc :" + findingCount + "| dbL :" + dbLimitStart);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
+		map.put("id", id);
 		map.put("dbLimitStart", dbLimitStart);
 		map.put("findingCount", findingCount);
 		
-		return sDAO.searchList(map);
-	}
+		return bDAO.selectBasket(map);
+	} 
 }

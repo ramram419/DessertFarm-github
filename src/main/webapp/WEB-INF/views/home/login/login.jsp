@@ -16,7 +16,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
 	<script type="text/javascript">
-		function login(){
+		function login(){			
 			if($(".pwd").val() == ""){
 				alert("비밀번호를 입력해주세요!");
 			}else if($(".pwd").val() !== ""){

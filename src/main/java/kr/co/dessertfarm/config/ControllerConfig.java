@@ -8,10 +8,13 @@ import kr.co.dessertfarm.join.JoinController;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginController;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.order.OrderController;
 import kr.co.dessertfarm.product.ProductController;
 import kr.co.dessertfarm.search.SearchController;
 import kr.co.dessertfarm.article.ArticleController;
+import kr.co.dessertfarm.basket.BasketController;
 import kr.co.dessertfarm.category.CategoryController;
+import kr.co.dessertfarm.dibs.DibsController;
 import kr.co.dessertfarm.front.FrontController;
 
 
@@ -65,5 +68,23 @@ public class ControllerConfig {
 	public SearchController searchController() {
 		SearchController searchController = new SearchController();
 		return searchController;
+	}
+	
+	@Bean 
+	public DibsController dibsController() {
+		DibsController dibsController = new DibsController();
+		return dibsController;
+	}
+	
+	@Bean
+	public OrderController orderController() {
+		OrderController orderController = new OrderController();
+		return orderController;
+	}
+	
+	@Bean
+	public BasketController basketController() {
+		BasketController basketController = new BasketController();
+		return basketController;
 	}
 }

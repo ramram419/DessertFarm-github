@@ -3,6 +3,7 @@ package kr.co.dessertfarm.product;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -229,5 +230,16 @@ public class ProductService {
 				}
 			}
 		}
+	}
+
+	public HashMap<String,Object> loadProductDetailPage(int product_id) throws Exception {
+		HashMap<String,Object> productInfo = new HashMap<String,Object>();
+		ProductPageDTO productDto = pDao.getProduct(product_id);
+		List<String> productImg = pDao.getProductImage(product_id);
+		productInfo.put("DTO", productDto);
+		productInfo.put("IMG", productImg);
+		
+		return productInfo;
+		
 	}
 }
