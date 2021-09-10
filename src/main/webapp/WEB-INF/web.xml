@@ -27,6 +27,7 @@
 				kr.co.dessertfarm.config.MainConfig
 				kr.co.dessertfarm.config.MvcConfig
 				kr.co.dessertfarm.config.ControllerConfig
+				kr.co.dessertfarm.awsTest.S3Uploader
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
