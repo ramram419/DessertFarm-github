@@ -51,6 +51,6 @@
 	</select>
 	
 	<select id="manager_dupName" parameterType="String" resultType="int">
-		select count(*) from client where manager_name = #{name};
+		select count(*) from manager where manager_name = #{name};
 	</select>
 </mapper>
