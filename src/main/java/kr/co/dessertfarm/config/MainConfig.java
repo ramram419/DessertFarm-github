@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
+import kr.co.dessertfarm.awsTest.S3Uploader;
 import kr.co.dessertfarm.basket.BasketDAO;
 import kr.co.dessertfarm.basket.BasketService;
 import kr.co.dessertfarm.category.CategoryDAO;

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -126,5 +127,11 @@ public class FrontController {
 		int result = joinSvc.client_dupId(name);
 		System.out.println("<Controller> result : " + result + " Name : " + name);
 		return result;
+	}
+	
+	
+	@GetMapping("/test")
+	public String test() {
+		return "home/test";
 	}
 }
