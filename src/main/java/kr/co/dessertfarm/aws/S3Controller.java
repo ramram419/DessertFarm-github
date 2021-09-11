@@ -1,4 +1,4 @@
-package kr.co.dessertfarm.awsTest;
+package kr.co.dessertfarm.aws;
 
 import java.io.File;
 import java.io.FileOutputStream;
