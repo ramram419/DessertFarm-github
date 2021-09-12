@@ -5,13 +5,11 @@
  
 <mapper namespace="product">
 	<insert id="insertProduct" parameterType="productRequest">
-		insert into product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id) 
-		values(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id})
-	</insert>
-  
-	<insert id="insertProductImage" parameterType="productImageRequest">
-		insert into product_image(pro_img_id,product_id,pro_img_name,pro_img_server,pro_filesize,manager_id)
-		values(#{pro_img_id},#{product_id},#{pro_img_name},#{pro_img_server},#{pro_filesize},#{manager_id});
+		INSERT INTO product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id) 
+		VALUES(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id})
+		 <selectKey keyProperty="product_id" resultType="Integer" order="AFTER">
+    		SELECT LAST_INSERT_ID()
+  		</selectKey>
 	</insert>
 	
 	<select id="getProductId" parameterType="productRequest" resultType="int">
@@ -19,11 +17,11 @@
 	</select>
 
 	<select id="getManageProductList" parameterType="String" resultType="manageProductDTO">
-		select a.product_id, a.product_name, a.category, a.product_price, a.product_sales_stat,b.pro_img_server
+		select a.product_id, a.product_name, a.category, a.product_price, a.product_sales_stat,b.product_img_url
 		from product a,product_image b 
 		where a.product_Id = b.product_id and 
 		a.manager_id = #{id} and 
-		pro_img_name Like '%thumb____' order by a.product_id*1 desc;
+		product_img_name Like '%thumb____' order by a.product_id*1 desc;
 	</select>
 	
 	<delete id="deleteProduct" parameterType="list">

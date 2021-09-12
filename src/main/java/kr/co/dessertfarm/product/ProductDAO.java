@@ -17,16 +17,8 @@ public class ProductDAO {
 	
 	public void insertProduct(ProductRequest productRequest) {
 		try {
-			sqlSession.insert("product.insertProduct",productRequest);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-	}
-	
-	public void insertProductImage(ProductImageRequest productImageRequest) {
-		try {
-			sqlSession.insert("product.insertProductImage",productImageRequest);
-			System.out.println("<DAO> insertImageMethod Invoked");
+			int product_id = sqlSession.insert("product.insertProduct",productRequest);
+			System.out.println("dd"+product_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -69,6 +61,7 @@ public class ProductDAO {
 			System.out.println("Product's Images deleted successfully.");
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 
