@@ -49,6 +49,9 @@ public class CategoryController {
 		}
 		List<CategoryDTO> dto = categoryService.getCategoryProduct(pageNum, small);
 		PagingDTO pDto = pagingService.categoryPaging(pageNum, pagingService.getTotalCategory(small));
+		for (int i=0; i<dto.size(); i++) {
+			dto.get(i).print();
+		}
 		model.addAttribute("productList",dto);
 		model.addAttribute("paging",pDto);
 		return "home/contents/category";

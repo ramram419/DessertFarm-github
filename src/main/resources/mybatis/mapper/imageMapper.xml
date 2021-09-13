@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="image">
+	<insert id="imageInsert" parameterType="list">
+		INSERT INTO product_image(product_id, product_img_id, product_img_name,product_img_url,product_img_size,manager_id,product_img_type)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		 (#{item.product_id},#{item.product_img_id},#{item.product_img_name},#{item.product_img_url},#{item.product_img_size},#{item.manager_id},#{item.product_img_type})
+		 </foreach>
+	</insert>
+</mapper>
