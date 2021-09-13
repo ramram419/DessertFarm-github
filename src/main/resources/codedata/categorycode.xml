@@ -51,6 +51,21 @@
         <small>타르트</small>
         <code>K010</code>
     </product>
+    <product>
+        <big>케이크</big>
+        <small>무스케이크</small>
+        <code>K011</code>
+    </product>
+    <product>
+        <big>케이크</big>
+        <small>쉬폰케이크</small>
+        <code>K012</code>
+    </product>
+    <product>
+        <big>케이크</big>
+        <small>치즈케이크</small>
+        <code>K013</code>
+    </product>
 
     <!-- 베이커리 -->
     <product>

@@ -9,18 +9,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-<<<<<<< HEAD
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-=======
-import org.springframework.web.bind.annotation.RequestMapping;
->>>>>>> master
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -28,54 +23,49 @@ public class ProductController {
 	@Autowired
 	public ProductService pSvc;
 	
+	private String keyword;
 	
-	// 
-	@RequestMapping("/product")
+	// Redirect to AdminPage
+	@RequestMapping("/admin")
+	public String moveToAdmin() {
+		return "redirect:/admin/adminPage";
+	}
+	
+	// Main Admin Page
+	@RequestMapping("/admin/adminPage")
 	public String moveToProduct() {
 		return "product/testproductpage";
 	}
-<<<<<<< HEAD
-
 	
-
-=======
+	// Move to MenuList Page
+	@RequestMapping("/admin/product/manageProduct") 
+	public String manageProduct(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession(false);
+		Map<String,Object> user = (Map<String,Object>)session.getAttribute("admin");
+		List<ManageProductDTO> manageProductList = pSvc.getManage(user.get("manager_id").toString()); 
+		
+		model.addAttribute("manageProductList", manageProductList);
+		return "product/testmanageproduct";
+	}
 	
->>>>>>> master
+	// Move to MenuRegister Page
 	@RequestMapping("/product/testRegisterProduct")
 	public String registerProductPage() {
-		System.out.println("dd");
+		System.out.println("testRegister Invoked");
 		return "product/testRegisterProduct";
 	}
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> master
+	// After Registering Menu and back to MenuList Page
 	@PostMapping("/product/register")
-	public String registerProduct(ProductRequest productRequest,MultipartFile product_thumb,MultipartFile[] product_images,HttpServletRequest request) {
+	public String registerProduct(ProductRequest productRequest, MultipartFile product_thumb, MultipartFile[] product_images, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		productRequest = pSvc.adjustProductRequest(productRequest, request, session);
 		MultipartFile[] imgList = pSvc.combineImgList(product_thumb, product_images);
 		pSvc.insertProduct(productRequest,imgList,request);
-<<<<<<< HEAD
+    
+		System.out.println("<Controller> ID : " + productRequest.getProduct_name());
 
-		return "redirect:manageProduct";
-	}
-
-=======
-		return "";
-	}
-	
->>>>>>> master
-	@RequestMapping("/product/manageProduct") 
-	public String manageProduct(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession(false);
-		Map<String,Object> user = (Map<String,Object>)session.getAttribute("admin");
-<<<<<<< HEAD
-		List<ManageProductDTO> manageProductList = pSvc.getManage(user.get("manager_id").toString());
-		
-		model.addAttribute("manageProductList",manageProductList);
-		return "product/testmanageproduct";
+		return "redirect:/admin/product/manageProduct";
 	}
 	
 	// ajax Test
@@ -84,22 +74,47 @@ public class ProductController {
 		return "test/ajaxTest";
 	}
 	
+	@RequestMapping("/pagingTest")
+	public String pagingTestPage() {
+		return "test/pagingTest";
+	}
+	
 	@ResponseBody
-	@PostMapping("/ajaxTest")
-	public String ajaxTest(@RequestBody String testMsg) {
-		System.out.println("dd");
-		System.out.println(testMsg);
-		return "";
-	}
-}
-
-
+	@PostMapping("/admin/product/loadProductList")
+	public List<ManageProductDTO> loadProductList(HttpServletRequest request) {
 		
-=======
-		List<ManageProductDTO> manageProductList = pSvc.getManage(user.get("manager_id").toString()); 
+		System.out.println("loadProductList ����");
+		HttpSession session = request.getSession();
+		Map<String,Object> admin = (Map<String,Object>)session.getAttribute("admin");
+		List<ManageProductDTO> productList = pSvc.getManage(admin.get("manager_id").toString());
 		
-		model.addAttribute("manageProductList",manageProductList);
-		return "product/testmanageproduct";
+		return productList;
+		
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "/admin/product/deleteProductList", produces="application/json; charset=UTF-8")
+	public String deleteProductList(@RequestParam(value="checkBoxArr[]") List<String> checkBoxArr,HttpServletRequest request) {
+		try {
+		pSvc.deleteProduct(checkBoxArr,request);
+		return "deleted Successfuuly";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "deleted Failed";
+		}
+	}
+	
+	// load ProductPage based on product_id
+	@RequestMapping("/product/{product_id}")
+	public String loadProductPage(@PathVariable int product_id, Model model) {
+		try {
+			model.addAttribute("product",pSvc.loadProductDetailPage(product_id));
+		} catch(Exception e) {
+			
+		}
+		
+		return "product/product_detail_page_test";
+	}
+	
+	
 }
->>>>>>> master

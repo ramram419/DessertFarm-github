@@ -15,12 +15,25 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
+import kr.co.dessertfarm.aws.S3Config;
+import kr.co.dessertfarm.basket.BasketDAO;
+import kr.co.dessertfarm.basket.BasketService;
+import kr.co.dessertfarm.category.CategoryDAO;
+import kr.co.dessertfarm.category.CategoryService;
+import kr.co.dessertfarm.dibs.DibsDAO;
+import kr.co.dessertfarm.dibs.DibsService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.order.OrderDAO;
+import kr.co.dessertfarm.order.OrderService;
+import kr.co.dessertfarm.paging.PagingDAO;
+import kr.co.dessertfarm.paging.PagingService;
 import kr.co.dessertfarm.product.ProductDAO;
 import kr.co.dessertfarm.product.ProductService;
+import kr.co.dessertfarm.search.SearchDAO;
+import kr.co.dessertfarm.search.SearchService;
 import kr.co.dessertfarm.spring.MainDAO;
-import kr.co.dessertfarm.product.ProductDAO;
+
 
 @Configuration
 public class MainConfig {
@@ -62,18 +75,45 @@ public class MainConfig {
 	public MainDAO mainDAO() {
 		return new MainDAO();
 	}
+	
 	@Bean 
 	public ProductDAO productDAO() {
 		return new ProductDAO();
 	}
+	
 	@Bean
 	public ArticleDAO articleDAO() {
 		return new ArticleDAO();
 	}
 	
 	@Bean
-	public ProductDAO productDAO() {
-		return new ProductDAO();
+	public PagingDAO pagingDAO() {
+		return new PagingDAO();
+	}
+	
+	@Bean
+	public CategoryDAO categoryDAO() {
+		return new CategoryDAO();
+	}
+	
+	@Bean
+	public SearchDAO searchDAO() {
+		return new SearchDAO();
+	}
+	
+	@Bean
+	public DibsDAO dibsDAO() {
+		return new DibsDAO();
+	}
+	
+	@Bean
+	public OrderDAO orderDAO() {
+		return new OrderDAO(); 
+	}
+	
+	@Bean
+	public BasketDAO basketDAO(){
+		return new BasketDAO();
 	}
 	
 	@Bean
@@ -94,5 +134,34 @@ public class MainConfig {
 	@Bean
 	public ArticleService articleSvc() {
 		return new ArticleService(articleDAO());
+	}
+	
+	@Bean 
+	public PagingService pagingSvc() {
+		return new PagingService();
+	}
+	
+	@Bean CategoryService categoryService() {
+		return new CategoryService();
+	}
+	
+	@Bean
+	public SearchService searchService() {
+		return new SearchService();
+	}
+	
+	@Bean
+	public DibsService dibsService() {
+		return new DibsService();
+	}
+	
+	@Bean
+	public OrderService orderService() {
+		return new OrderService();
+	}
+	
+	@Bean
+	public BasketService basketService() {
+		return new BasketService();
 	}
 }

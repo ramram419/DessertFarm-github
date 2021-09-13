@@ -8,37 +8,61 @@
 		insert into product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id) 
 		values(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id})
 	</insert>
-	
-<<<<<<< HEAD
-=======
-	<select id="getProductId" parameterType="productRequest" resultType="int">
-		select product_id from product where product_name = #{product_name} and manager_id = #{manager_id}
-	</select>
->>>>>>> master
+  
 	<insert id="insertProductImage" parameterType="productImageRequest">
 		insert into product_image(pro_img_id,product_id,pro_img_name,pro_img_server,pro_filesize,manager_id)
 		values(#{pro_img_id},#{product_id},#{pro_img_name},#{pro_img_server},#{pro_filesize},#{manager_id});
 	</insert>
-<<<<<<< HEAD
 	
 	<select id="getProductId" parameterType="productRequest" resultType="int">
 		select product_id from product where product_name = #{product_name} and manager_id = #{manager_id}
 	</select>
-	
-=======
->>>>>>> master
+
 	<select id="getManageProductList" parameterType="String" resultType="manageProductDTO">
 		select a.product_id, a.product_name, a.category, a.product_price, a.product_sales_stat,b.pro_img_server
 		from product a,product_image b 
 		where a.product_Id = b.product_id and 
 		a.manager_id = #{id} and 
-<<<<<<< HEAD
 		pro_img_name Like '%thumb____' order by a.product_id*1 desc;
 	</select>
-</mapper>
-=======
-		pro_img_name Like '%thumb____';
+	
+	<delete id="deleteProduct" parameterType="list">
+		delete from product where 
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteProductImage" parameterType="list">
+		delete from product_image where 
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach>
+	</delete>
+	
+	<select id="getProductImageName" parameterType="list" resultType="String">
+		select pro_img_name from product_image where
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach> 
+	</select>
+	
+	<select id="searchProduct" resultType="manageProductDTO">
+		SELECT product_id, category, product_name, product_price
+		FROM product
+		<include refid="search"></include>
+	</select>
+	
+	<sql id="search">
+		WHERE product_id LIKE CONCAT('%', #{keyword},'%') OR product_name LIKE CONCAT('%', #{keyword}, '%') OR category LIKE CONCAT('%', #{keyword}, '%') OR product_price LIKE CONCAT('%', #{keyword}, '%')
+	</sql>
+	
+	<select id="getProduct" parameterType="int" resultType="productPageDTO">
+		SELECT * FROM product WHERE product_id = #{product_id}
+	</select>
+	
+	<select id="getProductImage" parameterType="int" resultType="String">
+		SELECT pro_img_server FROM product_image WHERE product_id = #{product_id} ORDER BY pro_img_server DESC;
 	</select>
 	
 </mapper>
->>>>>>> master

@@ -1,6 +1,9 @@
 package kr.co.dessertfarm.product;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -49,7 +52,46 @@ public class ProductDAO {
 			e.printStackTrace();
 			return manageProductList;
 		}
-		
-		
+	}
+
+	public void deleteProduct(List<String> deleteProList) {
+		try {
+			sqlSession.delete("product.deleteProduct",deleteProList);
+			System.out.println("Products deleted successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteProductImage(List<String> deleteProList) {
+		try {
+			sqlSession.delete("product.deleteProductImage",deleteProList);
+			System.out.println("Product's Images deleted successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<String> getDeleteProductImageName(List<String> deleteProList) {
+			List<String> delProImgName = null;
+		try {
+			delProImgName = sqlSession.selectList("product.getProductImageName",deleteProList);
+			System.out.println(delProImgName);
+			return delProImgName;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return delProImgName;
+		}
+	}
+
+	public ProductPageDTO getProduct(int product_id) throws Exception {
+		ProductPageDTO product = sqlSession.selectOne("product.getProduct",product_id);
+		product.print();
+		return product;
+	}
+	
+	public List<String> getProductImage(int product_id) throws Exception {
+		List<String> imgList = sqlSession.selectList("product.getProductImage",product_id);
+		return imgList;
 	}
 }

@@ -2,6 +2,8 @@ package kr.co.dessertfarm.product;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,23 +19,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-<<<<<<< HEAD
 import kr.co.dessertfarm.product.ProductDAO;
 
-
-=======
->>>>>>> master
 
 @Service("product")
 public class ProductService {
 	@Autowired
 	ProductDAO pDao;
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 	public void insertProduct(ProductRequest productRequest,MultipartFile[] imgList,HttpServletRequest request) {
 			pDao.insertProduct(productRequest);
 			int productId = pDao.getProductId(productRequest);
@@ -62,11 +55,9 @@ public class ProductService {
 		
 		Element root = document.getDocumentElement();
 		
-<<<<<<< HEAD
-=======
-		System.out.println(root + " �� " + root.getAttribute("name"));
+		System.out.println(root + " : " + root.getAttribute("name"));
 		
->>>>>>> master
+
 		NodeList productList = root.getElementsByTagName("product");
 		
 		for (int i=0; i<productList.getLength(); i++) {
@@ -122,10 +113,7 @@ public class ProductService {
 		if(!dir.exists()) {
 			dir.mkdir();
 		}
-<<<<<<< HEAD
-=======
-
->>>>>>> master
+		
 		for (int i=0; i<imgList.length; i++) {
 			if (!imgList[i].isEmpty()) {
 				String reName,pro_img_id;
@@ -142,19 +130,11 @@ public class ProductService {
 				
 				
 				try {
-<<<<<<< HEAD
-				// �����ϴ� transferTo �޼ҵ�
-				imgList[i].transferTo(new File(saveDir + "/" + reName));
-				// db�� �����ϱ� ���� Request ����
-				ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
-				pDao.insertProductImage(productImageRequest);
-=======
 
 					imgList[i].transferTo(new File(saveDir + "/" + reName));
 
 					ProductImageRequest productImageRequest = new ProductImageRequest(pro_img_id,productId,reName,"/resources/product_img/"+reName,imgList[i].getSize(),id);
 					pDao.insertProductImage(productImageRequest);
->>>>>>> master
 				} catch (Exception e) {
 					e.printStackTrace();
 					return false;
@@ -185,24 +165,13 @@ public class ProductService {
 					NodeList cateList = productEle.getElementsByTagName("code");
 					Element codeEle = (Element)cateList.item(0);
 					Node code = codeEle.getFirstChild();
-<<<<<<< HEAD
+
 					String cateCode = code.getNodeValue(); // K001
-=======
-					String cateCode = code.getNodeValue();
->>>>>>> master
 					
 					if (cateCode.equals(categoryCode)) {
 						NodeList bigList = productEle.getElementsByTagName("big");
 						Element bigEle = (Element)bigList.item(0);
-<<<<<<< HEAD
-						Node big = bigEle.getFirstChild(); // ����ũ
 						
-						NodeList smallList = productEle.getElementsByTagName("small");
-						Element smallEle = (Element)smallList.item(0);
-						Node small = smallEle.getFirstChild(); // ��������ũ
-						
-						String reverseCode = big.getNodeValue() + "/" + small.getNodeValue(); // ����ũ/��������ũ
-=======
 						Node big = bigEle.getFirstChild(); 
 						
 						NodeList smallList = productEle.getElementsByTagName("small");
@@ -210,7 +179,6 @@ public class ProductService {
 						Node small = smallEle.getFirstChild();
 						
 						String reverseCode = big.getNodeValue() + "/" + small.getNodeValue();
->>>>>>> master
 						return reverseCode;
 					}
 					
@@ -224,41 +192,54 @@ public class ProductService {
 			return "badCode";
 		}
 	
-<<<<<<< HEAD
-	// ��ǰ���� ����
+	
 	public List<ManageProductDTO> getManage(String id) {
 		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
 		
-		// �ڵ� ����ȯ
-		for(int k=0; k<manageProductList.size(); k++) {
+			for(int k=0; k<manageProductList.size(); k++) {
 			manageProductList.get(k).setCategory(getReverseCode(manageProductList.get(k).getCategory()));;
 		}
 		
-//		for (int i=0; i<manageProductList.size(); i++) {
-//			ManageProductDTO dto = manageProductList.get(i);
-//			System.out.println("---------");
-//			System.out.println("��ǰ�̸� : " + dto.getProduct_name());
-//			System.out.println("��ǰ���� : " + dto.getProduct_price());
-//			System.out.println("��ǰī�װ��� : " + dto.getCategory());
-//			System.out.println("��ǰ ��ǥ �̹��� ������ : " + dto.getPro_img_server());
-//			System.out.println("�ǸŻ��� : " + dto.isProduct_sales_stat());
-//		}
-		
-=======
-	public List<ManageProductDTO> getManage(String id) {
-		List<ManageProductDTO> manageProductList =  pDao.getManageProduct(id);
-		for (int i=0; i<manageProductList.size(); i++) {
-			ManageProductDTO dto = manageProductList.get(i);
-			System.out.println("---------");
-			System.out.println("<Service> Product NAME : " + dto.getProduct_name());
-			System.out.println("<Service> Product Price : " + dto.getProduct_price());
-			System.out.println("<Service> Product Category : " + dto.getCategory());
-			System.out.println("<Service> Product ImageServer : " + dto.getPro_img_server());
-			System.out.println("<Service> Product Sales : " + dto.isProduct_sales_stat());
-		}
-		
->>>>>>> master
+
 		return manageProductList;
+		
+	}
+
+	public void deleteProduct(List<String> deleteProList, HttpServletRequest request) {
+		pDao.deleteProduct(deleteProList);
+		deleteProductImage(deleteProList,request);
+		pDao.deleteProductImage(deleteProList);
+		
+	}
+	
+	public void deleteProductImage(List<String> deleteProList,HttpServletRequest request) {
+		List<String> delImgList = pDao.getDeleteProductImageName(deleteProList);
+		String saveDir = 
+				request.getSession().getServletContext().getRealPath("/resources/product_img");
+		if (delImgList != null) {
+			for (int i=0; i<delImgList.size(); i++) {
+				File delImg = new File(saveDir+"/"+delImgList.get(i));
+				if (delImg.exists()) {
+					if (delImg.delete()) {
+						System.out.println("Delete file successfully");
+					} else {
+						System.out.println("Delete file failed");
+					}
+				} else {
+					System.out.println("File does not exist");
+				}
+			}
+		}
+	}
+
+	public HashMap<String,Object> loadProductDetailPage(int product_id) throws Exception {
+		HashMap<String,Object> productInfo = new HashMap<String,Object>();
+		ProductPageDTO productDto = pDao.getProduct(product_id);
+		List<String> productImg = pDao.getProductImage(product_id);
+		productInfo.put("DTO", productDto);
+		productInfo.put("IMG", productImg);
+		
+		return productInfo;
 		
 	}
 }

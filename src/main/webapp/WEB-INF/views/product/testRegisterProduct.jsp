@@ -14,7 +14,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	 <form name="frm" action="register" method="post" encType="multipart/form-data">
+	 <form name="frm" action="${path }/product/register" method="post" encType="multipart/form-data">
         <p>
             상 품 이 름 : <input type="text" class="name" name="product_name">
         </p>
@@ -58,19 +58,15 @@
         	상품 A.S 및 특이사항 :<input type="text" name="product_as">
         </p>
         <input type="submit" value="상품등록" onclick="nullCheck()">
-<<<<<<< HEAD
         <p>
-        	<a href="<c:url value='manageProduct' />">메뉴관리 페이지로</a>
+        	<a href="<c:url value='/admin' />">메뉴관리 페이지로</a>
         </p>
-        
-=======
->>>>>>> master
     </form>
     
 
     <script>
         function itemChange() {
-            var cake = ["초코케이크","파운드케이크","버터케이크","스펀지케이크","롤케이크","컵케이크","티라미수","카스텔라"
+            var cake = ["무스케이크","쉬폰케이크","치즈케이크","초코케이크","파운드케이크","버터케이크","스펀지케이크","롤케이크","컵케이크","티라미수","카스텔라"
         ,"크레이프","타르트"]
         var bakery = ["크로플","에그타르트","마들렌","머핀","도넛","쿠키","플레인","베이글","크로칸슈","몽블랑","브라우니","식빵","샌드위치","크로아상","와플","스콘"]
         var sangji = ["크로아상","타르트/파이","스콘/볼","식빵"]
@@ -111,14 +107,19 @@
         function nullCheck() {
             if ($('.name').val() == "") {
                 alert("상품 이름을 입력하세요")
+                history.go(-1)
             } else if ($('.category1').val() == "" || $('.category1').val() == null) {
                 alert("상품 카테고리를 선택하세요")
+                history.go(-1)
             } else if ($('.category2').val() == null || $('.category2').val() == "" ) {
                 alert("상품 카테고리를 선택하세요")
+                history.go(-1)
             } else if ($('.price').val() == "") {
                 alert("상품 가격을 입력하세요")
+                history.go(-1)
             } else if ($('.value').val() == "") {
                 alert("상품 내용을 입력하세요")
+                history.go(-1)
             }
         }
    </script>

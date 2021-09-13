@@ -6,18 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ManageProductDTO {
+	private int product_id;
 	private String product_name;
-<<<<<<< HEAD
-
-	private String category; 
-	private String product_price;
-	private boolean product_sales_stat;
-	
-	private String pro_img_server; 
-=======
 	private String category;
 	private String product_price;
 	private boolean product_sales_stat;
 	private String pro_img_server;
->>>>>>> master
+	
 }

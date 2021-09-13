@@ -16,11 +16,11 @@
 	<div class="contentTxt">장바구니</div>
 	<div class="pagelist">
 		<ul>
-			<li onclick="location.href='./loginMyPage';">마이페이지</li>
+			<li onclick="location.href='./loginMyPage';">정보변경</li>
 			<li onclick="location.href='./like';">내찜목록</li>
 			<li onclick="location.href='./bags';" class="click">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
-			<li onclick="location.href='./qnalist';">문의내역</li>
+			<li onclick="location.href='./qnalist?pageNum=1';">문의내역</li>
 		</ul>
 	</div>
 	<div class="allcheck">
@@ -29,34 +29,22 @@
 	</div>
 	<div style="display:flex;">
 		<div class="like_list">
+		<c:forEach items="${basketList }" var="bl">
 			<div class="like_item">
 				<img src="${path}/resources/images/icon_checkmark_off.png" class="check"/>
 				<img src="${path }/resources/images/image_7.png" class="itemimg"/>
 				<div class="like_itemContent">
                		<div class="tag new">NEW</div>
                		<div class="tag only_b">사업자 전용</div>
-					<div class="itemName"><span class="shopName">[달콤디저트]</span> 크로무슈</div>
+					<div class="itemName"><span class="shopName">[달콤디저트]</span> ${bl.product_name }</div>
            	 	</div>
            	 	<div class="item_price">
                		<div class="sale">5%</div>
                		<div class="o_price">16,000원</div>
-               		<div class="price">15,200원</div>
+               		<div class="price">${bl.product_price }원</div>
             	</div>
 			</div>
-			<div class="like_item">
-				<img src="${path}/resources/images/icon_checkmark_off.png" class="check"/>
-				<img src="${path }/resources/images/image_7.png" class="itemimg"/>
-				<div class="like_itemContent">
-               		<div class="tag new">NEW</div>
-               		<div class="tag only_b">사업자 전용</div>
-	               	<div class="itemName"><span class="shopName">[달콤디저트]</span> 크로무슈</div>
-           	 	</div>
-				<div class="item_price">
-               		<div class="sale">5%</div>
-               		<div class="o_price">16,000원</div>
-               		<div class="price">15,200원</div>
-            	</div>
-			</div>
+		</c:forEach>
 		</div>
 		
 		<div class="nokakao">
@@ -69,7 +57,28 @@
 		</div>
 	</div>
 	
+	<ul class="pagingbox">
+		<c:if test="${paging.leftArr}">
+			<a href="?keyword=${keyword}&pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
+		</c:if>
+		<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
+		<c:choose>
+				<c:when test="${i eq paging.pageNum}">
+					<li class="active">${i}</li>		
+				</c:when>
+				<c:otherwise>
+					<a href="?keyword=${keyword}&pageNum=${i}"><li>${i}</li></a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		
+		<c:if test="${paging.sectorEnd < paging.totalPage}">
+		<a href="?keyword=${keyword}&pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
+		</c:if>
+	</ul>
+	
 </div>
+<c:import url="../sideMenu.jsp" />
 <c:import url="../footer.jsp"/>
 </body>
 </html>

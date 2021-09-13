@@ -25,7 +25,39 @@ $(document).ready(function(){
     $(".menulist").on("mouseout",function(){
        $(".menulist").hide();
     })
-})
+});
+
+	function search() {
+		var text = $(".search_text").val();
+		$.ajax({
+			type: "GET",
+			url: "./search",
+			data: {"keyword": text},
+			dataType: "JSON",
+			contentType: "application/json;charset=UTF-8",
+			success: function(data){
+				location.href='./search';
+			}
+		})
+	}
+	
+	function basket() {
+		$.ajax({
+			type: "GET",
+			url : "",
+			data : "",
+			contentType : "",
+			success : function() {
+				
+			}, 
+			error : function() {
+				
+			}
+		})
+		
+	}
+	
+	
 </script>
 
 <div class="header">
@@ -49,19 +81,22 @@ $(document).ready(function(){
 	<div class="header_mid">
 		<a href="<c:url value='/home'/>"><div class="logo"></div></a>
 		<div class="search_box">
-			<input type="text" class="search_text"/>
-			<div class="search_icon"></div>
+		<form class="searchfrm" action="${path}/search" method="get">
+			<input type="text" class="search_text" name="keyword" />
+			<div class="search_icon" onclick="$('.searchfrm').submit();"></div>
+		</form>
 		</div>
 	</div>
+	
 	<div class="header_btm">
 		<div class="menu_box">
 			<div class="cate"><img src="${path}/resources/images/icon_bars@2x.png"/>전체 카테고리</div>
 			<div class="menu">
 				<ul>
                		<li><a>브랜드스토리</a></li>
-               		<li><a href="<c:url value='/newitem' />">신상품</a></li>
-               		<li><a href="<c:url value='/product' />">베스트상품/상점</a></li>
-               		<li><a>이달의 <span style="color:#ff6363;">할인</span></a></li>
+               		<li><a href="<c:url value='/new' />">신상품</a></li>
+               		<li><a href="<c:url value='/best' />">베스트상품/상점</a></li>
+               		<li><a href="<c:url value='/sale' />">이달의 <span style="color:#ff6363;">할인</span></a></li>
                		<li><a>샘플 상품 주문</a></li>
            		</ul>
 			</div>
@@ -95,7 +130,7 @@ $(document).ready(function(){
 			<div class="minmenu">
 				<div class="cakelist select">
 					<ul class="cake1">
-						<li>무스케이크</li>
+						<li><a href="./category" style="color: #000000;">무스케이크</a></li>
 						<li>쉬폰케이크</li>
 						<li>치즈케이크</li>
 						<li>초코케이크</li>

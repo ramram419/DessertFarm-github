@@ -13,6 +13,11 @@
         <typeAlias type="kr.co.dessertfarm.product.ProductRequest" alias="productRequest" />
         <typeAlias type="kr.co.dessertfarm.product.ProductImageRequest" alias="productImageRequest" />
         <typeAlias type="kr.co.dessertfarm.product.ManageProductDTO" alias="manageProductDTO" />
+        <typeAlias type="kr.co.dessertfarm.article.ArticleVO" alias="ArticleVO"/>
+        <typeAlias type="kr.co.dessertfarm.search.SearchProductDTO" alias="searchProductDTO"/>
+        <typeAlias type="kr.co.dessertfarm.order.OrderDTO" alias="orderDTO"/>
+        <typeAlias type="kr.co.dessertfarm.basket.BasketDTO" alias="basketDTO"/>
+        <typeAlias type="kr.co.dessertfarm.product.ProductPageDTO" alias='productPageDTO'/>
     </typeAliases>
     
     <!-- connection pool -->
@@ -35,5 +40,10 @@
         <mapper resource="./mybatis/mapper/productMapper.xml" />
         <mapper resource="./mybatis/mapper/articleMapper.xml"/>
         <mapper resource="./mybatis/mapper/productMapper.xml"/>
+        <mapper resource="./mybatis/mapper/categoryMapper.xml"/>
+        <mapper resource="./mybatis/mapper/searchMapper.xml"/>
+        <mapper resource="./mybatis/mapper/dibsMapper.xml"/>
+        <mapper resource="./mybatis/mapper/orderMapper.xml"/>
+        <mapper resource="./mybatis/mapper/basketMapper.xml"/>
     </mappers>
 </configuration>

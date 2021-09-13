@@ -16,11 +16,11 @@
 	<div class="contentTxt">내찜목록</div>
 	<div class="pagelist">
 		<ul>
-			<li onclick="location.href='./loginMyPage';">마이페이지</li>
+			<li onclick="location.href='./loginMyPage';">정보변경</li>
 			<li onclick="location.href='./like';"class="click">내찜목록</li>
 			<li onclick="location.href='./bags';">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
-			<li onclick="location.href='./qnalist';">문의내역</li>
+			<li onclick="location.href='./qnalist?pageNum=1';">문의내역</li>
 		</ul>
 	</div>
 	<div class="allcheck">
@@ -70,6 +70,7 @@
 		<button style="background-color:#e13517; color:#ffffff;">장바구니</button>
 	</div>
 </div>
+<c:import url="../sideMenu.jsp" />
 <c:import url="../footer.jsp"/>
 </body>
 </html>

@@ -16,11 +16,11 @@
 	<div class="contentTxt">문의내역</div>
 	<div class="pagelist">
 		<ul>
-			<li onclick="location.href='./loginMyPage';">마이페이지</li>
+			<li onclick="location.href='./loginMyPage';">정보변경</li>
 			<li onclick="location.href='./like';">내찜목록</li>
 			<li onclick="location.href='./bags';">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
-			<li onclick="location.href='./qnalist';" class="click">문의내역</li>
+			<li onclick="location.href='./qnalist?pageNum=1';" class="click">문의내역</li>
 		</ul>
 	</div>
 	<div>
@@ -34,31 +34,39 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list }" var="vo">
+				<c:forEach items="${list }" var="vo" varStatus="var">
 					<tr>
-						<td>${vo.qna_id }</td>
-						<td>${vo.client_id }</td>
+						<td>${vo.rownum}</td>
 						<td>${vo.qna_title }</td>
-						<td>${vo.qna_value }</td>
 						<td>${vo.qna_date }</td>
+						<td>대기중</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-			<ul class="pagination">
-				<li><img src="${path}/resources/images/left_arrows.png"/></li>
-				<li><img src="${path}/resources/images/left_arrow.png"/></li>
-				<li class="active">1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>4</li>
-				<li>5</li>
-				<li><img src="${path}/resources/images/right_arrow.png"/></li>
-				<li><img src="${path}/resources/images/right_arrows.png"/></li>
-			</ul>
+			<ul class="pagingbox">
+				<c:if test="${paging.leftArr}">
+					<a href="?pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
+				</c:if>
+			<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
+				<c:choose>
+					<c:when test="${i eq paging.pageNum}">
+						<li class="active">${i}</li>		
+					</c:when>
+					<c:otherwise>
+						<a href="?pageNum=${i}"><li>${i}</li></a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		
+			<c:if test="${paging.sectorEnd < paging.totalPage}">
+				<a href="?pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
+			</c:if>
+	</ul>
+			<p><a href="<c:url value='/qnalist?pageNum=1' />">문의하기</a></p>
 	</div>
-	
 </div>
+<c:import url="../sideMenu.jsp" />
 <c:import url="../footer.jsp"/>
 </body>
 </html>

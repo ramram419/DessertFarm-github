@@ -1,9 +1,15 @@
 package kr.co.dessertfarm.front;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,26 +37,27 @@ public class FrontController {
 	public String like() {
 		return "home/contents/likelist";
 	}
-	
-	@RequestMapping("/bags")
-	public String bag() {
-		return "home/contents/bag";
-	}
-	
-	@RequestMapping("/orderlist")
-	public String orderlist() {
-		return "home/contents/order";
-	}
   
-	@RequestMapping("/newitem")
+	@RequestMapping("/new")
 	public String newitem() {
 		return "home/contents/newitem";
 	}
 	
-	@RequestMapping("/category")
-	public String category() {
-		return "home/contents/category";
+	@RequestMapping("/sale")
+	public String saleitem() {
+		return "home/contents/sale";
 	}
+	
+	@RequestMapping("/admin22")
+	public String admin(HttpServletRequest request, Model model) {
+		model.addAttribute("c", request.getParameter("c"));
+		return "admin/index";
+	}
+	
+//	@RequestMapping("/category")
+//	public String category() {
+//		return "home/contents/category";
+//	}
   
 	@RequestMapping("/best")
 	public String best() {
@@ -97,5 +104,67 @@ public class FrontController {
 		int result = joinSvc.manager_dupId(id);
 		System.out.println("<Controller> result : " + result + " ID : " + id);
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/client/dupName")
+	public int clinet_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.client_dupName(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/manager/dupName")
+	public int manager_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.manager_dupName(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/user/dupName")
+	public int user_dupName(HttpServletRequest req, String name) {
+		name = req.getParameter("name");
+		int result = joinSvc.client_dupId(name);
+		System.out.println("<Controller> result : " + result + " Name : " + name);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/modify/client")
+	public String changePwd_client(HttpServletRequest req, String newName, String originPwd, String newPwd, String newTel, String id) {
+		newName = req.getParameter("client_name");
+		originPwd = req.getParameter("origin_client_pwd");
+		newPwd = req.getParameter("client_pwd");
+		newTel = req.getParameter("client_tel");
+		id = req.getParameter("client_id");
+		HashMap<String ,Object> checkMap = new HashMap<String, Object>();
+		checkMap.put("id", id);
+		checkMap.put("pwd", originPwd);
+		System.out.println("<Controller> checkMap : " + id + " " + originPwd);
+		int result = joinSvc.client_PwdCheck(checkMap);
+		System.out.println("<Controller> checkResult : " + result);
+		if(result == 0) {
+			return "wrong password";
+		}else if(result > 0) {
+			HashMap<String, Object> changeMap = new HashMap<String, Object>();
+			changeMap.put("name", newName);
+			changeMap.put("newPwd", newPwd);
+			changeMap.put("tel", newTel);
+			changeMap.put("id", id);
+			joinSvc.changePwd_client(changeMap);
+			return "changed";
+		}
+		return "";
+		
+	}
+	
+	
+	@GetMapping("/test")
+	public String test() {
+		return "home/test";
 	}
 }
