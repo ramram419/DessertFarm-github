@@ -15,12 +15,14 @@ public class ProductDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	public void insertProduct(ProductRequest productRequest) {
+	public int insertProduct(ProductRequest productRequest) {
 		try {
-			int product_id = sqlSession.insert("product.insertProduct",productRequest);
-			System.out.println("dd"+product_id);
+			sqlSession.insert("product.insertProduct",productRequest);
+			sqlSession.insert("product.insertProductViewSet",productRequest.getProduct_id());
+			return productRequest.getProduct_id();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return -1;
 		} 
 	}
 	
