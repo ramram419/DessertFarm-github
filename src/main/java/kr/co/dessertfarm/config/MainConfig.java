@@ -13,6 +13,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import kr.co.dessertfarm.ImageManager.ImageDAO;
+import kr.co.dessertfarm.ImageManager.ImageService;
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
 import kr.co.dessertfarm.aws.S3Config;
@@ -30,6 +32,7 @@ import kr.co.dessertfarm.paging.PagingDAO;
 import kr.co.dessertfarm.paging.PagingService;
 import kr.co.dessertfarm.product.ProductDAO;
 import kr.co.dessertfarm.product.ProductService;
+import kr.co.dessertfarm.product.ProductViewService;
 import kr.co.dessertfarm.search.SearchDAO;
 import kr.co.dessertfarm.search.SearchService;
 import kr.co.dessertfarm.spring.MainDAO;
@@ -117,6 +120,11 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public ImageDAO imageDAO() {
+		return new ImageDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -164,4 +172,15 @@ public class MainConfig {
 	public BasketService basketService() {
 		return new BasketService();
 	}
+	
+	@Bean
+	public ProductViewService productViewService() {
+		return new ProductViewService();
+	}
+	
+	@Bean
+	public ImageService imageService() {
+		return new ImageService();
+	}
 }
+

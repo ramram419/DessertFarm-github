@@ -1,11 +1,14 @@
 package kr.co.dessertfarm.product;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,14 +30,22 @@ public class ProductService {
 	@Autowired
 	ProductDAO pDao;
 	
-	public void insertProduct(ProductRequest productRequest,MultipartFile[] imgList,HttpServletRequest request) {
-			pDao.insertProduct(productRequest);
-			int productId = pDao.getProductId(productRequest);
-			saveProductImage(imgList,request,productRequest.getManager_id(),productId);
+	public int insertProduct(ProductRequest productRequest,String manager_id) {
+		productRequest.setManager_id(manager_id);	
+		pDao.insertProduct(productRequest);
+		System.out.println("rReq = " + productRequest.getProduct_id());
+		int productId = productRequest.getProduct_id();
+		return productId;
+			
 	}
 
+	public ProductRequest setManager(ProductRequest productRequest, String manager_id) {
+		productRequest.setManager_id(manager_id);
+		return productRequest;
+	}
 	
-	public ProductRequest adjustProductRequest(ProductRequest productRequest,HttpServletRequest request, HttpSession session) {
+	
+	/*public ProductRequest adjustProductRequest(ProductRequest productRequest,String manager_id) {
 		String cate1,cate2;
 		cate1 = request.getParameter("category1");
 		cate2 = request.getParameter("category2");
@@ -90,7 +101,7 @@ public class ProductService {
 			return "badCode";
 		}
 		return "badCode";
-	}
+	} */
 	
 	public MultipartFile[] combineImgList(MultipartFile thumb, MultipartFile[] images) {
 		MultipartFile[] imgList = new MultipartFile[images.length+1];
@@ -99,7 +110,7 @@ public class ProductService {
 		return imgList;
 	}
 	
-	public Boolean saveProductImage(MultipartFile[] imgList,HttpServletRequest request,String id,int productId) {
+	/* public Boolean saveProductImage(MultipartFile[] imgList,HttpServletRequest request,String id,int productId) {
 		
 		
 		int imgNum = 0;
@@ -144,9 +155,9 @@ public class ProductService {
 		}
 		
 		return true;	
-	}
+	} */
 	
-	public String getReverseCode(String categoryCode) {
+	public String getReverseCode(String categoryCode) { // Need Refactoring
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = factory.newDocumentBuilder();
@@ -240,6 +251,14 @@ public class ProductService {
 		productInfo.put("IMG", productImg);
 		
 		return productInfo;
-		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

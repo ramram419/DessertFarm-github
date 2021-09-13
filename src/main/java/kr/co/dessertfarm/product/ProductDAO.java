@@ -17,16 +17,8 @@ public class ProductDAO {
 	
 	public void insertProduct(ProductRequest productRequest) {
 		try {
-			sqlSession.insert("product.insertProduct",productRequest);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-	}
-	
-	public void insertProductImage(ProductImageRequest productImageRequest) {
-		try {
-			sqlSession.insert("product.insertProductImage",productImageRequest);
-			System.out.println("<DAO> insertImageMethod Invoked");
+			int product_id = sqlSession.insert("product.insertProduct",productRequest);
+			System.out.println("dd"+product_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -69,6 +61,7 @@ public class ProductDAO {
 			System.out.println("Product's Images deleted successfully.");
 		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 
@@ -93,5 +86,10 @@ public class ProductDAO {
 	public List<String> getProductImage(int product_id) throws Exception {
 		List<String> imgList = sqlSession.selectList("product.getProductImage",product_id);
 		return imgList;
+	}
+	
+	public void addView(int product_id) throws Exception {
+		sqlSession.update("product.addView",product_id);
+		System.out.println(product_id + "번 상품의 조회수가 1 증가하였습니다.");
 	}
 }

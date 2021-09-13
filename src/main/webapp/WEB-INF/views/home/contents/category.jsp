@@ -173,8 +173,12 @@
 		<div class="itemBox">
 	    	<img class="cateItem_img" src="${path }${item.pro_img_server}"/>
 	        <div class="itemTag">
+	        <c:if test="${item.product_new}">
 	        	<div class="tag new">NEW</div>
+	        </c:if>
+	        <c:if test="${item.product_best}">
 	            <div class="tag best">BEST</div>
+	        </c:if>
 	            <div class="tag only_b">사업자 전용</div>
 	       </div>
 	       <a href="${path}/product/${item.product_id}"><div class="itemName"><span class="shopName">[${item.manager_name}]</span> ${item.product_name}</div></a>
@@ -186,7 +190,6 @@
 	       <div class="cateItem_btn">
 	          <div class="add_dibs" data-id="${item.product_id}"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
 	          <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	      
 	       </div>
 	    </div>
 	</c:forEach>
