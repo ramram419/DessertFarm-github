@@ -24,9 +24,9 @@
 	<select id="getManageProductList" parameterType="String" resultType="manageProductDTO">
 		select a.product_id, a.product_name, a.category, a.product_price, a.product_sales_stat,b.product_img_url
 		from product a,product_image b 
-		where a.product_Id = b.product_id and 
+		where a.product_id = b.product_id and 
 		a.manager_id = #{id} and 
-		product_img_name Like '%thumb____' order by a.product_id*1 desc;
+		b.product_img_type = 'thumb' order by a.product_id*1 desc;
 	</select>
 	
 	<delete id="deleteProduct" parameterType="list">

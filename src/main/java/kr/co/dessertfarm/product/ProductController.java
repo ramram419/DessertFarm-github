@@ -118,7 +118,6 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping(value = "/admin/product/deleteProductList", produces="application/json; charset=UTF-8")
 	public String deleteProductList(@RequestParam(value="checkBoxArr[]") List<String> checkBoxArr,HttpServletRequest request) {
-		
 		try {
 			String dd = "dd";
 		pSvc.deleteProduct(checkBoxArr,request);
