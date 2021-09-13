@@ -12,7 +12,7 @@ import kr.co.dessertfarm.order.OrderController;
 import kr.co.dessertfarm.product.ProductController;
 import kr.co.dessertfarm.search.SearchController;
 import kr.co.dessertfarm.article.ArticleController;
-import kr.co.dessertfarm.awsTest.S3Controller;
+import kr.co.dessertfarm.aws.S3Controller;
 import kr.co.dessertfarm.basket.BasketController;
 import kr.co.dessertfarm.category.CategoryController;
 import kr.co.dessertfarm.dibs.DibsController;

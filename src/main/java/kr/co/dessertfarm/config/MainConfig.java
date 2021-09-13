@@ -17,7 +17,7 @@ import kr.co.dessertfarm.ImageManager.ImageDAO;
 import kr.co.dessertfarm.ImageManager.ImageService;
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
-import kr.co.dessertfarm.awsTest.S3Uploader;
+import kr.co.dessertfarm.aws.S3Config;
 import kr.co.dessertfarm.basket.BasketDAO;
 import kr.co.dessertfarm.basket.BasketService;
 import kr.co.dessertfarm.category.CategoryDAO;

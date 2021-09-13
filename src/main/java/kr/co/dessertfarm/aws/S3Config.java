@@ -1,4 +1,4 @@
-package kr.co.dessertfarm.awsTest;
+package kr.co.dessertfarm.aws;
 
 
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +16,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 @PropertySource("classpath:/application.properties")
 @Configuration
-public class S3Uploader {
+public class S3Config {
 	
 	
 	@Value("${cloud.aws.s3.bucket}")

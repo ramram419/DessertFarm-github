@@ -1,7 +1,11 @@
 package kr.co.dessertfarm.front;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -127,6 +131,35 @@ public class FrontController {
 		int result = joinSvc.client_dupId(name);
 		System.out.println("<Controller> result : " + result + " Name : " + name);
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/modify/client")
+	public String changePwd_client(HttpServletRequest req, String newName, String originPwd, String newPwd, String newTel, String id) {
+		newName = req.getParameter("client_name");
+		originPwd = req.getParameter("origin_client_pwd");
+		newPwd = req.getParameter("client_pwd");
+		newTel = req.getParameter("client_tel");
+		id = req.getParameter("client_id");
+		HashMap<String ,Object> checkMap = new HashMap<String, Object>();
+		checkMap.put("id", id);
+		checkMap.put("pwd", originPwd);
+		System.out.println("<Controller> checkMap : " + id + " " + originPwd);
+		int result = joinSvc.client_PwdCheck(checkMap);
+		System.out.println("<Controller> checkResult : " + result);
+		if(result == 0) {
+			return "wrong password";
+		}else if(result > 0) {
+			HashMap<String, Object> changeMap = new HashMap<String, Object>();
+			changeMap.put("name", newName);
+			changeMap.put("newPwd", newPwd);
+			changeMap.put("tel", newTel);
+			changeMap.put("id", id);
+			joinSvc.changePwd_client(changeMap);
+			return "changed";
+		}
+		return "";
+		
 	}
 	
 	
