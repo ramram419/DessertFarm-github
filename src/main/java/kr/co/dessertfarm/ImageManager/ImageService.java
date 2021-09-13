@@ -20,8 +20,9 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
-import kr.co.dessertfarm.awsTest.S3Controller;
+
 import kr.co.dessertfarm.ImageManager.ProductImageRequest;
+import kr.co.dessertfarm.aws.S3Controller;
 
 @Service
 public class ImageService {
@@ -33,6 +34,9 @@ public class ImageService {
 	
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucket;
+	
+	@Value("${cloud.aws.s3.bucket.path}")
+	private String path;
 	
 	@Autowired
 	ImageDAO imgDao;
@@ -98,7 +102,7 @@ public class ImageService {
 		}
 		productImageRequest.setProduct_img_id(product_id + "_" + index);
 		productImageRequest.setProduct_img_name(imgList.get(index).getImage_name());
-		productImageRequest.setProduct_img_url("S3аж╪р" + imgList.get(index).getImage_name());
+		productImageRequest.setProduct_img_url(path + "/" + imgList.get(index).getImage_name());
 		productImageRequest.setProduct_img_size((imgList.get(index).getImage_file().length()) / 1024);
 		productImageRequest.setManager_id(manager_id);
 		return productImageRequest; 

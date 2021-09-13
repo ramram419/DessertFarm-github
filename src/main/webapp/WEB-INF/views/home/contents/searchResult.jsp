@@ -24,7 +24,7 @@
 	<div class="cateitem_list">
 	<c:forEach var="item" items="${searchList}">
 		<div class="itemBox">
-	    	<img class="cateItem_img" src="${path }${item.pro_img_server}"/>
+	    	<img class="cateItem_img" src="https://${item.product_img_url}"/>
 	        <div class="itemTag">
 	        	<div class="tag new">NEW</div>
 	            <div class="tag best">BEST</div>

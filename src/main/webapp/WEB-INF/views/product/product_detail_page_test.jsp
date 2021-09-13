@@ -162,7 +162,7 @@
     <div class="content" data-product-id = '${product.DTO.product_id}'>
         <table class = 'product_info' width = 1096px height = 296px>
             <tr>
-                <td class = 'imgTd' rowspan = 5 height = '296px' > <img class='thumb' src="${path}${product.IMG[0]}"></td>
+                <td class = 'imgTd' rowspan = 5 height = '296px' > <img class='thumb' src="https://${product.IMG[0]}"></td>
                 <td width = '26px' rowspan='5'></td>
                 <td width = '300px' height = '30px'><p class = "p-title">${product.DTO.product_name}</p></td>
                 <td width = '70px' rowspan='5'></td>
@@ -189,7 +189,7 @@
             <div class="product_detail_value">
             	<div class="show-detail">상품 상세정보</div>
             	<c:forEach var='i' items="${product.IMG}" begin='1'>
-            		<img class="product-explain-img" src="${path}${i}" alt="">
+            		<img class="product-explain-img" src="https://${i}" alt="">
             	</c:forEach>
             	
             </div>
