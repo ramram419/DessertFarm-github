@@ -56,7 +56,7 @@
 			var result = '';
 			$.each(response,function(index,item) {
 				result += '<tr><td><input type="checkbox" name="isCheck" value="'+item["product_id"]+'"></td><td>'+index+'</td>'
-				result += '<td><img class="thumb" src="/dessertfarm.co.kr' + item["pro_img_server"] + '"></td>'
+				result += '<td><img class="thumb" src="/dessertfarm.co.kr' + item["product_img_url"] + '"></td>'
 				result += '<td>' + item["product_name"] + '</td>'
 				result += '<td>' + item["category"] + '</td>'
 				result += '<td>' + item["product_price"] + '</td>'

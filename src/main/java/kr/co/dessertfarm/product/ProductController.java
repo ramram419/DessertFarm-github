@@ -34,7 +34,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 
 import kr.co.dessertfarm.ImageManager.ImageService;
-import kr.co.dessertfarm.awsTest.S3Controller;
+import kr.co.dessertfarm.aws.S3Controller;
 
 @Controller
 public class ProductController {

@@ -5,10 +5,12 @@
   
 <mapper namespace="search">
 	<select id="searchProduct" parameterType="hashmap" resultType="searchProductDTO">
-		select m.manager_name,p.product_name, p.category,p.product_price,i.pro_img_server from product p, manager m, product_image i
-      	where p.product_id = i.product_id and p.manager_id = m.manager_id and p.product_name LIKE CONCAT('%', #{keyword}, '%') OR p.category LIKE CONCAT('%', #{keyword}, '%') OR p.product_price  LIKE CONCAT('%', #{keyword}, '%') 
-      	and i.pro_img_server like '%thumb____'
-      	limit #{findingCount} offset #{dbLimitStart}
+		SELECT m.manager_name,p.product_name, p.category,p.product_price,i.product_img_url
+		FROM product p 
+		LEFT JOIN  manager m ON m.manager_id=p.manager_id  
+		JOIN product_image i ON i.product_id = p.product_id 
+		where i.product_img_type = 'thumb' and (p.product_name LIKE CONCAT('%', #{keyword}, '%') OR p.category LIKE CONCAT('%', #{keyword}, '%') OR p.product_price  LIKE CONCAT('%', #{keyword}, '%'))
+		limit #{findingCount} offset #{dbLimitStart}
 	</select>
 	
 	<select id="getTotalSearchProduct" resultType="int">

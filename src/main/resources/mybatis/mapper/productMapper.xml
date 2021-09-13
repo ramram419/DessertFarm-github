@@ -12,6 +12,11 @@
   		</selectKey>
 	</insert>
 	
+	<insert id="insertProductViewSet" parameterType="int">
+		INSERT INTO view_rate_of_rise(product_id, before_view, rate_of_rise)
+		VALUES (#{product_id},0,0) 
+	</insert>
+	
 	<select id="getProductId" parameterType="productRequest" resultType="int">
 		select product_id from product where product_name = #{product_name} and manager_id = #{manager_id}
 	</select>
@@ -60,7 +65,7 @@
 	</select>
 	
 	<select id="getProductImage" parameterType="int" resultType="String">
-		SELECT pro_img_server FROM product_image WHERE product_id = #{product_id} ORDER BY pro_img_server DESC;
+		SELECT product_img_url FROM product_image WHERE product_id = #{product_id} ORDER BY product_img_url DESC;
 	</select>
 	
 	<select id="addView" parameterType="int">

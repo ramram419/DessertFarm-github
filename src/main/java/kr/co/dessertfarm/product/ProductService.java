@@ -32,10 +32,8 @@ public class ProductService {
 	
 	public int insertProduct(ProductRequest productRequest,String manager_id) {
 		productRequest.setManager_id(manager_id);	
-		pDao.insertProduct(productRequest);
-		System.out.println("rReq = " + productRequest.getProduct_id());
-		int productId = productRequest.getProduct_id();
-		return productId;
+		int product_id = pDao.insertProduct(productRequest);
+		return product_id;
 			
 	}
 
@@ -103,12 +101,7 @@ public class ProductService {
 		return "badCode";
 	} */
 	
-	public MultipartFile[] combineImgList(MultipartFile thumb, MultipartFile[] images) {
-		MultipartFile[] imgList = new MultipartFile[images.length+1];
-		imgList[0] = thumb;
-		System.arraycopy(images, 0, imgList, 1, images.length);
-		return imgList;
-	}
+	
 	
 	/* public Boolean saveProductImage(MultipartFile[] imgList,HttpServletRequest request,String id,int productId) {
 		
