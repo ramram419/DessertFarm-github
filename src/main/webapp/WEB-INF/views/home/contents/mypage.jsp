@@ -33,13 +33,18 @@
 				$(".iderr").show();
 			}
 			
-			if($('.pwd').val() == ""){
+			if($('.client_pwd').val() == ""){
 				$(".pwd").css("border","1px solid #FA464E");
 				$(".pwderr").show();
 			}
 			
 			if($('.confirm_pwd').val() == ""){
-				$(".confirm__pwd").css("border","1px solid #FA464E");
+				$(".confirm_pwd").css("border","1px solid #FA464E");
+				$(".pwdchkerr").show();
+			}
+			
+			if($('.origin_pwd').val() == ""){
+				$(".origin_pwd").css("border","1px solid #FA464E");
 				$(".pwdchkerr").show();
 			}
 			
@@ -115,10 +120,10 @@
 		
 		
 		$.ajax({
-			url : "modify/"+role,
-			data : role+"_name="+name+"&"+role+"_id="+id+"&"+role+"_pwd="+pwd+"&"+role+"_tel="+tel,
+			url : "modify/client",
+			dataType:"JSON",
+			data : {"name" : name, "id" : id, "pwd": pwd, "tel": tel},
 			type : "POST",
-			dataType:"html",
 			success : function(response){
 				location.href='./modify/client';
 			},
@@ -143,6 +148,7 @@
 		</ul>
 	</div>
 	<div class="mypageFrm">
+	<form name="modifyForm" action="/modify/client" method="post">
 		<label>
 			상점명<br>
 			<input type="text" class="name" name="client_name" value="<%=userList.get("client_name").toString() %>"/>
@@ -150,13 +156,16 @@
 		<div class="err nameerr">* 상점명을 입력해주세요.</div>
 		<label>아이디<br><input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly/></label>
 		<div class="err iderr">* 아이디를 입력해주세요.</div>
-		<label>비밀번호<br><input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/></label>
+		<label>현재 비밀번호<br><input type="password" class="origin_pwd" name="origin_client_pwd" placeholder="비밀번호를 입력해주세요."/></label>
 		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
-		<label>비밀번호 재입력<br><input type="password" class="confirm_pwd" name="confirm__pwd" placeholder="한번 더 입력해주세요."/></label>
+		<label>새로운 비밀번호<br><input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/></label>
+		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
+		<label>비밀번호 재입력<br><input type="password" class="confirm_pwd" name="confirm_pwd" placeholder="한번 더 입력해주세요."/></label>
 		<div class="err pwderr">* 한번 더 입력해주세요.</div>
 		<label>전화번호<br><input type="text" class="tel" name="client_tel" value="<%=userList.get("client_tel").toString() %>"/></label>
 		<div class="err telerr">* 전화번호를 입력해주세요.</div>
-		<button type="button" class="modibtn" onclick="checkfrm();">정보수정</button>
+		<button type="button" class="modibtn" onclick="modify();">정보수정</button>
+		</form>
 	</div>
 	
 </div>
