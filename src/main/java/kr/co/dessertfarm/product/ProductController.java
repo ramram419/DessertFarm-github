@@ -88,7 +88,7 @@ public class ProductController {
 		return "product/testRegisterProduct";
 	}
 	
-	// �ڡڡ� After Registering Menu and back to MenuList Page
+	// �ڡڡ� After Registering Menu and back to MenuList Page
 	@PostMapping("/product/register")
 	public String registerProduct(ProductRequest productRequest, MultipartFile product_thumb, MultipartFile[] product_images, HttpSession session) {
 		try {
