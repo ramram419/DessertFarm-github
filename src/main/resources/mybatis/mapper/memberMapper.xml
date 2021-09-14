@@ -26,7 +26,7 @@
 		values (#{manager_name, jdbcType=VARCHAR}, #{manager_id, jdbcType=VARCHAR}, #{manager_pwd, jdbcType=VARCHAR}, #{manager_tel, jdbcType=VARCHAR})
 	</insert>
 	
-	<update id="client_ChangePwd" parameterType='String'>
+	<update id="client_ChangePwd" parameterType='Map'>
 		update client
 		set client_name=#{new_name}, client_pwd=#{new_pwd}, client_tel=#{tel}
 		where client_id=#{id}

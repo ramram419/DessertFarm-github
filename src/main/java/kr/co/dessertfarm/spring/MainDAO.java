@@ -55,6 +55,7 @@ public class MainDAO {
 	//사용자 비번 변경
 	public void changePwd_client(HashMap<String, Object> map) {
 		sqlSession.update("member.client_ChangePwd", map);
+		System.out.println("<DAO> changePwd Map : " + map);
 	}
 	
 	//관리자/납품엄체 비번 변경
