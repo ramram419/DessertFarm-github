@@ -27,6 +27,7 @@ public class JoinService {
 	}
 	
 	public void changePwd_client(HashMap<String, Object> map) {
+		System.out.println("<Service> changePwd Map : " + map);
 		mainDAO.changePwd_client(map);
 	}
 	
