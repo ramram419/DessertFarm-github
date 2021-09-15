@@ -74,6 +74,14 @@ public class LoginController {
 		return "redirect:/home";
 	}
 	
+	@GetMapping("/mlogout")
+	public String mlogOut(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "redirect:/login";
+	}
+	
 	// 留덉씠�럹�씠吏� �씠�룞 �쟾�뿉 濡쒓렇�씤 �럹�씠吏� �씠�룞
 	@RequestMapping("/loginMyPage")
 	public String login_ToMyPage() {
@@ -82,12 +90,14 @@ public class LoginController {
 	
 	// 留덉씠�럹�씠吏� �씠�룞
 	@PostMapping("/myPage")
-	public String client_myPage(LoginRequest req) {
+	public String client_myPage(LoginRequest req, Model model) {
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = loginSvc.clientLogin(req);
 
 		if(user == null || user.isEmpty() == true) {
-			return "home/contents/logerr";
+			model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+			model.addAttribute("url", "/login");
+			return "home/login/logerr";
 		}else if(user.isEmpty() == false) {
 			System.out.println(user);
 			return "home/contents/mypage";
