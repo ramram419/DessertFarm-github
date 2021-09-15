@@ -136,7 +136,7 @@ public class FrontController {
 	
 	@ResponseBody
 	@RequestMapping("/modify/client")
-	public int changePwd_client(HttpServletRequest req, @RequestParam("client_name") String client_name, @RequestParam("origin_pwd") String origin_pwd, @RequestParam("client_pwd") String client_pwd, @RequestParam(value="client_tel") String client_tel, @RequestParam("client_id") String client_id) {
+	public int changePwd_client(HttpServletRequest req, @RequestParam(value = "client_name", required=false) String client_name, @RequestParam(value="origin_pwd", required=false) String origin_pwd, @RequestParam(value="client_pwd", required=false) String client_pwd, @RequestParam(value="client_tel", required=false) String client_tel, @RequestParam(value="client_id", required=false) String client_id) {
 		HashMap<String ,Object> checkMap = new HashMap<String, Object>();
 		checkMap.put("id", client_id);
 		checkMap.put("pwd", origin_pwd);

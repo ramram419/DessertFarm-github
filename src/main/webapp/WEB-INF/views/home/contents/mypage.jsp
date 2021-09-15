@@ -112,24 +112,31 @@
 	
 	function modify(){
 		var role = "${sessionScope.user}";		
+		var id = $(".id").val();
+		var new_name = $(".name").val();
+		var origin_pwd = $(".origin_pwd").val();
+		var new_pwd = $(".pwd").val();
+		var tel = $(".tel").val();
 		
 		$.ajax({
 			type : "POST",
 			url : "modify/client",
-			data : {
-				new_name : "${client_name}",
-				new_pwd : "${client_pwd}",
-				tel : "${client_tel}",
-				id : "${client_id}"
-			},
+			data : {"client_id" : id, "client_name" : new_name, "origin_pwd" : origin_pwd, "client_pwd" : new_pwd, "client_tel" : tel},
+			dataType : "JSON",
 			success : function(data){
 				if(data == 0){
+					console.log(data);
 					alert("잘못된 비밀번호 입니다. ");
 					$(".origin_pwd").val("");
+					$(".pwd").val("");
+					$(".confirm_pwd").val("");
 				}else if(data > 0){
-					alert("정보 변경에 성공했습니다. \n 다시 로그인 해주세요. ");
-					location.href="./login";
+					console.log(data);
+					alert("정보 변경에 성공했습니다. \n다시 로그인 해주세요. ");
+					location.href="./mlogout";
 				}
+			}, error : function(err){
+				console.log(err);
 			}
 		});
 	}
@@ -149,7 +156,6 @@
 		</ul>
 	</div>
 	<div class="mypageFrm">
-	<form name="modifyForm" action="${path }/modify/client" method="post">
 		<label>
 			상점명<br>
 			<input type="text" class="name" name="client_name" value="<%=userList.get("client_name").toString() %>"/>
@@ -166,7 +172,6 @@
 		<label>전화번호<br><input type="text" class="tel" name="client_tel" value="<%=userList.get("client_tel").toString() %>"/></label>
 		<div class="err telerr">* 전화번호를 입력해주세요.</div>
 		<button type="submit" class="modibtn" onclick="modify();">정보변경</button>
-		</form>
 	</div>
 	
 </div>
