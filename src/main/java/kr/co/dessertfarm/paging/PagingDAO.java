@@ -60,4 +60,8 @@ public class PagingDAO {
 			return -1;
 		}
 	}
+
+	public int getTotalDibs(String id)  {
+		return sqlSession.selectOne("dibs.getTotalDibs", id);
+	}
 }
