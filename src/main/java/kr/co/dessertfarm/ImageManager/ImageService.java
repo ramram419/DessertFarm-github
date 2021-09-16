@@ -21,9 +21,8 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
-
-import kr.co.dessertfarm.ImageManager.ProductImageRequest;
 import kr.co.dessertfarm.aws.S3Controller;
+import kr.co.dessertfarm.ImageManager.ProductImageRequest;
 
 @Service
 public class ImageService {
@@ -50,7 +49,7 @@ public class ImageService {
 	}
 	
 	public void insertImage(List<ProductImageRequest> productImageRequest) throws Exception {
-		System.out.println("insertImage¸¦ ½ÇÇàÇÕ´Ï´Ù.");
+		System.out.println("insertImageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 		for (int i=0; i<productImageRequest.size(); i++) {
 			productImageRequest.get(i).print();
 		}
