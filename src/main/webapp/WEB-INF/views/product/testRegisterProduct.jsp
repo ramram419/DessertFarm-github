@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 	<link rel="stylesheet" href="<c:url value="/resources/css/main/basic.css"/>">
 	<link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
+	<script src="<c:url value="/resources/js/code.json"/>" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -33,6 +34,7 @@
                
             </select>
         </p>
+         <input type="hidden" name="categoryCode" id="categoryCode">
         <p>
             상품가격 : <input type="text" class="price" name="product_price">
         </p>
@@ -57,7 +59,7 @@
         <p>
         	상품 A.S 및 특이사항 :<input type="text" name="product_as">
         </p>
-        <input type="submit" value="상품등록" onclick="nullCheck()">
+        <input type="submit" value="상품등록" onclick="nullCheck(); categoryConvert();">
         <p>
         	<a href="<c:url value='/admin' />">메뉴관리 페이지로</a>
         </p>
@@ -122,6 +124,12 @@
                 history.go(-1)
             }
         }
+        
+        function categoryConvert() {
+            const code = JSON.parse(JSON.stringify(Params))
+            $('#categoryCode').val(code[$('#select2').val()])
+            alert($('#categoryCode').val());
+       }
    </script>
 
 </body>

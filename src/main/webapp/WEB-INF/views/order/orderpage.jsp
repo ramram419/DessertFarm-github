@@ -89,7 +89,8 @@
 			font-size : 25px;
 		}
 		.pulldown {
-			background-color : #ebebeb;
+			border : 3px solid #F4F4F4;
+			background-color : #fff;
 			width : auto;
 			height : 200px;
 		
@@ -111,6 +112,10 @@
 			height : 25px;
 			border-radius : 5px;
 			font-size: 13px;
+		}
+		
+		#address-button {
+			cursor: pointer;
 		}
 		
 		
@@ -152,6 +157,26 @@
 <body>
 <c:import url="../home/top.jsp" />
 	<div class="C_content" >
+	<div class="info ordering-person">
+			
+			<table class='tab'>
+				<tr style='height: 30px;'>
+					<td class='title img' style='text-align : center'>이미지</td>
+					<td class='title name' style='text-align : center; width : 70%;'>상품내용</td>
+					<td class='title each' style='text-align : center'>수량</td>
+					<td class='title' style='text-align : center'>가격</td>
+				</tr>
+				<tr style=' height : 50px; border-bottom : 1px solid black;'>
+					<td style='text-align : center;'><img style='margin : 5px 5px; vertical-align : middle; text-align : center; width : 100px; height : 100px;' src='${path}/resources/product_img/20210829_33_jinAdmin_thumb.jpg'></td>
+					<td style='text-align : center;'>상품내용</td>
+					<td style='text-align : center;'>수량</td>
+					<td style='text-align : center;'>가격</td>
+				</tr>
+				
+			</table>
+			
+	
+		</div>
 		<div class="info ordering-person">
 			<p class="order-title">주문자 정보</p>
 			<table class='tab'>
@@ -183,10 +208,7 @@
 					<td class='title'>수령인</td>
 					<td class='value'><input class='inputtxt' type='text' placeholder='수령인 입력'></td>
 				</tr>
-				<tr>
-					<td class='title'>주소</td>
-					<td class='value'><input class='inputtxt' type='text' placeholder='주소 입력'></td>
-				</tr>
+				
 				<tr>
 					<td class='title'>주소</td>
 						<td class='value'>
@@ -196,12 +218,16 @@
 							<input id='detail-add' style='margin-bottom: 6px; width:300px; text-align : center;' type='text' class='inputtxt' placeholder='상세주소'>
 						</td>
 				</tr>
+				<tr>
+					<td class='title'>전화번호</td>
+					<td class='value'><input style='width: 50px' class='inputtxt' type='text' placeholder='010'><input class='inputtxt' type='text' placeholder='010'><input class='inputtxt' type='text' placeholder='010'></td>
+				</tr>
 			</table>
 			
 	
 		</div>
 		<div class="info delivery-person">
-			<p class="delivery-title">납품업체 정보</p>
+			<p class="delivery-title">결제</p>
 			<h1 class='guide-count'> 총 <b class='gangjo'>3</b> 곳의 납품업체</h1>
 			<div class="supplier">
 				<div class='guide'>

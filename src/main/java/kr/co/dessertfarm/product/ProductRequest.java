@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductRequest {
+	private int product_id;
 	private String product_name;
 	private String categoryCode;
 	private int product_price;

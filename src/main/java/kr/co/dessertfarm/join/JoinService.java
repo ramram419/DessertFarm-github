@@ -1,5 +1,7 @@
 package kr.co.dessertfarm.join;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -24,12 +26,17 @@ public class JoinService {
 		mainDAO.reg_manager(vo);
 	}
 	
-	public void changePwd_client(MainVO vo) {
-		mainDAO.changePwd_client(vo);
+	public void changePwd_client(HashMap<String, Object> map) {
+		System.out.println("<Service> changePwd Map : " + map);
+		mainDAO.changePwd_client(map);
 	}
 	
 	public void changePwd_Manager(MainVO vo) {
 		mainDAO.changePwd_manager(vo);
+	}
+	
+	public int client_PwdCheck(HashMap<String, Object> map) {
+		return mainDAO.client_PwdCheck(map);
 	}
 	
 	public int client_dupId(String id) {

@@ -53,13 +53,18 @@ public class MainDAO {
 	}
 	
 	//사용자 비번 변경
-	public void changePwd_client(MainVO vo) {
-		sqlSession.update("member.client_ChangePwd", vo);
+	public void changePwd_client(HashMap<String, Object> map) {
+		sqlSession.update("member.client_ChangePwd", map);
+		System.out.println("<DAO> changePwd Map : " + map);
 	}
 	
 	//관리자/납품엄체 비번 변경
 	public void changePwd_manager(MainVO vo) {
 		sqlSession.update("memeber.manager_ChangePwd", vo);
+	}
+	
+	public int client_PwdCheck(HashMap<String, Object> map) {
+		return sqlSession.selectOne("member.client_PwdCheck", map);
 	}
 	
 	public int client_dupId(String id) {

@@ -33,13 +33,18 @@
 				$(".iderr").show();
 			}
 			
-			if($('.pwd').val() == ""){
+			if($('.client_pwd').val() == ""){
 				$(".pwd").css("border","1px solid #FA464E");
 				$(".pwderr").show();
 			}
 			
 			if($('.confirm_pwd').val() == ""){
-				$(".confirm__pwd").css("border","1px solid #FA464E");
+				$(".confirm_pwd").css("border","1px solid #FA464E");
+				$(".pwdchkerr").show();
+			}
+			
+			if($('.origin_pwd').val() == ""){
+				$(".origin_pwd").css("border","1px solid #FA464E");
 				$(".pwdchkerr").show();
 			}
 			
@@ -106,24 +111,32 @@
 	})
 	
 	function modify(){
-		var role = "${sessionScope.user}";
-		
-		var name = $(".name").val();
+		var role = "${sessionScope.user}";		
 		var id = $(".id").val();
-		var pwd = $(".pwd").val();
+		var new_name = $(".name").val();
+		var origin_pwd = $(".origin_pwd").val();
+		var new_pwd = $(".pwd").val();
 		var tel = $(".tel").val();
 		
-		
 		$.ajax({
-			url : "modify/"+role,
-			data : role+"_name="+name+"&"+role+"_id="+id+"&"+role+"_pwd="+pwd+"&"+role+"_tel="+tel,
 			type : "POST",
-			dataType:"html",
-			success : function(response){
-				location.href='./modify/client';
-			},
-			error : function(err){
-				console.log(err)
+			url : "modify/client",
+			data : {"client_id" : id, "client_name" : new_name, "origin_pwd" : origin_pwd, "client_pwd" : new_pwd, "client_tel" : tel},
+			dataType : "JSON",
+			success : function(data){
+				if(data == 0){
+					console.log(data);
+					alert("잘못된 비밀번호 입니다. ");
+					$(".origin_pwd").val("");
+					$(".pwd").val("");
+					$(".confirm_pwd").val("");
+				}else if(data > 0){
+					console.log(data);
+					alert("정보 변경에 성공했습니다. \n다시 로그인 해주세요. ");
+					location.href="./mlogout";
+				}
+			}, error : function(err){
+				console.log(err);
 			}
 		});
 	}
@@ -136,7 +149,7 @@
 	<div class="pagelist">
 		<ul>
 			<li onclick="location.href='./loginMyPage';" class="click">정보변경</li>
-			<li onclick="location.href='./like';">내찜목록</li>
+			<li onclick="location.href='./dibs';">내찜목록</li>
 			<li onclick="location.href='./bags';">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
 			<li onclick="location.href='./qnalist?pageNum=1';">문의내역</li>
@@ -150,13 +163,15 @@
 		<div class="err nameerr">* 상점명을 입력해주세요.</div>
 		<label>아이디<br><input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly/></label>
 		<div class="err iderr">* 아이디를 입력해주세요.</div>
-		<label>비밀번호<br><input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/></label>
+		<label>현재 비밀번호<br><input type="password" class="origin_pwd" name="origin_pwd" placeholder="비밀번호를 입력해주세요."/></label>
 		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
-		<label>비밀번호 재입력<br><input type="password" class="confirm_pwd" name="confirm__pwd" placeholder="한번 더 입력해주세요."/></label>
+		<label>새로운 비밀번호<br><input type="password" class="pwd" name="client_pwd" placeholder="비밀번호를 입력해주세요."/></label>
+		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
+		<label>비밀번호 재입력<br><input type="password" class="confirm_pwd" name="confirm_pwd" placeholder="한번 더 입력해주세요."/></label>
 		<div class="err pwderr">* 한번 더 입력해주세요.</div>
 		<label>전화번호<br><input type="text" class="tel" name="client_tel" value="<%=userList.get("client_tel").toString() %>"/></label>
 		<div class="err telerr">* 전화번호를 입력해주세요.</div>
-		<button type="button" class="modibtn" onclick="checkfrm();">정보수정</button>
+		<button type="submit" class="modibtn" onclick="modify();">정보변경</button>
 	</div>
 	
 </div>

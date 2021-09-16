@@ -17,11 +17,6 @@ public class CategoryDAO {
 		List<CategoryDTO> categoryDTO = null;
 		try {
 			 categoryDTO = sqlSession.selectList("category.getCategoryDTO",map);
-			 for (int i=0; i<categoryDTO.size(); i++) {
-				 if (categoryDTO.get(i).getPro_img_server() == null) {
-					 categoryDTO.get(i).setPro_img_server("/resource/abc.jpg");
-				 }
-			 }
 			 return categoryDTO;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,15 +28,14 @@ public class CategoryDAO {
 		List<CategoryDTO> categoryDTO = null;
 		try {
 			 categoryDTO = sqlSession.selectList("category.getSmallCategoryDTO",map);
-			 for (int i=0; i<categoryDTO.size(); i++) {
-				 if (categoryDTO.get(i).getPro_img_server() == null) {
-					 categoryDTO.get(i).setPro_img_server("/resource/abc.jpg");
-				 }
-			 }
 			 return categoryDTO;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return categoryDTO;
 		}
+	}
+	
+	public List<CategoryDTO> getBestProduct() {
+		return sqlSession.selectList("category.getBestProduct");
 	}
 }

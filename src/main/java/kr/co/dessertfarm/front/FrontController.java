@@ -1,7 +1,11 @@
 package kr.co.dessertfarm.front;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.dessertfarm.join.JoinService;
@@ -29,10 +34,10 @@ public class FrontController {
 		return "home/login/Finregister";
 	}
 	
-	@RequestMapping("/like")
+	/*@RequestMapping("/dibs")
 	public String like() {
 		return "home/contents/likelist";
-	}
+	}*/
   
 	@RequestMapping("/new")
 	public String newitem() {
@@ -127,6 +132,35 @@ public class FrontController {
 		int result = joinSvc.client_dupId(name);
 		System.out.println("<Controller> result : " + result + " Name : " + name);
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/modify/client")
+	public int changePwd_client(HttpServletRequest req, @RequestParam(value = "client_name", required=false) String client_name, @RequestParam(value="origin_pwd", required=false) String origin_pwd, @RequestParam(value="client_pwd", required=false) String client_pwd, @RequestParam(value="client_tel", required=false) String client_tel, @RequestParam(value="client_id", required=false) String client_id) {
+		HashMap<String ,Object> checkMap = new HashMap<String, Object>();
+		checkMap.put("id", client_id);
+		checkMap.put("pwd", origin_pwd);
+		System.out.println("<Controller> checkMap : " + client_id + " " + origin_pwd);
+		int result = joinSvc.client_PwdCheck(checkMap);
+		System.out.println("<Controller> checkResult : " + result);
+		if(result == 0) {
+			return result;
+		}else if(result > 0) {
+			HashMap<String, Object> changeMap = new HashMap<String, Object>();
+			changeMap.put("new_name", client_name);
+			changeMap.put("new_pwd", client_pwd);
+			changeMap.put("tel", client_tel);
+			changeMap.put("id", client_id);
+			joinSvc.changePwd_client(changeMap);
+			System.out.println("<Controller> name : " + client_name);
+			System.out.println("<Controller> newPwd : " + client_pwd);
+			System.out.println("<Controller> tel : " + client_tel);
+			System.out.println("<Controller> id : " + client_id);
+			return result;
+		}else {
+			return -1;
+		}
+		
 	}
 	
 	

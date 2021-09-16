@@ -39,6 +39,39 @@
        	});
          
       })
+      
+      
+      $(document).ready(function() {
+    	  $('.add_dibs').click(function() {
+    		  var id = $(this).attr("data-id")
+    		  
+    		  $.ajax({
+    				type: "GET",
+    				url : "${pageContext.request.contextPath}/dibs/create/",
+    				data : {
+    					"product_id" : id
+    				},
+    				success : function(data) {
+    					if (data == 'Success'){
+    						alert("찜 완료")	
+    					} else if(data == "Duplicate") {
+    						alert("해당 상품은 이미 찜목록에 존재합니다.");
+    					} else if(data == "needLogin") {
+    						alert("로그인 필요합니다.");
+    						location.href = '/dessertfarm.co.kr/login'
+    					} else if (data == "Success") {
+    						alert("해당 상품이 찜 목록에 추가되었습니다.")
+    					} else if (data == "ManagerAttempt") {
+    						alert("매니저는 찜 기능을 이용할 수 없습니다. 자세한 사항은 디저트팜 관리자에게 문의해주세요.")
+    					}
+    				}, 
+    				error : function(data) { 	
+    					console.log("실패")
+    					console.log(data)
+    				}
+    			})
+    	  })
+      })
    </script>
 </head>
 <body>
@@ -125,144 +158,30 @@
 	   <div class="bestItem">
 	      <div class="bestItem_text">인기 상품</div>
 	      <div class="bestItem_List">
+	      <c:forEach var="item" items="${best}">
 	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/image_7@2x.png"/>
+	            <img class="bestItem_img" src="https://${item.product_img_url}"/>
 	            <div class="itemTag">
-	               <div class="tag best">BEST</div>
+	            <c:if test="${item.product_new}">
+	        		<div class="tag new">NEW</div>
+	        	</c:if>
+	            <c:if test="${item.product_best}">
+	            	<div class="tag best">BEST</div>
+	        	</c:if>
 	               <div class="tag only_b">사업자 전용</div>
 	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 버터 크로와상</div>
+	            <a href="${path}/product/${item.product_id}"><div class="itemName"><span class="shopName">[${item.manager_name}]</span>${item.product_name}</div></a>
 	            <div class="sale_price">
 	               <div class="sale">20%</div>
-	               <div class="price">16,000원</div>
+	               <div class="price">${item.product_price}원</div>
 	               <div class="o_price">20,000원</div>
 	            </div>
 	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+	               <div class="add_dibs" data-id="${item.product_id}"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
 	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
 	            </div>
 	         </div>
-	         
-	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/cake@2x.png"/>
-	            <div class="itemTag">
-	               <div class="tag best">BEST</div>
-	               <div class="tag only_b">사업자 전용</div>
-	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 쿠앤크 케이크</div>
-	            <div class="sale_price">
-	               <div class="price">13,500원</div>
-	            </div>
-	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	            </div>
-	         </div>
-	         
-	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/image_6@2x.png"/>
-	            <div class="itemTag">
-	               <div class="tag new">NEW</div>
-	               <div class="tag best">BEST</div>
-	               <div class="tag only_b">사업자 전용</div>
-	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 크로플</div>
-	            <div class="sale_price">
-	               <div class="sale">20%</div>
-	               <div class="price">20,000원</div>
-	               <div class="o_price">25,000원</div>
-	            </div>
-	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	            </div>
-	         </div>
-	         
-	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/image_8@2x.png"/>
-	            <div class="itemTag">
-	               <div class="tag new">NEW</div>
-	               <div class="tag best">BEST</div>
-	               <div class="tag only_b">사업자 전용</div>
-	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 마카롱</div>
-	            <div class="sale_price">
-	               <div class="price">10,000원</div>
-	            </div>
-	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	            </div>
-	         </div>
-	         
-	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/image_1@2x.png"/>
-	            <div class="itemTag">
-	               <div class="tag new">NEW</div>
-	               <div class="tag only_b">사업자 전용</div>
-	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 다쿠아즈</div>
-	            <div class="sale_price">
-	               <div class="sale">5%</div>
-	               <div class="price">15,200원</div>
-	               <div class="o_price">16,000원</div>
-	            </div>
-	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	            </div>
-	         </div>
-	         
-	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/image_9@2x.png"/>
-	            <div class="itemTag">
-	               <div class="tag new">NEW</div>
-	               <div class="tag only_b">사업자 전용</div>
-	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 크로무슈</div>
-	            <div class="sale_price">
-	               <div class="price">14,000원</div>
-	            </div>
-	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	            </div>
-	         </div>
-	         
-	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/image_2@2x.png"/>
-	            <div class="itemTag">
-	               <div class="tag new">NEW</div>
-	               <div class="tag best">BEST</div>
-	               <div class="tag only_b">사업자 전용</div>
-	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 에그타르트</div>
-	            <div class="sale_price">
-	               <div class="price">22,000원</div>
-	            </div>
-	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	            </div>
-	         </div>
-	         
-	         <div class="itemBox">
-	            <img class="bestItem_img" src="${path }/resources/images/image_3@2x.png"/>
-	            <div class="itemTag">
-	               <div class="tag new">NEW</div>
-	               <div class="tag best">BEST</div>
-	               <div class="tag only_b">사업자 전용</div>
-	            </div>
-	            <div class="itemName"><span class="shopName">[달콤디저트]</span> 딸기 크레이프</div>
-	            <div class="sale_price">
-	               <div class="sale">20%</div>
-	               <div class="price">8,000원</div>
-	               <div class="o_price">10,000원</div>
-	            </div>
-	            <div class="bestItem_btn">
-	               <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	               <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	            </div>
+	         </c:forEach>
 	         </div>
 	      </div>
 	   </div>

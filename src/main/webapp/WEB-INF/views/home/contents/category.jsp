@@ -21,6 +21,12 @@
    	var d = [['마카롱','D001'],['뚱카롱','D002'],['다쿠아즈','D003'],['오믈렛','D004'],['초콜렛','D005'],['슈크림','D006'],['아이스크림','D007']]
    	var c = [['샌드위치','C001'],['치아바타','C002'],['크로크무슈','C003']];
    	var w = [['원두','W001']]
+   	
+   	function getContextPath() {
+   		var hostIndex = location.href.indexOf(location.host) + location.host.length;
+   		var contextPath = location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1) );
+   		return contextPath;
+   	}
    
       $(document).ready(function(){
          $(window).scroll( function() {
@@ -78,13 +84,14 @@
     		  
     		  $.ajax({
     				type: "GET",
-    				url : "./dibs",
+    				url : "${pageContext.request.contextPath}/dibs/create/",
     				data : {
     					"product_id" : id
     				},
     				success : function(data) {
-    					console.log("성공")
-    					if(data == "Duplicate") {
+    					if (data == 'Success'){
+    						alert("찜 완료")	
+    					} else if(data == "Duplicate") {
     						alert("해당 상품은 이미 찜목록에 존재합니다.");
     					} else if(data == "needLogin") {
     						alert("로그인 필요합니다.");
@@ -171,10 +178,14 @@
 	<div class="cateitem_list">
 	<c:forEach var="item" items="${productList}">
 		<div class="itemBox">
-	    	<img class="cateItem_img" src="${path }${item.pro_img_server}"/>
+	    	<img class="cateItem_img" src="https://${item.product_img_url}"/>
 	        <div class="itemTag">
+	        <c:if test="${item.product_new}">
 	        	<div class="tag new">NEW</div>
+	        </c:if>
+	        <c:if test="${item.product_best}">
 	            <div class="tag best">BEST</div>
+	        </c:if>
 	            <div class="tag only_b">사업자 전용</div>
 	       </div>
 	       <a href="${path}/product/${item.product_id}"><div class="itemName"><span class="shopName">[${item.manager_name}]</span> ${item.product_name}</div></a>
@@ -186,7 +197,6 @@
 	       <div class="cateItem_btn">
 	          <div class="add_dibs" data-id="${item.product_id}"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
 	          <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	      
 	       </div>
 	    </div>
 	</c:forEach>
