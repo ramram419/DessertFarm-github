@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.dessertfarm.category.CategoryService;
+
 @Controller
 public class LoginController {
 	private LoginService loginSvc;
 	private LoginRequest req;
+	
+	@Autowired
+	CategoryService cSvc;
 		
 	public void setLoginService(LoginService loginSvc) {
 		this.loginSvc = loginSvc;
@@ -32,7 +38,8 @@ public class LoginController {
 	
 	// HomePage without Session
 	@GetMapping("/home")
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("best",cSvc.getBestProduct());
 		return "home/homePage";
 	}
 	
@@ -45,7 +52,7 @@ public class LoginController {
 		admin = loginSvc.managerLogin(req);
 		boolean isAdmin = loginSvc.isAdmin(req);
 		HttpSession session = request.getSession();
-		
+		model.addAttribute("best",cSvc.getBestProduct());
 		System.out.println(loginSvc.managerLogin(req));
 		
 		if(isAdmin == true && loginSvc.managerLogin(req) != null) {

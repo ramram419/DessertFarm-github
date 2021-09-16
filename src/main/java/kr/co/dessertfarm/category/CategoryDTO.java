@@ -25,7 +25,4 @@ public class CategoryDTO {
 		System.out.println("신상품 여부 :" + product_new);
 		System.out.println("인기상품 여부 :" + product_best);
 	}
-//	private boolean new_item;
-//	private boolean best_item;
-//	private boolean only_b_item;
 }

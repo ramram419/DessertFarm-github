@@ -4,13 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dibs">
-	<insert id ="dibsInsert" parameterType="HashMap">
-		insert into dibs values(#{client_id},#{product_id})
+	<insert id ="createDibs" parameterType="HashMap">
+		INSERT into dibs
+		VALUES(#{client_id},#{product_id})
 	</insert>
 	
-	<select id="getDibs" parameterType="String">
-		select p.product_id, p.product_name ,p.product_price, d.client_id 
-		from dibs d, product p 
-		where d.product_id = p.product_id;
+	<select id="getTotalDibs" resultType="int">
+		SELECT COUNT(*) FROM dibs WHERE client_id = #{id}
+	</select>
+	
+	<select id="getDibs" parameterType="hashmap" resultType="dibsDTO">
+		SELECT p.product_id, i.product_img_url, p.product_new, p.product_best, m.manager_name, p.product_name, p.product_price 
+		FROM product p 
+		LEFT JOIN manager m ON m.manager_id = p.manager_id 
+		JOIN product_image i ON i.product_id = p.product_id 
+		JOIN dibs d ON d.product_id = p.product_id
+		WHERE d.client_id = #{client_id} and i.product_img_type = 'thumb'
+		LIMIT #{findingCount} OFFSET #{dbLimitStart}
 	</select>
 </mapper>

@@ -34,4 +34,8 @@ public class CategoryDAO {
 			return categoryDTO;
 		}
 	}
+	
+	public List<CategoryDTO> getBestProduct() {
+		return sqlSession.selectList("category.getBestProduct");
+	}
 }

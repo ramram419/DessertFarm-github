@@ -38,4 +38,8 @@ public class CategoryService {
 				return categoryDao.getCategoryDTO(map);
 				
 	}
+	
+	public List<CategoryDTO> getBestProduct() {
+		return categoryDao.getBestProduct();
+	}
 }

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import kr.co.dessertfarm.aws.S3Controller;
@@ -63,11 +64,24 @@ public class ImageService {
 		
 	}
 	
-	public void uploadImage(List<ImageDTO> imageFileDto) throws Exception {
+	/*public void uploadImage(List<ImageDTO> imageFileDto) throws Exception {
 		for(int i=0; i<imageFileDto.size(); i++) {
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucket
 					,imageFileDto.get(i).getImage_name()
 					,imageFileDto.get(i).getImage_file());
+			 putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead);
+			 s3Client.putObject(putObjectRequest);
+			 logger.info("[S3] : FileName = " + imageFileDto.get(i).getImage_name() + " Upload File Success");
+		}
+	}*/
+	
+	public void uploadImage(List<ImageDTO> imageFileDto) throws Exception {
+		for(int i=0; i<imageFileDto.size(); i++) {
+			PutObjectRequest putObjectRequest = new PutObjectRequest(
+					bucket
+					,imageFileDto.get(i).getImage_name()
+					,imageFileDto.get(i).getImage_file().getInputStream()
+					,imageFileDto.get(i).getMetadata());
 			 putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead);
 			 s3Client.putObject(putObjectRequest);
 			 logger.info("[S3] : FileName = " + imageFileDto.get(i).getImage_name() + " Upload File Success");
@@ -80,31 +94,22 @@ public class ImageService {
 		for(int i=0; i<MultiImgList.length; i++) {
 			ImageDTO imageFileDto = new ImageDTO();
 			imageFileDto.setImage_name(toUUID(MultiImgList[i]));
-			imageFileDto.setImage_file(convertToFile(MultiImgList[i]));
+			imageFileDto.setImage_file(MultiImgList[i]);
+			imageFileDto.setMetadata(getMetadata(MultiImgList[i]));
 			imageFileDtoList.add(imageFileDto);
 		}
-		
 		for (int k=0; k<imageFileDtoList.size(); k++)  {
 			System.out.println(imageFileDtoList.get(k).getImage_name());
 		}
-		
 		return imageFileDtoList;
 	}
 	
-	public ProductImageRequest getProductImageRequest (int index,List<ImageDTO> imgList,int product_id, String manager_id) {
-		ProductImageRequest productImageRequest = new ProductImageRequest();
-		productImageRequest.setProduct_id(product_id);
-		if (index==0) {
-			productImageRequest.setProduct_img_type("thumb");
-		} else {
-			productImageRequest.setProduct_img_type("detail");
-		}
-		productImageRequest.setProduct_img_id(product_id + "_" + index);
-		productImageRequest.setProduct_img_name(imgList.get(index).getImage_name());
-		productImageRequest.setProduct_img_url(path + "/" + imgList.get(index).getImage_name());
-		productImageRequest.setProduct_img_size((imgList.get(index).getImage_file().length()) / 1024);
-		productImageRequest.setManager_id(manager_id);
-		return productImageRequest; 
+	private ObjectMetadata getMetadata(MultipartFile file) {
+		ObjectMetadata metadata = new ObjectMetadata();
+		metadata.setContentType("image/" + getImageExt(file).substring(1));
+		metadata.setContentLength(file.getSize());
+
+		return metadata;
 	}
 	
 	public List<ProductImageRequest> getProductImageRequestList (List<ImageDTO> imgList,int product_id, String manager_id) {
@@ -116,7 +121,22 @@ public class ImageService {
 		
 		return imgReqList;
 	}
-
+	
+	private ProductImageRequest getProductImageRequest (int index,List<ImageDTO> imgList,int product_id, String manager_id) {
+		ProductImageRequest productImageRequest = new ProductImageRequest();
+		productImageRequest.setProduct_id(product_id);
+		if (index==0) {
+			productImageRequest.setProduct_img_type("thumb");
+		} else {
+			productImageRequest.setProduct_img_type("detail");
+		}
+		productImageRequest.setProduct_img_id(product_id + "_" + index);
+		productImageRequest.setProduct_img_name(imgList.get(index).getImage_name());
+		productImageRequest.setProduct_img_url(path + "/" + imgList.get(index).getImage_name());
+		productImageRequest.setProduct_img_size((imgList.get(index).getImage_file().getSize()) / 1024);
+		productImageRequest.setManager_id(manager_id);
+		return productImageRequest; 
+	}
 
 	public MultipartFile[] combineImage(MultipartFile thumb, MultipartFile[] images) {
 		MultipartFile[] multiImgList = new MultipartFile[images.length+1];
