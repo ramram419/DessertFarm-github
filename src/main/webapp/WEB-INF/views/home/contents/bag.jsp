@@ -17,7 +17,7 @@
 	<div class="pagelist">
 		<ul>
 			<li onclick="location.href='./loginMyPage';">정보변경</li>
-			<li onclick="location.href='./like';">내찜목록</li>
+			<li onclick="location.href='./dibs';">내찜목록</li>
 			<li onclick="location.href='./bags';" class="click">장바구니</li>
 			<li onclick="location.href='./orderlist';">주문내역</li>
 			<li onclick="location.href='./qnalist?pageNum=1';">문의내역</li>

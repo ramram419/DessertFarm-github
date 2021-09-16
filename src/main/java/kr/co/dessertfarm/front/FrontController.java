@@ -34,10 +34,10 @@ public class FrontController {
 		return "home/login/Finregister";
 	}
 	
-	@RequestMapping("/like")
+	/*@RequestMapping("/dibs")
 	public String like() {
 		return "home/contents/likelist";
-	}
+	}*/
   
 	@RequestMapping("/new")
 	public String newitem() {

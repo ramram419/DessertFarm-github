@@ -18,6 +18,7 @@
         <typeAlias type="kr.co.dessertfarm.basket.BasketDTO" alias="basketDTO"/>
         <typeAlias type="kr.co.dessertfarm.product.ProductPageDTO" alias='productPageDTO'/>
         <typeAlias type="kr.co.dessertfarm.ImageManager.ImageDTO" alias='imageDTO'/>
+        <typeAlias type="kr.co.dessertfarm.dibs.DibsDTO" alias='dibsDTO'/>
     </typeAliases>
     
     <!-- connection pool -->

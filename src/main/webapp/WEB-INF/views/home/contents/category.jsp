@@ -21,6 +21,12 @@
    	var d = [['마카롱','D001'],['뚱카롱','D002'],['다쿠아즈','D003'],['오믈렛','D004'],['초콜렛','D005'],['슈크림','D006'],['아이스크림','D007']]
    	var c = [['샌드위치','C001'],['치아바타','C002'],['크로크무슈','C003']];
    	var w = [['원두','W001']]
+   	
+   	function getContextPath() {
+   		var hostIndex = location.href.indexOf(location.host) + location.host.length;
+   		var contextPath = location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1) );
+   		return contextPath;
+   	}
    
       $(document).ready(function(){
          $(window).scroll( function() {
@@ -78,13 +84,14 @@
     		  
     		  $.ajax({
     				type: "GET",
-    				url : "./dibs",
+    				url : "${pageContext.request.contextPath}/dibs/create/",
     				data : {
     					"product_id" : id
     				},
     				success : function(data) {
-    					console.log("성공")
-    					if(data == "Duplicate") {
+    					if (data == 'Success'){
+    						alert("찜 완료")	
+    					} else if(data == "Duplicate") {
     						alert("해당 상품은 이미 찜목록에 존재합니다.");
     					} else if(data == "needLogin") {
     						alert("로그인 필요합니다.");
