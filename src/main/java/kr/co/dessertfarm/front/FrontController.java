@@ -33,11 +33,6 @@ public class FrontController {
 	public String moveToFin() {
 		return "home/login/Finregister";
 	}
-	
-	/*@RequestMapping("/dibs")
-	public String like() {
-		return "home/contents/likelist";
-	}*/
   
 	@RequestMapping("/new")
 	public String newitem() {
@@ -54,11 +49,7 @@ public class FrontController {
 		model.addAttribute("c", request.getParameter("c"));
 		return "admin/index";
 	}
-	
-//	@RequestMapping("/category")
-//	public String category() {
-//		return "home/contents/category";
-//	}
+
   
 	@RequestMapping("/best")
 	public String best() {
