@@ -88,7 +88,7 @@
 	</div>
 	<ul class="pagingbox">
 		<c:if test="${paging.leftArr}">
-			<a href="?pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
+			<li onclick="location.href='?pageNum=${paging.sectorStart-1}'"><img src="${path }/resources/images/left_arrow.png" /></li>
 		</c:if>
 		<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
 		<c:choose>
@@ -96,13 +96,13 @@
 					<li class="active">${i}</li>		
 				</c:when>
 				<c:otherwise>
-					<a href="?pageNum=${i}"><li>${i}</li></a>
+					<li onclick="location.href='?pageNum=${i}'">${i}</li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${paging.sectorEnd < paging.totalPage}">
-		<a href="?pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
+			<li onclick="location.href='?pageNum=${paging.sectorEnd+1}'"><img src="${path }/resources/images/right_arrow.png" /></li>
 		</c:if>
 	</ul>
 	<div class="like_btns">

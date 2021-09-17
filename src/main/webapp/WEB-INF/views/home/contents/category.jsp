@@ -65,22 +65,23 @@
     	  $('.'+category).addClass('click');
     	  
     	  	$('.midcate').empty();
-    	  	var result = '<div class="midcate_item">전체</div>'
+    	  	var result = '<div class="midcate_item click" onclick="location.href=\'${path}/category/' + category.toUpperCase() + '?pageNum=1\'">전체</div>';
     	  	$('.midcate').append(result);
     	  	for (var i=0; i<loop.length; i++) {
-    	 		result =''
-    	  		result += '<a href="${path}/category/' + category.toUpperCase()+ "/" + loop[i][1] + "?pageNum=1" +'"<div class="midcate_item '+ loop[i][1] +'">' + loop[i][0] +'</div></a>'
+    	 		result ='';
+    	  		result += '<div class="midcate_item '+ loop[i][1] +'" onclick="location.href=\'${path}/category/' + category.toUpperCase()+ '/' + loop[i][1] + '?pageNum=1\'">' + loop[i][0] +'</div>';
     	 		$('.midcate').append(result);
     	 	}
-    	  	
+
     	  	if (path[4] != null) {
-    	  		$('.'+path[4]).addClass("click")
+    	  		$('.midcate_item').eq(0).removeClass('click');
+    	  		$('.'+path[4]).addClass("click");
     	  	}	  
       })
       
       $(document).ready(function() {
     	  $('.add_dibs').click(function() {
-    		  var id = $(this).attr("data-id")
+    		  var id = $(this).attr("data-id");
     		  
     		  $.ajax({
     				type: "GET",
@@ -90,21 +91,21 @@
     				},
     				success : function(data) {
     					if (data == 'Success'){
-    						alert("찜 완료")	
+    						alert("찜 완료");
     					} else if(data == "Duplicate") {
     						alert("해당 상품은 이미 찜목록에 존재합니다.");
     					} else if(data == "needLogin") {
     						alert("로그인 필요합니다.");
-    						location.href = '/dessertfarm.co.kr/login'
+    						location.href = './login';
     					} else if (data == "Success") {
-    						alert("해당 상품이 찜 목록에 추가되었습니다.")
+    						alert("해당 상품이 찜 목록에 추가되었습니다.");
     					} else if (data == "ManagerAttempt") {
-    						alert("매니저는 찜 기능을 이용할 수 없습니다. 자세한 사항은 디저트팜 관리자에게 문의해주세요.")
+    						alert("매니저는 찜 기능을 이용할 수 없습니다. 자세한 사항은 디저트팜 관리자에게 문의해주세요.");
     					}
     				}, 
     				error : function(data) { 	
-    					console.log("실패")
-    					console.log(data)
+    					console.log("실패");
+    					console.log(data);
     				}
     			})
     	  })
@@ -121,44 +122,30 @@
 <div class="cate_content">
 	<div class="categorybox">
 		<div class="bigcate">
-			<a href="${path}/category/K?pageNum=1">
-			<div class="bigcate_item K click">
+			<div class="bigcate_item K click" onclick="location.href='${path}/category/K?pageNum=1';">
 				<img src="${path }/resources/images/icon_cake_off@2x.png" style="width: 58px; height: 58px; margin: 40px auto 20px;"/>
 				<div class="text">케이크</div>
 			</div>
-			</a>
-			<a href="${path}/category/B?pageNum=1">
-			<div class="bigcate_item B">
+			<div class="bigcate_item B"  onclick="location.href='${path}/category/B?pageNum=1';">
 				<img src="${path }/resources/images/icon_Bread_off@2x.png" style="width: 68px; height: 38px; margin: 62px auto 28px;"/>
 				<div class="text">베이커리</div>
 			</div>
-			</a>
-			<a href="${path}/category/S?pageNum=1">
-			<div class="bigcate_item S">
+			<div class="bigcate_item S"  onclick="location.href='${path}/category/S?pageNum=1';">
 				<img src="${path }/resources/images/icon_croissant_off@2x.png" style="width: 58px; height: 55px; margin: 44px auto 20px;"/>
 				<div class="text">생지</div>
 			</div>
-			</a>
-			<a href="${path}/category/D?pageNum=1">
-			<div class="bigcate_item D">
+			<div class="bigcate_item D"  onclick="location.href='${path}/category/D?pageNum=1';">
 				<img src="${path }/resources/images/icon_macarons_off@2x.png" style="width: 62px; height: 48px; margin: 47px auto 20px;"/>
 				<div class="text">디저트</div>
 			</div>
-			</a>
-			
-				<div class="bigcate_item C?pageNum=1">
-					<a href="${path}/category/C">
-					<img src="${path }/resources/images/icon_sandwich_off@2x.png" style="width: 68px; height: 63px; margin: 40px auto 20px;"/>
-					<div class="text">샌드위치</div>
-					</a>
-				</div>
-			
-			<a href="${path}/category/W?pageNum=1">
-			<div class="bigcate_item W">
+			<div class="bigcate_item C"  onclick="location.href='${path}/category/C?pageNum=1';">
+				<img src="${path }/resources/images/icon_sandwich_off@2x.png" style="width: 68px; height: 63px; margin: 40px auto 20px;"/>
+				<div class="text">샌드위치</div>
+			</div>
+			<div class="bigcate_item W"  onclick="location.href='${path}/category/W?pageNum=1';">
 				<img src="${path }/resources/images/icon_coffebean_off@2x.png" style="width: 69px; height: 51px; margin: 46px auto 20px;"/>
 				<div class="text">원두</div>
 			</div>
-			</a>
 		</div>
 		<div class="midcate">
 			<div class="midcate_item">전체</div>
@@ -188,7 +175,7 @@
 	        </c:if>
 	            <div class="tag only_b">사업자 전용</div>
 	       </div>
-	       <a href="${path}/product/${item.product_id}"><div class="itemName"><span class="shopName">[${item.manager_name}]</span> ${item.product_name}</div></a>
+	       <div class="itemName"><span class="shopName" onclick="location.href='${path}/product/${item.product_id}'">[${item.manager_name}]</span> ${item.product_name}</div>
 	       <div class="sale_price">
 	          <div class="sale">20%</div>
 	          <div class="price">${item.product_price}</div>
@@ -207,7 +194,7 @@
 	
 	<ul class="pagingbox">
 		<c:if test="${paging.leftArr}">
-			<a href="?pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
+			<li onclick="location.href='?pageNum=${paging.sectorStart-1}'"><img src="${path }/resources/images/left_arrow.png" /></li>
 		</c:if>
 		<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
 		<c:choose>
@@ -215,13 +202,13 @@
 					<li class="active">${i}</li>		
 				</c:when>
 				<c:otherwise>
-					<a href="?pageNum=${i}"><li>${i}</li></a>
+					<li onclick="location.href='?pageNum=${i}'">${i}</li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:if test="${paging.sectorEnd < paging.totalPage}">
-		<a href="?pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
+			<li onclick="location.href='?pageNum=${paging.sectorEnd+1}'"><img src="${path }/resources/images/right_arrow.png" /></li>
 		</c:if>
 	</ul>
 	
