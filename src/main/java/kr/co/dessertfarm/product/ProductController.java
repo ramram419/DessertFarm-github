@@ -1,12 +1,8 @@
 package kr.co.dessertfarm.product;
 
-import java.io.File;
-import java.nio.file.spi.FileSystemProvider;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,18 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 
 import kr.co.dessertfarm.ImageManager.ImageService;
 import kr.co.dessertfarm.aws.S3Controller;
@@ -66,8 +57,9 @@ public class ProductController {
 	
 	// Main Admin Page
 	@RequestMapping("/admin/adminPage")
-	public String moveToProduct() {
-		return "product/testproductpage";
+	public String moveToProduct(HttpServletRequest request, Model model) {
+		model.addAttribute("c", request.getParameter("c"));
+		return "admin/index";
 	}
 	
 	// Move to MenuList Page
@@ -142,10 +134,4 @@ public class ProductController {
 		
 		return "product/product_detail_page_test";
 	}
-	
-
-	
-	
-	
-	
 }

@@ -10,9 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.dessertfarm.paging.PagingDTO;
 import kr.co.dessertfarm.paging.PagingService;
@@ -48,5 +46,4 @@ public class OrderController {
 	public String orderPage() {
 		return "order/orderpage";
 	}
-//	@RequestParam("orderList") List<Integer> orderList
 }
