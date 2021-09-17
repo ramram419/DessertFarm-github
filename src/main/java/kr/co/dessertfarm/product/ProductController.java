@@ -105,12 +105,10 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping("/admin/product/loadProductList")
 	public List<ManageProductDTO> loadProductList(HttpServletRequest request) {
-		
-		
 		HttpSession session = request.getSession();
 		Map<String,Object> admin = (Map<String,Object>)session.getAttribute("admin");
 		List<ManageProductDTO> productList = pSvc.getManage(admin.get("manager_id").toString());
-		
+	
 		return productList;
 		
 	}
@@ -119,8 +117,9 @@ public class ProductController {
 	@PostMapping(value = "/admin/product/deleteProductList", produces="application/json; charset=UTF-8")
 	public String deleteProductList(@RequestParam(value="checkBoxArr[]") List<String> checkBoxArr,HttpServletRequest request) {
 		try {
-			String dd = "dd";
+		List<String> fileNameList = iSvc.getFileNameList(checkBoxArr);
 		pSvc.deleteProduct(checkBoxArr,request);
+		iSvc.deleteImage(fileNameList);
 		return "deleted Successfuuly";
 		} catch (Exception e) {
 			e.printStackTrace();
