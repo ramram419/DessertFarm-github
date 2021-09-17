@@ -1,11 +1,9 @@
 package kr.co.dessertfarm.front;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,14 +41,7 @@ public class FrontController {
 	public String saleitem() {
 		return "home/contents/sale";
 	}
-	
-	@RequestMapping("/admin22")
-	public String admin(HttpServletRequest request, Model model) {
-		model.addAttribute("c", request.getParameter("c"));
-		return "admin/index";
-	}
 
-  
 	@RequestMapping("/best")
 	public String best() {
 		return "home/contents/best";
@@ -152,11 +143,5 @@ public class FrontController {
 			return -1;
 		}
 		
-	}
-	
-	
-	@GetMapping("/test")
-	public String test() {
-		return "home/test";
 	}
 }

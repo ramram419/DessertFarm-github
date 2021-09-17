@@ -3,16 +3,13 @@ package kr.co.dessertfarm.ImageManager;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,9 +19,8 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import kr.co.dessertfarm.aws.S3Controller;
-import kr.co.dessertfarm.ImageManager.ProductImageRequest;
 
-@Service
+@Service("Image")
 public class ImageService {
 	
 	private Logger logger = LoggerFactory.getLogger(S3Controller.class);

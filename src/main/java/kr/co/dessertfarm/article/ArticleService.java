@@ -1,6 +1,5 @@
 package kr.co.dessertfarm.article;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.dessertfarm.category.CategoryDTO;
 import kr.co.dessertfarm.paging.PagingService;
 
 @Service("article")

@@ -2,8 +2,6 @@ package kr.co.dessertfarm.paging;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import kr.co.dessertfarm.article.ArticleVO;
-
 public class PagingService {
 	
 	@Autowired
