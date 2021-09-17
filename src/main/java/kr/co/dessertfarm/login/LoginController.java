@@ -89,13 +89,13 @@ public class LoginController {
 		return "redirect:/login";
 	}
 	
-	// 留덉씠�럹�씠吏� �씠�룞 �쟾�뿉 濡쒓렇�씤 �럹�씠吏� �씠�룞
+	// 
 	@RequestMapping("/loginMyPage")
 	public String login_ToMyPage() {
 		return "redirect:/login";
 	}
 	
-	// 留덉씠�럹�씠吏� �씠�룞
+	// 
 	@PostMapping("/myPage")
 	public String client_myPage(LoginRequest req, Model model) {
 		Map<String, Object> user = new HashMap<String, Object>();
