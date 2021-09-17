@@ -22,53 +22,50 @@
 <c:import url="../top.jsp" />
 <div class="cate_content">
 	<div class="cateitem_list">
-	<c:forEach var="item" items="${searchList}">
-		<div class="itemBox">
-	    	<img class="cateItem_img" src="https://${item.product_img_url}"/>
-	        <div class="itemTag">
-	        	<div class="tag new">NEW</div>
-	            <div class="tag best">BEST</div>
-	            <div class="tag only_b">사업자 전용</div>
-	       </div>
-	       <div class="itemName"><span class="shopName">[${item.manager_name}]</span> ${item.product_name}</div>
-	       <div class="sale_price">
-	          <div class="sale">20%</div>
-	          <div class="price">${item.product_price}</div>
-	          <div class="o_price">10,000원</div>
-	       </div>
-	       <div class="cateItem_btn">
-	          <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
-	          <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
-	       </div>
-	    </div>
-	</c:forEach>
-	   
-	    
-	   
-	</div>
-	<div class="cate_content">
-	
-	<ul class="pagingbox">
-		<c:if test="${paging.leftArr}">
-			<a href="?keyword=${keyword}&pageNum=${paging.sectorStart-1}"><li><img src="${path }/resources/images/left_arrow.png" /></li></a>
-		</c:if>
-		<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
-		<c:choose>
-				<c:when test="${i eq paging.pageNum}">
-					<li class="active">${i}</li>		
-				</c:when>
-				<c:otherwise>
-					<a href="?keyword=${keyword}&pageNum=${i}"><li>${i}</li></a>
-				</c:otherwise>
-			</c:choose>
+		<c:forEach var="item" items="${searchList}">
+			<div class="itemBox">
+		    	<img class="cateItem_img" src="https://${item.product_img_url}"/>
+		        <div class="itemTag">
+		        	<div class="tag new">NEW</div>
+		            <div class="tag best">BEST</div>
+		            <div class="tag only_b">사업자 전용</div>
+		       </div>
+		       <div class="itemName"><span class="shopName">[${item.manager_name}]</span> ${item.product_name}</div>
+		       <div class="sale_price">
+		          <div class="sale">20%</div>
+		          <div class="price">${item.product_price}</div>
+		          <div class="o_price">10,000원</div>
+		       </div>
+		       <div class="cateItem_btn">
+		          <div class="add_dibs"><img src="${path }/resources/images/icon_star.png" /> 찜하기</div>
+		          <div class="add_bag"><img src="${path }/resources/images/icon_heart.png"/> 장바구니</div>
+		       </div>
+		    </div>
 		</c:forEach>
-		
-		<c:if test="${paging.sectorEnd < paging.totalPage}">
-		<a href="?keyword=${keyword}&pageNum=${paging.sectorEnd+1}"><li><img src="${path }/resources/images/right_arrow.png" /></li></a>
-		</c:if>
-	</ul>
+	</div>
 	
-</div>
+	<div class="cate_content">
+		<ul class="pagingbox">
+			<c:if test="${paging.leftArr}">
+				<li onclick="location.href='?keyword=${keyword}&pageNum=${paging.sectorStart-1}'"><img src="${path }/resources/images/left_arrow.png" /></li>
+			</c:if>
+			<c:forEach var='i' begin="${paging.sectorStart}" end="${paging.sectorEnd}">
+			<c:choose>
+					<c:when test="${i eq paging.pageNum}">
+						<li class="active">${i}</li>		
+					</c:when>
+					<c:otherwise>
+							<li onclick="location.href='?keyword=${keyword}&pageNum=${i}'">${i}</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<c:if test="${paging.sectorEnd < paging.totalPage}">
+				<li onclick="location.href='?keyword=${keyword}&pageNum=${paging.sectorEnd+1}'"><img src="${path }/resources/images/right_arrow.png" /></li>
+			</c:if>
+		</ul>
+	</div>
+</div>	
 <c:import url="../sideMenu.jsp" />
 </body>
 </html>

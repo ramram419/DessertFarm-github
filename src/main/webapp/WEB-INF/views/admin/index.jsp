@@ -134,9 +134,9 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-layout-25"></i><span class="nav-text">주문/배송/문의관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">주문관리</a></li>
-                            <li><a href="./ui-alert.html">배송관리</a></li>
-                            <li><a href="./ui-badge.html">문의관리</a></li>
+                            <li><a href="./admin22?c=3-1">주문관리</a></li>
+                            <li><a href="./admin22?c=3-2">배송관리</a></li>
+                            <li><a href="./admin22?c=3-3">문의관리</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">상품</li>
@@ -167,6 +167,15 @@
             		</c:when>
             		<c:when test="${c eq '2-2'}">
             			<c:import url="./setting.jsp" charEncoding="UTF-8"></c:import>
+            		</c:when>
+            		<c:when test="${c eq '3-1'}">
+            			<c:import url="./orderlist.jsp" charEncoding="UTF-8"></c:import>
+            		</c:when>
+            		<c:when test="${c eq '3-2'}">
+            			<c:import url="./deliverylist.jsp" charEncoding="UTF-8"></c:import>
+            		</c:when>
+            		<c:when test="${c eq '3-3'}">
+            			<c:import url="./qnalist.jsp" charEncoding="UTF-8"></c:import>
             		</c:when>
             		<c:when test="${c eq '4-1'}">
             			<c:import url="./addMenu.jsp" charEncoding="UTF-8"></c:import>
