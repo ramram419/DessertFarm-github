@@ -140,6 +140,33 @@
 			}
 		});
 	}
+	
+	function client_dupName(){
+		var _name = $(".name").val();
+		var role = "${sessionScope.role}";
+		$.ajax({
+			type: "POST",
+			url: "client/dupName",
+			dataType: "JSON",
+			data: {"name": _name},
+			success: function(data) {
+				if(_name == ""){
+					alert("상점명을 입력해주세요. ");
+				}else if(data == 0){
+					var conf= confirm("사용할 수 있는 상점명입니다 \n해당 상점명을 사용하시겠습니까? ");
+					if(conf == true){
+						$('.name').prop("readonly", true);
+						$('.btn_dupCheck').prop("disabled", true);
+					}else if(conf == false){
+						$('.name').val("");
+					}
+				}else if(data == 1) {
+					alert("이미 존재하는 상점명입니다. ");
+					$('.name').val("");
+				}
+			}
+		});
+	}
 	</script>
 </head>
 <body>
@@ -158,10 +185,11 @@
 	<div class="mypageFrm">
 		<label>
 			상점명<br>
-			<input type="text" class="name" name="client_name" value="<%=userList.get("client_name").toString() %>"/>
+			<input type="text" class="name" name="client_name" value="<%=userList.get("client_name").toString() %>" />
+			<button class="btn_dupCheck" type="button" onclick="client_dupName()">중복확인</button>
 		</label>
 		<div class="err nameerr">* 상점명을 입력해주세요.</div>
-		<label>아이디<br><input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly/></label>
+		<label class="lb_Id">아이디<br><input type="text" class="id" name="client_id" value="<%=userList.get("client_id").toString() %>" readonly/></label>
 		<div class="err iderr">* 아이디를 입력해주세요.</div>
 		<label>현재 비밀번호<br><input type="password" class="origin_pwd" name="origin_pwd" placeholder="비밀번호를 입력해주세요."/></label>
 		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
@@ -169,7 +197,7 @@
 		<div class="err pwderr">* 비밀번호를 입력해주세요.</div>
 		<label>비밀번호 재입력<br><input type="password" class="confirm_pwd" name="confirm_pwd" placeholder="한번 더 입력해주세요."/></label>
 		<div class="err pwderr">* 한번 더 입력해주세요.</div>
-		<label>전화번호<br><input type="text" class="tel" name="client_tel" value="<%=userList.get("client_tel").toString() %>"/></label>
+		<label>전화번호<br><input type="text" class="tel" name="client_tel" value="<%=userList.get("client_tel").toString() %>" /></label>
 		<div class="err telerr">* 전화번호를 입력해주세요.</div>
 		<button type="submit" class="modibtn" onclick="modify();">정보변경</button>
 	</div>

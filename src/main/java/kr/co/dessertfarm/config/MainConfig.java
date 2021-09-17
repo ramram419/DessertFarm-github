@@ -5,7 +5,6 @@ import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -17,7 +16,6 @@ import kr.co.dessertfarm.ImageManager.ImageDAO;
 import kr.co.dessertfarm.ImageManager.ImageService;
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
-import kr.co.dessertfarm.aws.S3Config;
 import kr.co.dessertfarm.basket.BasketDAO;
 import kr.co.dessertfarm.basket.BasketService;
 import kr.co.dessertfarm.category.CategoryDAO;
