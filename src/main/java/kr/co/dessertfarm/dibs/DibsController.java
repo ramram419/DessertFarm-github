@@ -10,11 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.dessertfarm.paging.PagingDTO;
 import kr.co.dessertfarm.paging.PagingService;
@@ -65,13 +63,13 @@ public class DibsController {
 		dSvc.createDibs(session, product_id);
 		return "Success";
 		} catch (org.springframework.dao.DuplicateKeyException e) { // duplicate dibs Exception
-			System.err.println("ÇØ´ç »óÇ°Àº ÀÌ¹Ì ÂòÇß½À´Ï´Ù.");
+			System.err.println("ï¿½Ø´ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 			return "Duplicate";
 		} catch (java.lang.NullPointerException e) { // non-Login Exception 
-			System.err.println("·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.");
+			System.err.println("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Õ´Ï´ï¿½.");
 			return "needLogin";
 		} catch (ManagerAttemptDibsException e) {
-			System.err.println("°ü¸®ÀÚ´Â Âò ±â´ÉÀ» ÀÌ¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			System.err.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			return "ManagerAttempt";
 		} catch (Exception e) {
 			e.printStackTrace();

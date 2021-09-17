@@ -1,9 +1,6 @@
 package kr.co.dessertfarm.product;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -92,6 +89,6 @@ public class ProductDAO {
 	
 	public void addView(int product_id) throws Exception {
 		sqlSession.update("product.addView",product_id);
-		System.out.println(product_id + "¹ø »óÇ°ÀÇ Á¶È¸¼ö°¡ 1 Áõ°¡ÇÏ¿´½À´Ï´Ù.");
+		System.out.println(product_id + "ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 	}
 }
