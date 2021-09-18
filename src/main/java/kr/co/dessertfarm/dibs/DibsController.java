@@ -1,5 +1,6 @@
 package kr.co.dessertfarm.dibs;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class DibsController {
 	
 	@RequestMapping("/dibs")
 	public String dibsRedirect() {
+		System.out.println("redirect to dibsList?pageNum=1");
 		return "redirect:/dibslist?pageNum=1";
 	}
 	
@@ -63,13 +65,13 @@ public class DibsController {
 		dSvc.createDibs(session, product_id);
 		return "Success";
 		} catch (org.springframework.dao.DuplicateKeyException e) { // duplicate dibs Exception
-			System.err.println("�ش� ��ǰ�� �̹� ���߽��ϴ�.");
+			System.err.println("占쌔댐옙 占쏙옙품占쏙옙 占싱뱄옙 占쏙옙占쌩쏙옙占싹댐옙.");
 			return "Duplicate";
 		} catch (java.lang.NullPointerException e) { // non-Login Exception 
-			System.err.println("�α����� �ʿ��մϴ�.");
+			System.err.println("占싸깍옙占쏙옙占쏙옙 占십울옙占쌌니댐옙.");
 			return "needLogin";
 		} catch (ManagerAttemptDibsException e) {
-			System.err.println("�����ڴ� �� ����� �̿��� �� �����ϴ�.");
+			System.err.println("占쏙옙占쏙옙占쌘댐옙 占쏙옙 占쏙옙占쏙옙占� 占싱울옙占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
 			return "ManagerAttempt";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,23 +80,39 @@ public class DibsController {
 	}
 	
 	// Delete dibs
-	@PostMapping("/dibs/delete")
-	public String deleteDibs() {
-		return "";
+	// Essential Parameter
+	// client_id , List<String> product_id
+	@PostMapping(value = "/dibs/delete" , produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public int deleteDibs(@RequestParam(value = "deleteList[]") List<String> deleteList, HttpServletRequest req) {
+		
+		
+		System.out.println("delete");
+		Map<String,Object> delMap = new HashMap<String,Object>();
+		
+		try {
+		// String client_id = ((Map<String,String>)session.getAttribute("user")).get("client_id").toString();
+		String client_id = req.getParameter("client_id");
+		delMap.put("client_id", client_id);
+		delMap.put("delList", deleteList);
+		dSvc.deleteDibs(delMap);
+		return 0;
+		} catch (Exception e) { 
+			e.printStackTrace();
+			return -1;
+		}
 	}
 
 	// Read dibs
+	// Essential Parameter
+	// client_id , int pageNum
 	@PostMapping("/dibs/read")
 	@ResponseBody
 	public List<DibsDTO> readDibs(HttpServletRequest req, HttpSession session, @RequestParam("pageNum") int pageNum) {
-		System.out.println("readDibs");
 		List<DibsDTO> dibsDtoList = null;
 		try {
 		String client_id = ((Map<String,String>)session.getAttribute("user")).get("client_id").toString();
 		dibsDtoList = dSvc.readDibs(client_id, pageNum);
-		for (int i=0; i<dibsDtoList.size(); i++) {
-			System.out.println(dibsDtoList.get(i).getProduct_id());
-		}
 		return dibsDtoList;
 		} catch (Exception e) {
 			e.printStackTrace();

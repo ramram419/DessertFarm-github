@@ -52,6 +52,11 @@ public class DibsService {
 		return dDao.readDibs(map);
 	}
 	
+	public void deleteDibs(Map<String,Object> delMap) throws Exception {
+		dDao.deleteDibs(delMap);
+	}
+	
+	
 	
 	
 }
