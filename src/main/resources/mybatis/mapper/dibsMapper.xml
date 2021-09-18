@@ -22,4 +22,12 @@
 		WHERE d.client_id = #{client_id} and i.product_img_type = 'thumb'
 		LIMIT #{findingCount} OFFSET #{dbLimitStart}
 	</select>
+	
+	<delete id="deleteDibs">
+		DELETE FROM dibs WHERE 
+		client_id = #{client_id} AND
+		<foreach collection="delList" item="item"  open="(" separator="or" close=")">
+			product_id = #{item}
+		</foreach>
+	</delete>
 </mapper>

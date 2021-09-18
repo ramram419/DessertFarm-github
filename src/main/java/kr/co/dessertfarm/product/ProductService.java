@@ -92,31 +92,9 @@ public class ProductService {
 	}
 
 	public void deleteProduct(List<String> deleteProList, HttpServletRequest request) {
-		pDao.deleteProduct(deleteProList);
-		deleteProductImage(deleteProList,request);
-		pDao.deleteProductImage(deleteProList);
-		
+		pDao.deleteProduct(deleteProList);		
 	}
 	
-	public void deleteProductImage(List<String> deleteProList,HttpServletRequest request) {
-		List<String> delImgList = pDao.getDeleteProductImageName(deleteProList);
-		String saveDir = 
-				request.getSession().getServletContext().getRealPath("/resources/product_img");
-		if (delImgList != null) {
-			for (int i=0; i<delImgList.size(); i++) {
-				File delImg = new File(saveDir+"/"+delImgList.get(i));
-				if (delImg.exists()) {
-					if (delImg.delete()) {
-						System.out.println("Delete file successfully");
-					} else {
-						System.out.println("Delete file failed");
-					}
-				} else {
-					System.out.println("File does not exist");
-				}
-			}
-		}
-	}
 
 	public HashMap<String,Object> loadProductDetailPage(int product_id) throws Exception {
 		HashMap<String,Object> productInfo = new HashMap<String,Object>();
