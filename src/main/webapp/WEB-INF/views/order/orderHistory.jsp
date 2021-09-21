@@ -9,9 +9,35 @@
    <link rel="stylesheet" href="<c:url value="/resources/css/main/basic.css"/>">
    <link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+   <script type="text/javascript">
+		function popUp(){
+			var product_name = $('.product_name').val();
+			var product_quan = $('.product_quan').val();
+			var product_price = $('.product_price').val();
+			var order_date = $('.order_date').val();
+			
+			$.ajax({
+				type : "POST",
+				url : "order/send/detail",
+				dataType : "JSON",
+				data : {"product_name": product_name, "product_quan": product_quan, "product_price": product_price, "order_date": order_date},
+				success: function(data) {
+					if(data==1){
+						var open = window.open("${path}/order/send/detail", "PopupWin", "width=1024,height=768");
+					}else if(data==0){
+						alert('Error');
+						location.href='./orderlist';
+					}
+				}, error: function(err) {
+					console.log(err);
+				}
+			});
+		}
+   </script>
 </head>
 <body>
-<c:import url="../top.jsp"/>
+<c:import url="../home/top.jsp"/>
 <div class="C_content">
 	<div class="contentTxt">주문내역</div>
 	<div class="pagelist">
@@ -42,18 +68,17 @@
 						<div class="order_itemContent">
 		               		<div class="tag new">NEW</div>
 		               		<div class="tag only_b">사업자 전용</div>
-			               	<div class="itemName"><span class="shopName">[달콤디저트]</span> ${order.product_name }</div>
+			               	<div class="itemName"><span class="shopName">[달콤디저트]</span><input type="hidden" class="product_name" name="product_name" value='${order.product_name }' /> ${order.product_name }</div>
 		           	 	</div>
 					</td>
-					<td>${order.product_quan }</td>
-					<td>${order.product_price }원</td>
-					<td>${order.order_date }</td>
-					<td><button class="detail_btn">배송 상세보기</button></td>
+					<td><input type="hidden" class="product_quan" name="product_quan" value='${order.product_quan }' />${order.product_quan }</td>
+					<td><input type="hidden" class="product_price" name="product_price" value='${order.product_price }' />${order.product_price }원</td>
+					<td><input type="hidden" class="order_date" name="order_date" value='${order.order_date }' />${order.order_date }</td>
+					<td><button type="button" class="detail_btn" onclick="popUp();">배송 상세보기</button></td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		
 		<ul class="pagingbox">
 		<c:if test="${paging.leftArr}">
 			<li onclick="location.href='?keyword=${keyword}&pageNum=${paging.sectorStart-1}'"><img src="${path }/resources/images/left_arrow.png" /></li>
@@ -76,7 +101,7 @@
 	</div>
 	
 </div>
-<c:import url="../sideMenu.jsp" />
-<c:import url="../footer.jsp"/>
+<c:import url="../home/sideMenu.jsp" />
+<c:import url="../home/footer.jsp"/>
 </body>
 </html>

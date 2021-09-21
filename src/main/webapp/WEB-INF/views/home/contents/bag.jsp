@@ -52,7 +52,7 @@
 			<div style="color:#333333; line-height:1.43; width:260px; margin:0 auto 50px;">인증을 받으셔야만 사업자 전용 디저트 구매가 가능합니다.</div>
 			<div class="bags_btns">
 				<button style="color:#e13517; border:1px solid #e13517; background-color:#ffffff;">삭제하기</button>
-				<button style="background-color:#e13517; color:#ffffff;">주문하기</button>
+				<button style="background-color:#e13517; color:#ffffff;" onclick="location.href='${path}/order';">주문하기</button>
 			</div>
 		</div>
 	</div>

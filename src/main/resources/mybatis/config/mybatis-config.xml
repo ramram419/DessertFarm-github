@@ -46,5 +46,6 @@
         <mapper resource="./mybatis/mapper/orderMapper.xml"/>
         <mapper resource="./mybatis/mapper/basketMapper.xml"/>
         <mapper resource="./mybatis/mapper/imageMapper.xml"/>
+        <mapper resource="./mybatis/mapper/reviewMapper.xml"/>
     </mappers>
 </configuration>

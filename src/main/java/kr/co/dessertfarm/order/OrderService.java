@@ -39,4 +39,11 @@ public class OrderService {
 		
 		return oDAO.selectOrderList(map);
 	}
+	
+	public String orderSend(String id, String product_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("product_name", product_name);
+		return oDAO.selectOrderSend(map);
+	}
 }
