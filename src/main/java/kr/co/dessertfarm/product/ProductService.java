@@ -127,13 +127,4 @@ public class ProductService {
 		
 		return productInfo;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

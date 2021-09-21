@@ -15,6 +15,12 @@
 		SELECT COUNT(*) FROM order_detail WHERE client_id = #{id}
 	</select>
 	
+	<select id="selectOrderSend" parameterType="String" resultType="String">
+		SELECT order_send
+		FROM order_detail
+		WHERE client_id = #{id} AND product_name = #{product_name}
+	</select>
+	
 	<insert id="insertOrderList" parameterType="orderDTO">
 		
 	</insert>
