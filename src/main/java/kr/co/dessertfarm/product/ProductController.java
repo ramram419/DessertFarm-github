@@ -1,5 +1,6 @@
 package kr.co.dessertfarm.product;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -119,7 +121,7 @@ public class ProductController {
 		}
 	}
 	
-	// Load ProductPage based on product_id
+	// Load ProductPage
 	@RequestMapping("/product/{product_id}")
 	public String loadProductPage(@CookieValue(value="isView", required=false) String isView, 
 			@PathVariable int product_id, Model model, HttpServletRequest request,HttpServletResponse response) {
@@ -133,4 +135,12 @@ public class ProductController {
 		
 		return "product/product_detail_page_test";
 	}
+	
+	// receive JSON data
+	@PostMapping("/product/modify") 
+	public void modifyProduct(@RequestBody HashMap<String,String> modifyMap) {
+		System.out.println(modifyMap.get("id"));
+	}
+	
+	
 }
