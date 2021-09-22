@@ -14,7 +14,7 @@
     <link href="<c:url value="/resources/admin/vendor/pg-calendar/css/pignose.calendar.min.css"/>"" rel="stylesheet">
     <link href="<c:url value="/resources/admin/vendor/chartist/css/chartist.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/admin/css/style.css"/>" rel="stylesheet">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -143,7 +143,7 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-form"></i><span class="nav-text">상품관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./adminPage?c=4-1">메뉴등록 리스트</a></li>
+                            <li><a href="./adminPage?c=4-2">메뉴 등록/관리</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -179,6 +179,9 @@
             		</c:when>
             		<c:when test="${c eq '4-1'}">
             			<c:import url="./addMenu.jsp" charEncoding="UTF-8"></c:import>
+            		</c:when>
+            		<c:when test="${c eq '4-2'}">
+            			<c:import url="./menuList.jsp" charEncoding="UTF-8"></c:import>
             		</c:when>
             	</c:choose>
             </div>

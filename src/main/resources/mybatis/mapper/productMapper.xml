@@ -5,8 +5,8 @@
  
 <mapper namespace="product">
 	<insert id="insertProduct" parameterType="productRequest">
-		INSERT INTO product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id) 
-		VALUES(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id})
+		INSERT INTO product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id,product_cost_price) 
+		VALUES(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id},#{product_price})
 		 <selectKey keyProperty="product_id" resultType="Integer" order="AFTER">
     		SELECT LAST_INSERT_ID()
   		</selectKey>
@@ -76,7 +76,7 @@
 		SELECT p.product_id,m.manager_name,p.product_name, p.category,p.product_price,i.product_img_url,p.product_new,p.product_best 
 		FROM product p, manager m, product_image i
 		WHERE p.product_id = i.product_id AND p.manager_id = m.manager_id 
-		AND p.product_new = 1 AND i.product_img_type = 'thumb'
+		AND p.product_new = 1 AND i.product_img_type = 'thumb' ORDER BY p.product_id DESC
 		LIMIT #{findingCount} OFFSET #{dbLimitStart}
 	</select>
 	
