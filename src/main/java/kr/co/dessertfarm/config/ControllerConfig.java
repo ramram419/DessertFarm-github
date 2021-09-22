@@ -8,6 +8,7 @@ import kr.co.dessertfarm.join.JoinController;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginController;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.newProduct.NewProductController;
 import kr.co.dessertfarm.order.OrderController;
 import kr.co.dessertfarm.product.ProductController;
 import kr.co.dessertfarm.review.ReviewController;
@@ -100,5 +101,11 @@ public class ControllerConfig {
 	public ReviewController reviewController() {
 		ReviewController reviewController = new ReviewController();
 		return reviewController;
+	}
+	
+	@Bean 
+	public NewProductController newProductController() {
+		NewProductController newProductController = new NewProductController();
+		return newProductController;
 	}
 }

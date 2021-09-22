@@ -26,6 +26,8 @@ import kr.co.dessertfarm.dibs.DibsDAO;
 import kr.co.dessertfarm.dibs.DibsService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.newProduct.NewProductDAO;
+import kr.co.dessertfarm.newProduct.NewProductService;
 import kr.co.dessertfarm.order.OrderDAO;
 import kr.co.dessertfarm.order.OrderService;
 import kr.co.dessertfarm.paging.PagingDAO;
@@ -132,6 +134,11 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public NewProductDAO newProductDAO() {
+		return new NewProductDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -193,6 +200,11 @@ public class MainConfig {
 	@Bean
 	public ReviewService reviewService() {
 		return new ReviewService();
+	}
+	
+	@Bean
+	public NewProductService newProductService() {
+		return new NewProductService();
 	}
 }
 

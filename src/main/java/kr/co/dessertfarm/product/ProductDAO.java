@@ -1,5 +1,6 @@
 package kr.co.dessertfarm.product;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -91,4 +92,5 @@ public class ProductDAO {
 		sqlSession.update("product.addView",product_id);
 		System.out.println(product_id + "�� ��ǰ�� ��ȸ���� 1 �����Ͽ����ϴ�.");
 	}
+	
 }

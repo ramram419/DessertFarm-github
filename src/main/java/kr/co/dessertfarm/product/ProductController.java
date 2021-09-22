@@ -119,7 +119,7 @@ public class ProductController {
 		}
 	}
 	
-	// Load ProductPage based on product_id
+	// Load ProductPage
 	@RequestMapping("/product/{product_id}")
 	public String loadProductPage(@CookieValue(value="isView", required=false) String isView, 
 			@PathVariable int product_id, Model model, HttpServletRequest request,HttpServletResponse response) {
@@ -133,4 +133,6 @@ public class ProductController {
 		
 		return "product/product_detail_page_test";
 	}
+	
+	
 }

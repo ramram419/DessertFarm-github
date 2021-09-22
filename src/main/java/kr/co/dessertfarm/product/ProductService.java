@@ -15,10 +15,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import kr.co.dessertfarm.category.CategoryDTO;
+import kr.co.dessertfarm.paging.PagingService;
+
 @Service("product")
 public class ProductService {
 	@Autowired
 	ProductDAO pDao;
+	
+	@Autowired
+	PagingService pagingService;
 	
 	public int insertProduct(ProductRequest productRequest,String manager_id) {
 		productRequest.setManager_id(manager_id);	
@@ -105,4 +111,6 @@ public class ProductService {
 		
 		return productInfo;
 	}
+
+	
 }
