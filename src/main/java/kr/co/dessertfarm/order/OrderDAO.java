@@ -20,4 +20,10 @@ public class OrderDAO {
 		System.out.println("<DAO> orderList : " + orderList);
 		return orderList;
 	}
+	
+	public String selectOrderSend(HashMap<String, Object> map) {
+		String send = sqlSession.selectOne("order.selectOrderSend", map);
+		System.out.println("<DAO> orderSend : " + send);
+		return send;
+	}
 }
