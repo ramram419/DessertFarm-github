@@ -11,6 +11,5 @@ public class ManageProductDTO {
 	private String category;
 	private String product_price;
 	private boolean product_sales_stat;
-	private String product_img_url;
-	
+	private String product_img_url;	
 }

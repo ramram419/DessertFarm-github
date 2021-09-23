@@ -32,10 +32,10 @@ public class FrontController {
 		return "home/login/Finregister";
 	}
   
-	@RequestMapping("/new")
+	/*@RequestMapping("/new")
 	public String newitem() {
 		return "home/contents/newitem";
-	}
+	}*/
 	
 	@RequestMapping("/sale")
 	public String saleitem() {

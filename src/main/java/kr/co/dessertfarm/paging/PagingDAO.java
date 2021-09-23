@@ -62,4 +62,8 @@ public class PagingDAO {
 	public int getTotalDibs(String id)  {
 		return sqlSession.selectOne("dibs.getTotalDibs", id);
 	}
+
+	public int getTotalNew() {
+		return sqlSession.selectOne("product.getTotalNewProduct");
+	}
 }
