@@ -1,11 +1,8 @@
 package kr.co.dessertfarm.order;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.dessertfarm.paging.PagingDTO;
 import kr.co.dessertfarm.paging.PagingService;
@@ -54,28 +51,33 @@ public class OrderController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/order/send/detail")
-	public int orderSend(HttpSession session, HttpServletRequest req, OrderDTO orderDTO, Model model, String order_send, String id) {
-		int result = 0;
+	@PostMapping(value="/order/send/detail", produces = "application/text; charset=utf8")
+	public String orderSend(HttpSession session, HttpServletRequest req, Model model, String order_send, String id) {
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = (Map<String, Object>)session.getAttribute("user");
 		id = user.get("client_id").toString();
 		String product_name = req.getParameter("product_name");
 		System.out.println("<Controller> product_name : " + product_name);
-		order_send = oSvc.orderSend(id, product_name);
-		if(!order_send.equals("") || order_send != null) {
-			model.addAttribute("order_send", order_send);
-			result = 1;
-			System.out.println("Result : " + result);
-			return result;
+		String order_date = req.getParameter("order_date");
+		System.out.println("<Controller> order_date : " + order_date);
+		String order_detid = oSvc.orderDetId(id, product_name, order_date);
+		System.out.println("<Controller> order_detid : " + order_detid);
+		order_send = oSvc.orderSend(id, product_name, order_date, order_detid);
+		if(order_send != null) {
+			System.out.println("<Controller> order_send : " + order_send);
+			return order_send;
+		}else if(order_send == null) {
+			order_send = "null data";
+			System.out.println("<Controller> order_send : " + order_send);
+			return order_send;
 		}else {
-			System.out.println("Result : " + result);
-			return result;
+			return "";
 		}
 	}
 	
-	@RequestMapping("/order/send/detail")
+	@RequestMapping(value="/order/send/detail/popUp", produces = "application/text; charset=utf8")
 	public String orderPopUp() {
 		return "order/order_send";
 	}
+	
 }
