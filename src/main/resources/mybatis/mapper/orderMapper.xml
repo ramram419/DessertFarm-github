@@ -18,7 +18,13 @@
 	<select id="selectOrderSend" parameterType="String" resultType="String">
 		SELECT order_send
 		FROM order_detail
-		WHERE client_id = #{id} AND product_name = #{product_name}
+		WHERE client_id = #{id} AND product_name = #{product_name} AND order_date = #{order_date} AND order_detid = #{order_detid}
+	</select>
+	
+	<select id="selectOrderId" parameterType="String" resultType="String">
+		SELECT order_detid
+		FROM order_detail
+		WHERE client_id = #{id} AND product_name = #{product_name} AND order_date = #{order_date} 
 	</select>
 	
 	<insert id="insertOrderList" parameterType="orderDTO">
