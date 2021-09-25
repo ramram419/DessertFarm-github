@@ -45,8 +45,9 @@ public class OrderService {
 		order_detid = orderDetId(id, product_name, order_date);
 		map.put("id", id);
 		map.put("product_name", product_name);
-		map.put("order_date", order_date);
+		map.put("order_date", order_date); 
 		map.put("order_detid", order_detid);
+		System.out.println("<Service> order_detid : " + order_detid);
 		return oDAO.selectOrderSend(map);
 	}
 	
