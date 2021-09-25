@@ -11,11 +11,15 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    
    <script type="text/javascript">
-		function popUp(){
-			var product_name = $('.product_name').val();
-			var product_quan = $('.product_quan').val();
-			var product_price = $('.product_price').val();
-			var order_date = $('.order_date').val();
+   		var index = $('.index').val();
+   		
+		function popUp(index){
+			var product_name = $('.product_name').eq(index).val();
+			var product_quan = $('.product_quan').eq(index).val();
+			var product_price = $('.product_price').eq(index).val();
+			var order_date = $('.order_date').eq(index).val();
+			console.log(index);
+			$('.index').val(index);
 			
 			$.ajax({
 				type : "POST",
@@ -26,7 +30,7 @@
 					if(data != null){
 						console.log(data);
 						$('.order_send').val(data);
-						window.open("order/send/detail/popUp", "PopUpWin", "height=1280, width=768");
+						window.open("order/send/detail/popUp", "PopUpWin", "height=800, width=1600");
 					}else if(data == "null data"){
 						console.log(data);
 						alert('Error');
@@ -64,20 +68,22 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${orderList }" var="order">
+				<c:forEach items="${orderList }" var="order" varStatus="status">
+				<c:set var="index" value="${status.index}"></c:set>
 				<tr>
 					<td>
 						<img src="${path }/resources/images/image_7.png" class="orderitem_img"/>
 						<div class="order_itemContent">
 		               		<div class="tag new">NEW</div>
 		               		<div class="tag only_b">사업자 전용</div>
-			               	<div class="itemName"><span class="shopName">[달콤디저트]</span><input type="hidden" id="product_name" class="product_name" name="product_name" value='${order.product_name }' /> ${order.product_name }</div>
+			               	<div class="itemName"><span class="shopName">[달콤디저트]</span><input type="hidden" id="product_name" class="product_name" name="product_name" value='${orderList[status.index].product_name }' /> ${order.product_name }</div>
 		           	 	</div>
 					</td>
-					<td><input type="hidden" id="product_quan" class="product_quan" name="product_quan" value='${order.product_quan }' />${order.product_quan }</td>
-					<td><input type="hidden" id="product_price" class="product_price" name="product_price" value='${order.product_price }' />${order.product_price }원</td>
-					<td><input type="hidden" id= "order_date" class="order_date" name="order_date" value='${order.order_date }' />${order.order_date }</td>
-					<td><button type="button" class="detail_btn" onclick="popUp();">배송 상세보기</button></td>
+					<td><input type="hidden" id="product_quan" class="product_quan" name="product_quan" value='${orderList[status.index].product_quan }' />${order.product_quan }</td>
+					<td><input type="hidden" id="product_price" class="product_price" name="product_price" value='${orderList[status.index].product_price }' />${order.product_price }원</td>
+					<td><input type="hidden" id="order_date" class="order_date" name="order_date" value='${orderList[status.index].order_date }' />${order.order_date }</td>
+					<td id="index_td"><input type="hidden" id="index" class="index" value="${index }"/>${index }</td>
+					<td><button type="button" class="detail_btn" onclick="popUp(${index});">배송 상세보기</button></td>
 				</tr>
 				</c:forEach>
 			</tbody>
