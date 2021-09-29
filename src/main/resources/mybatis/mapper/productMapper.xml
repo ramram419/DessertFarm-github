@@ -80,4 +80,29 @@
 		LIMIT #{findingCount} OFFSET #{dbLimitStart}
 	</select>
 	
+	<select id="getBestTabShopNames" resultType="String">
+		select manager_id from product group by manager_id limit 3 offset 0;
+	</select>	
+	
+	<select id="getBestTabShop" resultType="kr.co.dessertfarm.best.BestTabShopDTO">
+		<foreach collection="list" item="item" separator="UNION ALL">
+		(SELECT group_concat(a.product_id) as product_id, group_concat(a.product_img_url) as product_img_url, m.manager_name, m.manager_website
+		FROM manager m,
+		(SELECT i.product_img_id,i.product_img_url,p.product_id, p.manager_id, p.product_view
+		FROM product_image i, product p
+		WHERE p.product_id = i.product_id 
+		AND p.manager_id = #{item}
+		AND i.product_img_id like '%_0' 
+		ORDER BY p.product_view DESC
+		LIMIT 3 OFFSET 0) AS a
+		WHERE a.manager_id = m.manager_id
+		ORDER BY a.product_view DESC)
+		</foreach>
+	</select>
+	
+	<select id="getBestTabProduct" resultType="kr.co.dessertfarm.best.BestTabProductDTO">
+		SELECT p.product_id, i.product_img_url FROM product p, product_image i
+		WHERE p.product_best = 1 and p.product_id = i.product_id AND i.product_img_id LIKE "%_0" LIMIT #{BEST_TAB_PRO_NUMBER}
+	</select>
+	
 </mapper>

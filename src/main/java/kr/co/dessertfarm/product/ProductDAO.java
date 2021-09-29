@@ -103,4 +103,6 @@ public class ProductDAO {
 	public void modifyProduct (HashMap<String, String> map) throws Exception {
 		sqlSession.update("product.modifyProduct",map);
 	}
+	
+	
 }
