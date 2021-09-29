@@ -1,34 +1,30 @@
 package kr.co.dessertfarm.product;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import kr.co.dessertfarm.product.ProductDAO;
 
+import kr.co.dessertfarm.category.CategoryDTO;
+import kr.co.dessertfarm.paging.PagingService;
 
 @Service("product")
 public class ProductService {
 	@Autowired
 	ProductDAO pDao;
+	
+	@Autowired
+	PagingService pagingService;
 	
 	public int insertProduct(ProductRequest productRequest,String manager_id) {
 		productRequest.setManager_id(manager_id);	
@@ -102,31 +98,9 @@ public class ProductService {
 	}
 
 	public void deleteProduct(List<String> deleteProList, HttpServletRequest request) {
-		pDao.deleteProduct(deleteProList);
-		deleteProductImage(deleteProList,request);
-		pDao.deleteProductImage(deleteProList);
-		
+		pDao.deleteProduct(deleteProList);		
 	}
 	
-	public void deleteProductImage(List<String> deleteProList,HttpServletRequest request) {
-		List<String> delImgList = pDao.getDeleteProductImageName(deleteProList);
-		String saveDir = 
-				request.getSession().getServletContext().getRealPath("/resources/product_img");
-		if (delImgList != null) {
-			for (int i=0; i<delImgList.size(); i++) {
-				File delImg = new File(saveDir+"/"+delImgList.get(i));
-				if (delImg.exists()) {
-					if (delImg.delete()) {
-						System.out.println("Delete file successfully");
-					} else {
-						System.out.println("Delete file failed");
-					}
-				} else {
-					System.out.println("File does not exist");
-				}
-			}
-		}
-	}
 
 	public HashMap<String,Object> loadProductDetailPage(int product_id) throws Exception {
 		HashMap<String,Object> productInfo = new HashMap<String,Object>();
@@ -137,13 +111,6 @@ public class ProductService {
 		
 		return productInfo;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }

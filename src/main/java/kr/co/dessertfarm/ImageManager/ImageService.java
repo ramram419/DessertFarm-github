@@ -3,28 +3,25 @@ package kr.co.dessertfarm.ImageManager;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import kr.co.dessertfarm.aws.S3Controller;
-import kr.co.dessertfarm.ImageManager.ProductImageRequest;
 
-@Service
+@Service("Image")
 public class ImageService {
 	
 	private Logger logger = LoggerFactory.getLogger(S3Controller.class);
@@ -35,12 +32,15 @@ public class ImageService {
 	@Value("${cloud.aws.s3.bucket}")
 	private String bucket;
 	
-	@Value("${cloud.aws.s3.bucket.path}")
+	@Value("${cloud.aws.s3.bucket.path}") // IMAGE URL CONTEXT PATH
 	private String path;
 	
 	@Autowired
 	ImageDAO imgDao;
 	
+	
+	// CREATE
+	// insert process
 	public void insert(MultipartFile thumb, MultipartFile[] images, int product_id,String manager_id) throws Exception {
 		MultipartFile[] imgList = combineImage(thumb,images);
 		List<ImageDTO> imageFileDto = getImageFileDtoList(imgList);
@@ -49,31 +49,11 @@ public class ImageService {
 	}
 	
 	public void insertImage(List<ProductImageRequest> productImageRequest) throws Exception {
-		System.out.println("insertImage�� �����մϴ�.");
 		for (int i=0; i<productImageRequest.size(); i++) {
 			productImageRequest.get(i).print();
 		}
 		imgDao.insertImage(productImageRequest);
 	}
-	
-	public void deleteImage() {
-		
-	}
-	
-	public void modifyImage() {
-		
-	}
-	
-	/*public void uploadImage(List<ImageDTO> imageFileDto) throws Exception {
-		for(int i=0; i<imageFileDto.size(); i++) {
-			PutObjectRequest putObjectRequest = new PutObjectRequest(bucket
-					,imageFileDto.get(i).getImage_name()
-					,imageFileDto.get(i).getImage_file());
-			 putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead);
-			 s3Client.putObject(putObjectRequest);
-			 logger.info("[S3] : FileName = " + imageFileDto.get(i).getImage_name() + " Upload File Success");
-		}
-	}*/
 	
 	public void uploadImage(List<ImageDTO> imageFileDto) throws Exception {
 		for(int i=0; i<imageFileDto.size(); i++) {
@@ -137,21 +117,12 @@ public class ImageService {
 		productImageRequest.setManager_id(manager_id);
 		return productImageRequest; 
 	}
-
+	
 	public MultipartFile[] combineImage(MultipartFile thumb, MultipartFile[] images) {
 		MultipartFile[] multiImgList = new MultipartFile[images.length+1];
 		multiImgList[0] = thumb;
 		System.arraycopy(images, 0, multiImgList, 1, images.length);
 		return multiImgList;
-	}
-	
-	public File convertToFile(MultipartFile imgFile) throws Exception {
-		File convFile = new File(imgFile.getOriginalFilename());
-		convFile.createNewFile();
-		FileOutputStream fos = new FileOutputStream(convFile);
-		fos.write(imgFile.getBytes());
-		fos.close();
-		return convFile;
 	}
 	
 	public String toUUID(MultipartFile imgFile) {
@@ -167,5 +138,22 @@ public class ImageService {
 		String ext = oriName.substring(oriName.lastIndexOf("."));
 		return ext; 
 	}
-
+	
+	// DELETE
+	public void deleteImage(List<String> fileNameList) { 
+		for (int i=0; i<fileNameList.size(); i++) {
+			DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(bucket,fileNameList.get(i));
+			s3Client.deleteObject(deleteObjectRequest);
+			logger.info("[S3] : FileName = " + fileNameList.get(i) + " deleted.");
+		}
+	}
+	
+	public List<String> getFileNameList(List<String> productIdList) {
+		return imgDao.getImageName(productIdList);
+	}
+	
+	// MODIFY
+	public void modifyImage() {
+		
+	}
 }

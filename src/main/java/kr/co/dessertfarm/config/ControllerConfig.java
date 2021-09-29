@@ -8,8 +8,10 @@ import kr.co.dessertfarm.join.JoinController;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginController;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.newProduct.NewProductController;
 import kr.co.dessertfarm.order.OrderController;
 import kr.co.dessertfarm.product.ProductController;
+import kr.co.dessertfarm.review.ReviewController;
 import kr.co.dessertfarm.search.SearchController;
 import kr.co.dessertfarm.article.ArticleController;
 import kr.co.dessertfarm.aws.S3Controller;
@@ -93,5 +95,17 @@ public class ControllerConfig {
 	public S3Controller s3Controller() {
 		S3Controller s3Controller = new S3Controller();
 		return s3Controller;
+	}
+	
+	@Bean
+	public ReviewController reviewController() {
+		ReviewController reviewController = new ReviewController();
+		return reviewController;
+	}
+	
+	@Bean 
+	public NewProductController newProductController() {
+		NewProductController newProductController = new NewProductController();
+		return newProductController;
 	}
 }

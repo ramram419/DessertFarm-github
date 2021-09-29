@@ -2,7 +2,6 @@ package kr.co.dessertfarm.login;
 
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,14 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.dessertfarm.category.CategoryService;
 
 @Controller
 public class LoginController {
 	private LoginService loginSvc;
-	private LoginRequest req;
 	
 	@Autowired
 	CategoryService cSvc;
@@ -45,7 +42,7 @@ public class LoginController {
 	
 	// Login Test & HomePage with Session
 	@PostMapping("/home")
-	public String login(LoginRequest req, HttpServletRequest request, Model model) {
+	public String login(LoginRequest req, HttpServletRequest request, Model model) throws Exception{
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = loginSvc.clientLogin(req);
 		Map<String, Object> admin = new HashMap<String, Object>();
@@ -89,13 +86,13 @@ public class LoginController {
 		return "redirect:/login";
 	}
 	
-	// 留덉씠�럹�씠吏� �씠�룞 �쟾�뿉 濡쒓렇�씤 �럹�씠吏� �씠�룞
+	// 
 	@RequestMapping("/loginMyPage")
 	public String login_ToMyPage() {
 		return "redirect:/login";
 	}
 	
-	// 留덉씠�럹�씠吏� �씠�룞
+	// 
 	@PostMapping("/myPage")
 	public String client_myPage(LoginRequest req, Model model) {
 		Map<String, Object> user = new HashMap<String, Object>();

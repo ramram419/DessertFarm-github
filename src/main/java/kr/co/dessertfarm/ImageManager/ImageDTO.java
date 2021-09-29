@@ -1,7 +1,5 @@
 package kr.co.dessertfarm.ImageManager;
 
-import java.io.File;
-
 import lombok.Getter;
 import lombok.Setter;
 

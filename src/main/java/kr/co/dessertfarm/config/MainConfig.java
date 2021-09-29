@@ -5,19 +5,19 @@ import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import kr.co.dessertfarm.ImageManager.ImageDAO;
 import kr.co.dessertfarm.ImageManager.ImageService;
 import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
-import kr.co.dessertfarm.aws.S3Config;
 import kr.co.dessertfarm.basket.BasketDAO;
 import kr.co.dessertfarm.basket.BasketService;
 import kr.co.dessertfarm.category.CategoryDAO;
@@ -26,6 +26,8 @@ import kr.co.dessertfarm.dibs.DibsDAO;
 import kr.co.dessertfarm.dibs.DibsService;
 import kr.co.dessertfarm.join.JoinService;
 import kr.co.dessertfarm.login.LoginService;
+import kr.co.dessertfarm.newProduct.NewProductDAO;
+import kr.co.dessertfarm.newProduct.NewProductService;
 import kr.co.dessertfarm.order.OrderDAO;
 import kr.co.dessertfarm.order.OrderService;
 import kr.co.dessertfarm.paging.PagingDAO;
@@ -33,6 +35,8 @@ import kr.co.dessertfarm.paging.PagingService;
 import kr.co.dessertfarm.product.ProductDAO;
 import kr.co.dessertfarm.product.ProductService;
 import kr.co.dessertfarm.product.ProductViewService;
+import kr.co.dessertfarm.review.ReviewDAO;
+import kr.co.dessertfarm.review.ReviewService;
 import kr.co.dessertfarm.search.SearchDAO;
 import kr.co.dessertfarm.search.SearchService;
 import kr.co.dessertfarm.spring.MainDAO;
@@ -125,6 +129,16 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public ReviewDAO reviewDAO() {
+		return new ReviewDAO();
+	}
+	
+	@Bean
+	public NewProductDAO newProductDAO() {
+		return new NewProductDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -181,6 +195,16 @@ public class MainConfig {
 	@Bean
 	public ImageService imageService() {
 		return new ImageService();
+	}
+	
+	@Bean
+	public ReviewService reviewService() {
+		return new ReviewService();
+	}
+	
+	@Bean
+	public NewProductService newProductService() {
+		return new NewProductService();
 	}
 }
 

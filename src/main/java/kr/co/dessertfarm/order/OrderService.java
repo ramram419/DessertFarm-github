@@ -1,6 +1,5 @@
 package kr.co.dessertfarm.order;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,5 +38,24 @@ public class OrderService {
 		map.put("findingCount", findingCount);
 		
 		return oDAO.selectOrderList(map);
+	}
+	
+	public String orderSend(String id, String product_name, String order_date, String order_detid) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		order_detid = orderDetId(id, product_name, order_date);
+		map.put("id", id);
+		map.put("product_name", product_name);
+		map.put("order_date", order_date); 
+		map.put("order_detid", order_detid);
+		System.out.println("<Service> order_detid : " + order_detid);
+		return oDAO.selectOrderSend(map);
+	}
+	
+	public String orderDetId(String id, String product_name, String order_date) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("product_name", product_name);
+		map.put("order_date", order_date);
+		return oDAO.selectOrderId(map);
 	}
 }

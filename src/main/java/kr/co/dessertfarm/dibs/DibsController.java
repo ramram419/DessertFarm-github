@@ -1,5 +1,6 @@
 package kr.co.dessertfarm.dibs;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.dessertfarm.paging.PagingDTO;
 import kr.co.dessertfarm.paging.PagingService;
@@ -30,6 +29,7 @@ public class DibsController {
 	
 	@RequestMapping("/dibs")
 	public String dibsRedirect() {
+		System.out.println("redirect to dibsList?pageNum=1");
 		return "redirect:/dibslist?pageNum=1";
 	}
 	
@@ -65,13 +65,13 @@ public class DibsController {
 		dSvc.createDibs(session, product_id);
 		return "Success";
 		} catch (org.springframework.dao.DuplicateKeyException e) { // duplicate dibs Exception
-			System.err.println("ÇØ´ç »óÇ°Àº ÀÌ¹Ì ÂòÇß½À´Ï´Ù.");
+			System.err.println("å ìŒ”ëŒì˜™ å ì™ì˜™í’ˆå ì™ì˜™ å ì‹±ë±„ì˜™ å ì™ì˜™å ìŒ©ì™ì˜™å ì‹¹ëŒì˜™.");
 			return "Duplicate";
 		} catch (java.lang.NullPointerException e) { // non-Login Exception 
-			System.err.println("·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.");
+			System.err.println("å ì‹¸ê¹ì˜™å ì™ì˜™å ì™ì˜™ å ì‹­ìš¸ì˜™å ìŒŒë‹ˆëŒì˜™.");
 			return "needLogin";
 		} catch (ManagerAttemptDibsException e) {
-			System.err.println("°ü¸®ÀÚ´Â Âò ±â´ÉÀ» ÀÌ¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			System.err.println("å ì™ì˜™å ì™ì˜™å ìŒ˜ëŒì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ï¿½ å ì‹±ìš¸ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™.");
 			return "ManagerAttempt";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,23 +80,39 @@ public class DibsController {
 	}
 	
 	// Delete dibs
-	@PostMapping("/dibs/delete")
-	public String deleteDibs() {
-		return "";
+	// Essential Parameter
+	// client_id , List<String> product_id
+	@PostMapping(value = "/dibs/delete" , produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public int deleteDibs(@RequestParam(value = "deleteList[]") List<String> deleteList, HttpServletRequest req) {
+		
+		
+		System.out.println("delete");
+		Map<String,Object> delMap = new HashMap<String,Object>();
+		
+		try {
+		// String client_id = ((Map<String,String>)session.getAttribute("user")).get("client_id").toString();
+		String client_id = req.getParameter("client_id");
+		delMap.put("client_id", client_id);
+		delMap.put("delList", deleteList);
+		dSvc.deleteDibs(delMap);
+		return 0;
+		} catch (Exception e) { 
+			e.printStackTrace();
+			return -1;
+		}
 	}
 
 	// Read dibs
+	// Essential Parameter
+	// client_id , int pageNum
 	@PostMapping("/dibs/read")
 	@ResponseBody
 	public List<DibsDTO> readDibs(HttpServletRequest req, HttpSession session, @RequestParam("pageNum") int pageNum) {
-		System.out.println("readDibs");
 		List<DibsDTO> dibsDtoList = null;
 		try {
 		String client_id = ((Map<String,String>)session.getAttribute("user")).get("client_id").toString();
 		dibsDtoList = dSvc.readDibs(client_id, pageNum);
-		for (int i=0; i<dibsDtoList.size(); i++) {
-			System.out.println(dibsDtoList.get(i).getProduct_id());
-		}
 		return dibsDtoList;
 		} catch (Exception e) {
 			e.printStackTrace();

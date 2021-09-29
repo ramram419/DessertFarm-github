@@ -1,12 +1,9 @@
 package kr.co.dessertfarm.product;
 
-import java.io.File;
-import java.nio.file.spi.FileSystemProvider;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,11 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 
 import kr.co.dessertfarm.ImageManager.ImageService;
 import kr.co.dessertfarm.aws.S3Controller;
@@ -66,8 +59,9 @@ public class ProductController {
 	
 	// Main Admin Page
 	@RequestMapping("/admin/adminPage")
-	public String moveToProduct() {
-		return "product/testproductpage";
+	public String moveToProduct(HttpServletRequest request, Model model) {
+		model.addAttribute("c", request.getParameter("c"));
+		return "admin/index";
 	}
 	
 	// Move to MenuList Page
@@ -105,12 +99,10 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping("/admin/product/loadProductList")
 	public List<ManageProductDTO> loadProductList(HttpServletRequest request) {
-		
-		
 		HttpSession session = request.getSession();
 		Map<String,Object> admin = (Map<String,Object>)session.getAttribute("admin");
 		List<ManageProductDTO> productList = pSvc.getManage(admin.get("manager_id").toString());
-		
+	
 		return productList;
 		
 	}
@@ -119,8 +111,9 @@ public class ProductController {
 	@PostMapping(value = "/admin/product/deleteProductList", produces="application/json; charset=UTF-8")
 	public String deleteProductList(@RequestParam(value="checkBoxArr[]") List<String> checkBoxArr,HttpServletRequest request) {
 		try {
-			String dd = "dd";
+		List<String> fileNameList = iSvc.getFileNameList(checkBoxArr);
 		pSvc.deleteProduct(checkBoxArr,request);
+		iSvc.deleteImage(fileNameList);
 		return "deleted Successfuuly";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,7 +121,7 @@ public class ProductController {
 		}
 	}
 	
-	// Load ProductPage based on product_id
+	// Load ProductPage
 	@RequestMapping("/product/{product_id}")
 	public String loadProductPage(@CookieValue(value="isView", required=false) String isView, 
 			@PathVariable int product_id, Model model, HttpServletRequest request,HttpServletResponse response) {
@@ -143,9 +136,11 @@ public class ProductController {
 		return "product/product_detail_page_test";
 	}
 	
-
-	
-	
+	// receive JSON data
+	@PostMapping("/product/modify") 
+	public void modifyProduct(@RequestBody HashMap<String,String> modifyMap) {
+		System.out.println(modifyMap.get("id"));
+	}
 	
 	
 }

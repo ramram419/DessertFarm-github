@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +51,11 @@ public class DibsService {
 		
 		return dDao.readDibs(map);
 	}
+	
+	public void deleteDibs(Map<String,Object> delMap) throws Exception {
+		dDao.deleteDibs(delMap);
+	}
+	
 	
 	
 	

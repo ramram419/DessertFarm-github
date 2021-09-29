@@ -6,10 +6,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.mybatis.logging.Logger;
 import org.springframework.stereotype.Repository;
 
-import kr.co.dessertfarm.join.JoinRequest;
 import kr.co.dessertfarm.login.LoginRequest;
 
 @Repository("DAO")

@@ -14,7 +14,7 @@
     <link href="<c:url value="/resources/admin/vendor/pg-calendar/css/pignose.calendar.min.css"/>"" rel="stylesheet">
     <link href="<c:url value="/resources/admin/vendor/chartist/css/chartist.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/admin/css/style.css"/>" rel="stylesheet">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -119,31 +119,31 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label first">메인메뉴</li>
-                    <li><a href="./admin22?c=1-1"><i
+                    <li><a href="./adminPage?c=1-1"><i
                                 class="icon icon-app-store"></i><span class="nav-text">대쉬보드</span></a>
                     </li>
                     <li class="nav-label">상점</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-04"></i><span class="nav-text">상점설정</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./admin22?c=2-1">기본정보설정</a></li>
-                            <li><a href="./admin22?c=2-2">배송/반폼/교환 설정</a></li>
+                            <li><a href="./adminPage?c=2-1">기본정보설정</a></li>
+                            <li><a href="./adminPage?c=2-2">배송/반폼/교환 설정</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">주문</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-layout-25"></i><span class="nav-text">주문/배송/문의관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./admin22?c=3-1">주문관리</a></li>
-                            <li><a href="./admin22?c=3-2">배송관리</a></li>
-                            <li><a href="./admin22?c=3-3">문의관리</a></li>
+                            <li><a href="./adminPage?c=3-1">주문관리</a></li>
+                            <li><a href="./adminPage?c=3-2">배송관리</a></li>
+                            <li><a href="./adminPage?c=3-3">문의관리</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">상품</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-form"></i><span class="nav-text">상품관리</span></a>
                         <ul aria-expanded="false">
-                            <li><a href="./admin22?c=4-1">메뉴등록 리스트</a></li>
+                            <li><a href="./adminPage?c=4-2">메뉴 등록/관리</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -179,6 +179,9 @@
             		</c:when>
             		<c:when test="${c eq '4-1'}">
             			<c:import url="./addMenu.jsp" charEncoding="UTF-8"></c:import>
+            		</c:when>
+            		<c:when test="${c eq '4-2'}">
+            			<c:import url="./menuList.jsp" charEncoding="UTF-8"></c:import>
             		</c:when>
             	</c:choose>
             </div>

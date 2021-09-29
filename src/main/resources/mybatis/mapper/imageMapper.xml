@@ -11,4 +11,11 @@
 		 (#{item.product_id},#{item.product_img_id},#{item.product_img_name},#{item.product_img_url},#{item.product_img_size},#{item.manager_id},#{item.product_img_type})
 		 </foreach>
 	</insert>
+	
+	<select id="getImageName" parameterType="list" resultType="String">
+		SELECT product_img_name FROM product_image WHERE
+		<foreach collection="list" item="item" index="index" separator="or">
+		product_id = #{item}
+		</foreach>
+	</select>
 </mapper>

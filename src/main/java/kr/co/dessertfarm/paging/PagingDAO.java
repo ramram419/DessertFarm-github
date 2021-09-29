@@ -3,8 +3,6 @@ package kr.co.dessertfarm.paging;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import kr.co.dessertfarm.article.ArticleVO;
-
 public class PagingDAO {
 	@Autowired
 	SqlSession sqlSession;
@@ -63,5 +61,9 @@ public class PagingDAO {
 
 	public int getTotalDibs(String id)  {
 		return sqlSession.selectOne("dibs.getTotalDibs", id);
+	}
+
+	public int getTotalNew() {
+		return sqlSession.selectOne("product.getTotalNewProduct");
 	}
 }

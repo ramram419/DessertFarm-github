@@ -1159,3 +1159,16 @@
 .item_btn img{
 	float: right;
 }
+
+.btn_dupCheck{
+	position: absolute;
+	display: inline-block;
+	margin-left: 230px;
+	background-color: #ffffff;
+	font-size: 13px;
+	border: none;
+	font-weight: bold;
+	margin-top: -58px;
+	color: #e13517;
+	cursor: pointer;
+}

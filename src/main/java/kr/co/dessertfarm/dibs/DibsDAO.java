@@ -2,6 +2,7 @@ package kr.co.dessertfarm.dibs;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -15,8 +16,11 @@ public class DibsDAO {
 			session.insert("dibs.createDibs",map);
 	}
 	
-	public void deleteDibs() {
-			session.delete("");
+	public void deleteDibs(Map<String, Object> delMap) throws Exception{
+			System.out.println(delMap.toString());
+		
+			session.delete("dibs.deleteDibs",delMap);
+			System.out.println("delete Success");
 	}
 	
 	public List<DibsDTO> readDibs(HashMap<String,Object> map) throws Exception {
