@@ -18,7 +18,7 @@
       <img src="${path }/resources/images/shopping-cart@2x.png" style="margin-top:20px;"/>
       장바구니
    </div>
-   <div class="sideMenu_box" onclick="location.href='./like'">
+   <div class="sideMenu_box" onclick="location.href='./dibslist?pageNum=1'">
       <img src="${path }/resources/images/icon_heart@2x.png" style="margin-top:15px;"/>
       찜리스트
    </div>

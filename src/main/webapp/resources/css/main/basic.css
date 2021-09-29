@@ -164,6 +164,7 @@ input:focus{
 	left:320px;
 	display:flex;
 	background-color:#ffffff;
+	z-index: 100;
 }
 
 .bigmenu{
