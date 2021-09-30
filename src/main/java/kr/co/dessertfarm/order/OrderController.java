@@ -28,7 +28,10 @@ public class OrderController {
 	
 	
 	@RequestMapping("/order")
-	public String orderPage() {
+	public String orderPage(HttpServletRequest req, HttpSession session, Model model) {
+		Map<String, Object> user = new HashMap<String, Object>();
+		user = (Map<String, Object>)session.getAttribute("user");
+		model.addAttribute("user", user);
 		return "order/orderpage";
 	}
 	
@@ -48,6 +51,14 @@ public class OrderController {
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("paging", pDTO);
 		return "order/orderHistory";
+	}
+	
+	@RequestMapping("/orderlist/register")
+	public String reg_orderList(HttpServletRequest req, HttpSession session, String id) throws Exception {
+		Map<String, Object> user = new HashMap<String, Object>();
+		user = (Map<String, Object>)session.getAttribute("user");
+		id = user.get("client_id").toString();
+		return "order/orderpage";
 	}
 	
 	@ResponseBody

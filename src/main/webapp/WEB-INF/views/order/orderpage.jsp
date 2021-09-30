@@ -179,18 +179,19 @@
 		</div>
 		<div class="info ordering-person">
 			<p class="order-title">주문자 정보</p>
+			<c:set value="${user}"  var="user" />
 			<table class='tab'>
 				<tr>
 					<td class='title'>이름</td>
-					<td class='value'>진승범</td>
+					<td class='value'>${user.client_name }</td>
 				</tr>
 				<tr>
 					<td class='title'>이메일</td>
-					<td class='value'>abcd@example.com</td>
+					<td class='value'>${user.client_email }</td>
 				</tr>
 				<tr>
 					<td class='title'>전화번호</td>
-					<td class='value'>010-0000-0000</td>
+					<td class='value'>${user.client_tel }</td>
 				</tr>
 			</table>
 			

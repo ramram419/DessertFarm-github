@@ -27,10 +27,10 @@
 				dataType : "text",
 				data : {"product_name": product_name, "product_quan": product_quan, "product_price": product_price, "order_date": order_date},
 				success: function(data) {
-					if(data != null){
+					if(data != null && data != "null data"){
 						console.log(data);
 						$('.order_send').val(data);
-						window.open("order/send/detail/popUp", "PopUpWin", "height=800, width=1600");
+						window.open("order/send/detail/popUp", "PopUpWin", "height=800px, width=800px");
 					}else if(data == "null data"){
 						console.log(data);
 						alert('Error');
