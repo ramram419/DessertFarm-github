@@ -16,6 +16,7 @@ public class ProductRequest {
 	private String product_exchange;
 	private String product_as;
 	private String manager_id;
+	private Boolean product_only_b;
 
 	public void print() {
 		System.out.println("product_name : " + product_name);

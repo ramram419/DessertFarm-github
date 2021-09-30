@@ -28,6 +28,9 @@ public class ProductService {
 	
 	public int insertProduct(ProductRequest productRequest,String manager_id) {
 		productRequest.setManager_id(manager_id);	
+		if (productRequest.getProduct_only_b() == null)
+			productRequest.setProduct_only_b(false);
+		System.out.println(productRequest.getProduct_only_b());
 		int product_id = pDao.insertProduct(productRequest);
 		return product_id;
 			

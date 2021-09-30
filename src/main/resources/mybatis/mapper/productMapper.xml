@@ -5,8 +5,8 @@
  
 <mapper namespace="product">
 	<insert id="insertProduct" parameterType="productRequest">
-		INSERT INTO product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id,product_cost_price) 
-		VALUES(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id},#{product_price})
+		INSERT INTO product(category,product_name,product_price,product_value,product_date,product_rating,product_unit,product_delivery,product_exchange,product_as,manager_id,product_cost_price,product_only_b) 
+		VALUES(#{categoryCode},#{product_name},#{product_price},#{product_value},sysdate(),0,#{product_unit},#{product_delivery},#{product_exchange},#{product_as},#{manager_id},#{product_price},#{product_only_b})
 		 <selectKey keyProperty="product_id" resultType="Integer" order="AFTER">
     		SELECT LAST_INSERT_ID()
   		</selectKey>
