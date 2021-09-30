@@ -142,5 +142,23 @@ public class ProductController {
 		System.out.println(modifyMap.get("id"));
 	}
 	
+	@PostMapping("/product/regiTest")
+	public String productRegiTest(ProductRequest productReq, MultipartFile product_thumb, MultipartFile[] product_images,HttpServletRequest request) {
+		System.out.println("--- 상품 등록 내역 ---");
+		System.out.println("대표 이미지 : " + product_thumb.getOriginalFilename());
+		for(int i=0; i<product_images.length; i++)
+			System.out.println("추가 이미지 : " + product_images[i].getOriginalFilename());
+		System.out.println("상품 이름 : " + productReq.getProduct_name());
+		System.out.println("카테고리1 : " + request.getParameter("category1"));
+		System.out.println("카테고리2 : " + request.getParameter("category2"));
+		System.out.println("카테고리 코드 : " + productReq.getCategoryCode());
+		System.out.println("상품 단위 : " + productReq.getProduct_unit());
+		System.out.println("상품 가격 : " + productReq.getProduct_price());
+		System.out.println("상품 내용 : " + productReq.getProduct_value());
+		System.out.println("사업자 전용 여부 : " + request.getParameter("product_only_b"));
+		
+		return "";
+	}
+	
 	
 }

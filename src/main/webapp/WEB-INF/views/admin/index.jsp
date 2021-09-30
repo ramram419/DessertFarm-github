@@ -11,7 +11,7 @@
     <title>Dessert Farm</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path }/resources/admin/images/favicon.png">
-    <link href="<c:url value="/resources/admin/vendor/pg-calendar/css/pignose.calendar.min.css"/>"" rel="stylesheet">
+    <link href="<c:url value="/resources/admin/vendor/pg-calendar/css/pignose.calendar.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/admin/vendor/chartist/css/chartist.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/admin/css/style.css"/>" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

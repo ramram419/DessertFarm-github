@@ -65,7 +65,6 @@ function deleteProduct() {
 	<div class="d-flex flex-row-reverse bd-highlight">
 	<button type="button" class="p-2 bd-highlight btn btn-primary w-10 mt-2 mr-2" onClick="location.href='./adminPage?c=4-1'">추가</button>
 		<button type="button" class="p-2 bd-highlight btn btn-danger w-5 mt-2 mr-2">삭제</button>
-		
 	</div>	
 <div class="card-body">
 <div class="table-responsive">
