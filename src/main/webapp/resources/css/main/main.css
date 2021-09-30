@@ -1163,12 +1163,12 @@
 .btn_dupCheck{
 	position: absolute;
 	display: inline-block;
-	margin-left: 230px;
+	margin-left: 270px;
 	background-color: #ffffff;
 	font-size: 13px;
 	border: none;
 	font-weight: bold;
-	margin-top: -58px;
+	margin-top: -55px;
 	color: #e13517;
 	cursor: pointer;
 }

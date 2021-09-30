@@ -96,7 +96,7 @@
     						alert("해당 상품은 이미 찜목록에 존재합니다.");
     					} else if(data == "needLogin") {
     						alert("로그인 필요합니다.");
-    						location.href = './login';
+    						location.href = '../login';
     					} else if (data == "Success") {
     						alert("해당 상품이 찜 목록에 추가되었습니다.");
     					} else if (data == "ManagerAttempt") {
