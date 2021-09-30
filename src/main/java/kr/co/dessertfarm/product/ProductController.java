@@ -54,7 +54,7 @@ public class ProductController {
 	// Redirect to AdminPage
 	@RequestMapping("/admin")
 	public String moveToAdmin() {
-		return "redirect:/admin/adminPage";
+		return "redirect:/admin/adminPage?c=1-1";
 	}
 	
 	// Main Admin Page

@@ -220,7 +220,7 @@
 				</tr>
 				<tr>
 					<td class='title'>전화번호</td>
-					<td class='value'><input style='width: 50px' class='inputtxt' type='text' placeholder='010'><input class='inputtxt' type='text' placeholder='010'><input class='inputtxt' type='text' placeholder='010'></td>
+					<td class='value'><input style='width: 50px' class='inputtxt' type='text' placeholder='010'> - <input style='width: 100px' class='inputtxt' type='text' placeholder='010'> - <input style='width: 100px' class='inputtxt' type='text' placeholder='010'></td>
 				</tr>
 			</table>
 			
