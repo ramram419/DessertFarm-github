@@ -28,7 +28,10 @@ public class OrderController {
 	
 	
 	@RequestMapping("/order")
-	public String orderPage() {
+	public String orderPage(HttpServletRequest req, HttpSession session, Model model) {
+		Map<String, Object> user = new HashMap<String, Object>();
+		user = (Map<String, Object>)session.getAttribute("user");
+		model.addAttribute("user", user);
 		return "order/orderpage";
 	}
 	
@@ -48,6 +51,20 @@ public class OrderController {
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("paging", pDTO);
 		return "order/orderHistory";
+	}
+	
+	@RequestMapping("/orderlist/register")
+	public String reg_orderList(HttpServletRequest req, HttpSession session, String id) throws Exception {
+		OrderDTO oDTO = new OrderDTO();
+		Map<String, Object> user = new HashMap<String, Object>();
+		user = (Map<String, Object>)session.getAttribute("user");
+		id = user.get("client_id").toString();
+		oDTO.setClient_id(id);
+		oDTO.setProduct_name(req.getParameter("product_name"));
+		oDTO.setProduct_quan(Integer.parseInt(req.getParameter("product_quan")));
+		oDTO.setProduct_price(Integer.parseInt(req.getParameter("product_price")));
+		oSvc.insertOrder(oDTO);
+		return "order/orderpage";
 	}
 	
 	@ResponseBody
@@ -87,6 +104,5 @@ public class OrderController {
 	@RequestMapping(value="/order/send/detail/popUp", produces = "application/text; charset=utf8")
 	public String orderPopUp() throws Exception{
 		return "order/order_send";
-	}
-	
+	}	
 }
