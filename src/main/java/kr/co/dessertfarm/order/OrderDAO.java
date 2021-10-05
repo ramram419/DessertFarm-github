@@ -32,4 +32,8 @@ public class OrderDAO {
 		System.out.println("<DAO> orderdetId : " + detid);
 		return detid;
 	}
+	
+	public void insertOrder(OrderDTO orderDTO) {
+		sqlSession.insert("order.insertOrderList", orderDTO);
+	}
 }

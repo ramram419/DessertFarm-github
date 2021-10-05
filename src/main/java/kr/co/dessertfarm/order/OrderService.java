@@ -58,4 +58,8 @@ public class OrderService {
 		map.put("order_date", order_date);
 		return oDAO.selectOrderId(map);
 	}
+	
+	public void insertOrder(OrderDTO orderDTO) {
+		oDAO.insertOrder(orderDTO);
+	}
 }

@@ -255,23 +255,7 @@
 					<span class='order-brief'>[테스트 상점] 부드러운 카스테라 1Box(10pcs)</span>
 				</div>
 				<div class='pulldown'></div>
-			</div>
-			<!-- <table class='tab'>
-				<tr>
-					<td class='title'>이름</td>
-					<td class='value'>진승범</td>
-				</tr>
-				<tr>
-					<td class='title'>이메일</td>
-					<td class='value'>abcd@example.com</td>
-				</tr>
-				<tr>
-					<td class='title'>전화번호</td>
-					<td class='value'>010-0000-0000</td>
-				</tr>
-			</table> -->
-			
-	
+			</div>	
 		</div>
 	</div>
 
