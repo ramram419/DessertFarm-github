@@ -9,6 +9,45 @@
    <link rel="stylesheet" href="<c:url value="/resources/css/main/basic.css"/>">
    <link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <style type="text/css">
+   		.all_check {
+   			cursor: pointer;
+   		}
+   		
+   		.all_check .check-icon {
+   			display: inline-block;
+   			width: 40px;
+   			height: 22px;
+   			background: url("${path}/resources/images/icon_checkmark_off.png") no-repeat;
+   		}
+   		
+   		.all_check input[type="checkbox"] {
+   			display: none;
+   		}
+   		
+   		.all_check input[type="checkbox"]:checked + .check-icon {
+   			background: url("${path}/resources/images/icon_checkmark_on.png") no-repeat;
+   		}
+   		
+   		.check_test {
+   			cursor: pointer;
+   		}
+   		
+   		.check_test .check-icon {
+   			display: inline-block;
+   			width: 35px;
+   			height: 27px;
+   			background: url("${path}/resources/images/icon_checkmark_off.png") no-repeat;
+   		}
+   		
+   		.check_test input[type="checkbox"] {
+   			display: none;
+   		}
+   		
+   		.check_test input[type="checkbox"]:checked + .check-icon {
+   			background: url("${path}/resources/images/icon_checkmark_on.png") no-repeat;
+   		}
+   </style>
 </head>
 <body>
 <c:import url="../top.jsp"/>
@@ -24,20 +63,28 @@
 		</ul>
 	</div>
 	<div class="allcheck">
-		<img src="${path}/resources/images/icon_checkmark_off.png" class="checkonoff"  style="vertical-align: sub;" />
+		<label class="all_check">
+			<input type="checkbox" />
+			<i class="check-icon"></i>
+		</label>
 		전체선택
 	</div>
 	<div style="display:flex;">
 		<div class="like_list">
 		<c:forEach items="${basketList }" var="bl">
 			<div class="like_item">
-				<img src="${path}/resources/images/icon_checkmark_off.png" class="check"/>
+				<label class="check_test">
+					<input type="checkbox" />
+					<i class="check-icon"></i>
+				</label>
 				<img src="${path }/resources/images/image_7.png" class="itemimg"/>
+				
 				<div class="like_itemContent">
                		<div class="tag new">NEW</div>
                		<div class="tag only_b">사업자 전용</div>
 					<div class="itemName"><span class="shopName">[달콤디저트]</span> ${bl.product_name }</div>
-           	 	</div>
+           		</div>
+           	 
            	 	<div class="item_price">
                		<div class="sale">5%</div>
                		<div class="o_price">16,000원</div>
