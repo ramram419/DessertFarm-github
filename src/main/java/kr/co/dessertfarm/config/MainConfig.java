@@ -20,6 +20,8 @@ import kr.co.dessertfarm.article.ArticleDAO;
 import kr.co.dessertfarm.article.ArticleService;
 import kr.co.dessertfarm.basket.BasketDAO;
 import kr.co.dessertfarm.basket.BasketService;
+import kr.co.dessertfarm.best.BestTabDAO;
+import kr.co.dessertfarm.best.BestTabService;
 import kr.co.dessertfarm.category.CategoryDAO;
 import kr.co.dessertfarm.category.CategoryService;
 import kr.co.dessertfarm.dibs.DibsDAO;
@@ -139,6 +141,11 @@ public class MainConfig {
 	}
 	
 	@Bean
+	public BestTabDAO bestTabDao() {
+		return new BestTabDAO();
+	}
+	
+	@Bean
 	public LoginService loginSvc() {
 		return new LoginService(mainDAO());
 	}
@@ -205,6 +212,11 @@ public class MainConfig {
 	@Bean
 	public NewProductService newProductService() {
 		return new NewProductService();
+	}
+	
+	@Bean
+	public BestTabService bestTabService() {
+		return new BestTabService();
 	}
 }
 

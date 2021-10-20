@@ -30,82 +30,36 @@
 		<div class="best_title">베스트 상점</div>
 		<div class="best_sub">이번주 베스트 상점 3위를 바로 확인해보세요!</div>
 		<div style="margin-top: 60px;">
+		<c:forEach var="bp" items="${bestShopList}" begin="0" end="2" varStatus="status">
 			<div class="best_storeitem">
-				<div class="num">1</div>
+				<div class="num">${status.index+1}</div>
 				<div class="store_info">
 					<img src="${path }/resources/images/image_7@2x.png"/>
-					달콤디저트
+					${bp.manager_name}
 				</div>
 				<div class="imglist">
-					<img src="${path }/resources/images/image_8@2x.png"/>
-					<img src="${path }/resources/images/image_8@2x.png"/>
-					<img src="${path }/resources/images/image_8@2x.png"/>
+				<c:forTokens var="img" items="${bp.product_img_url}" delims=",">
+					<img src="https://${img}"/>
+					</c:forTokens>
 				</div>
-				<div class="store_btn">
+				<a href="${bp.manager_website}"><div class="store_btn">
 					사이트 바로가기
 					<img src="${path }/resources/images/arrow_right_c.png"/>
-				</div>
+				</div></a>
+					
 			</div>
+		</c:forEach>	
 			
-			<div class="best_storeitem">
-				<div class="num">2</div>
-				<div class="store_info">
-					<img src="${path }/resources/images/image_7@2x.png"/>
-					달콤디저트
-				</div>
-				<div class="imglist">
-					<img src="${path }/resources/images/image_8@2x.png"/>
-					<img src="${path }/resources/images/image_8@2x.png"/>
-					<img src="${path }/resources/images/image_8@2x.png"/>
-				</div>
-				<div class="store_btn">
-					사이트 바로가기
-					<img src="${path }/resources/images/arrow_right_c.png"/>
-				</div>
-			</div>
-			
-			<div class="best_storeitem">
-				<div class="num">3</div>
-				<div class="store_info">
-					<img src="${path }/resources/images/image_7@2x.png"/>
-					달콤디저트
-				</div>
-				<div class="imglist">
-					<img src="${path }/resources/images/image_8@2x.png"/>
-					<img src="${path }/resources/images/image_8@2x.png"/>
-					<img src="${path }/resources/images/image_8@2x.png"/>
-				</div>
-				<div class="store_btn">
-					사이트 바로가기
-					<img src="${path }/resources/images/arrow_right_c.png"/>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="best_item">
 		<div class="best_title">베스트 상품</div>
 		<div class="best_sub">이번주 베스트 상품을 바로 확인해보세요!</div>
 		<div class="best_itemimg">
-			<img src="${path }/resources/images/image_1@2x.png"/>
-			<img src="${path }/resources/images/image_2@2x.png"/>
-			<img src="${path }/resources/images/image_3@2x.png"/>
-			<img src="${path }/resources/images/image_4@2x.png"/>
-			<img src="${path }/resources/images/image_5@2x.png"/>
-			<img src="${path }/resources/images/image_6@2x.png"/>
-			<img src="${path }/resources/images/image_7@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_9@2x.png"/>
-			<img src="${path }/resources/images/cake@2x.png"/>
-			<img src="${path }/resources/images/donuts.jpg"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
-			<img src="${path }/resources/images/image_8@2x.png"/>
+		<c:forEach var="bpl" items="${bestProductList}">
+				<a href="${path}/product/${bpl.product_id}"><img src="https://${bpl.product_img_url}"/></a>
+		</c:forEach>
+			
 		</div>
 		<div class="item_btn">
 			상품 구매를 원하시나요? <span>지금 당장 확인하러 가보세요!</span>

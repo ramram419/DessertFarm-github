@@ -4,6 +4,7 @@
 <script src="<c:url value="/resources/js/code.json"/>" type="text/javascript"></script>
 
 <script>
+		
         function itemChange() {
             var cake = ["무스케이크","쉬폰케이크","치즈케이크","초코케이크","파운드케이크","버터케이크","스펀지케이크","롤케이크","컵케이크","티라미수","카스텔라"
         ,"크레이프","타르트"]
@@ -35,10 +36,10 @@
         }
         console.log(selectItem2.length);
 
-        $('#select2').empty();
+        $('#inputState2').empty();
         for (var i=0; i<selectItem2.length; i++) {
             var option = $("<option>"+selectItem2[i]+"</option>")
-            $("#select2").append(option);
+            $("#inputState2").append(option);
         }
 
         };
@@ -62,11 +63,34 @@
             }
         }
         
-        function categoryConvert() {
+       function categoryConvert() {
             const code = JSON.parse(JSON.stringify(Params))
             $('#categoryCode').val(code[$('#inputState2').val()])
             alert($('#categoryCode').val());
        }
+        
+       function loadFile (input) {
+    	   var str = "";
+    	   var file = input.files;
+    	   for (var i=0; i<file.length; i++) {
+    		   console.log(file[i].name);
+    		   str += (i+1) + "." + file[i].name + " ";
+    	   }
+    	   console.log(str);
+			$(input).next().html(str)    	   
+       }
+       
+       function isOnlyb(box) {
+    	   var isCk =  $('input:checkbox[id="basic_checkbox_1"]').is(":checked");
+    	   console.log(isCk);
+    	   if (isCk == true)
+    	   $(box).val(true);
+    	   else 
+    	   $(box).val(false);
+    	   console.log($(box).val())
+       }
+      
+       
    </script>
 
 <div class="row">
@@ -78,6 +102,7 @@
           <div class="card-body">
 	          <div>
 	              <section>
+	              
 	              <form name="frm" action="${path }/product/register" method="post" encType="multipart/form-data">
 	                  <div>
 	                      <div class="input-group col-lg-7 mb-4">
@@ -85,7 +110,7 @@
 	                              <span class="input-group-text">대표이미지</span>
 	                          </div>
 	                          <div class="custom-file">
-	                              <input type="file" class="custom-file-input" name="product_thumb" />
+	                              <input type="file" class="custom-file-input" name="product_thumb" onChange="loadFile(this);" />
 	                              <label class="custom-file-label"></label>
 	                          </div>
 	                      </div>
@@ -94,14 +119,14 @@
 	                              <span class="input-group-text">추가이미지</span>
 	                          </div>
 	                          <div class="custom-file">
-	                              <input type="file" class="custom-file-input" name="product_images" />
+	                              <input type="file" class="custom-file-input" name="product_images" multiple  onChange="loadFile(this);" />
 	                              <label class="custom-file-label"></label>
 	                          </div>
 	                      </div>
 	                      <div class="col-lg-7 row">
 	                      	<div class="choose col-lg-6 mb-4">
 	                           <label class="text-label">카테고리</label>
-	                           <select id="inputState" class="form-control" name="category1">
+	                           <select id="inputState" class="form-control" name="category1" onChange="itemChange();">
 	                               <option>케이크</option>
 	                               <option>베이커리</option>
 	                               <option>디저트</option>
@@ -112,7 +137,7 @@
 	                       <!-- 카테고리에 맞는 부 카테고리가 나오게끔 하면 좋을것 같다! -->
 	                       <div class="choose col-lg-6 mb-4">
 	                           <label class="text-label">카테고리</label>
-	                           <select id="inputState2" class="form-control">
+	                           <select id="inputState2" class="form-control" name="category2">
 	                               <option>무스케이크</option>
 	                               <option>쉬폰케이크</option>
 	                               <option>치즈케이크</option>
@@ -126,6 +151,7 @@
 	                           </select>
 	                       </div>
 	                      </div>
+	                      <input type="hidden" name="categoryCode" id="categoryCode">
 	                      <div class="col-lg-7 mb-4">
 	                          <div class="form-group">
 	                              <label class="text-label">메뉴명</label>
@@ -160,17 +186,17 @@
 	                          <div class="form-group">
 	                              <label class="text-label">상품내용</label>
 	                              <div class="input-group">
-	                                  <textarea class="form-control" rows="7" id="comment" style="margin-top: 0px; margin-bottom: 0px; height: 400px;" required></textarea>
+	                                  <textarea name="product_value" class="form-control" rows="7" id="comment" style="margin-top: 0px; margin-bottom: 0px; height: 400px;" required></textarea>
 	                                </div>
 	                            </div>
 	                            <div class="col-lg-12 mb-4 ml-2">
-	                                <input class="form-check-input" type="checkbox" id="basic_checkbox_1">사업자전용 
+	                                <input name="product_only_b" class="form-check-input" type="checkbox" id="basic_checkbox_1" value="0" onClick="isOnlyb(this);">사업자전용 
 	                            </div>
-	                            
-	                            <button type="submit" class="btn btn-primary" onclick="nullCheck(); catgegoryConvert();">등록</button>
+	                           
+	                            <button type="submit" class="btn btn-primary" onclick="categoryConvert();">등록</button>
 	                            <button type="submit" class="btn btn-light">취소</button>
 	                        </div>
-	                        
+	                        <button type="submit">ddd</button>
 	                    </div>
 	                    </form>
 	                </section>

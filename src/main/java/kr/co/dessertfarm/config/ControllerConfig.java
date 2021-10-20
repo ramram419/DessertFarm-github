@@ -16,6 +16,7 @@ import kr.co.dessertfarm.search.SearchController;
 import kr.co.dessertfarm.article.ArticleController;
 import kr.co.dessertfarm.aws.S3Controller;
 import kr.co.dessertfarm.basket.BasketController;
+import kr.co.dessertfarm.best.BestTabController;
 import kr.co.dessertfarm.category.CategoryController;
 import kr.co.dessertfarm.dibs.DibsController;
 import kr.co.dessertfarm.front.FrontController;
@@ -107,5 +108,10 @@ public class ControllerConfig {
 	public NewProductController newProductController() {
 		NewProductController newProductController = new NewProductController();
 		return newProductController;
+	}
+	
+	@Bean
+	public BestTabController bestTabController() {
+		return new BestTabController();
 	}
 }
