@@ -69,7 +69,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${orderList }" var="order" varStatus="status">
-				<c:set var="index" value="${status.index}"></c:set>
+				<c:set var="index" value="${status.index}" />
 				<tr>
 					<td>
 						<img src="${path }/resources/images/image_7.png" class="orderitem_img"/>

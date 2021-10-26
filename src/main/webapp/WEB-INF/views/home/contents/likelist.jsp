@@ -9,8 +9,67 @@
    <link rel="stylesheet" href="<c:url value="/resources/css/main/basic.css"/>">
    <link rel="stylesheet" href="<c:url value="/resources/css/main/main.css"/>">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <style type="text/css">
+   		.all_check_label {
+   			cursor: pointer;
+   		}
+   		
+   		.all_check_label .all_check-icon {
+   			display: inline-block;
+   			width: 40px;
+   			height: 22px;
+   			background: url("${path}/resources/images/icon_checkmark_off.png") no-repeat;
+   		}
+   		
+   		.all_check_label input[type="checkbox"] {
+   			display: none;
+   		}
+   		
+   		.all_check_label input[type="checkbox"]:checked + .all_check-icon{
+   			background: url("${path}/resources/images/icon_checkmark_on.png") no-repeat;
+   		}
+   		
+   		.sub_check_label {
+   			cursor: pointer;
+   		}
+   		
+   		.sub_check_label .check-icon {
+   			display: inline-block;
+   			width: 35px;
+   			height: 27px;
+   			background: url("${path}/resources/images/icon_checkmark_off.png") no-repeat;
+   		}
+   		
+   		.sub_check_label input[type="checkbox"] {
+   			display: none;
+   		}
+   		
+   		.sub_check_label input[type="checkbox"]:checked + .check-icon {
+   			background: url("${path}/resources/images/icon_checkmark_on.png") no-repeat;
+   		}
+   </style>
    <script>
-	function loadDibsList() {
+   		var index = $('.index').val();
+		
+		function allCheck() {
+			if($(".all_check").prop("checked")){
+				$("input[name=sub_check]").prop("checked", true);
+				var ifChecked = $("input[name=sub_check]").is(":checked");
+				console.log(ifChecked);
+			}else {
+				$("input[name=sub_check]").prop("checked", false);
+				var ifChecked = $("input[name=sub_check]").is(":checked");
+				console.log(ifChecked);
+			}
+		}
+		
+		function subCheck(index){
+			$('.index').val(index);
+			console.log(index);
+			return index;
+		}
+		
+		function loadDibsList() {
 		
 		var param = document.location.href.split("?pageNum=");
 		console.log(param[1]);
@@ -35,7 +94,10 @@
 		var result = '';
 		$.each(response,function(index,item) {
 			result += '<div class="like_item" data-pid="'+item["product_id"]+'">';
-			result += '<img src="${path}/resources/images/icon_checkmark_off.png" class="check"/>';
+			result += '<label class="sub_check_label">';
+			result += '<input type="checkbox" name="sub_check" onclick="subCheck(${index});" />';
+			result += '<i class="all_check-icon"></i>';
+			result += '</label>';
 			result += '<img src="https://'+ item["product_img_url"] + '" class="itemimg"/>'
 			result += '<div class="like_itemContent">';
 			if (item["product_new"] == true){result += '<div class="tag new">NEW</div>';}
@@ -70,10 +132,16 @@
 			<li onclick="location.href='./qnalist?pageNum=1';">문의내역</li>
 		</ul>
 	</div>
+	
+	<!-- All CheckBox -->
 	<div class="allcheck">
-		<img src="${path}/resources/images/icon_checkmark_off.png" class="checkonoff"  style="vertical-align: sub;"/>
+		<label class="all_check_label">
+			<input type="checkbox" class="all_check" name="all_check" value="all_check" onclick="allCheck();"/>
+			<i class="all_check-icon"></i>
+		</label>
 		전체선택
 	</div>
+		
 	<div style="display:flex;">
 		<div class="like_list">
 			

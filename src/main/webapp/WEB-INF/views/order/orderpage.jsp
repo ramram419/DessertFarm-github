@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -142,40 +143,44 @@
 		        }
 		    }).open();
 		})
-	}) 
+	}); 
 		
 	
 		
-		$(document).ready(function() {
-			
-			$('.guide').click(function() {
-				$(this).next().toggle();
-			})
-		})
+	$(document).ready(function() {
+		$('.guide').click(function() {
+			$(this).next().toggle();
+		});
+	});
 	</script>
 </head>
 <body>
 <c:import url="../home/top.jsp" />
 	<div class="C_content" >
 	<div class="info ordering-person">
-			
 			<table class='tab'>
-				<tr style='height: 30px;'>
-					<td class='title img' style='text-align : center'>이미지</td>
-					<td class='title name' style='text-align : center; width : 70%;'>상품내용</td>
-					<td class='title each' style='text-align : center'>수량</td>
-					<td class='title' style='text-align : center'>가격</td>
-				</tr>
-				<tr style=' height : 50px; border-bottom : 1px solid black;'>
-					<td style='text-align : center;'><img style='margin : 5px 5px; vertical-align : middle; text-align : center; width : 100px; height : 100px;' src='${path}/resources/product_img/20210829_33_jinAdmin_thumb.jpg'></td>
-					<td style='text-align : center;'>상품내용</td>
-					<td style='text-align : center;'>수량</td>
-					<td style='text-align : center;'>가격</td>
-				</tr>
-				
+				<thead>
+					<tr style='height: 30px;'>
+						<td class='title img' style='text-align : center'>이미지</td>
+						<td class='title name' style='text-align : center; width : 70%;'>상품내용</td>
+						<td class='title each' style='text-align : center'>수량</td>
+						<td class='title' style='text-align : center'>가격</td>
+					</tr>
+				</thead>
+
+				<tbody>
+				<c:forEach items="${pdList}" var="pdMap" varStatus="status">
+					<tr style=' height : 50px; border-bottom : 1px solid black;'>
+						<td style='text-align : center;'>
+							<img style='margin : 5px 5px; vertical-align : middle; text-align : center; width : 100px; height : 100px;' src='${path}/resources/product_img/20210829_33_jinAdmin_thumb.jpg'>
+						</td>
+						<td style='text-align : center;'>${pdMap.name}</td>
+						<td style='text-align : center;'>${pdMap.quan}</td>
+						<td style='text-align : center;'>${pdMap.price}원</td>
+					</tr>
+				</c:forEach>
+				</tbody>
 			</table>
-			
-	
 		</div>
 		<div class="info ordering-person">
 			<p class="order-title">주문자 정보</p>
@@ -256,6 +261,10 @@
 				</div>
 				<div class='pulldown'></div>
 			</div>	
+		</div>
+		
+		<div class="order_btns">
+			<button style="background-color:#e13517; color:#ffffff; margin: 0 auto;">주문하기</button>
 		</div>
 	</div>
 
