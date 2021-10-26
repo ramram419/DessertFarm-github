@@ -11,9 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.amazonaws.services.fsx.model.FileSystemMaintenanceOperation;
 
 import kr.co.dessertfarm.paging.PagingDTO;
 import kr.co.dessertfarm.paging.PagingService;
@@ -24,14 +28,52 @@ public class OrderController {
 	private OrderService oSvc;
 	
 	@Autowired
-	private PagingService pSvc;
+	private PagingService pSvc;	
 	
-	
-	@RequestMapping("/order")
-	public String orderPage(HttpServletRequest req, HttpSession session, Model model) {
+	@RequestMapping("/bag/order")
+	public String bagToOrder(HttpServletRequest req, HttpSession session, Model model) throws Exception{
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = (Map<String, Object>)session.getAttribute("user");
+		
+		String pdname = req.getParameter("pdname");
+		String[] pdnameArr = pdname.split(",");
+		
+		String pdquan = req.getParameter("pdquan");
+		String[] pdquanArr = pdquan.split(",");
+		
+		String pdprice = req.getParameter("pdprice");
+		String[] pdpriceArr = pdprice.split(",");
+
+		for(String s : pdnameArr) {
+			System.out.println("<Controller> pdname : " + s);	
+		}
+		for(String t : pdquanArr) {
+			System.out.println("<Controller> pdquan : " + t);
+		}
+		for(String r : pdpriceArr) {
+			System.out.println("<Controller> pdprice : " + r);
+		}
+		
+		ArrayList<HashMap<String, String>> pdList = new ArrayList<HashMap<String, String>>();
+		
+		for(int i=0;i<pdnameArr.length;i++) {
+			HashMap<String, String> pd = new HashMap<String, String>();
+			
+			pd.put("name", pdnameArr[i]);
+			pd.put("quan", pdquanArr[i]);
+			pd.put("price", pdpriceArr[i]);
+			
+			pdList.add(pd);
+		}
+		System.out.println("<Controller> pdList : " + pdList);
 		model.addAttribute("user", user);
+		model.addAttribute("pdList", pdList);
+		
+		return "order/orderpage";
+	}
+	
+	@RequestMapping("/order")
+	public String orderPage() {
 		return "order/orderpage";
 	}
 	
@@ -64,7 +106,7 @@ public class OrderController {
 		oDTO.setProduct_quan(Integer.parseInt(req.getParameter("product_quan")));
 		oDTO.setProduct_price(Integer.parseInt(req.getParameter("product_price")));
 		oSvc.insertOrder(oDTO);
-		return "order/orderpage";
+		return "redirect:/order/orderHistory";
 	}
 	
 	@ResponseBody
