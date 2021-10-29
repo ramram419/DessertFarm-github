@@ -777,6 +777,17 @@
 
 /* order */
 
+.order_btns button {
+	width:140px;
+	height:48px;
+	font-size:14px;
+	font-weight:bold;
+	display: block;
+	outline:none;
+	border:none;
+	cursor:pointer;
+}
+
 .order_table, .qna_table{
 	width: 100%;
 	text-align: center;

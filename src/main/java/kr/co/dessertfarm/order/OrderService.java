@@ -40,6 +40,11 @@ public class OrderService {
 		return oDAO.selectOrderList(map);
 	}
 	
+	public List<String> orderInfo(String id){
+		System.out.println("<Service> orderInfoById : " + oDAO.selectOrderInfoById(id));
+		return oDAO.selectOrderInfoById(id);
+	}
+	
 	public String orderSend(String id, String product_name, String order_date, String order_detid) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		order_detid = orderDetId(id, product_name, order_date);

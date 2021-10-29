@@ -38,5 +38,12 @@ public class BasketService {
 		map.put("findingCount", findingCount);
 		
 		return bDAO.selectBasket(map);
-	} 
+	}
+	
+	public void deleteAfterOrder(String id, String product_name) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("product_name", product_name);
+		bDAO.deleteAfterOrder(map);
+	}
 }
