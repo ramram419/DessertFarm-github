@@ -15,6 +15,12 @@
 		SELECT COUNT(*) FROM order_detail WHERE client_id = #{id}
 	</select>
 	
+	<select id="selectOrderInfoById" parameterType="String" resultType="HashMap">
+		SELECT *
+		FROM order_
+		WHERE client_id = #{id}
+	</select>
+	
 	<select id="selectOrderSend" parameterType="String" resultType="String">
 		SELECT order_send
 		FROM order_detail
@@ -36,6 +42,5 @@
 	<insert id="insertOrderList" parameterType="orderDTO">
 		INSERT INTO order_detail(order_detid, order_id, product_id, product_name, product_quan, product_price, order_date, order_send, client_id, request)
 		VALUES (#{order_detid, jdbcType=VARCHAR}, #{order_id, jdbcType=INTEGER}, #{product_id, jdbcType=INTEGER}, #{product_name, jdbcType=VARCHAR}, #{product_quan, jdbcType=INTEGER}, #{product_price, jdbcType=INTEGER}, sysdate(), #{order_send, jdbcType=VARCHAR}, #{client_id, jdbcType=VARCHAR}, #{request, jdbcType=VARCHAR})
-		WHERE client_id = #{id}
 	</insert>
 </mapper>

@@ -21,4 +21,8 @@ public class BasketDAO {
 		System.out.println("<DAO> basketList : " + basketList);
 		return basketList;
 	}
+	
+	public void deleteAfterOrder(HashMap<String, Object> map) {
+		sqlSession.delete("basket.deleteAfterOrder", map);
+	}
 }

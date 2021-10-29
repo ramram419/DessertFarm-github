@@ -21,6 +21,13 @@ public class OrderDAO {
 		return orderList;
 	}
 	
+	public List<String> selectOrderInfoById(String id) {
+		List<String> orderInfo = new ArrayList<String>();
+		orderInfo = sqlSession.selectList("order.selectOrderInfoById", id);
+		System.out.println("<DAO> orderInfoById : " + orderInfo);
+		return orderInfo;
+	}
+	
 	public String selectOrderSend(HashMap<String, Object> map) {
 		String send = sqlSession.selectOne("order.selectOrderSend", map);
 		System.out.println("<DAO> orderSend : " + send);
