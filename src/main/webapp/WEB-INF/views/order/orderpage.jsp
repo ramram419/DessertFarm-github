@@ -152,10 +152,56 @@
 			$(this).next().toggle();
 		});
 	});
+	
+	var index = $('.index').val();
+	var indexArr = new Array();
+	var pdmap = new Map();
+	var pdname = new Array();
+	var pdquan = new Array();
+	var pdprice = new Array();
+	
+	function order(index) {
+		console.log(index);
+		
+		for(var j=0;j<=index;j++){
+			console.log(j);
+			indexArr.push(j);
+		}
+		
+		console.log(indexArr);
+		
+		for(var i=0;i<indexArr.length;i++){
+   			var product_name = $('.p_name').eq(indexArr[i]).val();
+   			var product_quan = $('.p_quan').eq(indexArr[i]).val();
+   			var product_price = $('.p_price').eq(indexArr[i]).val();
+   			console.log(product_name);
+   			
+   			pdname.push(product_name);
+   			pdquan.push(product_quan);
+   			pdprice.push(product_price);
+   			
+   			pdmap.set("product_name", pdname);
+   			pdmap.set("product_quan", pdquan);
+   			pdmap.set("product_price", pdprice);
+		}
+		
+			console.log(pdname);
+			console.log(pdquan);
+			console.log(pdprice);
+			
+			$('.pdname').val(pdname);
+			$('.pdquan').val(pdquan);
+			$('.pdprice').val(pdprice);
+			
+   			var oFrm = document.oFrm;
+   			oFrm.submit();
+	}
+
 	</script>
 </head>
 <body>
 <c:import url="../home/top.jsp" />
+<form name="oFrm" action="${path}/orderlist/register" method="post" encType="utf-8">
 	<div class="C_content" >
 	<div class="info ordering-person">
 			<table class='tab'>
@@ -167,24 +213,30 @@
 						<td class='title' style='text-align : center'>가격</td>
 					</tr>
 				</thead>
-
+			
 				<tbody>
 				<c:forEach items="${pdList}" var="pdMap" varStatus="status">
+				<c:set var="index" value="${status.index}" />
 					<tr style=' height : 50px; border-bottom : 1px solid black;'>
 						<td style='text-align : center;'>
 							<img style='margin : 5px 5px; vertical-align : middle; text-align : center; width : 100px; height : 100px;' src='${path}/resources/product_img/20210829_33_jinAdmin_thumb.jpg'>
 						</td>
-						<td style='text-align : center;'>${pdMap.name}</td>
-						<td style='text-align : center;'>${pdMap.quan}</td>
-						<td style='text-align : center;'>${pdMap.price}원</td>
+						<td style='text-align : center;'><input type="hidden" class="p_name" name="p_name" value="${pdList[status.index].name}" />${pdList[status.index].name}</td>
+						<td style='text-align : center;'><input type="hidden" class="p_quan" name="p_quan" value="${pdList[status.index].quan}" />${pdList[status.index].quan}</td>
+						<td style='text-align : center;'><input type="hidden" class="p_price" name="p_price" value="${pdList[status.index].price}" />${pdList[status.index].price}원</td>
 					</tr>
+					<input type="hidden" value="${index}" class="index" name="index" />
+					<input type="hidden" class="pdname" name="pdname" />
+            		<input type="hidden" class="pdquan" name="pdquan" />
+            		<input type="hidden" class="pdprice" name="pdprice" />
+            		<input type="hidden" class="pdmap" name="pdmap" />
 				</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		<div class="info ordering-person">
 			<p class="order-title">주문자 정보</p>
-			<c:set value="${user}"  var="user" />
+			<c:set value="${user}" var="user" />
 			<table class='tab'>
 				<tr>
 					<td class='title'>이름</td>
@@ -205,6 +257,7 @@
 		
 		<div class="info delivery">
 			<p class="order-title">배송 정보</p>
+			<c:set value="${orderInfo}" var="info"/>
 			<table class='tab'>
 				<tr>
 					<td class='title'>배송정보</td>
@@ -212,16 +265,16 @@
 				</tr>
 				<tr>
 					<td class='title'>수령인</td>
-					<td class='value'><input class='inputtxt' type='text' placeholder='수령인 입력'></td>
+					<td class='value'><input class='inputtxt' type='text' placeholder='${info[0].client_name}' value='${info[0].client_name}'></td>
 				</tr>
 				
 				<tr>
 					<td class='title'>주소</td>
 						<td class='value'>
-							<input id='postcode' style='width:70px; text-align : center;' type='text' class='inputtxt' placeholder='우편번호'>
+							<input id='postcode' style='width:70px; text-align : center;' type='text' class='inputtxt' placeholder='${info[0].postal_code }' value='${info[0].postal_code}'>
 							<button id='address-button' style='margin-bottom: 6px; padding-bottom:2px; width:80px; height : 29px; text-align : center;' class='inputtxt'>주소찾기</button> <br>
-							<input id='basic-add' style='margin-bottom: 6px; width:300px; text-align : center;' type='text' class='inputtxt' placeholder='기본주소'> <br>
-							<input id='detail-add' style='margin-bottom: 6px; width:300px; text-align : center;' type='text' class='inputtxt' placeholder='상세주소'>
+							<input id='basic-add' style='margin-bottom: 6px; width:300px; text-align : center;' type='text' class='inputtxt' placeholder='${info[0].address}' value='${info[0].address}'><br>
+							<input id='detail-add' style='margin-bottom: 6px; width:300px; text-align : center;' type='text' class='inputtxt' placeholder='${info[0].detail_address}' value='${info[0].detail_address}'>
 						</td>
 				</tr>
 				<tr>
@@ -264,9 +317,9 @@
 		</div>
 		
 		<div class="order_btns">
-			<button style="background-color:#e13517; color:#ffffff; margin: 0 auto;">주문하기</button>
+			<button type="button" style="background-color:#e13517; color:#ffffff; margin: 0 auto;" onclick="order(${index})">주문하기</button>
 		</div>
 	</div>
-
+</form>
 </body>
 </html>

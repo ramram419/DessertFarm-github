@@ -11,14 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amazonaws.services.fsx.model.FileSystemMaintenanceOperation;
 
+import kr.co.dessertfarm.basket.BasketService;
 import kr.co.dessertfarm.paging.PagingDTO;
 import kr.co.dessertfarm.paging.PagingService;
 
@@ -28,7 +27,15 @@ public class OrderController {
 	private OrderService oSvc;
 	
 	@Autowired
-	private PagingService pSvc;	
+	private PagingService pSvc;
+	
+	@Autowired
+	private BasketService bSvc;
+	
+	@RequestMapping("/order")
+	public String orderPage() {
+		return "order/orderpage";
+	}
 	
 	@RequestMapping("/bag/order")
 	public String bagToOrder(HttpServletRequest req, HttpSession session, Model model) throws Exception{
@@ -69,11 +76,11 @@ public class OrderController {
 		model.addAttribute("user", user);
 		model.addAttribute("pdList", pdList);
 		
-		return "order/orderpage";
-	}
-	
-	@RequestMapping("/order")
-	public String orderPage() {
+		List<String> orderInfo = new ArrayList<String>();
+		orderInfo = oSvc.orderInfo(user.get("client_id").toString());
+		System.out.println("<Controller> orderInfo : " + orderInfo);
+		model.addAttribute("orderInfo", orderInfo);
+		
 		return "order/orderpage";
 	}
 	
@@ -101,12 +108,34 @@ public class OrderController {
 		Map<String, Object> user = new HashMap<String, Object>();
 		user = (Map<String, Object>)session.getAttribute("user");
 		id = user.get("client_id").toString();
-		oDTO.setClient_id(id);
-		oDTO.setProduct_name(req.getParameter("product_name"));
-		oDTO.setProduct_quan(Integer.parseInt(req.getParameter("product_quan")));
-		oDTO.setProduct_price(Integer.parseInt(req.getParameter("product_price")));
-		oSvc.insertOrder(oDTO);
-		return "redirect:/order/orderHistory";
+		
+		String pdname = req.getParameter("pdname");
+		String[] pdnameArr = pdname.split(",");
+		
+		String pdquan = req.getParameter("pdquan");
+		String[] pdquanArr = pdquan.split(",");
+		
+		String pdprice = req.getParameter("pdprice");
+		String[] pdpriceArr = pdprice.split(",");
+		
+		for(int i=0;i<pdnameArr.length;i++) {
+			System.out.println("<Controller> pdnameArr : " + pdnameArr[i]);
+			int oid = (int)Math.random();
+			
+			oDTO.setClient_id(id);
+			oDTO.setProduct_id(1);
+			oDTO.setProduct_name(pdnameArr[i]);
+			oDTO.setProduct_quan(Integer.parseInt(pdquanArr[i]));
+			oDTO.setProduct_price(Integer.parseInt(pdpriceArr[i]));
+			oDTO.setOrder_send("배송 준비중");
+			oDTO.setOrder_id(oid);
+			oDTO.setOrder_detid(Integer.toString(i));
+			oDTO.setRequest("X");
+			oSvc.insertOrder(oDTO);
+			bSvc.deleteAfterOrder(id, pdnameArr[i]);
+		}
+
+		return "redirect:/orderlist";
 	}
 	
 	@ResponseBody
