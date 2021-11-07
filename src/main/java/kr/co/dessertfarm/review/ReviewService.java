@@ -7,4 +7,8 @@ import org.springframework.stereotype.Service;
 public class ReviewService {
 	@Autowired
 	private ReviewDAO rDAO;
+	
+	public void reg_newReview(ReviewDTO dto) {
+		rDAO.reg_newReview(dto);
+	}
 }

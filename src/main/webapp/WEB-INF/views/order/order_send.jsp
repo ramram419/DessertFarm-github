@@ -41,6 +41,17 @@
 				}
 			});
    		});
+		
+		function check_review() {
+			var order_send = $('.order_send').val();
+			console.log(order_send);
+			
+			if(order_send == "배송 완료"){
+				location.href='${path}/review/new';
+			}else{
+				alert('배송이 완료된 상품만 리뷰를 남길 수 있습니다.');
+			}
+		}
    	</script>
 </head>
 <body>
@@ -48,7 +59,7 @@
 	<table class="order_table">
 			<thead>
 				<tr>
-					<th style="width: 40%;">배송번호</th>
+					<th style="width: 15%;">상품명</th>
 					<th style="width: 15%;">수량</th>
 					<th style="width: 15%;">금액</th>
 					<th style="width: 15%;">주문날짜</th>
@@ -57,14 +68,14 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>
+					<!-- <td>
 						<div class="order_itemContent">
 							<div class="itemName">
-								<div id="product_name" class="product_name"></div>
+								
 							</div>
 		           	 	</div>
-					</td>
-					<td><div id="order_detid" class="order_detid"></div></td>
+					</td> -->
+					<td><div id="product_name" class="product_name"></div></td>
 					<td><div id="product_quan" class="product_quan"></div></td>
 					<td><div id="product_price" class="product_price"></div>원</td>
 					<td><div id="order_date" class="order_date"></div></td>
@@ -72,5 +83,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<button type="button" class="detail_btn" onclick="check_review();">리뷰 남기기</button>
+	
 </body>
 </html>

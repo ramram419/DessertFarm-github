@@ -15,4 +15,8 @@
 	<insert id="basketRegister" parameterType="basketDTO">
 		INSERT INTO basket(product_name, product_price) VALUES(#{product_name, jdbcType=VARCHAR}, #{product_price, jdbcType=VARCHAR})
 	</insert>
+	
+	<delete id="deleteAfterOrder" parameterType="String">
+		DELETE FROM basket WHERE client_id = #{id} AND product_name = #{product_name}
+	</delete>
 </mapper>

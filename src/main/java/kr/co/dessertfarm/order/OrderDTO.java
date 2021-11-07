@@ -17,4 +17,5 @@ public class OrderDTO {
 	private Date order_date;
 	private String order_send;
 	private String client_id;
+	private String request;
 }
