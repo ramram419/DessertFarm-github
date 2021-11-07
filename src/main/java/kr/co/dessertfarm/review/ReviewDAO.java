@@ -10,5 +10,8 @@ public class ReviewDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
+	public void reg_newReview(ReviewDTO dto) {
+		sqlSession.insert("review.reg_newReview", dto);
+	}
 	
 }

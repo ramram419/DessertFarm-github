@@ -19,6 +19,7 @@
         <typeAlias type="kr.co.dessertfarm.product.ProductPageDTO" alias='productPageDTO'/>
         <typeAlias type="kr.co.dessertfarm.ImageManager.ImageDTO" alias='imageDTO'/>
         <typeAlias type="kr.co.dessertfarm.dibs.DibsDTO" alias='dibsDTO'/>
+        <typeAlias type="kr.co.dessertfarm.review.ReviewDTO" alias='reviewDTO'/>
     </typeAliases>
     
     <!-- connection pool -->
