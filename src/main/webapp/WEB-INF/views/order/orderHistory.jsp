@@ -30,7 +30,18 @@
 					if(data != null && data != "null data"){
 						console.log(data);
 						$('.order_send').val(data);
+						var order_send = $('.order_send').val();
 						window.open("order/send/detail/popUp", "PopUpWin", "height=800px, width=800px");
+						
+						$.ajax({
+							type: "POST",
+							url: "review/new",
+							dataType: "text",
+							data: {"order_send" : order_send},
+							success: function(data) {
+								console.log(data);
+							}
+						});
 					}else if(data == "null data"){
 						console.log(data);
 						alert('Error');
