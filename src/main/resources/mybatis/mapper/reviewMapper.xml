@@ -4,5 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="review">
-	
+	<insert id="reg_newReview" parameterType="reviewDTO">
+		INSERT INTO review (review_id, product_id, client_id, review_title, review_value, review_rating, review_date)
+		VALUES (#{review_id, jdbcType=INTEGER}, #{product_id, jdbcType=INTEGER}, #{client_id, jdbcType=VARCHAR}, #{review_title, jdbcType=VARCHAR}, #{review_value, jdbcType=VARCHAR}, #{review_rating, jdbcType=FLOAT}, #{review_date, jdbcType=DATE})
+		WHERE client_id = #{id}
+	</insert>
 </mapper>
