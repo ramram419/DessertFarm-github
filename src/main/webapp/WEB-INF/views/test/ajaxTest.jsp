@@ -46,7 +46,6 @@
 	<p>
 		<input type="checkbox" id="a" value="acheck"> A 체크박스
 	</p>
-	test
 	<p>
 		<input type="checkbox" value="bcheck"> B 체크박스
 	</p>

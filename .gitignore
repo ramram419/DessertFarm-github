@@ -65,4 +65,10 @@ local.properties
 .settings/
 target/*
 pom.properties
+
+# db 정보 담겨 있는 properties
+application.properties
+dbinfo.properties
+
+
 /target/
